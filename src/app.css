@@ -271,6 +271,14 @@ ul + .note {
 	font-size: 0.88rem;
 }
 
+/* caption under a figure */
+.figcap {
+	margin-top: 1rem;
+	font-size: 0.9rem;
+	color: var(--dim);
+	max-width: 46rem;
+}
+
 .note {
 	border-left: 2px solid var(--stroke);
 	padding-left: 1rem;

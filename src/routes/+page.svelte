@@ -1,5 +1,6 @@
 <script>
 	import { OS_RELEASES } from '$lib/nav.js';
+	import ThemeDemo from '$lib/ThemeDemo.svelte';
 </script>
 
 <svelte:head>
@@ -27,6 +28,10 @@
 		<p class="status">
 			<span class="dot"></span> Alpha · x86_64 · UEFI · rolling releases · GPL-2.0
 		</p>
+	</section>
+
+	<section class="figure">
+		<ThemeDemo />
 	</section>
 
 	<hr />

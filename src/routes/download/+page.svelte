@@ -1,6 +1,7 @@
 <script>
 	import Command from '$lib/Command.svelte';
 	import { OS_RELEASES, PKG_REPO, JOIN, VERIFY, WRITE } from '$lib/nav.js';
+	import Installer from '$lib/Installer.svelte';
 </script>
 
 <svelte:head>
@@ -77,6 +78,11 @@
 			<li><span class="n">5</span><div><h3>Summary</h3><p>Everything you chose, everything ewe decided, and the only Install button in the flow.</p></div></li>
 			<li><span class="n">6</span><div><h3>Install</h3><p>Streamed progress, then reboot. Pull the stick when the screen goes dark.</p></div></li>
 		</ol>
+		<Installer />
+		<p class="figcap">
+			Screen five, drawn to scale: what you chose, what ewe decided, and the only button in the flow
+			that writes anything.
+		</p>
 	</section>
 
 	<section>

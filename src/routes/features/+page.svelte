@@ -1,3 +1,7 @@
+<script>
+	import ThemeDemo from '$lib/ThemeDemo.svelte';
+</script>
+
 <svelte:head>
 	<title>Features — ewe</title>
 	<meta
@@ -131,6 +135,13 @@
 				<dt>One icon language</dt>
 				<dd>Phosphor glyphs throughout the shell; a matching icon theme and cursor for apps.</dd>
 			</div>
+		</dl>
+		<ThemeDemo caption={false} />
+		<p class="figcap">
+			Try it: the accent moves through the bar, the dock and every tile at once, and the two dark
+			looks swap the surfaces underneath. Both are one setting on the real desktop.
+		</p>
+		<dl class="rows" style="margin-top:2rem">
 			<div class="row">
 				<dt>Motion you control</dt>
 				<dd>

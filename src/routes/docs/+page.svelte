@@ -1,5 +1,6 @@
 <script>
 	import Command from '$lib/Command.svelte';
+	import Terminal from '$lib/Terminal.svelte';
 	import { OS_REPO, DE_REPO, PKG_REPO, ISSUES } from '$lib/nav.js';
 	const INSTALL_DOC = OS_REPO + '/blob/main/docs/INSTALL.md';
 	const TROUBLE = OS_REPO + '/blob/main/docs/TROUBLESHOOTING.md';
@@ -29,6 +30,7 @@
 		<a href="#shortcuts">Shortcuts</a>
 		<a href="#updates">Updates</a>
 		<a href="#config">The one file</a>
+		<a href="#cli">The CLI</a>
 		<a href="#google">Google</a>
 		<a href="#limits">Limitations</a>
 		<a href="#project">The project</a>
@@ -155,24 +157,117 @@
 			you; <code>ewe-conf</code> is the only thing that touches it directly, and every runtime file
 			Hyprland and the shell read is regenerated from it.
 		</p>
-		<dl class="rows">
-			<div class="row"><dt><code>ewe-conf get &lt;key&gt;</code></dt><dd>Read one value, by dotted key.</dd></div>
-			<div class="row"><dt><code>ewe-conf set &lt;key&gt; &lt;value&gt;</code></dt><dd>Write it and apply immediately.</dd></div>
-			<div class="row"><dt><code>ewe-conf dump</code></dt><dd>The whole file as JSON.</dd></div>
-			<div class="row"><dt><code>ewe-conf import</code></dt><dd>Build the file from a machine that's already set up.</dd></div>
-			<div class="row">
-				<dt><code>ewe-conf apply</code></dt>
-				<dd>Regenerate every artifact and reload the shell. Add <code>--only &lt;domain&gt;</code> to narrow it.</dd>
-			</div>
-			<div class="row">
-				<dt><code>ewe-conf push</code> / <code>pull</code></dt>
-				<dd>Send the file to your Drive, or fetch it back. <a href="/sync/">More on sync →</a></dd>
-			</div>
-		</dl>
 		<p class="note">
 			Editing a generated file by hand works exactly until the next apply overwrites it. Change the
-			source, not the artifact.
+			source, not the artifact — with the settings apps, or with <code>ewe-conf</code> below.
 		</p>
+	</section>
+
+	<section id="cli">
+		<p class="eyebrow">The CLI</p>
+		<h2>Five small tools.</h2>
+		<p>
+			Every graphical thing in ewe is a front end to one of these. There is no second, hidden path:
+			the settings app calls <code>ewe-conf</code>, the sign-in button calls <code>ewe-auth</code>,
+			the Cast card calls the cast daemon. <strong>Anything you can click, you can script</strong> —
+			and anything that breaks, you can debug by running the same command yourself.
+		</p>
+
+		<div class="grid">
+			<div class="card">
+				<h3>One job each</h3>
+				<p>Small tools with obvious verbs, not one binary with forty flags.</p>
+			</div>
+			<div class="card">
+				<h3>JSON out</h3>
+				<p>Machine-readable by default, so the shell and your scripts read the same thing.</p>
+			</div>
+			<div class="card">
+				<h3>Secrets in one place</h3>
+				<p>Only <code>ewe-auth</code> ever touches a token. Nothing else needs to know how.</p>
+			</div>
+		</div>
+
+		<h3 class="tool">
+			<code>ewe-conf</code> <span>— the machine, as a file</span>
+		</h3>
+		<p>
+			The only writer of <code>ewe.conf</code>. It regenerates every runtime file Hyprland and the
+			shell read, then reloads the shell — so a change is live in one command.
+		</p>
+		<dl class="rows">
+			<div class="row"><dt><code>get &lt;key&gt;</code> · <code>set &lt;key&gt; &lt;value&gt;</code></dt><dd>Read or write one value by dotted key; a set applies immediately.</dd></div>
+			<div class="row"><dt><code>dump</code></dt><dd>The whole file as JSON — one read for the shell, or for you.</dd></div>
+			<div class="row"><dt><code>import</code></dt><dd>Build the file from a machine that's already set up the old way.</dd></div>
+			<div class="row"><dt><code>apply [--only &lt;domain&gt;]</code></dt><dd>Regenerate the artifacts and reload. The whole desktop, or one domain.</dd></div>
+			<div class="row"><dt><code>push</code> · <code>pull</code></dt><dd>Your file to Drive and back. <a href="/sync/">More on sync →</a></dd></div>
+		</dl>
+		<Terminal
+			lines={[
+				{ comment: '# change the accent from a script — same path the UI takes' },
+				{ cmd: 'ewe-conf set desktop.theme.accent \'"#30d158"\'' },
+				{ comment: '# move a whole machine onto this one' },
+				{ cmd: 'ewe-conf pull && ewe-conf apply' }
+			]}
+		/>
+
+		<h3 class="tool"><code>ewe-auth</code> <span>— one Google identity</span></h3>
+		<p>
+			The broker. Before it existed, the shell owned its own OAuth and the software manager ran a
+			separate pipeline off files the shell wrote. Now there is <strong>one client, one consent
+			screen, one sign-out</strong>, and every app asks the broker for a short-lived token instead of
+			doing OAuth itself.
+		</p>
+		<dl class="rows">
+			<div class="row"><dt><code>status</code></dt><dd>Whether a client is configured, the keyring is reachable, and who is signed in.</dd></div>
+			<div class="row"><dt><code>login</code> · <code>logout</code></dt><dd>Browser consent once; sign-out revokes at Google and wipes the keyring and caches.</dd></div>
+			<div class="row"><dt><code>token</code> · <code>refresh</code></dt><dd>A valid access token, refreshed under a lock when it has expired.</dd></div>
+		</dl>
+		<p class="note">
+			Why it matters: the refresh token lives <strong>only</strong> in the system keyring, and access
+			tokens sit in a tmpfs cache that disappears at logout. Every subcommand prints a single JSON
+			object and exits 0, so a UI waiting on it can never hang.
+		</p>
+
+		<h3 class="tool"><code>ewe-drive</code> <span>— your Drive as a folder</span></h3>
+		<p>
+			The same identity, extended to files: an rclone mount at <code>~/Google Drive</code> using the
+			broker's token and client, so there's no second consent system and no GNOME Online Accounts.
+			The file manager just sees a folder.
+		</p>
+		<dl class="rows">
+			<div class="row"><dt><code>setup</code></dt><dd>One-time: add the Drive scope, write the remote, bookmark it, mount.</dd></div>
+			<div class="row"><dt><code>mount</code> · <code>unmount</code> · <code>status</code></dt><dd>Everyday verbs; autostart calls <code>mount</code> for you.</dd></div>
+		</dl>
+		<p class="note">
+			It keeps its rclone config in its own file, so if you already use rclone, ewe never touches your
+			configuration.
+		</p>
+
+		<h3 class="tool"><code>ewe-castd</code> <span>— casting, without a window</span></h3>
+		<p>
+			The headless daemon behind the Cast card. It captures through the desktop portal and speaks the
+			TV protocols itself — Miracast over Wi-Fi Direct, or Chromecast over the local network — which
+			is why casting in ewe never opens a foreign application.
+		</p>
+		<dl class="rows">
+			<div class="row"><dt><code>status</code> · <code>scan</code></dt><dd>What's happening, and which sinks are on the network right now.</dd></div>
+			<div class="row"><dt><code>start &lt;sink&gt;</code> · <code>stop</code></dt><dd>Begin or end a session. The control centre sends exactly these.</dd></div>
+		</dl>
+
+		<h3 class="tool"><code>ewe-install</code> <span>— the installer, as a command</span></h3>
+		<p>
+			The graphical installer drives a root helper with fixed verbs; the same primitives are a CLI on
+			the live session. That's the path for scripted and headless installs — and
+			<code>--layer-only</code> puts ewe onto an Arch system that already exists.
+		</p>
+		<Terminal
+			lines={[
+				{ cmd: 'ewe-install --help' },
+				{ comment: '# put the ewe desktop on an Arch machine you already have' },
+				{ cmd: 'ewe-install --layer-only' }
+			]}
+		/>
 	</section>
 
 	<section id="google">
@@ -322,6 +417,28 @@
 	.more {
 		margin-top: 1.1rem;
 		font-size: 0.94rem;
+	}
+	/* a tool heading: the command, then what it is for */
+	h3.tool {
+		margin-top: 2.4rem;
+		display: flex;
+		flex-wrap: wrap;
+		align-items: baseline;
+		gap: 0.5rem;
+		font-size: 1.05rem;
+	}
+	h3.tool code {
+		font-size: 0.95rem;
+		background: var(--elevated);
+		border-color: var(--stroke);
+		padding: 0.2em 0.5em;
+	}
+	h3.tool span {
+		color: var(--dim);
+		font-size: 0.9rem;
+	}
+	h3.tool + p {
+		margin-top: 0.7rem;
 	}
 	section :global(.cmd) {
 		margin-top: 0.85rem;
