@@ -1,6 +1,6 @@
 <script>
 	import { OS_RELEASES } from '$lib/nav.js';
-	import ThemeDemo from '$lib/ThemeDemo.svelte';
+	import Shot from '$lib/Shot.svelte';
 </script>
 
 <svelte:head>
@@ -11,7 +11,7 @@
 	/>
 </svelte:head>
 
-<div class="wrap page">
+<div class="wrap top">
 	<section class="hero">
 		<img src="/ewe-logo.png" alt="the ewe sheep mark" width="104" height="104" />
 		<h1>ewe</h1>
@@ -29,11 +29,17 @@
 			<span class="dot"></span> Alpha · x86_64 · UEFI · rolling releases · GPL-2.0
 		</p>
 	</section>
+</div>
 
-	<section class="figure">
-		<ThemeDemo />
-	</section>
+<div class="wrap wide figure">
+	<Shot
+			priority
+			alt="The ewe desktop: the Settings app open on Appearance showing the Flock and Black Sheep shell styles and a row of accent colours, the control centre open at the right with Wi-Fi, Bluetooth, VPN, SSH, Do Not Disturb and Insomnia tiles above CPU and memory meters, and the dock along the bottom."
+			caption="A running ewe session: Settings on Appearance, the control centre open, the dock below. The accent was switched to purple a moment earlier — which is why the control-centre tiles and the window border are purple too. One setting, applied everywhere, instantly."
+	/>
+</div>
 
+<div class="wrap rest">
 	<hr />
 
 	<section class="goal">
@@ -153,6 +159,16 @@
 </div>
 
 <style>
+	.top {
+		padding-block: 3.5rem 0;
+	}
+	/* the screenshot earns more width than the text measure */
+	.figure {
+		margin-top: 2.6rem;
+	}
+	.rest {
+		padding-block: 0 5rem;
+	}
 	.hero {
 		padding-top: 1rem;
 		display: flex;
@@ -188,6 +204,9 @@
 	.goal .btns,
 	.more {
 		margin-top: 1.1rem;
+	}
+	.rest :global(hr) {
+		margin-top: 3.5rem;
 	}
 	.more {
 		font-size: 0.94rem;

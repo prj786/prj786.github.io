@@ -80,8 +80,8 @@
 		</ol>
 		<Installer />
 		<p class="figcap">
-			Screen five, drawn to scale: what you chose, what ewe decided, and the only button in the flow
-			that writes anything.
+			An illustration of screen five: what you chose, what ewe decided, and the only button in the
+			flow that writes anything.
 		</p>
 	</section>
 

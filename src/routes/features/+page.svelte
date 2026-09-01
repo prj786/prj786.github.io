@@ -1,7 +1,3 @@
-<script>
-	import ThemeDemo from '$lib/ThemeDemo.svelte';
-</script>
-
 <svelte:head>
 	<title>Features — ewe</title>
 	<meta
@@ -91,7 +87,10 @@
 			</div>
 			<div class="card">
 				<h3>Dock</h3>
-				<p>Pinned and running apps, optional intelligent hide, three icon sizes.</p>
+				<p>
+					Pinned apps, then your windows grouped by workspace — so you can see what's on 3 without
+					going there. Optional intelligent hide, three icon sizes.
+				</p>
 			</div>
 			<div class="card">
 				<h3>Launcher</h3>
@@ -99,7 +98,10 @@
 			</div>
 			<div class="card">
 				<h3>Control centre</h3>
-				<p>Wi-Fi, Bluetooth, audio, power profile, calendar, mail, phone and cast in one panel.</p>
+				<p>
+					Wi-Fi, Bluetooth, VPN, SSH, Do Not Disturb and Insomnia as tiles; live CPU and memory;
+					volume and brightness. An icon rail switches to calendar, mail, phone and cast.
+				</p>
 			</div>
 			<div class="card">
 				<h3>Notifications</h3>
@@ -119,29 +121,24 @@
 			<div class="row">
 				<dt>Dark, by decision</dt>
 				<dd>
-					There is no light mode, deliberately. Two dark looks instead: <strong>flock</strong>, the
-					default neutral greys — and <strong>blacksheep</strong>, absolute black for OLED panels.
-					(This site wears blacksheep.)
+					There is no light mode, deliberately. Two dark looks instead: <strong>Flock</strong>, the
+					ewe look in soft dark greys — and <strong>Black Sheep</strong>, the same look on absolute
+					black (<code>#020202</code>) surfaces, for OLED panels. Bar, dock and panels follow the
+					style; shape, icons and your accent stay identical. (This site wears Black Sheep.)
 				</dd>
 			</div>
 			<div class="row">
 				<dt>One accent</dt>
 				<dd>
-					Pick a colour and it moves through the shell, GTK apps, Qt strays, icons and cursor at
-					once — no relogin. Text on the accent auto-contrasts so it stays legible at any hue.
+					Ten colours, applying instantly to the shell, your window borders and GTK/Qt apps at once —
+					no relogin. Text on the accent auto-contrasts, so a pale yellow stays as legible as a deep
+					blue.
 				</dd>
 			</div>
 			<div class="row">
 				<dt>One icon language</dt>
 				<dd>Phosphor glyphs throughout the shell; a matching icon theme and cursor for apps.</dd>
 			</div>
-		</dl>
-		<ThemeDemo caption={false} />
-		<p class="figcap">
-			Try it: the accent moves through the bar, the dock and every tile at once, and the two dark
-			looks swap the surfaces underneath. Both are one setting on the real desktop.
-		</p>
-		<dl class="rows" style="margin-top:2rem">
 			<div class="row">
 				<dt>Motion you control</dt>
 				<dd>
@@ -166,8 +163,9 @@
 			<div class="row">
 				<dt>ewe-settings</dt>
 				<dd>
-					A full settings app — theme, keyboard and touchpad, displays and profiles, wallpapers,
-					window rules, startup apps, time and place, animations — writing the one config file.
+					Sixteen panes, all writing the one config file: Appearance, Animations, Layout &amp; Dock,
+					Window Rules, Displays, Networking, Wallpaper, Keyboard &amp; Mouse, Screensaver, Power,
+					Default Apps, Startup, Shortcuts, Time &amp; Place, User and System.
 				</dd>
 			</div>
 			<div class="row">

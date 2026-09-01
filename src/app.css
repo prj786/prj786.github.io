@@ -130,6 +130,11 @@ li::marker {
 	padding: 0 1.4rem;
 }
 
+/* for figures that deserve more room than the reading measure */
+.wrap.wide {
+	max-width: 76rem;
+}
+
 .page {
 	/* padding-block only — a padding shorthand here would cancel .wrap's
 	   horizontal padding and let text hit the screen edge on narrow viewports. */
