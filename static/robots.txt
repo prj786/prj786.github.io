@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://prj786.github.io/sitemap.xml
