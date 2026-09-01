@@ -2,7 +2,7 @@
 	<title>Philosophy — ewe</title>
 	<meta
 		name="description"
-		content="In Linux everything is a file; in ewe the machine is one file. Why a single declarative config beats a dotfiles repo — and what that buys you."
+		content="In Linux everything is a file; in ewe the machine is one file. Why a single declarative config beats a dotfiles repo, and why an OS that decides for you is the better configuration."
 	/>
 </svelte:head>
 
@@ -10,9 +10,11 @@
 	<p class="eyebrow">Philosophy</p>
 	<h1>The machine is one file.</h1>
 	<p class="lede">
-		In Linux, everything is a file. In ewe, <strong>the machine</strong> is a file. Every piece of desktop
-		configuration you can express lives in one declarative document — <code>~/.config/ewe/ewe.conf</code>.
-		Settings apps edit it, one tool applies it, everything else is generated from it.
+		In Linux, everything is a file. In ewe, <strong>the machine</strong> is a file. Every piece of
+		configuration you can express lives in one declarative document —
+		<code>~/.config/ewe/ewe.conf</code>. Settings apps edit it, one tool applies it, everything else is
+		generated from it. That's why ewe had to become a whole operating system: you can't hand someone
+		their machine back if you only ever owned the desktop.
 	</p>
 
 	<section>
@@ -106,6 +108,27 @@
 	</section>
 
 	<section>
+		<p class="eyebrow">The other half</p>
+		<h2>Decisions are a feature.</h2>
+		<p>
+			A configuration file only helps with what you were going to configure. The bigger cost of a
+			do-it-yourself system is the hundred questions you have to answer before you've done anything —
+			filesystem, subvolume layout, bootloader, microcode, swap, drivers, audio stack, login manager.
+			Most people answer them once, badly, and never revisit them.
+		</p>
+		<p>
+			So ewe answers them. The installer asks what is genuinely personal — your keyboard, your place,
+			your disk, your name — and decides the rest: btrfs with proper subvolumes, systemd-boot,
+			hibernation sized to your RAM, drivers matched to the hardware it found.
+			<strong>Every decision is shown to you on the summary screen</strong> before anything is written.
+			An opinion you can read is not a lock-in; it's a default with its work shown.
+		</p>
+		<div class="btns" style="margin-top:1.1rem">
+			<a class="btn" href="/download/#decided">What ewe decides →</a>
+		</div>
+	</section>
+
+	<section>
 		<p class="eyebrow">Compared with</p>
 		<h2>Where it sits.</h2>
 		<dl class="rows">
@@ -122,7 +145,8 @@
 				<dd>
 					Whole-system declarative setups (NixOS and friends) are stricter and go further, at the
 					cost of a new language and a new packaging world. ewe stays ordinary Arch — pacman, the
-					AUR, normal packages — and makes only the <em>desktop</em> declarative.
+					AUR, normal packages, one rolling repository — and makes the <em>machine you interact
+					with</em> declarative rather than the whole build graph.
 				</dd>
 			</div>
 			<div class="row">
@@ -133,10 +157,11 @@
 				</dd>
 			</div>
 			<div class="row">
-				<dt>A ricing starter kit</dt>
+				<dt>The Arch wiki path</dt>
 				<dd>
-					Starter configs hand you parts. ewe ships the finished desktop — greeter, lock screen,
-					settings app, software manager — with the parts still open underneath.
+					Installing Arch by hand teaches you a great deal and costs you an afternoon, every time.
+					ewe is that afternoon's output, made repeatable — and it stays plain Arch underneath, so
+					none of what the wiki taught you stops being true.
 				</dd>
 			</div>
 		</dl>
@@ -146,7 +171,9 @@
 		<p class="eyebrow">Taste</p>
 		<h2>Opinionated on purpose.</h2>
 		<p>
-			An opinionated desktop is only worth it if the opinions are good ones. ewe picks traditional GTK
+			An opinionated system is only worth it if the opinions are good ones. There is
+			<strong>no light mode</strong>, by decision — one look, done properly, beats two done
+			half-heartedly. ewe picks traditional GTK
 			apps over half-ported Qt or libadwaita islands, so file manager, archive tool, image and document
 			viewers, player and terminal all look like they belong together and stay borderless under
 			Hyprland. One accent colour drives the shell, GTK, Qt strays, icons and cursor — and applies
@@ -154,7 +181,7 @@
 		</p>
 		<p class="note">
 			Every one of those decisions is a default, not a lock. It's GPL-2.0 software on ordinary Arch:
-			swap any app, edit any generated file, or fork the whole thing.
+			swap any app, remove any package, edit any generated file, or fork the whole thing.
 		</p>
 	</section>
 
@@ -163,11 +190,13 @@
 		<h2>1.0 is called “Dolly”.</h2>
 		<p>
 			After the sheep that proved you can rebuild the whole animal from a single cell. That is the
-			entire roadmap in one word: the one file, synced, and a machine that comes back from it.
+			entire roadmap in one word: the one file, synced, and a machine that comes back from it. The
+			remaining gates are honest ones — installs proven on real hardware, and the restore demo run
+			end to end on a machine that has never seen your account.
 		</p>
 		<div class="btns" style="margin-top:1.1rem">
 			<a class="btn" href="/sync/">How sync works →</a>
-			<a class="btn" href="/features/">See the features →</a>
+			<a class="btn" href="/download/">Try the alpha →</a>
 		</div>
 	</section>
 </div>

@@ -1,5 +1,5 @@
 <script>
-	import { REPO } from '$lib/nav.js';
+	import { ISSUES } from '$lib/nav.js';
 	const UPDATED = '1 September 2026';
 </script>
 
@@ -7,7 +7,7 @@
 	<title>Privacy policy — ewe</title>
 	<meta
 		name="description"
-		content="The privacy policy for ewe, the Arch Linux desktop environment, and for this website. ewe runs no servers and collects nothing; Google account access is optional, read-only and stays between your computer and Google."
+		content="The privacy policy for ewe, the Arch-based operating system, and for this website. ewe runs no servers and collects nothing; Google account access is optional, read-only and stays between your computer and Google."
 	/>
 </svelte:head>
 
@@ -18,29 +18,32 @@
 
 	<p class="lede">
 		<strong>ewe has no servers and collects nothing.</strong> Everything ewe does with your data happens
-		on your own computer. If you choose to connect a Google account, that data moves directly between your
+		on your own computer — during installation and afterwards. If you choose to connect a Google account, that data moves directly between your
 		computer and Google — never through us.
 	</p>
 
 	<section>
 		<h2>What this policy covers</h2>
 		<p>
-			This policy applies to <strong>ewe</strong>, a free and open-source desktop environment for Arch
-			Linux, and to everything shipped with it: the ewe shell, the <strong>Komble</strong> software
-			manager, the <strong>ewe-settings</strong> app, the <code>ewe-conf</code> configuration tool and
-			the <code>ewe-auth</code> sign-in broker. It also covers this website,
-			<strong>prj786.github.io</strong>.
+			This policy applies to <strong>ewe</strong>, a free and open-source, Arch-based operating system,
+			and to everything shipped with it: the installer, the ewe desktop and its shell, the
+			<strong>Komble</strong> software manager, the <strong>ewe-settings</strong> app, the casting
+			daemon, the <code>ewe-conf</code> configuration tool and the <code>ewe-auth</code> sign-in
+			broker. It also covers this website, <strong>prj786.github.io</strong>.
 		</p>
 		<p>
 			ewe is published by the ewe project (an individual open-source developer), and is licensed under
-			the GPL-2.0. There is no company, no account system and no backend service behind it.
+			the GPL-2.0. There is no company, no account system and no backend service behind it. Installing
+			ewe does not create an account with anyone.
 		</p>
 	</section>
 
 	<section>
 		<h2>Data ewe handles on your computer</h2>
 		<p>
-			Like any desktop, ewe reads and writes things on your machine to work: your configuration file
+			Like any operating system, ewe reads and writes things on your machine to work: the details you
+			give the installer (your name, username, computer name and password, which are written into the
+			installed system and nowhere else), your configuration file
 			(<code>~/.config/ewe/ewe.conf</code>), your wallpaper and theme choices, your clipboard history,
 			notifications delivered by your applications, your list of installed packages, and the Wi-Fi,
 			Bluetooth and audio state your system already exposes.
@@ -146,9 +149,9 @@
 			<div class="row">
 				<dt>OAuth client details</dt>
 				<dd>
-					Because ewe is a native desktop application, you supply your own OAuth client id and secret
-					in a local file. A desktop-app client secret is explicitly non-confidential under Google's
-					own guidance.
+					ewe ships its own OAuth client in the package, so there is nothing for you to register. A
+					desktop-app client secret is explicitly non-confidential under Google's own guidance, and it
+					identifies the application — not you.
 				</dd>
 			</div>
 		</dl>
@@ -172,8 +175,9 @@
 				Drive; we cannot see or reach it.
 			</li>
 			<li>
-				<strong>Uninstall ewe</strong> with <code>uninstall.sh</code>, and delete
-				<code>~/.config/ewe</code> to remove your local configuration.
+				<strong>Remove it entirely</strong> by deleting <code>~/.config/ewe</code> to clear your local
+				configuration, or by reinstalling over the disk. Nothing survives elsewhere, because nothing
+				was sent elsewhere.
 			</li>
 		</ul>
 	</section>
@@ -187,15 +191,17 @@
 		</p>
 		<ul>
 			<li>
-				<strong>Downloads and updates</strong> hit GitHub's infrastructure and Arch's package mirrors,
-				which see your IP address like any download does. GitHub's handling is covered by
+				<strong>The ISO, packages and updates</strong> come from GitHub's infrastructure and Arch's
+				package mirrors, which see your IP address like any download does — during installation and
+				every time you update. GitHub's handling is covered by
 				<a href="https://docs.github.com/en/site-policy/privacy-policies/github-privacy-statement"
 					>GitHub's privacy statement</a
 				>.
 			</li>
 			<li>
-				<strong>Automatic timezone detection</strong> asks a geolocation service where your public IP
-				is. It sends nothing else, and it can be turned off.
+				<strong>Automatic timezone detection</strong> — in the installer and on the running system —
+				asks geolocation services where your public IP is, so it can suggest your time zone. It sends
+				nothing else, you are shown what was chosen, and you can change or disable it.
 			</li>
 		</ul>
 	</section>
@@ -213,7 +219,7 @@
 	<section>
 		<h2>Children</h2>
 		<p>
-			ewe is a general-purpose desktop operating environment and is not directed at children under 13.
+			ewe is a general-purpose operating system and is not directed at children under 13.
 			We do not knowingly collect personal information from anyone — including children — because we do
 			not collect personal information at all.
 		</p>
@@ -232,8 +238,8 @@
 		<h2>Contact</h2>
 		<p>
 			Questions about privacy, or a request about data: open an issue at
-			<a href="{REPO}/issues">{REPO.replace('https://', '')}/issues</a>. Security matters should go
-			privately through the repository's Security tab.
+			<a href={ISSUES}>github.com/prj786/ewe-os/issues</a>. Security matters should go privately
+			through the repository's Security tab.
 		</p>
 	</section>
 </div>

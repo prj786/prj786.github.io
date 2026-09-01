@@ -10,9 +10,9 @@
 	<p class="eyebrow">Sync</p>
 	<h1>Log in, get your machine back.</h1>
 	<p class="lede">
-		Because the whole desktop is <a href="/philosophy/">one file</a>, syncing it is not a backup
-		system — it's a file in your own Google Drive. Sign in on a fresh install, pull, apply, and you're
-		looking at your desktop again.
+		Because the whole machine is <a href="/philosophy/">one file</a>, syncing it is not a backup
+		system — it's a file in your own Google Drive. Install ewe on anything, sign in, and it offers you
+		your desktop back.
 	</p>
 
 	<section>
@@ -23,23 +23,27 @@
 				<span class="n">1</span>
 				<div>
 					<h3>Install ewe</h3>
-					<p>One line on a minimal Arch install, same as any other machine.</p>
+					<p>Ten minutes from the <a href="/download/">ISO</a>, same as any other machine.</p>
 				</div>
 			</li>
 			<li>
 				<span class="n">2</span>
 				<div>
 					<h3>Sign in</h3>
-					<p>One Google sign-in, shared by the shell and the software manager. One consent screen.</p>
+					<p>
+						The welcome flow offers it at first login — one consent screen, shared by the desktop and
+						the software manager. If your account already holds a backup, ewe notices and says so.
+					</p>
 				</div>
 			</li>
 			<li>
 				<span class="n">3</span>
 				<div>
-					<h3><code>ewe-conf pull &amp;&amp; ewe-conf apply</code></h3>
+					<h3>Restore</h3>
 					<p>
-						Your file comes down and rebuilds the desktop: theme, accent, dock, wallpapers,
-						keyboard, displays, window rules, startup apps.
+						One button in Settings → Account — or <code>ewe-conf pull &amp;&amp; ewe-conf apply</code>
+						if you'd rather type. Your file comes down and rebuilds the desktop: theme, accent, dock,
+						wallpapers, keyboard, displays, window rules, startup apps.
 					</p>
 				</div>
 			</li>
@@ -68,6 +72,7 @@
 					<li>Wallpapers and window rules</li>
 					<li>Keyboard, touchpad and input devices</li>
 					<li>Display profiles</li>
+					<li>SSH host definitions and VPN profiles — the shape, never the secret</li>
 					<li>Power and screensaver behaviour</li>
 					<li>Your explicit package list — repo, AUR and AppImage</li>
 					<li>The account's email address, as identity</li>
@@ -169,15 +174,16 @@
 
 	<section>
 		<p class="eyebrow">Status</p>
-		<h2>Shipping, in the beta.</h2>
+		<h2>Shipping, in the alpha.</h2>
 		<p>
-			The broker, the Drive round-trip — verified byte-identical — the push and pull verbs and the
-			software manager's restore surface are all in. The legacy bundle-based sync it replaced has been
-			deleted rather than patched. Setting up your own OAuth client is currently a one-time step,
-			documented in the manual.
+			The broker, the Drive round-trip — verified byte-identical — the push and pull verbs, the
+			conflict guard, the software manager's restore surface and the first-login restore offer are all
+			in, with a test suite that mocks Drive and walks every branch. The legacy bundle-based sync it
+			replaced was deleted rather than patched. What's left before 1.0 is a full restore demo on a
+			machine that has never seen your account.
 		</p>
 		<div class="btns" style="margin-top:1.1rem">
-			<a class="btn" href="/docs/#google">Set up the account →</a>
+			<a class="btn" href="/docs/#google">The account →</a>
 			<a class="btn" href="/privacy/">Privacy policy →</a>
 		</div>
 	</section>

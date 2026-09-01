@@ -1,8 +1,7 @@
 # prj786.github.io — the ewe website
 
-The site for [ewe](https://github.com/prj786/ewe), a clean, dark, complete
-desktop environment for Arch Linux. Live at
-**[prj786.github.io](https://prj786.github.io)**.
+The site for [ewe](https://github.com/prj786/ewe-os), a complete, Arch-based
+operating system. Live at **[prj786.github.io](https://prj786.github.io)**.
 
 ## Stack
 
@@ -35,11 +34,12 @@ Actions** on the repository.
 ```
 src/routes/
   +layout.svelte     bar + footer, sitewide chrome
-  +page.svelte       home — what ewe is, install, the goal
-  philosophy/        the one-file config, and why it's the better one
-  features/          shell, look, apps, cast, phone, Google, system
+  +page.svelte       home — what ewe OS is, and the goal
+  download/          get the ISO, verify, write, boot, the six screens
+  philosophy/        the one-file config, and why decisions are a feature
+  features/          the OS, shell, look, apps, cast, phone, Google, system
   sync/              log in, get your machine back
-  docs/              install, shortcuts, ewe-conf, Google setup, limits
+  docs/              install, shortcuts, updates, ewe-conf, limits, repos
   privacy/           privacy policy (Google OAuth verification)
 src/app.css          the "blacksheep" palette, straight from Theme.qml
 ```

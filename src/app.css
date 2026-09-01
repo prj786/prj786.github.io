@@ -144,7 +144,8 @@ li::marker {
 
 section + section,
 .lede + section,
-.toc + section {
+.toc + section,
+.btns + section {
 	margin-top: 3.25rem;
 }
 

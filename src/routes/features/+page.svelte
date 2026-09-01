@@ -2,19 +2,20 @@
 	<title>Features — ewe</title>
 	<meta
 		name="description"
-		content="The ewe desktop in full: shell, theming, Komble software manager, settings app, cast to TV, phone link, Google account and the safety model."
+		content="ewe OS in full: the installer and its decisions, rolling updates, the shell, theming, Komble, cast to TV, phone link, Google account and the safety model."
 	/>
 </svelte:head>
 
 <div class="wrap page">
 	<p class="eyebrow">Features</p>
-	<h1>Everything, already assembled.</h1>
+	<h1>An OS, already assembled.</h1>
 	<p class="lede">
-		ewe is not a collection of parts with a config to write. It is the whole desktop — from the boot
-		splash to the lock screen — built as one product and themed as one thing.
+		ewe isn't a set of parts with a config to write. It's a whole system built as one product — the
+		installer, the desktop and the software manager designed together and themed as one thing.
 	</p>
 
 	<nav class="toc" aria-label="On this page">
+		<a href="#os">The OS</a>
 		<a href="#shell">The shell</a>
 		<a href="#look">The look</a>
 		<a href="#apps">Apps</a>
@@ -23,6 +24,54 @@
 		<a href="#google">Google</a>
 		<a href="#system">System</a>
 	</nav>
+
+	<section id="os">
+		<p class="eyebrow">The OS</p>
+		<h2>Arch underneath, decided on top.</h2>
+		<p>
+			ewe is a real distribution with its own ISO, not a theme you apply to something else. Underneath
+			it's ordinary Arch — pacman, the AUR, normal packages — so nothing you learn is wasted.
+		</p>
+		<dl class="rows">
+			<div class="row">
+				<dt>A first-party installer</dt>
+				<dd>
+					Six screens in the same design language as the desktop. It asks what's personal and decides
+					the rest — btrfs subvolumes, systemd-boot, GPU drivers, hibernation —
+					<a href="/download/#decided">showing you every decision</a> before you commit.
+				</dd>
+			</div>
+			<div class="row">
+				<dt>A live session that's the real thing</dt>
+				<dd>
+					The stick boots the actual desktop, not a demo shell. Nothing is written to your disks
+					until you press Install.
+				</dd>
+			</div>
+			<div class="row">
+				<dt>Rolling, from one repository</dt>
+				<dd>
+					The <code>[ewe]</code> pacman repo is preconfigured on the ISO and on installed systems, so
+					<code>pacman -Syu</code> — or Komble's Updates pane — moves the system and the desktop
+					forward together. Nothing is pinned.
+				</dd>
+			</div>
+			<div class="row">
+				<dt>Branded end to end</dt>
+				<dd>
+					Splash from firmware to greeter with no kernel text and no Arch logo, a themed greeter, and
+					an installer that never ends up on the installed machine.
+				</dd>
+			</div>
+			<div class="row">
+				<dt>A welcome flow, once</dt>
+				<dd>
+					First login offers one Google sign-in, a restore if your account holds a backup, and a
+					sixty-second tour. Then it never appears again.
+				</dd>
+			</div>
+		</dl>
+	</section>
 
 	<section id="shell">
 		<p class="eyebrow">The shell</p>
@@ -45,7 +94,7 @@
 				<p><code>Super+D</code> — fuzzy search across apps and files, press again to dismiss.</p>
 			</div>
 			<div class="card">
-				<h3>Quick Settings</h3>
+				<h3>Control centre</h3>
 				<p>Wi-Fi, Bluetooth, audio, power profile, calendar, mail, phone and cast in one panel.</p>
 			</div>
 			<div class="card">
@@ -64,10 +113,11 @@
 		<h2>One theme, applied live.</h2>
 		<dl class="rows">
 			<div class="row">
-				<dt>Two dark looks</dt>
+				<dt>Dark, by decision</dt>
 				<dd>
-					<strong>flock</strong>, the default dark neutral greys — and <strong>blacksheep</strong>,
-					absolute black surfaces for OLED panels and pure-dark fans. (This site wears blacksheep.)
+					There is no light mode, deliberately. Two dark looks instead: <strong>flock</strong>, the
+					default neutral greys — and <strong>blacksheep</strong>, absolute black for OLED panels.
+					(This site wears blacksheep.)
 				</dd>
 			</div>
 			<div class="row">
@@ -79,7 +129,7 @@
 			</div>
 			<div class="row">
 				<dt>One icon language</dt>
-				<dd>Phosphor Fill glyphs throughout the shell; a matching icon theme and cursor for apps.</dd>
+				<dd>Phosphor glyphs throughout the shell; a matching icon theme and cursor for apps.</dd>
 			</div>
 			<div class="row">
 				<dt>Motion you control</dt>
@@ -98,22 +148,22 @@
 			<div class="row">
 				<dt>Komble</dt>
 				<dd>
-					The software manager: official repos, the AUR and AppImages behind one search field, with
-					a “For You” restore surface that reads your synced package manifest.
+					The software manager: official repos, the AUR and AppImages behind one search field, an
+					Updates pane, and a “For You” surface that restores from your synced package list.
 				</dd>
 			</div>
 			<div class="row">
 				<dt>ewe-settings</dt>
 				<dd>
 					A full settings app — theme, keyboard and touchpad, displays and profiles, wallpapers,
-					window rules, startup apps, animations — writing the one config file.
+					window rules, startup apps, time and place, animations — writing the one config file.
 				</dd>
 			</div>
 			<div class="row">
 				<dt>A curated set</dt>
 				<dd>
-					Nemo, Engrampa, imv, Zathura, mpv and kitty: traditional GTK apps chosen to match, made
-					borderless under Hyprland, with defaults managed in one place.
+					Nemo, Engrampa, imv, Zathura, mpv, kitty and Zed: traditional GTK apps chosen to match,
+					made borderless under Hyprland, with defaults managed in one place.
 				</dd>
 			</div>
 		</dl>
@@ -121,22 +171,33 @@
 
 	<section id="cast">
 		<p class="eyebrow">Cast to TV</p>
-		<h2>One tile, any TV in the room.</h2>
+		<h2>One card, any TV in the room.</h2>
 		<p>
-			Screen mirroring on Wayland is usually a research project. In ewe it's a tile in the control
-			centre — or <code>Super+Shift+C</code> — that speaks both protocols a television might offer.
+			Screen mirroring on Wayland is usually a research project, or a borrowed GTK window bolted onto
+			a desktop that has no GTK. In ewe it's a card in the control centre, served by ewe's own
+			headless daemon — <strong>no foreign window ever appears</strong>.
 		</p>
 		<dl class="rows">
 			<div class="row">
 				<dt>Miracast</dt>
 				<dd>
-					Samsung “Screen Mirroring” and most Android TVs, over Wi-Fi Direct. Needs a Wi-Fi card with
-					P2P support.
+					Samsung “Screen Mirroring” and most Android TVs, over Wi-Fi Direct. Field-tested against a
+					real Samsung at 1080p30 — this is the real-time path.
 				</dd>
 			</div>
 			<div class="row">
 				<dt>Chromecast</dt>
-				<dd>Chromecast built-in and Google TV, discovered on the local network over mDNS.</dd>
+				<dd>
+					Chromecast built-in and Google TV, discovered on the local network. Honest about the
+					trade-off: it streams with a few seconds of latency.
+				</dd>
+			</div>
+			<div class="row">
+				<dt>The flow</dt>
+				<dd>
+					Expand the Cast card, watch it scan for sinks, pick one. The card shows the sink name and a
+					stop button. That's the whole interface.
+				</dd>
 			</div>
 			<div class="row">
 				<dt>ewe's own share picker</dt>
@@ -144,20 +205,6 @@
 					When anything asks to capture the screen, you get live thumbnails of every display named by
 					its actual model, every window with a preview, or a region — instead of a bare list of
 					connector names. The same picker serves browser calls, OBS and recorders.
-				</dd>
-			</div>
-			<div class="row">
-				<dt>It tells you what's missing</dt>
-				<dd>
-					The first cast of a session runs a preflight check and toasts anything absent together with
-					the exact command that fixes it. A Chromecast-only or Miracast-only setup still works.
-				</dd>
-			</div>
-			<div class="row">
-				<dt>Clean stop</dt>
-				<dd>
-					Toggling the tile off ends the session properly; the tile and the bar's screencast glyph
-					follow the real process, never the other way round.
 				</dd>
 			</div>
 		</dl>
@@ -180,8 +227,9 @@
 		<p>
 			Connect an account and three things light up: <strong>calendar</strong> events with agenda and
 			reminders, <strong>Gmail</strong> unread count and notifications that deep-link into Gmail, and
-			<strong>settings sync</strong>. It's a native OAuth flow — no GNOME Online Accounts — and the
-			shell asks only for read access. It can never send or delete anything.
+			<strong>settings sync</strong>. Signing in also mounts your Drive at <code>~/Google Drive</code>.
+			It's a native OAuth flow — no GNOME Online Accounts — and the shell asks only for read access.
+			It can never send or delete anything.
 		</p>
 		<p class="note">
 			Until you connect an account, no Google functionality appears anywhere in ewe. Signed out or
@@ -195,14 +243,7 @@
 		<dl class="rows">
 			<div class="row">
 				<dt>Silent boot</dt>
-				<dd>A Plymouth splash from early boot to the themed greeter — no wall of kernel text.</dd>
-			</div>
-			<div class="row">
-				<dt>Never clobbers your config</dt>
-				<dd>
-					Existing configs are moved to timestamped backups before anything is linked, and the
-					uninstaller puts them back. Re-running the installer is a no-op.
-				</dd>
+				<dd>A Plymouth splash from early boot straight to the themed greeter — no wall of kernel text, no menu.</dd>
 			</div>
 			<div class="row">
 				<dt>Survives a crash</dt>
@@ -215,14 +256,18 @@
 				<dt>Sensible power behaviour</dt>
 				<dd>
 					Locks at 5 minutes; on battery, suspends at 15. Warns at 20% and 10%, suspends at 5% to
-					protect unsaved work.
+					protect unsaved work. Hibernation is configured at install when there's a battery.
 				</dd>
+			</div>
+			<div class="row">
+				<dt>A rescue console</dt>
+				<dd>The greeter owns tty1; a root rescue console lives on tty3 for when something goes wrong.</dd>
 			</div>
 			<div class="row">
 				<dt>Keyboard-first</dt>
 				<dd>
-					A full Hyprland keymap ported so most muscle memory carries over — windows, groups,
-					workspaces, scratchpad. <a href="/docs/#shortcuts">The shortcuts →</a>
+					A full Hyprland keymap — windows, groups, workspaces, scratchpad.
+					<a href="/docs/#shortcuts">The shortcuts →</a>
 				</dd>
 			</div>
 		</dl>

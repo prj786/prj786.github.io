@@ -1,7 +1,7 @@
 <script>
 	import '../app.css';
 	import { page } from '$app/stores';
-	import { NAV, REPO, RELEASES } from '$lib/nav.js';
+	import { NAV, OS_REPO, ISSUES } from '$lib/nav.js';
 
 	let { children } = $props();
 	const active = (href) => $page.url.pathname === href;
@@ -25,8 +25,8 @@
 		</nav>
 
 		<div class="right">
-			<a class="ghost" href={REPO}>GitHub</a>
-			<a class="btn primary sm" href={RELEASES}>Download</a>
+			<a class="ghost" href={OS_REPO}>GitHub</a>
+			<a class="btn primary sm" href="/download/">Download</a>
 		</div>
 	</div>
 </header>
@@ -39,13 +39,14 @@
 	<div class="wrap foot">
 		<div>
 			<strong>ewe</strong>
-			<span class="muted"> — a clean, dark, complete desktop for Arch Linux.</span>
+			<span class="muted"> — a complete, Arch-based operating system.</span>
 		</div>
 		<nav aria-label="Footer">
+			<a href="/download/">Download</a>
 			<a href="/docs/">Docs</a>
 			<a href="/privacy/">Privacy</a>
-			<a href={REPO}>Source</a>
-			<a href="https://github.com/prj786/ewe/issues">Issues</a>
+			<a href={OS_REPO}>Source</a>
+			<a href={ISSUES}>Issues</a>
 		</nav>
 		<p class="muted lic">
 			GPL-2.0-only · built on <a href="https://hypr.land">Hyprland</a> and
