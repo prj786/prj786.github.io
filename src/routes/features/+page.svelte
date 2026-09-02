@@ -2,7 +2,7 @@
 	<title>Features — ewe</title>
 	<meta
 		name="description"
-		content="ewe OS in full: the installer and its decisions, rolling updates, the shell, theming, Komble, cast to TV, phone link, Google account and the safety model."
+		content="ewe OS in full: the installer and its decisions, rolling updates, the shell, theming, Komble, cast to TV, phone link, your Nextcloud account and the safety model."
 	/>
 </svelte:head>
 
@@ -21,7 +21,7 @@
 		<a href="#apps">Apps</a>
 		<a href="#cast">Cast to TV</a>
 		<a href="#phone">Phone</a>
-		<a href="#google">Google</a>
+		<a href="#account">Your account</a>
 		<a href="#system">System</a>
 	</nav>
 
@@ -66,8 +66,9 @@
 			<div class="row">
 				<dt>A welcome flow, once</dt>
 				<dd>
-					First login offers one Google sign-in, a restore if your account holds a backup, and a
-					sixty-second tour. Then it never appears again.
+					First login connects you, installs what's waiting, signs you in to your Nextcloud, offers
+					a restore if the account holds a backup, and gives a sixty-second tour. Then it never
+					appears again.
 				</dd>
 			</div>
 		</dl>
@@ -230,19 +231,26 @@
 		</p>
 	</section>
 
-	<section id="google">
-		<p class="eyebrow">Google account</p>
-		<h2>Optional, native, read-only.</h2>
+	<section id="account">
+		<p class="eyebrow">Your account</p>
+		<h2>Your Nextcloud, not ours.</h2>
 		<p>
-			Connect an account and three things light up: <strong>calendar</strong> events with agenda and
-			reminders, <strong>Gmail</strong> unread count and notifications that deep-link into Gmail, and
-			<strong>settings sync</strong>. Signing in also mounts your Drive at <code>~/Google Drive</code>.
-			It's a native OAuth flow — no GNOME Online Accounts — and the shell asks only for read access.
-			It can never send or delete anything.
+			Sign in to <strong>any Nextcloud</strong> — a server you run, or a hosted account — and three
+			things light up: <strong>settings sync</strong> of the one file, your <strong>calendar</strong>
+			with agenda and reminders over CalDAV, and your <strong>files</strong> as a folder at
+			<code>~/Nextcloud</code>. It's Nextcloud's own browser login: your server's page, your
+			password, your two-factor; ewe receives an app password you can revoke from the account's
+			security page any time. No vendor console, no permission from anyone.
+		</p>
+		<p>
+			<strong>Mail</strong> is any IMAP account — the one your provider gives you, or another —
+			for the unread badge and notifications. <strong>Google</strong> is optional and needs your own
+			OAuth client file: it adds Gmail notifications and a Drive folder, and nothing about the
+			project's Google standing ever touches your sign-in, because there is none.
 		</p>
 		<p class="note">
-			Until you connect an account, no Google functionality appears anywhere in ewe. Signed out or
-			offline, everything degrades cleanly. <a href="/sync/">How sync works →</a>
+			Until you sign in, no cloud functionality appears anywhere in ewe. Signed out or offline,
+			everything degrades cleanly. <a href="/sync/">How sync works →</a>
 		</p>
 	</section>
 

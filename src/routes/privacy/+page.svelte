@@ -1,13 +1,13 @@
 <script>
 	import { ISSUES } from '$lib/nav.js';
-	const UPDATED = '1 September 2026';
+	const UPDATED = '2 September 2026';
 </script>
 
 <svelte:head>
 	<title>Privacy policy — ewe</title>
 	<meta
 		name="description"
-		content="The privacy policy for ewe, the Arch-based operating system, and for this website. ewe runs no servers and collects nothing; Google account access is optional, read-only and stays between your computer and Google."
+		content="The privacy policy for ewe, the Arch-based operating system, and for this website. ewe runs no servers and collects nothing; it talks only to the Nextcloud server you choose, and to Google only if you configure your own client."
 	/>
 </svelte:head>
 
@@ -18,8 +18,9 @@
 
 	<p class="lede">
 		<strong>ewe has no servers and collects nothing.</strong> Everything ewe does with your data happens
-		on your own computer — during installation and afterwards. If you choose to connect a Google account, that data moves directly between your
-		computer and Google — never through us.
+		on your own computer — during installation and afterwards. If you sign in to a cloud account,
+		that data moves directly between your computer and <strong>the server you chose</strong> — never
+		through us.
 	</p>
 
 	<section>
@@ -55,11 +56,53 @@
 	</section>
 
 	<section>
-		<h2>Connecting a Google account (optional)</h2>
+		<h2>Your Nextcloud account (optional)</h2>
 		<p>
-			Connecting a Google account is entirely optional. Until you connect one, no Google functionality
-			appears anywhere in ewe. If you do connect one, ewe requests these scopes and uses them for
-			exactly these purposes:
+			Signing in is optional. Until you do, ewe talks to no server at all. When you sign in, you
+			choose the server — one you run, or a hosted provider — and ewe uses Nextcloud's own browser
+			login: your server's page authenticates you, and ewe receives an <em>app password</em> scoped
+			to your account. ewe never sees or stores your real password. With that account ewe does
+			exactly three things:
+		</p>
+		<dl class="rows">
+			<div class="row">
+				<dt>Settings sync</dt>
+				<dd>
+					Your <code>ewe.conf</code> file is uploaded to a folder named <code>ewe</code> in your
+					account's files, and read back when you ask for a restore. By design it contains no
+					passwords, tokens or keys.
+				</dd>
+			</div>
+			<div class="row">
+				<dt>Calendar</dt>
+				<dd>
+					Your upcoming events are read over CalDAV and shown in your own Quick Settings, with local
+					reminder notifications. Read-only.
+				</dd>
+			</div>
+			<div class="row">
+				<dt>Files</dt>
+				<dd>
+					Your account's files are mounted as a folder on your machine for the file manager, if you
+					enable it.
+				</dd>
+			</div>
+		</dl>
+		<p>
+			<strong>Mail</strong>, if you configure an account, is read over IMAP — unread count and message
+			subjects for the desktop badge and notifications, never bodies, never sending. All of this data
+			flows <strong>directly between your computer and your server</strong>. It is never sent to,
+			stored by, proxied through, or visible to the ewe project.
+		</p>
+	</section>
+
+	<section>
+		<h2>Connecting a Google account (optional, your own client)</h2>
+		<p>
+			ewe ships no Google client. Google functionality exists only if you register your own OAuth
+			client with Google and place its file at <code>~/.config/ewe/oauth-client.json</code>; until
+			then no Google functionality appears anywhere in ewe, and settings sync never uses Google. If
+			you do configure one, ewe requests these scopes and uses them for exactly these purposes:
 		</p>
 		<dl class="rows">
 			<div class="row">
@@ -70,26 +113,11 @@
 				</dd>
 			</div>
 			<div class="row">
-				<dt><code>calendar.readonly</code></dt>
-				<dd>
-					Your upcoming events — displayed in the calendar in your own Quick Settings, and used for
-					local reminder notifications. Read-only: ewe cannot create, change or delete events.
-				</dd>
-			</div>
-			<div class="row">
 				<dt><code>gmail.readonly</code></dt>
 				<dd>
 					Your unread count and message subjects — shown on your own desktop as a bar indicator, new
 					mail notifications and a list that deep-links into Gmail. Read-only: ewe cannot send,
 					modify or delete mail. Message bodies are not fetched.
-				</dd>
-			</div>
-			<div class="row">
-				<dt><code>drive.appdata</code></dt>
-				<dd>
-					Hidden per-app storage on your own Drive, used to hold your <code>ewe.conf</code> settings
-					file so a new machine can restore your desktop. This scope gives ewe access
-					<strong>only to its own hidden folder</strong> — not to your Drive files.
 				</dd>
 			</div>
 			<div class="row">
@@ -126,17 +154,18 @@
 			<div class="row">
 				<dt>Sign-in credentials</dt>
 				<dd>
-					Your OAuth refresh token is stored only in your computer's encrypted system keyring
-					(gnome-keyring, via the Secret Service API). It is never written to a file, never
-					transmitted to us, and never included in anything that syncs.
+					Your Nextcloud app password, any IMAP password, and — if you configured one — your Google
+					refresh token are stored only in your computer's encrypted system keyring (gnome-keyring,
+					via the Secret Service API). They are never written to a file, never transmitted to us,
+					and never included in anything that syncs.
 				</dd>
 			</div>
 			<div class="row">
 				<dt>Your settings file</dt>
 				<dd>
-					If you switch sync on, <code>ewe.conf</code> is uploaded to the hidden per-app folder in
-					your own Google Drive. By design it contains no passwords, tokens or keys — it may name an
-					account by email address, never a credential.
+					If you switch sync on, <code>ewe.conf</code> is uploaded to the <code>ewe</code> folder in
+					your own Nextcloud account. By design it contains no passwords, tokens or keys — it may name
+					a server and a login name, never a credential.
 				</dd>
 			</div>
 			<div class="row">
@@ -149,9 +178,8 @@
 			<div class="row">
 				<dt>OAuth client details</dt>
 				<dd>
-					ewe ships its own OAuth client in the package, so there is nothing for you to register. A
-					desktop-app client secret is explicitly non-confidential under Google's own guidance, and it
-					identifies the application — not you.
+					ewe ships no OAuth client. If you use Google, the client is one you registered yourself; its
+					file stays on your machine and identifies your registration — not you, and not us.
 				</dd>
 			</div>
 		</dl>
@@ -161,18 +189,18 @@
 		<h2>Revoking access and deleting your data</h2>
 		<ul>
 			<li>
-				<strong>Sign out</strong> in Settings → User. This revokes the token at Google and clears the
-				keyring entry and every local cache.
+				<strong>Sign out</strong> in Settings → Account. This revokes the app password on your
+				Nextcloud server and clears the keyring entry and every local cache. You can also revoke
+				“ewe (your computer)” from your account's <em>Security</em> page at any time.
 			</li>
 			<li>
-				You can also revoke ewe at any time from
+				<strong>Delete the synced file</strong> by turning sync off and deleting the
+				<code>ewe</code> folder in your account's files. It is your server; we cannot see or reach it.
+			</li>
+			<li>
+				If you configured a Google client: sign out of the Google card (revokes the token at Google),
+				or revoke it from
 				<a href="https://myaccount.google.com/permissions">your Google account permissions</a>.
-			</li>
-			<li>
-				<strong>Delete the synced file</strong> by turning sync off and removing the app's hidden Drive
-				data from
-				<a href="https://drive.google.com/drive/settings">Drive settings → Manage apps</a>. It is your
-				Drive; we cannot see or reach it.
 			</li>
 			<li>
 				<strong>Remove it entirely</strong> by deleting <code>~/.config/ewe</code> to clear your local

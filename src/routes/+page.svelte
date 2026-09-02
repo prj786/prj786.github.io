@@ -47,7 +47,7 @@
 		<h2>Log in, get your machine back.</h2>
 		<p>
 			Not a distro you reconfigure for a week. ewe describes your entire machine in
-			<strong>one file</strong>, keeps that file in your own Google Drive, and rebuilds from it. New
+			<strong>one file</strong>, keeps that file in your own Nextcloud, and rebuilds from it. New
 			laptop, fresh install, broken disk — install, sign in, and your desktop is waiting.
 		</p>
 		<div class="btns">
@@ -76,7 +76,7 @@
 			<div class="card">
 				<h3>Your setup follows you</h3>
 				<p>
-					Settings sync to your own Drive, never to us. A fresh install offers to restore your
+					Settings sync to your own Nextcloud, never to us. A fresh install offers to restore your
 					desktop and your apps at first sign-in.
 				</p>
 			</div>

@@ -90,7 +90,7 @@
 		<h2>First login.</h2>
 		<p>
 			The installed machine boots through the ewe splash into the greeter. Your first login opens a
-			short welcome flow: one optional Google sign-in, an offer to
+			short welcome flow: a network check, waiting updates, one optional sign-in to your Nextcloud, an offer to
 			<a href="/sync/">restore a backup</a> if your account has one from another ewe machine, and a
 			sixty-second tour. It runs once, and never on the live stick.
 		</p>

@@ -2,17 +2,18 @@
 	<title>Sync — ewe</title>
 	<meta
 		name="description"
-		content="ewe syncs one config file to your own Google Drive. Sign in on a fresh install, pull the file, apply it, and the desktop is yours again — with no credentials ever leaving the keyring."
+		content="ewe syncs one config file to your own Nextcloud — a server you run or a hosted account. Sign in on a fresh install, pull the file, apply it, and the desktop is yours again, with no credentials ever leaving the keyring."
 	/>
 </svelte:head>
 
 <div class="wrap page">
 	<p class="eyebrow">Sync</p>
-	<h1>Log in, get your machine back.</h1>
+	<h1>Log in to your cloud, get your machine back.</h1>
 	<p class="lede">
 		Because the whole machine is <a href="/philosophy/">one file</a>, syncing it is not a backup
-		system — it's a file in your own Google Drive. Install ewe on anything, sign in, and it offers you
-		your desktop back.
+		system — it's a file in your own <strong>Nextcloud</strong>. A server you run, or an account from
+		a provider: ewe doesn't care which, and never asks anyone's permission. Install ewe on anything,
+		sign in, and it offers you your desktop back.
 	</p>
 
 	<section>
@@ -29,10 +30,13 @@
 			<li>
 				<span class="n">2</span>
 				<div>
-					<h3>Sign in</h3>
+					<h3>Sign in to your Nextcloud</h3>
 					<p>
-						The welcome flow offers it at first login — one consent screen, shared by the desktop and
-						the software manager. If your account already holds a backup, ewe notices and says so.
+						The welcome flow asks for your server's address and opens its own login page — your
+						password, your two-factor, your single sign-on, whatever your server uses. ewe never sees
+						the password; it receives an app password that shows up under your account's security
+						page as “ewe (your computer)”. If the account already holds a backup, ewe notices and
+						says so.
 					</p>
 				</div>
 			</li>
@@ -52,12 +56,53 @@
 				<div>
 					<h3>Say yes to your apps</h3>
 					<p>
-						Komble reads the package manifest inside the file and <em>offers</em> the reinstall list.
-						A restored file never silently installs software.
+						Komble reads the package list inside the file and <em>offers</em> what is missing —
+						repository apps in one go, AUR apps through the PKGBUILD review. A restored file never
+						silently installs software.
 					</p>
 				</div>
 			</li>
 		</ol>
+	</section>
+
+	<section>
+		<p class="eyebrow">Your cloud</p>
+		<h2>Any Nextcloud. Yours first.</h2>
+		<p>
+			Nextcloud is an open standard stack — WebDAV for files, CalDAV for calendars — and ewe speaks
+			those, nothing vendor-specific. That is why there is no “ewe account”, no console to register
+			an app in, and nothing about the project baked into the package. Where the account lives is
+			your choice:
+		</p>
+		<dl class="rows">
+			<div class="row">
+				<dt>Run your own</dt>
+				<dd>
+					A <a href="https://nextcloud.com/install/">Nextcloud server</a> on a machine you control —
+					a home box, a VPS, a NAS. The one setup where nobody else is in the loop at all.
+				</dd>
+			</div>
+			<div class="row">
+				<dt><a href="https://murena.io/">Murena</a></dt>
+				<dd>Hosted Nextcloud from the /e/ Foundation, with mail and calendar under the same account.</dd>
+			</div>
+			<div class="row">
+				<dt><a href="https://disroot.org/">Disroot</a></dt>
+				<dd>A volunteer-run platform; Nextcloud plus mail, calendar and more, on one account.</dd>
+			</div>
+			<div class="row">
+				<dt><a href="https://www.infomaniak.com/">Infomaniak</a></dt>
+				<dd>A Swiss host whose kSuite is built on Nextcloud, with a free tier.</dd>
+			</div>
+			<div class="row">
+				<dt><a href="https://tab.digital/">tab.digital</a></dt>
+				<dd>One of the hosts listed by Nextcloud itself; a plain hosted instance.</dd>
+			</div>
+		</dl>
+		<p class="note">
+			Providers change; these are examples, not endorsements. Any server that answers
+			<code>/status.php</code> with a Nextcloud version works.
+		</p>
 	</section>
 
 	<section>
@@ -75,13 +120,13 @@
 					<li>SSH host definitions and VPN profiles — the shape, never the secret</li>
 					<li>Power and screensaver behaviour</li>
 					<li>Your explicit package list — repo, AUR and AppImage</li>
-					<li>The account's email address, as identity</li>
+					<li>The account's server and login name, as identity</li>
 				</ul>
 			</div>
 			<div class="card bad">
 				<h3>Never synced</h3>
 				<ul>
-					<li>Passwords, tokens or keys — of any kind</li>
+					<li>Passwords, tokens, app passwords or keys — of any kind</li>
 					<li>Wi-Fi pre-shared keys (deliberately dropped)</li>
 					<li>SSH or VPN secrets</li>
 					<li>Your documents or personal files</li>
@@ -104,15 +149,16 @@
 			<div class="row">
 				<dt>Where it lives</dt>
 				<dd>
-					Google Drive's hidden per-app <code>appDataFolder</code>: your storage, your account, not
-					visible among your files, and scoped so ewe sees only its own data.
+					A folder called <code>ewe</code> in your account's files — <code>ewe.conf</code> and a
+					small note beside it saying which machine saved it and when. Visible, readable, yours to
+					delete.
 				</dd>
 			</div>
 			<div class="row">
 				<dt>Going up</dt>
 				<dd>
-					After a settings change, debounced by 30 seconds, and only while sync is switched on. The
-					unit is the file itself plus a small manifest — schema version, machine name, timestamp.
+					After a settings change, debounced by twenty seconds, and only while sync is switched on.
+					A machine that has never synced never pushes by itself — the first backup is a button.
 				</dd>
 			</div>
 			<div class="row">
@@ -126,19 +172,32 @@
 			<div class="row">
 				<dt>Conflicts</dt>
 				<dd>
-					Newest wins, and the loser is written beside it as a timestamped
-					<code>.bak</code>. One file means recovery is reading a diff, not hunting through a bundle.
+					The server decides. Every upload says which version it is replacing; if another machine
+					saved in between, the server refuses and ewe tells you — pull theirs, or push anyway. No
+					clocks, no hostnames, no race. The loser of a pull is kept beside the file as a timestamped
+					<code>.bak</code>.
 				</dd>
 			</div>
 			<div class="row">
-				<dt>One identity</dt>
+				<dt>One credential</dt>
 				<dd>
-					A small broker, <code>ewe-auth</code>, owns the refresh token in the keyring and hands
-					short-lived access tokens to whichever app needs one. One sign-in, one consent screen, one
-					sign-out that revokes everything.
+					A small broker, <code>ewe-cloud</code>, keeps the app password in the keyring and hands it
+					to the sync, the calendar and the file mount. One sign-in, one sign-out that revokes it on
+					the server.
 				</dd>
 			</div>
 		</dl>
+	</section>
+
+	<section>
+		<p class="eyebrow">Google</p>
+		<h2>Optional, and only with your own client.</h2>
+		<p>
+			ewe ships no Google client and asks Google for nothing. If you want Gmail notifications in the
+			Control Center or your Drive as a folder, drop your own OAuth client file into
+			<code>~/.config/ewe/oauth-client.json</code> and a Google card appears in Settings → Account.
+			Sync never goes to Google. <a href="/privacy/">The policy →</a>
+		</p>
 	</section>
 
 	<section>
@@ -155,7 +214,7 @@
 			</div>
 			<div class="card">
 				<h3>No servers of ours</h3>
-				<p>The project runs no backend. Your file goes between your computer and your Drive.</p>
+				<p>The project runs no backend. Your file goes between your computer and your server.</p>
 			</div>
 			<div class="card">
 				<h3>Nothing silent</h3>
@@ -174,16 +233,17 @@
 
 	<section>
 		<p class="eyebrow">Status</p>
-		<h2>Shipping, in the alpha.</h2>
+		<h2>Landing in the 0.9 wave.</h2>
 		<p>
-			The broker, the Drive round-trip — verified byte-identical — the push and pull verbs, the
-			conflict guard, the software manager's restore surface and the first-login restore offer are all
-			in, with a test suite that mocks Drive and walks every branch. The legacy bundle-based sync it
-			replaced was deleted rather than patched. What's left before 1.0 is a full restore demo on a
-			machine that has never seen your account.
+			The Nextcloud broker, the WebDAV round-trip with the server-side conflict guard, the push and
+			pull verbs, the first-login sign-in and restore offer, and the software manager's read-only
+			app list are in, with a test suite that mocks a Nextcloud server and walks every branch. The
+			Google-Drive sync it replaces is gone rather than kept beside it. What's left before 1.0 is the
+			full restore demo on a machine that has never seen your account, and the account app that
+			owns your folders.
 		</p>
 		<div class="btns" style="margin-top:1.1rem">
-			<a class="btn" href="/docs/#google">The account →</a>
+			<a class="btn" href="/docs/#account">The account →</a>
 			<a class="btn" href="/privacy/">Privacy policy →</a>
 		</div>
 	</section>

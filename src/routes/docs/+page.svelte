@@ -11,7 +11,7 @@
 	<title>Docs — ewe</title>
 	<meta
 		name="description"
-		content="Install ewe OS, learn the keymap, understand the one config file, set up a Google account, keep the system updated, and read the known limitations."
+		content="Install ewe OS, learn the keymap, understand the one config file, sign in to your Nextcloud, keep the system updated, and read the known limitations."
 	/>
 </svelte:head>
 
@@ -31,7 +31,7 @@
 		<a href="#updates">Updates</a>
 		<a href="#config">The one file</a>
 		<a href="#cli">The CLI</a>
-		<a href="#google">Google</a>
+		<a href="#account">Your account</a>
 		<a href="#limits">Limitations</a>
 		<a href="#project">The project</a>
 		<a href="#help">Getting help</a>
@@ -81,8 +81,9 @@
 		<h2>Sign in, or don't.</h2>
 		<p>
 			The installed machine boots through the splash into the greeter. Your first login runs a welcome
-			flow once: an optional Google sign-in, an offer to restore a backup if your account holds one,
-			and a short tour. Skip all of it and ewe is a fully local machine.
+			flow once: a network check, any waiting updates, an optional sign-in to your Nextcloud, an
+			offer to restore a backup if the account holds one, and a short tour. Skip all of it and ewe is
+			a fully local machine.
 		</p>
 		<p>
 			Three keys get you moving: <code>Super+Return</code> for a terminal, <code>Super+D</code> for the
@@ -200,7 +201,7 @@
 			<div class="row"><dt><code>dump</code></dt><dd>The whole file as JSON — one read for the shell, or for you.</dd></div>
 			<div class="row"><dt><code>import</code></dt><dd>Build the file from a machine that's already set up the old way.</dd></div>
 			<div class="row"><dt><code>apply [--only &lt;domain&gt;]</code></dt><dd>Regenerate the artifacts and reload. The whole desktop, or one domain.</dd></div>
-			<div class="row"><dt><code>push</code> · <code>pull</code></dt><dd>Your file to Drive and back. <a href="/sync/">More on sync →</a></dd></div>
+			<div class="row"><dt><code>push</code> · <code>pull</code></dt><dd>Your file to your Nextcloud and back. <a href="/sync/">More on sync →</a></dd></div>
 		</dl>
 		<Terminal
 			lines={[
@@ -211,12 +212,21 @@
 			]}
 		/>
 
-		<h3 class="tool"><code>ewe-auth</code> <span>— one Google identity</span></h3>
+		<h3 class="tool"><code>ewe-cloud</code> <span>— your Nextcloud account</span></h3>
 		<p>
-			The broker. Before it existed, the shell owned its own OAuth and the software manager ran a
-			separate pipeline off files the shell wrote. Now there is <strong>one client, one consent
-			screen, one sign-out</strong>, and every app asks the broker for a short-lived token instead of
-			doing OAuth itself.
+			The broker for the account. <code>login &lt;server&gt;</code> runs Nextcloud's browser login
+			flow and keeps the app password it hands back in the keyring; <code>status</code> reports who
+			is signed in, the server and the quota without ever prompting; <code>logout</code> revokes the
+			app password on the server. The sync, the calendar and the file mount all ask it for the one
+			credential.
+		</p>
+
+		<h3 class="tool"><code>ewe-auth</code> <span>— Google, with your own client</span></h3>
+		<p>
+			The optional Google broker. It does nothing until you place your own OAuth client at
+			<code>~/.config/ewe/oauth-client.json</code>; then <strong>one consent screen, one
+			sign-out</strong>, and the mail badge and the Drive folder ask it for a short-lived token
+			instead of doing OAuth themselves.
 		</p>
 		<dl class="rows">
 			<div class="row"><dt><code>status</code></dt><dd>Whether a client is configured, the keyring is reachable, and who is signed in.</dd></div>
@@ -270,18 +280,18 @@
 		/>
 	</section>
 
-	<section id="google">
-		<p class="eyebrow">Google account</p>
-		<h2>One sign-in, read-only.</h2>
+	<section id="account">
+		<p class="eyebrow">Your account</p>
+		<h2>Any Nextcloud, one sign-in.</h2>
 		<p>
-			Offered during the welcome flow, or later from Settings → User. One consent covers calendar,
-			mail, settings sync and your Drive folder, shared by the desktop and the software manager
-			through a single broker.
+			Offered during the welcome flow, or later from Settings → Account: type your server's
+			address, sign in on its own page, done. That one app password covers settings sync, your
+			calendar and your files as a folder. Mail is any IMAP account you add in Settings.
 		</p>
 		<p class="note">
-			Scopes are <code>openid email profile</code>, calendar read-only, Gmail read-only and Drive's
-			hidden app folder — read access and its own storage, nothing more. The refresh token never
-			touches a file; it lives in the system keyring. Signing out revokes it at Google.
+			ewe ships no Google client. A Google card appears in Settings only after you drop your own
+			OAuth client file at <code>~/.config/ewe/oauth-client.json</code>; it adds Gmail notifications
+			and a Drive folder, never sync. Every credential lives in the system keyring, never in a file.
 			<a href="/privacy/">The full policy →</a>
 		</p>
 	</section>
