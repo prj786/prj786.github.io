@@ -186,6 +186,14 @@
 					the server.
 				</dd>
 			</div>
+			<div class="row">
+				<dt>The app</dt>
+				<dd>
+					<code>ewe-sync</code>, in the tray: your machines and who saved the last backup, folder
+					sync with your account (two-way or one-way; on change, on a timer, at login), conflicts
+					resolved in place. Komble and Settings only write the one file; ewe-sync moves it.
+				</dd>
+			</div>
 		</dl>
 	</section>
 

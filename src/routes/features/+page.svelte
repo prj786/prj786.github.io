@@ -248,6 +248,13 @@
 			OAuth client file: it adds Gmail notifications and a Drive folder, and nothing about the
 			project's Google standing ever touches your sign-in, because there is none.
 		</p>
+		<p>
+			<strong>ewe-sync</strong> is the app behind it, living in the tray: your machines and which
+			one saved the last backup, <strong>folder sync</strong> between a local folder and your
+			account — two-way through the Nextcloud sync engine, or one-way copies; on change, on a
+			timer, at login — and conflicts resolved in place. Komble installs apps, Settings edits the
+			one file, ewe-sync moves it. Nothing else has a sync button.
+		</p>
 		<p class="note">
 			Until you sign in, no cloud functionality appears anywhere in ewe. Signed out or offline,
 			everything degrades cleanly. <a href="/sync/">How sync works →</a>

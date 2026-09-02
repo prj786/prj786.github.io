@@ -328,6 +328,7 @@
 			<div class="row"><dt><a href={PKG_REPO}>ewe-repo</a></dt><dd>The <code>[ewe]</code> pacman repository everything ships through.</dd></div>
 			<div class="row"><dt><a href="https://github.com/prj786/komble-arch">komble-arch</a></dt><dd>Komble, the software manager.</dd></div>
 			<div class="row"><dt><a href="https://github.com/prj786/ewe-settings">ewe-settings</a></dt><dd>The settings app.</dd></div>
+			<div class="row"><dt><a href="https://github.com/prj786/ewe-sync">ewe-sync</a></dt><dd>The account app: your machines, folder sync, the tray.</dd></div>
 			<div class="row"><dt><a href="https://github.com/prj786/ewe-cast">ewe-cast</a></dt><dd>The headless casting daemon behind the Cast card.</dd></div>
 		</dl>
 	</section>
