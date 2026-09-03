@@ -45,7 +45,7 @@
 				<div>
 					<h3>Restore</h3>
 					<p>
-						One button in Settings → Account — or <a href="/docs/cli/ewe-conf/"><code>ewe-conf pull &amp;&amp; ewe-conf apply</code></a>
+						One button in ewe-sync — or <a href="/docs/cli/ewe-conf/"><code>ewe-conf pull &amp;&amp; ewe-conf apply</code></a>
 						if you'd rather type. Your file comes down and rebuilds the desktop: theme, accent, dock,
 						wallpapers, keyboard, displays, window rules, startup apps.
 					</p>

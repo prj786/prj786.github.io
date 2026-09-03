@@ -43,8 +43,8 @@
 	<h2>Turning it on</h2>
 	<p>
 		Create an OAuth client of the desktop kind in your own Google Cloud project, then place the file
-		it gives you at <code>~/.config/ewe/oauth-client.json</code>. The Google card in Settings → User
-		notices it and offers to connect.
+		it gives you at <code>~/.config/ewe/oauth-client.json</code>. The Google pane in
+		<a href="/docs/cli/ewe-sync/">ewe-sync</a> says whether the file parses, and connects it.
 	</p>
 	<Code
 		code={`cp ~/Downloads/client_secret_*.json ~/.config/ewe/oauth-client.json
