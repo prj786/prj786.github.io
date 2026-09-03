@@ -8,12 +8,24 @@
 	const here = $derived(
 		SECTIONS.flatMap((s) => s.items).find((i) => i.href === $page.url.pathname)?.label ?? 'Docs'
 	);
+
+	// The nav ships OPEN: a closed <details> hides its content at every width,
+	// which left the desktop column blank. On a phone we collapse it once the
+	// page is live, and again after each navigation, so it behaves as a drawer
+	// there while staying a plain sticky column with no JS on a desktop.
+	let open = $state(true);
+	const narrow = () =>
+		typeof window !== 'undefined' && window.matchMedia('(max-width: 900px)').matches;
+	$effect(() => {
+		$page.url.pathname;
+		if (narrow()) open = false;
+	});
 </script>
 
 <div class="docs wrap wide">
 	<!-- On a phone this is a closed <details>; from 900px up the summary is
 	     hidden and the list becomes a sticky column of its own. -->
-	<details class="side">
+	<details class="side" bind:open>
 		<summary>
 			<span class="crumb">Docs / <strong>{here}</strong></span>
 			<span class="chev" aria-hidden="true">▾</span>
