@@ -45,7 +45,7 @@
 				<div>
 					<h3>Restore</h3>
 					<p>
-						One button in Settings → Account — or <code>ewe-conf pull &amp;&amp; ewe-conf apply</code>
+						One button in Settings → Account — or <a href="/docs/cli/ewe-conf/"><code>ewe-conf pull &amp;&amp; ewe-conf apply</code></a>
 						if you'd rather type. Your file comes down and rebuilds the desktop: theme, accent, dock,
 						wallpapers, keyboard, displays, window rules, startup apps.
 					</p>
@@ -181,7 +181,7 @@
 			<div class="row">
 				<dt>One credential</dt>
 				<dd>
-					A small broker, <code>ewe-cloud</code>, keeps the app password in the keyring and hands it
+					A small broker, <a href="/docs/cli/ewe-cloud/"><code>ewe-cloud</code></a>, keeps the app password in the keyring and hands it
 					to the sync, the calendar and the file mount. One sign-in, one sign-out that revokes it on
 					the server.
 				</dd>
@@ -189,7 +189,7 @@
 			<div class="row">
 				<dt>The app</dt>
 				<dd>
-					<code>ewe-sync</code>, in the tray: your machines and who saved the last backup, folder
+					<a href="/docs/cli/ewe-sync/"><code>ewe-sync</code></a>, in the tray: your machines and who saved the last backup, folder
 					sync with your account (two-way or one-way; on change, on a timer, at login), conflicts
 					resolved in place. Komble and Settings only write the one file; ewe-sync moves it.
 				</dd>
@@ -251,7 +251,7 @@
 			owns your folders.
 		</p>
 		<div class="btns" style="margin-top:1.1rem">
-			<a class="btn" href="/docs/#account">The account →</a>
+			<a class="btn" href="/docs/account/nextcloud/">The account →</a>
 			<a class="btn" href="/privacy/">Privacy policy →</a>
 		</div>
 	</section>

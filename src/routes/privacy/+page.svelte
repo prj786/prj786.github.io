@@ -29,7 +29,7 @@
 			This policy applies to <strong>ewe</strong>, a free and open-source, Arch-based operating system,
 			and to everything shipped with it: the installer, the ewe desktop and its shell, the
 			<strong>Komble</strong> software manager, the <strong>ewe-settings</strong> app, the casting
-			daemon, the <code>ewe-conf</code> configuration tool and the <code>ewe-auth</code> sign-in
+			daemon, the <a href="/docs/cli/ewe-conf/"><code>ewe-conf</code></a> configuration tool and the <a href="/docs/cli/ewe-auth/"><code>ewe-auth</code></a> sign-in
 			broker. It also covers this website, <strong>prj786.github.io</strong>.
 		</p>
 		<p>

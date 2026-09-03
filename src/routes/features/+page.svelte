@@ -249,7 +249,7 @@
 			project's Google standing ever touches your sign-in, because there is none.
 		</p>
 		<p>
-			<strong>ewe-sync</strong> is the app behind it, living in the tray: your machines and which
+			<a href="/docs/cli/ewe-sync/"><strong>ewe-sync</strong></a> is the app behind it, living in the tray: your machines and which
 			one saved the last backup, <strong>folder sync</strong> between a local folder and your
 			account — two-way through the Nextcloud sync engine, or one-way copies; on change, on a
 			timer, at login — and conflicts resolved in place. Komble installs apps, Settings edits the
@@ -257,7 +257,7 @@
 		</p>
 		<p class="note">
 			Until you sign in, no cloud functionality appears anywhere in ewe. Signed out or offline,
-			everything degrades cleanly. <a href="/sync/">How sync works →</a>
+			everything degrades cleanly. <a href="/sync/">How sync works →</a> · <a href="/docs/account/nextcloud/">The account, documented →</a>
 		</p>
 	</section>
 
@@ -291,7 +291,7 @@
 				<dt>Keyboard-first</dt>
 				<dd>
 					A full Hyprland keymap — windows, groups, workspaces, scratchpad.
-					<a href="/docs/#shortcuts">The shortcuts →</a>
+					<a href="/docs/shortcuts/">The shortcuts →</a>
 				</dd>
 			</div>
 		</dl>

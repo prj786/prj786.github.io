@@ -153,7 +153,7 @@
 		</p>
 		<div class="btns">
 			<a class="btn" href={OS_RELEASES}>Releases →</a>
-			<a class="btn" href="/docs/#limits">Known limitations →</a>
+			<a class="btn" href="/docs/troubleshooting/">Known limitations →</a>
 		</div>
 	</section>
 </div>
