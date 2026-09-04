@@ -138,7 +138,7 @@
 			</div>
 			<div class="row">
 				<dt>One icon language</dt>
-				<dd>Phosphor glyphs throughout the shell; a matching icon theme and cursor for apps.</dd>
+				<dd>Lucide glyphs throughout the shell; a matching icon theme and cursor for apps.</dd>
 			</div>
 			<div class="row">
 				<dt>Motion you control</dt>
