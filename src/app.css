@@ -1,26 +1,36 @@
-/* ── ewe "blacksheep" — the desktop's own OLED palette (Theme.qml) ───────── */
+/* ── ewe.website — the same design system the desktop runs on ─────────────
+ *
+ * Every colour, radius and stroke below comes from `tokens.css`, which is a
+ * VERBATIM copy of ewe/design/tokens.css — the file `ewe-theme build` writes
+ * from the single accent in ewe.conf. The site and the shell are not "kept in
+ * sync": they read the same generated file, so a change to the accent moves
+ * both. Refresh the copy with `npm run tokens`.
+ *
+ * PICKING A TOKEN — ask what the thing IS, not what colour you want:
+ *
+ *   the page ground            --bg-3
+ *   a raised surface at rest   --bg-2   (a card, a well, a code block)
+ *   a secondary button         --bg-1 + --stroke-1  (Fluent's own pairing)
+ *   a primary button           --brand-bg + --fg-on-brand — never a raw accent
+ *                              with white, which breaks on a yellow accent
+ *   a panel or card outline    --stroke-2
+ *   a divider between rows     --stroke-3
+ *   the accent AS a mark       --accent (link, underline, dot, number)
+ *
+ * SIZES ARE NOT SHARED. tokens.css also carries --pad/--control/--row, which
+ * are the SHELL's density — a 32px control on a bar. A page of prose has its
+ * own rhythm, so spacing and the type ladder below are web-native and stated
+ * in rem. Colour and shape are the system; density is the medium.
+ */
+
+@import './tokens.css';
+
 :root {
-	--bg: #020202;
-	--elevated: #101012;
-	--hover: #1a1a1c;
-	--stroke: #222225;
-	--fg: #f2f2f7;
-	--fg2: #aeaeb2;
-	--dim: #8e8e93;
-	--accent: #0a84ff;
-	--success: #30d158;
-	--warning: #ff9f0a;
-	--danger: #ff453a;
-
-	--r: 18px;
-	--r-in: 12px;
-	--r-pill: 8px;
-
 	--font: Ubuntu, system-ui, -apple-system, 'Segoe UI', sans-serif;
 	--mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
 
-	--measure: 66ch;
-	--page: 60rem;
+	--measure: 64ch;
+	--page: 58rem;
 
 	color-scheme: dark;
 }
@@ -46,8 +56,8 @@ html {
 
 body {
 	margin: 0;
-	background: var(--bg);
-	color: var(--fg);
+	background: var(--bg-3);
+	color: var(--fg-1);
 	font-family: var(--font);
 	font-size: 16px;
 	line-height: 1.6;
@@ -55,6 +65,10 @@ body {
 	text-rendering: optimizeLegibility;
 }
 
+/* ── type ────────────────────────────────────────────────────────────────
+   The shell's ladder tops out at 24px, which is a panel title, not a page
+   title — so headings scale with the viewport here and only the small end
+   is pinned to the shared ramp. */
 h1,
 h2,
 h3 {
@@ -62,30 +76,31 @@ h3 {
 	letter-spacing: -0.02em;
 	margin: 0;
 	font-weight: 500;
+	color: var(--fg-1);
 }
 h1 {
-	font-size: clamp(2rem, 1.4rem + 2.6vw, 3.1rem);
+	font-size: clamp(2rem, 1.4rem + 2.6vw, 3rem);
 }
 h2 {
-	font-size: clamp(1.35rem, 1.15rem + 0.9vw, 1.7rem);
+	font-size: clamp(1.3rem, 1.12rem + 0.85vw, 1.65rem);
 }
 h3 {
-	font-size: 1.05rem;
+	font-size: 1.02rem;
 	font-weight: 500;
 }
 
 p {
 	margin: 0;
-	color: var(--fg2);
+	color: var(--fg-2);
 	max-width: var(--measure);
 }
 strong {
-	color: var(--fg);
+	color: var(--fg-1);
 	font-weight: 500;
 }
 
 a {
-	color: var(--fg);
+	color: var(--fg-1);
 	text-decoration-color: color-mix(in srgb, var(--accent) 55%, transparent);
 	text-underline-offset: 3px;
 }
@@ -96,33 +111,33 @@ a:hover {
 code {
 	font-family: var(--mono);
 	font-size: 0.875em;
-	background: var(--elevated);
-	border: 1px solid var(--stroke);
-	border-radius: 6px;
+	background: var(--bg-2);
+	border: var(--stroke-width) solid var(--stroke-3);
+	border-radius: var(--radius-control);
 	padding: 0.1em 0.38em;
-	color: var(--fg);
+	color: var(--fg-1);
 }
 
 hr {
 	border: 0;
-	border-top: 1px solid var(--stroke);
-	margin: 3.5rem 0;
+	border-top: var(--stroke-width) solid var(--stroke-3);
+	margin: 3.25rem 0;
 }
 
 ul {
 	margin: 0;
 	padding-left: 1.15rem;
-	color: var(--fg2);
+	color: var(--fg-2);
 	max-width: var(--measure);
 }
 li {
 	margin: 0.35rem 0;
 }
 li::marker {
-	color: var(--dim);
+	color: var(--fg-4);
 }
 
-/* ── layout helpers ─────────────────────────────────────────────────────── */
+/* ── layout ──────────────────────────────────────────────────────────── */
 .wrap {
 	width: 100%;
 	max-width: var(--page);
@@ -132,13 +147,13 @@ li::marker {
 
 /* for figures that deserve more room than the reading measure */
 .wrap.wide {
-	max-width: 76rem;
+	max-width: 74rem;
 }
 
 .page {
 	/* padding-block only — a padding shorthand here would cancel .wrap's
 	   horizontal padding and let text hit the screen edge on narrow viewports. */
-	padding-block: 3.5rem 5rem;
+	padding-block: 3.25rem 4.5rem;
 }
 
 .stack {
@@ -151,7 +166,7 @@ section + section,
 .lede + section,
 .toc + section,
 .btns + section {
-	margin-top: 3.25rem;
+	margin-top: 3rem;
 }
 
 /* rhythm: headings set the gap below them, paragraphs the gap between them */
@@ -173,55 +188,81 @@ ul + .note {
 	font-size: 0.72rem;
 	letter-spacing: 0.14em;
 	text-transform: uppercase;
-	color: var(--dim);
-	margin-bottom: 0.65rem;
+	color: var(--fg-4);
+	margin-bottom: 0.6rem;
 }
 
 .lede {
-	font-size: 1.08rem;
-	color: var(--fg2);
+	font-size: 1.06rem;
+	color: var(--fg-2);
 }
 
 .grid {
 	display: grid;
-	gap: 0.85rem;
+	gap: 0.8rem;
 	grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
 }
 
+/* A surface at rest. NOT the `card` role — that ladder is for something you
+   point at, and these hold prose. A link that wraps one opts into .card.act. */
 .card {
-	background: var(--elevated);
-	border: 1px solid var(--stroke);
-	border-radius: var(--r-in);
-	padding: 1.15rem 1.2rem;
+	background: var(--bg-2);
+	border: var(--stroke-width) solid var(--stroke-2);
+	border-radius: var(--radius-card);
+	padding: 1.1rem 1.15rem;
 }
 .card h3 {
-	margin-bottom: 0.4rem;
+	margin-bottom: 0.35rem;
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+}
+.card h3 :global(.icon) {
+	color: var(--accent);
 }
 .card p {
-	font-size: 0.94rem;
+	font-size: 0.93rem;
 	margin: 0;
+}
+/* the interactive case: now the card ladder is the right one */
+a.card,
+.card.act {
+	display: block;
+	text-decoration: none;
+	transition: background 140ms ease, border-color 140ms ease;
+}
+a.card:hover,
+.card.act:hover {
+	background: var(--card-hover);
+	border-color: var(--stroke-1);
 }
 
 /* definition rows — the compact way to explain a lot without walls of text */
 .rows {
-	border-top: 1px solid var(--stroke);
+	border-top: var(--stroke-width) solid var(--stroke-3);
 }
 .row {
 	display: grid;
 	grid-template-columns: 12rem 1fr;
 	gap: 0.25rem 1.5rem;
-	padding: 0.9rem 0;
-	border-bottom: 1px solid var(--stroke);
+	padding: 0.85rem 0;
+	border-bottom: var(--stroke-width) solid var(--stroke-3);
 	align-items: baseline;
 }
 .row > dt {
 	font-weight: 500;
-	color: var(--fg);
+	color: var(--fg-1);
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+}
+.row > dt :global(.icon) {
+	color: var(--fg-3);
 }
 .row > dd {
 	margin: 0;
-	color: var(--fg2);
-	font-size: 0.95rem;
+	color: var(--fg-2);
+	font-size: 0.94rem;
 }
 @media (max-width: 640px) {
 	.row {
@@ -229,65 +270,81 @@ ul + .note {
 	}
 }
 
-/* buttons */
+/* ── buttons ─────────────────────────────────────────────────────────────
+   Fluent's own pairings, verbatim: a secondary button is bg-1 + stroke-1, a
+   primary one is brand-bg + fg-on-brand. fg-on-brand is MEASURED against the
+   fill, which is why a yellow accent gets ink here and not unreadable white. */
 .btn {
 	display: inline-flex;
 	align-items: center;
 	gap: 0.45rem;
-	border: 1px solid var(--stroke);
-	background: var(--elevated);
-	color: var(--fg);
-	border-radius: var(--r-pill);
-	padding: 0.5rem 0.95rem;
+	border: var(--stroke-width) solid var(--stroke-1);
+	background: var(--bg-1);
+	color: var(--fg-1);
+	border-radius: var(--radius-control);
+	padding: 0.5rem 0.9rem;
 	font: inherit;
 	font-size: 0.92rem;
 	text-decoration: none;
 	cursor: pointer;
-	transition: background 150ms ease, border-color 150ms ease;
+	transition: background 140ms ease, border-color 140ms ease;
 }
 .btn:hover {
-	background: var(--hover);
-	border-color: #33333a;
+	background: var(--bg-1-hover);
+	border-color: var(--stroke-1-hover);
+}
+.btn:active {
+	background: var(--bg-1-pressed);
+	border-color: var(--stroke-1-pressed);
 }
 .btn.primary {
-	background: var(--accent);
-	border-color: var(--accent);
-	color: #fff;
+	background: var(--brand-bg);
+	border-color: var(--brand-bg);
+	color: var(--fg-on-brand);
 }
 .btn.primary:hover {
-	background: #2b95ff;
-	border-color: #2b95ff;
+	background: var(--brand-bg-hover);
+	border-color: var(--brand-bg-hover);
+}
+.btn.primary:active {
+	background: var(--brand-bg-pressed);
+	border-color: var(--brand-bg-pressed);
 }
 
 .btns {
 	display: flex;
 	flex-wrap: wrap;
 	gap: 0.6rem;
+	align-items: center;
 }
 
+/* Fluent's two-tone focus ring: dark inside, light outside, so it stays
+   visible on a brand fill and on the page ground alike. */
 :focus-visible {
-	outline: 2px solid var(--accent);
-	outline-offset: 2px;
-	border-radius: 4px;
+	outline: none;
+	box-shadow:
+		0 0 0 var(--stroke-width) var(--stroke-focus-1),
+		0 0 0 calc(var(--stroke-width) + var(--focus-width)) var(--stroke-focus-2);
+	border-radius: var(--radius-control);
 }
 
 .muted {
-	color: var(--dim);
+	color: var(--fg-3);
 	font-size: 0.88rem;
 }
 
 /* caption under a figure */
 .figcap {
-	margin-top: 1rem;
-	font-size: 0.9rem;
-	color: var(--dim);
+	margin-top: 0.9rem;
+	font-size: 0.89rem;
+	color: var(--fg-3);
 	max-width: 46rem;
 }
 
 .note {
-	border-left: 2px solid var(--stroke);
+	border-left: var(--stroke-width-thick) solid var(--stroke-3);
 	padding-left: 1rem;
-	color: var(--fg2);
-	font-size: 0.94rem;
+	color: var(--fg-2);
+	font-size: 0.93rem;
 	max-width: var(--measure);
 }

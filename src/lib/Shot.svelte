@@ -32,11 +32,11 @@
 	}
 	picture {
 		display: block;
-		border: 1px solid var(--stroke);
-		border-radius: 14px;
+		border: var(--stroke-width) solid var(--stroke-2);
+		border-radius: var(--radius-panel);
 		overflow: hidden;
-		background: var(--bg);
-		box-shadow: 0 18px 50px rgba(0, 0, 0, 0.55);
+		background: var(--bg-4);
+		box-shadow: var(--elevation);
 	}
 	img {
 		display: block;
@@ -46,7 +46,7 @@
 	figcaption {
 		margin-top: 1rem;
 		font-size: 0.9rem;
-		color: var(--dim);
+		color: var(--fg-3);
 		max-width: 46rem;
 	}
 </style>

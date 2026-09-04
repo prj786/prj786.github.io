@@ -25,9 +25,9 @@
 <style>
 	.block {
 		position: relative;
-		background: var(--elevated);
-		border: 1px solid var(--stroke);
-		border-radius: var(--r-in);
+		background: var(--bg-2);
+		border: var(--stroke-width) solid var(--stroke-2);
+		border-radius: var(--radius-card);
 		margin: 1rem 0 0;
 		max-width: 52rem;
 	}
@@ -37,7 +37,7 @@
 		font-family: var(--mono);
 		font-size: 0.82rem;
 		line-height: 1.7;
-		color: var(--fg);
+		color: var(--fg-1);
 		overflow-x: auto;
 		white-space: pre;
 		scrollbar-width: thin;
@@ -48,10 +48,10 @@
 		right: 0.5rem;
 		font: inherit;
 		font-size: 0.75rem;
-		color: var(--fg2);
-		background: var(--bg);
-		border: 1px solid var(--stroke);
-		border-radius: var(--r-pill);
+		color: var(--fg-2);
+		background: var(--bg-3);
+		border: var(--stroke-width) solid var(--stroke-2);
+		border-radius: var(--radius-control);
 		padding: 0.22rem 0.55rem;
 		cursor: pointer;
 		opacity: 0;
@@ -62,8 +62,8 @@
 		opacity: 1;
 	}
 	.copy:hover {
-		background: var(--hover);
-		color: var(--fg);
+		background: var(--subtle-hover);
+		color: var(--fg-1);
 	}
 	/* touch devices have no hover — keep the button reachable there */
 	@media (hover: none) {

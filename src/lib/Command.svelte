@@ -23,9 +23,9 @@
 		display: flex;
 		align-items: center;
 		gap: 0.75rem;
-		background: var(--elevated);
-		border: 1px solid var(--stroke);
-		border-radius: var(--r-in);
+		background: var(--bg-2);
+		border: var(--stroke-width) solid var(--stroke-2);
+		border-radius: var(--radius-card);
 		padding: 0.7rem 0.7rem 0.7rem 0.95rem;
 		max-width: 44rem;
 		overflow: hidden;
@@ -35,7 +35,7 @@
 		background: none;
 		padding: 0;
 		font-size: 0.85rem;
-		color: var(--fg);
+		color: var(--fg-1);
 		overflow-x: auto;
 		white-space: nowrap;
 		flex: 1;
@@ -45,15 +45,15 @@
 		flex: none;
 		font: inherit;
 		font-size: 0.8rem;
-		color: var(--fg2);
-		background: var(--bg);
-		border: 1px solid var(--stroke);
-		border-radius: var(--r-pill);
+		color: var(--fg-2);
+		background: var(--bg-3);
+		border: var(--stroke-width) solid var(--stroke-2);
+		border-radius: var(--radius-control);
 		padding: 0.3rem 0.6rem;
 		cursor: pointer;
 	}
 	.copy:hover {
-		background: var(--hover);
-		color: var(--fg);
+		background: var(--subtle-hover);
+		color: var(--fg-1);
 	}
 </style>

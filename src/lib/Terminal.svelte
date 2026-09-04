@@ -14,9 +14,9 @@
 <style>
 	.term {
 		margin: 1.2rem 0 0;
-		background: #020202;
-		border: 1px solid var(--stroke);
-		border-radius: var(--r-in);
+		background: var(--bg-4);
+		border: var(--stroke-width) solid var(--stroke-2);
+		border-radius: var(--radius-card);
 		overflow: hidden;
 		max-width: 46rem;
 	}
@@ -25,10 +25,10 @@
 		align-items: center;
 		gap: 0.6rem;
 		padding: 0.5rem 0.8rem;
-		border-bottom: 1px solid var(--stroke);
+		border-bottom: var(--stroke-width) solid var(--stroke-2);
 		font-size: 0.75rem;
-		color: var(--dim);
-		background: var(--elevated);
+		color: var(--fg-3);
+		background: var(--bg-2);
 	}
 	.dots {
 		display: flex;
@@ -38,7 +38,7 @@
 		width: 0.5rem;
 		height: 0.5rem;
 		border-radius: 50%;
-		background: #2e2e33;
+		background: var(--stroke-1);
 	}
 	pre {
 		margin: 0;
@@ -53,12 +53,12 @@
 		color: var(--accent);
 	}
 	.c {
-		color: var(--fg);
+		color: var(--fg-1);
 	}
 	.o {
-		color: var(--fg2);
+		color: var(--fg-2);
 	}
 	.h {
-		color: var(--dim);
+		color: var(--fg-3);
 	}
 </style>

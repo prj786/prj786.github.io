@@ -2,6 +2,7 @@
 	import '../app.css';
 	import { page } from '$app/stores';
 	import { NAV, OS_REPO, ISSUES } from '$lib/nav.js';
+	import Icon from '$lib/Icon.svelte';
 
 	let { children } = $props();
 	const active = (href) => $page.url.pathname === href;
@@ -26,7 +27,7 @@
 
 		<div class="right">
 			<a class="ghost" href={OS_REPO}>GitHub</a>
-			<a class="btn primary sm" href="/download/">Download</a>
+			<a class="btn primary sm" href="/download/"><Icon name="download" size={15} /> Download</a>
 		</div>
 	</div>
 </header>
@@ -43,6 +44,8 @@
 		</div>
 		<nav aria-label="Footer">
 			<a href="/download/">Download</a>
+			<a href="/theming/">Theming</a>
+			<a href="/how/">How it works</a>
 			<a href="/docs/">Docs</a>
 			<a href="/privacy/">Privacy</a>
 			<a href={OS_REPO}>Source</a>
@@ -64,9 +67,9 @@
 		left: 1rem;
 		top: 0.6rem;
 		z-index: 10;
-		background: var(--elevated);
-		border: 1px solid var(--stroke);
-		border-radius: var(--r-pill);
+		background: var(--bg-2);
+		border: var(--stroke-width) solid var(--stroke-2);
+		border-radius: var(--radius-control);
 		padding: 0.4rem 0.8rem;
 		text-decoration: none;
 	}
@@ -75,8 +78,8 @@
 		position: sticky;
 		top: 0;
 		z-index: 5;
-		background: var(--bg);
-		border-bottom: 1px solid var(--stroke);
+		background: var(--bg-3);
+		border-bottom: var(--stroke-width) solid var(--stroke-2);
 	}
 	.bar {
 		display: flex;
@@ -110,18 +113,18 @@
 		display: none;
 	}
 	nav a {
-		color: var(--fg2);
+		color: var(--fg-2);
 		text-decoration: none;
 		font-size: 0.93rem;
 		white-space: nowrap;
 		padding: 0.2rem 0;
-		border-bottom: 1px solid transparent;
+		border-bottom: var(--stroke-width) solid transparent;
 	}
 	nav a:hover {
-		color: var(--fg);
+		color: var(--fg-1);
 	}
 	nav a.active {
-		color: var(--fg);
+		color: var(--fg-1);
 		border-bottom-color: var(--accent);
 	}
 	/* the nav scrolls rather than wraps on narrow screens — tighten it first so
@@ -146,12 +149,12 @@
 		flex: none;
 	}
 	.ghost {
-		color: var(--fg2);
+		color: var(--fg-2);
 		text-decoration: none;
 		font-size: 0.93rem;
 	}
 	.ghost:hover {
-		color: var(--fg);
+		color: var(--fg-1);
 	}
 	.sm {
 		padding: 0.35rem 0.8rem;
@@ -169,7 +172,7 @@
 	}
 
 	footer {
-		border-top: 1px solid var(--stroke);
+		border-top: var(--stroke-width) solid var(--stroke-2);
 		padding: 2.2rem 0 3rem;
 		margin-top: 2rem;
 	}
@@ -185,7 +188,7 @@
 		overflow: visible;
 	}
 	.foot nav a {
-		color: var(--fg2);
+		color: var(--fg-2);
 		font-size: 0.92rem;
 	}
 	.lic {
@@ -193,6 +196,6 @@
 		max-width: 46rem;
 	}
 	.lic a {
-		color: var(--dim);
+		color: var(--fg-3);
 	}
 </style>

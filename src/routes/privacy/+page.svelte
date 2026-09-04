@@ -283,9 +283,9 @@
 		margin-top: 1.4rem;
 	}
 	.limited {
-		background: var(--elevated);
-		border: 1px solid var(--stroke);
-		border-radius: var(--r-in);
+		background: var(--bg-2);
+		border: var(--stroke-width) solid var(--stroke-2);
+		border-radius: var(--radius-card);
 		padding: 1rem 1.15rem;
 		max-width: none;
 	}

@@ -61,7 +61,7 @@ ewe-conf apply                  turns it into the runtime files
 		<p>
 			A desktop that scatters itself across a dozen files cannot be backed up, diffed or reasoned
 			about. One document with one writer can be — which is what makes signing in on a new machine
-			enough to get your old one back. <a href="/philosophy/">The reasoning →</a>
+			enough to get your old one back. <a href="/how/">The reasoning →</a>
 		</p>
 	</Callout>
 </section>
@@ -91,8 +91,8 @@ ewe-conf apply                    # rebuild every runtime file`}
 <style>
 	code.title {
 		font-size: 0.52em;
-		background: var(--elevated);
-		border-color: var(--stroke);
+		background: var(--bg-2);
+		border-color: var(--stroke-2);
 		padding: 0.15em 0.4em;
 	}
 </style>

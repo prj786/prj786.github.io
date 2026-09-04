@@ -1,8 +1,22 @@
+<script>
+	import Icon from '$lib/Icon.svelte';
+
+	const TOC = [
+		['os', 'The OS'],
+		['shell', 'The shell'],
+		['look', 'The look'],
+		['apps', 'Apps'],
+		['cast', 'Cast & phone'],
+		['account', 'Your account'],
+		['system', 'System']
+	];
+</script>
+
 <svelte:head>
 	<title>Features — ewe</title>
 	<meta
 		name="description"
-		content="ewe OS in full: the installer and its decisions, rolling updates, the shell, theming, Komble, cast to TV, phone link, your Nextcloud account and the safety model."
+		content="ewe OS in full: the installer and its decisions, rolling updates, the Quickshell desktop, theming, Komble, cast to TV, phone link, your Nextcloud account and the system parts."
 	/>
 </svelte:head>
 
@@ -10,65 +24,49 @@
 	<p class="eyebrow">Features</p>
 	<h1>An OS, already assembled.</h1>
 	<p class="lede">
-		ewe isn't a set of parts with a config to write. It's a whole system built as one product — the
+		Not a set of parts with a config to write — a whole system built as one product, with the
 		installer, the desktop and the software manager designed together and themed as one thing.
 	</p>
 
 	<nav class="toc" aria-label="On this page">
-		<a href="#os">The OS</a>
-		<a href="#shell">The shell</a>
-		<a href="#look">The look</a>
-		<a href="#apps">Apps</a>
-		<a href="#cast">Cast to TV</a>
-		<a href="#phone">Phone</a>
-		<a href="#account">Your account</a>
-		<a href="#system">System</a>
+		{#each TOC as [id, label]}<a href="#{id}">{label}</a>{/each}
 	</nav>
 
 	<section id="os">
 		<p class="eyebrow">The OS</p>
 		<h2>Arch underneath, decided on top.</h2>
-		<p>
-			ewe is a real distribution with its own ISO, not a theme you apply to something else. Underneath
-			it's ordinary Arch — pacman, the AUR, normal packages — so nothing you learn is wasted.
-		</p>
 		<dl class="rows">
 			<div class="row">
-				<dt>A first-party installer</dt>
+				<dt><Icon name="hard-drive" size={16} />A first-party installer</dt>
 				<dd>
-					Six screens in the same design language as the desktop. It asks what's personal and decides
-					the rest — btrfs subvolumes, systemd-boot, GPU drivers, hibernation —
-					<a href="/download/#decided">showing you every decision</a> before you commit.
+					Six screens in the desktop's own design. It asks what's personal and decides the rest —
+					btrfs subvolumes, systemd-boot, GPU drivers, hibernation —
+					<a href="/download/#decided">showing every decision</a> before you commit.
 				</dd>
 			</div>
 			<div class="row">
-				<dt>A live session that's the real thing</dt>
+				<dt><Icon name="usb" size={16} />A live session that's the real thing</dt>
+				<dd>The stick boots the actual desktop, not a demo shell. Nothing is written until you press Install.</dd>
+			</div>
+			<div class="row">
+				<dt><Icon name="refresh-cw" size={16} />Rolling, from one repository</dt>
 				<dd>
-					The stick boots the actual desktop, not a demo shell. Nothing is written to your disks
-					until you press Install.
+					The <code>[ewe]</code> pacman repo is preconfigured, so <code>pacman -Syu</code> — or
+					Komble's Updates pane — moves the system and the desktop forward together. Nothing is pinned.
 				</dd>
 			</div>
 			<div class="row">
-				<dt>Rolling, from one repository</dt>
+				<dt><Icon name="eye" size={16} />Branded end to end</dt>
 				<dd>
-					The <code>[ewe]</code> pacman repo is preconfigured on the ISO and on installed systems, so
-					<code>pacman -Syu</code> — or Komble's Updates pane — moves the system and the desktop
-					forward together. Nothing is pinned.
+					Splash from firmware to greeter with no kernel text, a themed greeter, and an installer
+					that never ends up on the installed machine.
 				</dd>
 			</div>
 			<div class="row">
-				<dt>Branded end to end</dt>
+				<dt><Icon name="circle-user" size={16} />A welcome flow, once</dt>
 				<dd>
-					Splash from firmware to greeter with no kernel text and no Arch logo, a themed greeter, and
-					an installer that never ends up on the installed machine.
-				</dd>
-			</div>
-			<div class="row">
-				<dt>A welcome flow, once</dt>
-				<dd>
-					First login connects you, installs what's waiting, signs you in to your Nextcloud, offers
-					a restore if the account holds a backup, and gives a sixty-second tour. Then it never
-					appears again.
+					First login connects you, installs what's waiting, offers your Nextcloud and a restore, and
+					gives a sixty-second tour. Then it never appears again.
 				</dd>
 			</div>
 		</dl>
@@ -83,33 +81,27 @@
 		</p>
 		<div class="grid">
 			<div class="card">
-				<h3>Bar</h3>
-				<p>Workspaces, window title, tray, battery, network, mail, media — 30px, out of your way.</p>
+				<h3><Icon name="layout-panel-top" size={16} />Bar</h3>
+				<p>Workspaces, window title, tray, battery, network, mail, media. Counts sit in accent badges; sync state is a glyph.</p>
 			</div>
 			<div class="card">
-				<h3>Dock</h3>
-				<p>
-					Pinned apps, then your windows grouped by workspace — so you can see what's on 3 without
-					going there. Optional intelligent hide, three icon sizes.
-				</p>
+				<h3><Icon name="panel-bottom" size={16} />Dock</h3>
+				<p>Pinned apps, then your windows grouped by workspace — see what's on 3 without going there. Optional hide, three sizes.</p>
 			</div>
 			<div class="card">
-				<h3>Launcher</h3>
+				<h3><Icon name="search" size={16} />Launcher</h3>
 				<p><code>Super+D</code> — fuzzy search across apps and files, press again to dismiss.</p>
 			</div>
 			<div class="card">
-				<h3>Control centre</h3>
-				<p>
-					Wi-Fi, Bluetooth, VPN, SSH, Do Not Disturb and Insomnia as tiles; live CPU and memory;
-					volume and brightness. An icon rail switches to calendar, mail, phone and cast.
-				</p>
+				<h3><Icon name="sliders-horizontal" size={16} />Control centre</h3>
+				<p>Wi-Fi, Bluetooth, VPN, SSH, Do Not Disturb and Insomnia as tiles; live CPU and memory. A rail switches to calendar, mail, phone and cast.</p>
 			</div>
 			<div class="card">
-				<h3>Notifications</h3>
+				<h3><Icon name="bell" size={16} />Notifications</h3>
 				<p>Toasts with actions and inline reply, plus a history you can go back to.</p>
 			</div>
 			<div class="card">
-				<h3>Lock &amp; OSD</h3>
+				<h3><Icon name="lock" size={16} />Lock &amp; OSD</h3>
 				<p>Wayland session-lock, volume and brightness OSDs, and clipboard history.</p>
 			</div>
 		</div>
@@ -117,35 +109,35 @@
 
 	<section id="look">
 		<p class="eyebrow">The look</p>
-		<h2>One theme, applied live.</h2>
+		<h2>One accent, applied live.</h2>
+		<p>
+			There is no theme file and no light mode. You pick one colour, and a generator derives the
+			whole Fluent 2 token set from it — every background level, stroke weight and foreground —
+			then applies it to the shell, GTK, Qt, the icons, the cursor and your window borders without a
+			relogin. <a href="/theming/">See it derive, live →</a>
+		</p>
 		<dl class="rows">
 			<div class="row">
-				<dt>Dark, by decision</dt>
+				<dt><Icon name="palette" size={16} />Any accent</dt>
 				<dd>
-					There is no light mode, deliberately. Two dark looks instead: <strong>Flock</strong>, the
-					ewe look in soft dark greys — and <strong>Black Sheep</strong>, the same look on absolute
-					black (<code>#020202</code>) surfaces, for OLED panels. Bar, dock and panels follow the
-					style; shape, icons and your accent stay identical. (This site wears Black Sheep.)
+					Presets, or any hex you like. Text on the accent is <em>measured</em> against it, so a pale
+					yellow stays as legible as a deep blue.
 				</dd>
 			</div>
 			<div class="row">
-				<dt>One accent</dt>
+				<dt><Icon name="ruler" size={16} />Shape and density are tokens too</dt>
 				<dd>
-					Ten colours, applying instantly to the shell, your window borders and GTK/Qt apps at once —
-					no relogin. Text on the accent auto-contrasts, so a pale yellow stays as legible as a deep
-					blue.
+					Corner radius, border weight and spacing move as a system — <code>corner = "none"</code>
+					squares everything, with no stray rounded corner left behind.
 				</dd>
 			</div>
 			<div class="row">
-				<dt>One icon language</dt>
-				<dd>Lucide glyphs throughout the shell; a matching icon theme and cursor for apps.</dd>
+				<dt><Icon name="image" size={16} />One icon language</dt>
+				<dd>Lucide throughout the shell and the apps, with a matching icon theme and cursor.</dd>
 			</div>
 			<div class="row">
-				<dt>Motion you control</dt>
-				<dd>
-					An animations pane sets speed and curve for the compositor and the shell together — from
-					snappy to off, one setting for both halves.
-				</dd>
+				<dt><Icon name="zap" size={16} />Motion you control</dt>
+				<dd>One pane sets speed and curve for the compositor and the shell together — snappy to off.</dd>
 			</div>
 		</dl>
 	</section>
@@ -155,14 +147,14 @@
 		<h2>First-party where it matters.</h2>
 		<dl class="rows">
 			<div class="row">
-				<dt>Komble</dt>
+				<dt><Icon name="package" size={16} />Komble</dt>
 				<dd>
-					The software manager: official repos, the AUR and AppImages behind one search field, an
-					Updates pane, and a “For You” surface that restores from your synced package list.
+					Official repos, the AUR and AppImages behind one search field, an Updates pane, and a “For
+					You” surface that restores from your synced package list.
 				</dd>
 			</div>
 			<div class="row">
-				<dt>ewe-settings</dt>
+				<dt><Icon name="settings-2" size={16} />ewe-settings</dt>
 				<dd>
 					Sixteen panes, all writing the one config file: Appearance, Animations, Layout &amp; Dock,
 					Window Rules, Displays, Networking, Wallpaper, Keyboard &amp; Mouse, Screensaver, Power,
@@ -170,9 +162,9 @@
 				</dd>
 			</div>
 			<div class="row">
-				<dt>A curated set</dt>
+				<dt><Icon name="box" size={16} />A curated set</dt>
 				<dd>
-					Nemo, Engrampa, imv, Zathura, mpv, kitty and Zed: traditional GTK apps chosen to match,
+					Nemo, Engrampa, imv, Zathura, mpv, kitty and Zed — traditional GTK apps chosen to match,
 					made borderless under Hyprland, with defaults managed in one place.
 				</dd>
 			</div>
@@ -180,84 +172,63 @@
 	</section>
 
 	<section id="cast">
-		<p class="eyebrow">Cast to TV</p>
-		<h2>One card, any TV in the room.</h2>
+		<p class="eyebrow">Cast &amp; phone</p>
+		<h2>The TV in the room, and the phone in your pocket.</h2>
 		<p>
 			Screen mirroring on Wayland is usually a research project, or a borrowed GTK window bolted onto
-			a desktop that has no GTK. In ewe it's a card in the control centre, served by ewe's own
-			headless daemon — <strong>no foreign window ever appears</strong>.
+			a desktop that has no GTK. Here it's a card in the control centre, served by ewe's own headless
+			daemon — <strong>no foreign window ever appears</strong>.
 		</p>
 		<dl class="rows">
 			<div class="row">
-				<dt>Miracast</dt>
+				<dt><Icon name="cast" size={16} />Miracast</dt>
 				<dd>
-					Samsung “Screen Mirroring” and most Android TVs, over Wi-Fi Direct. Field-tested against a
+					Samsung “Screen Mirroring” and most Android TVs over Wi-Fi Direct. Field-tested against a
 					real Samsung at 1080p30 — this is the real-time path.
 				</dd>
 			</div>
 			<div class="row">
-				<dt>Chromecast</dt>
+				<dt><Icon name="cast" size={16} />Chromecast</dt>
+				<dd>Chromecast built-in and Google TV, found on the local network. Honest about the trade-off: a few seconds of latency.</dd>
+			</div>
+			<div class="row">
+				<dt><Icon name="monitor" size={16} />ewe's own share picker</dt>
 				<dd>
-					Chromecast built-in and Google TV, discovered on the local network. Honest about the
-					trade-off: it streams with a few seconds of latency.
+					When anything asks to capture the screen you get live thumbnails — every display named by
+					its actual model, every window with a preview, or a region. The same picker serves browser
+					calls, OBS and recorders.
 				</dd>
 			</div>
 			<div class="row">
-				<dt>The flow</dt>
+				<dt><Icon name="smartphone" size={16} />Phone link</dt>
 				<dd>
-					Expand the Cast card, watch it scan for sinks, pick one. The card shows the sink name and a
-					stop button. That's the whole interface.
-				</dd>
-			</div>
-			<div class="row">
-				<dt>ewe's own share picker</dt>
-				<dd>
-					When anything asks to capture the screen, you get live thumbnails of every display named by
-					its actual model, every window with a preview, or a region — instead of a bare list of
-					connector names. The same picker serves browser calls, OBS and recorders.
+					Pair over Wi-Fi for phone battery in the bar, notifications you can dismiss and reply to,
+					and full SMS. KDE Connect provides the daemon; the interface is ewe's, and pairing keys
+					stay in the daemon.
 				</dd>
 			</div>
 		</dl>
-	</section>
-
-	<section id="phone">
-		<p class="eyebrow">Phone</p>
-		<h2>Your Android, in the control centre.</h2>
-		<p>
-			Pair over Wi-Fi and the Mobile card gives you phone battery in the bar, your phone's
-			notifications — read, dismiss, reply inline — and <strong>full SMS</strong>: conversation list,
-			thread view, and sending. KDE Connect provides the daemon; the entire interface is ewe's.
-			Pairing keys stay in the daemon.
-		</p>
 	</section>
 
 	<section id="account">
 		<p class="eyebrow">Your account</p>
 		<h2>Your Nextcloud, not ours.</h2>
 		<p>
-			Sign in to <strong>any Nextcloud</strong> — a server you run, or a hosted account — and three
-			things light up: <strong>settings sync</strong> of the one file, your <strong>calendar</strong>
-			with agenda and reminders over CalDAV, and your <strong>files</strong> as a folder at
-			<code>~/Nextcloud</code>. It's Nextcloud's own browser login: your server's page, your
-			password, your two-factor; ewe receives an app password you can revoke from the account's
-			security page any time. No vendor console, no permission from anyone.
+			Sign in to <strong>any Nextcloud</strong> and three things light up: <strong>settings sync</strong>
+			of the one file, your <strong>calendar</strong> over CalDAV, and your <strong>files</strong> at
+			<code>~/Nextcloud</code>. It's Nextcloud's own browser login — your server's page, your
+			password, your two-factor — and ewe receives an app password you can revoke any time.
 		</p>
 		<p>
-			<strong>Mail</strong> is any IMAP account — the one your provider gives you, or another —
-			for the unread badge and notifications. <strong>Google</strong> is optional and needs your own
-			OAuth client file: it adds Gmail notifications and a Drive folder, and nothing about the
-			project's Google standing ever touches your sign-in, because there is none.
-		</p>
-		<p>
-			<a href="/docs/cli/ewe-sync/"><strong>ewe-sync</strong></a> is the app behind it, living in the tray: your machines and which
-			one saved the last backup, <strong>folder sync</strong> between a local folder and your
-			account — two-way through the Nextcloud sync engine, or one-way copies; on change, on a
-			timer, at login — and conflicts resolved in place. Komble installs apps, Settings edits the
-			one file, ewe-sync moves it. Nothing else has a sync button.
+			<strong>Mail</strong> is any IMAP account, for the unread badge and notifications.
+			<strong>Google</strong> is optional and needs your own OAuth client file.
+			<a href="/docs/cli/ewe-sync/"><strong>ewe-sync</strong></a> lives in the tray and is the only
+			thing with a sync button: your machines, folder sync, conflicts resolved in place.
 		</p>
 		<p class="note">
-			Until you sign in, no cloud functionality appears anywhere in ewe. Signed out or offline,
-			everything degrades cleanly. <a href="/sync/">How sync works →</a> · <a href="/docs/account/nextcloud/">The account, documented →</a>
+			Until you sign in, no cloud functionality appears anywhere. Signed out or offline, everything
+			degrades cleanly. <a href="/how/">How it works →</a> ·
+			<a href="/docs/account/nextcloud/">The account, documented →</a>
 		</p>
 	</section>
 
@@ -266,33 +237,30 @@
 		<h2>The unglamorous parts, done.</h2>
 		<dl class="rows">
 			<div class="row">
-				<dt>Silent boot</dt>
-				<dd>A Plymouth splash from early boot straight to the themed greeter — no wall of kernel text, no menu.</dd>
+				<dt><Icon name="zap" size={16} />Silent boot</dt>
+				<dd>A splash from early boot straight to the themed greeter — no wall of kernel text, no menu.</dd>
 			</div>
 			<div class="row">
-				<dt>Survives a crash</dt>
+				<dt><Icon name="shield-check" size={16} />Survives a crash</dt>
 				<dd>
-					The shell runs as a restart-on-failure user service, so bar, dock and lock come back on
-					their own. Outputs stay locked even if the shell dies while locked.
+					The shell is a restart-on-failure user service, so bar, dock and lock come back on their
+					own. Outputs stay locked even if the shell dies while locked.
 				</dd>
 			</div>
 			<div class="row">
-				<dt>Sensible power behaviour</dt>
+				<dt><Icon name="monitor" size={16} />Sensible power behaviour</dt>
 				<dd>
 					Locks at 5 minutes; on battery, suspends at 15. Warns at 20% and 10%, suspends at 5% to
-					protect unsaved work. Hibernation is configured at install when there's a battery.
+					protect unsaved work. Hibernation is set up at install when there's a battery.
 				</dd>
 			</div>
 			<div class="row">
-				<dt>A rescue console</dt>
+				<dt><Icon name="terminal" size={16} />A rescue console</dt>
 				<dd>The greeter owns tty1; a root rescue console lives on tty3 for when something goes wrong.</dd>
 			</div>
 			<div class="row">
-				<dt>Keyboard-first</dt>
-				<dd>
-					A full Hyprland keymap — windows, groups, workspaces, scratchpad.
-					<a href="/docs/shortcuts/">The shortcuts →</a>
-				</dd>
+				<dt><Icon name="keyboard" size={16} />Keyboard-first</dt>
+				<dd>A full Hyprland keymap — windows, groups, workspaces, scratchpad. <a href="/docs/shortcuts/">The shortcuts →</a></dd>
 			</div>
 		</dl>
 	</section>
@@ -303,19 +271,25 @@
 		display: flex;
 		flex-wrap: wrap;
 		gap: 0.45rem;
-		margin-top: 1.6rem;
+		margin-top: 1.5rem;
 	}
 	.toc a {
 		font-size: 0.85rem;
-		color: var(--fg2);
+		color: var(--fg-2);
 		text-decoration: none;
-		border: 1px solid var(--stroke);
-		background: var(--elevated);
-		border-radius: var(--r-pill);
+		border: var(--stroke-width) solid var(--stroke-2);
+		background: var(--bg-2);
+		border-radius: var(--radius-control);
 		padding: 0.3rem 0.7rem;
 	}
 	.toc a:hover {
-		background: var(--hover);
-		color: var(--fg);
+		background: var(--bg-2-hover);
+		color: var(--fg-1);
+	}
+	.rows :global(.icon) {
+		color: var(--fg-3);
+	}
+	.card h3 :global(.icon) {
+		color: var(--accent);
 	}
 </style>

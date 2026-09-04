@@ -60,10 +60,10 @@
 	kbd {
 		font-family: var(--mono);
 		font-size: 0.75rem;
-		background: var(--elevated);
-		border: 1px solid var(--stroke);
+		background: var(--bg-2);
+		border: var(--stroke-width) solid var(--stroke-2);
 		border-radius: 5px;
 		padding: 0.1rem 0.34rem;
-		color: var(--fg);
+		color: var(--fg-1);
 	}
 </style>

@@ -142,8 +142,8 @@ ewe-files setup                     # mount the account at ~/Nextcloud`}
 <style>
 	code.title {
 		font-size: 0.62em;
-		background: var(--elevated);
-		border-color: var(--stroke);
+		background: var(--bg-2);
+		border-color: var(--stroke-2);
 		padding: 0.15em 0.4em;
 	}
 </style>

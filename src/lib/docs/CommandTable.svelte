@@ -26,8 +26,8 @@
 	.scroll {
 		overflow-x: auto;
 		margin-top: 1rem;
-		border: 1px solid var(--stroke);
-		border-radius: var(--r-in);
+		border: var(--stroke-width) solid var(--stroke-2);
+		border-radius: var(--radius-card);
 		max-width: 52rem;
 		scrollbar-width: thin;
 	}
@@ -40,18 +40,18 @@
 	th {
 		text-align: left;
 		font-weight: 500;
-		color: var(--dim);
+		color: var(--fg-3);
 		font-size: 0.75rem;
 		letter-spacing: 0.1em;
 		text-transform: uppercase;
 		padding: 0.7rem 1rem;
-		border-bottom: 1px solid var(--stroke);
-		background: var(--elevated);
+		border-bottom: var(--stroke-width) solid var(--stroke-2);
+		background: var(--bg-2);
 	}
 	td {
 		padding: 0.8rem 1rem;
-		border-bottom: 1px solid var(--stroke);
-		color: var(--fg2);
+		border-bottom: var(--stroke-width) solid var(--stroke-2);
+		color: var(--fg-2);
 		vertical-align: top;
 	}
 	tbody tr:last-child td {
@@ -59,21 +59,21 @@
 	}
 	td.c {
 		white-space: nowrap;
-		color: var(--fg);
+		color: var(--fg-1);
 	}
 	.args {
 		display: block;
 		margin-top: 0.25rem;
 		font-family: var(--mono);
 		font-size: 0.76rem;
-		color: var(--dim);
+		color: var(--fg-3);
 		white-space: normal;
 	}
 	.prints {
 		display: block;
 		margin-top: 0.3rem;
 		font-size: 0.86rem;
-		color: var(--dim);
+		color: var(--fg-3);
 	}
 	.prints code {
 		font-size: 0.82em;

@@ -34,15 +34,51 @@ Actions** on the repository.
 ```
 src/routes/
   +layout.svelte     bar + footer, sitewide chrome
-  +page.svelte       home — what ewe OS is, and the goal
+  +page.svelte       home — what ewe OS is
   download/          get the ISO, verify, write, boot, the six screens
-  philosophy/        the one-file config, and why decisions are a feature
-  features/          the OS, shell, look, apps, cast, phone, Google, system
-  sync/              log in, get your machine back
+  features/          the OS, shell, look, apps, cast, phone, system
+  theming/           one accent in, a whole system out — with a LIVE derivation
+  how/               the one file, sync, and why decisions are a feature
   docs/              install, shortcuts, updates, ewe-conf, limits, repos
   privacy/           privacy policy (Google OAuth verification)
-src/app.css          the "blacksheep" palette, straight from Theme.qml
+  sitemap.xml/       generated from the docs nav, so it cannot drift
+  philosophy/        308 → /how/   (merged; the URL is kept)
+  sync/              308 → /how/
+src/tokens.css       VENDORED from ewe/design/tokens.css — the desktop's own
+src/app.css          the site's layer on top: rhythm, type scale, components
+src/lib/
+  theme-engine.js    a port of ewe-theme's colour maths, for /theming/
+  icons.js           Lucide geometry, generated; Icon.svelte draws it
+  release.js         the current ISO: version, size, download URL
 ```
 
-Colours, radii and type match ewe's own `blacksheep` theme so the site looks
-like the desktop it describes.
+## The design system
+
+The site does not *imitate* the desktop — it wears the same file.
+`src/tokens.css` is a byte-for-byte copy of `ewe/design/tokens.css`, which
+`ewe-theme build` derives from the single accent in `ewe.conf`. Components ask
+for Fluent 2 roles (`--bg-2`, `--stroke-2`, `--brand-bg`, `--fg-on-brand`),
+never for a colour.
+
+Sizes are deliberately *not* shared: `tokens.css` also carries `--pad`,
+`--control` and `--row`, which are the shell's density — a 32px control on a
+bar. A page of prose has its own rhythm, so spacing and the type ladder live in
+`app.css` and are stated in rem. Colour and shape are the system; density is
+the medium.
+
+Icons are Lucide (ISC), drawn as inline SVG rather than the `Lucide.ttf` the
+shell loads: a web page pays for a font in bytes and in a flash of missing
+glyphs, and fifty icons of path data is 8 kB.
+
+```sh
+npm run tokens   # refresh src/tokens.css from ../ewe/design/tokens.css
+npm run icons    # regenerate src/lib/icons.js from lucide-static
+scripts/check-engine.sh   # prove theme-engine.js still agrees with ewe-theme
+```
+
+`check-engine.sh` matters more than it looks. `/theming/` derives its colours
+in the browser from a port of `ewe-theme`, and a port drifts — a theming page
+that shows the *wrong* derivation is worse than one that shows a picture. The
+check runs both implementations across five accents chosen to hit the awkward
+cases (an out-of-gamut yellow, a hue that pushes `fg-on-brand` to ink, zero
+tint, and the maximum tint the config allows) and diffs all 92 values.

@@ -79,9 +79,9 @@
 
 <style>
 	.keys {
-		background: var(--elevated);
-		border: 1px solid var(--stroke);
-		border-radius: var(--r-in);
+		background: var(--bg-2);
+		border: var(--stroke-width) solid var(--stroke-2);
+		border-radius: var(--radius-card);
 		padding: 1.1rem 1.2rem;
 		margin-top: 1rem;
 		max-width: 52rem;
@@ -102,22 +102,22 @@
 		display: flex;
 		gap: 0.2rem;
 		flex: none;
-		color: var(--fg2);
+		color: var(--fg-2);
 		font-size: 0.82rem;
 	}
 	dd {
 		margin: 0;
-		color: var(--fg2);
+		color: var(--fg-2);
 		font-size: 0.9rem;
 		text-align: right;
 	}
 	kbd {
 		font-family: var(--mono);
 		font-size: 0.72rem;
-		background: var(--bg);
-		border: 1px solid var(--stroke);
+		background: var(--bg-3);
+		border: var(--stroke-width) solid var(--stroke-2);
 		border-radius: 5px;
 		padding: 0.1rem 0.34rem;
-		color: var(--fg);
+		color: var(--fg-1);
 	}
 </style>

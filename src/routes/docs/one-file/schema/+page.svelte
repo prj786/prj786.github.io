@@ -218,7 +218,7 @@ exec = "kitty"`} copyable={false} />
 		display: block;
 		margin-top: 0.25rem;
 		font-size: 0.86rem;
-		color: var(--dim);
+		color: var(--fg-3);
 	}
 	section h2 code {
 		font-size: 0.8em;

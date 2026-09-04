@@ -69,8 +69,8 @@ ewe-files setup                     # mount the account at ~/Nextcloud`}
 	</p>
 	<Callout title="Choosing a provider">
 		<p>
-			Self-hosting is the first-class path. Hosted Nextcloud accounts work identically — the
-			<a href="/sync/">sync page</a> lists a few providers as examples, not endorsements.
+			Self-hosting is the first-class path. Hosted Nextcloud accounts work identically —
+			<a href="/how/">How it works</a> lists a few providers as examples, not endorsements.
 		</p>
 	</Callout>
 </section>

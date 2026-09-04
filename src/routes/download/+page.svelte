@@ -1,14 +1,16 @@
 <script>
 	import Command from '$lib/Command.svelte';
-	import { OS_RELEASES, PKG_REPO, JOIN, VERIFY, WRITE } from '$lib/nav.js';
 	import Installer from '$lib/Installer.svelte';
+	import Icon from '$lib/Icon.svelte';
+	import { PKG_REPO, VERIFY, WRITE } from '$lib/nav.js';
+	import { VERSION, ISO_FILE, ISO_SIZE, ISO_URL, SUMS_URL, IA_DETAILS, RELEASE_URL } from '$lib/release.js';
 </script>
 
 <svelte:head>
 	<title>Download — ewe</title>
 	<meta
 		name="description"
-		content="Download the ewe OS ISO, write it to a USB stick, and install in about ten minutes. Six screens, and everything technical decided for you."
+		content="Download the ewe OS ISO as one file, write it to a USB stick, and install in about ten minutes. Six screens, and everything technical decided for you."
 	/>
 </svelte:head>
 
@@ -20,24 +22,33 @@
 		can try everything before a single byte is written to your disks.
 	</p>
 
-	<div class="btns hero-btns">
-		<a class="btn primary" href={OS_RELEASES}>Latest release on GitHub</a>
-		<a class="btn" href="#requirements">Requirements</a>
+	<!-- ── the one button ───────────────────────────────────────────────── -->
+	<div class="getbox">
+		<a class="btn primary big" href={ISO_URL} download>
+			<Icon name="download" size={18} />
+			Download ewe {VERSION}
+		</a>
+		<div class="meta">
+			<code>{ISO_FILE}</code>
+			<span>{ISO_SIZE} · x86_64 · hybrid ISO</span>
+		</div>
+		<p class="hosted">
+			Hosted whole on the <a href={IA_DETAILS}>Internet Archive</a> — one file, one click, no parts to
+			join. <a href={SUMS_URL}>SHA256SUMS</a> · <a href={RELEASE_URL}>Release notes</a> ·
+			<a href="#mirrors">Mirrors</a>
+		</p>
 	</div>
 
 	<section>
 		<p class="eyebrow">Step 1</p>
-		<h2>Download and join the image.</h2>
+		<h2>Check it downloaded intact.</h2>
 		<p>
-			GitHub caps release files at 2 GiB, so the ISO arrives as <code>.part</code> files alongside a
-			<code>SHA256SUMS</code>. Download all of them into one folder, then put the image back together
-			and check it:
+			Put <a href={SUMS_URL}>SHA256SUMS</a> next to the image and run:
 		</p>
-		<Command value={JOIN} />
 		<Command value={VERIFY} />
 		<p class="note">
-			Verifying is worth the two seconds — a half-downloaded image fails in confusing ways much later.
-			You want to see <code>OK</code>.
+			Worth the two seconds — a half-downloaded image fails in confusing ways much later. You want to
+			see <code>OK</code>.
 		</p>
 	</section>
 
@@ -56,8 +67,8 @@
 		<p class="eyebrow">Step 3</p>
 		<h2>Boot it, and look around.</h2>
 		<p>
-			Boot the stick in <strong>UEFI</strong> mode; legacy BIOS works as a fallback. If your firmware
-			has Secure Boot on, turn it off — the image isn't signed.
+			Boot in <strong>UEFI</strong> mode; legacy BIOS works as a fallback. If your firmware has Secure
+			Boot on, turn it off — the image isn't signed.
 		</p>
 		<p>
 			You land on the ewe desktop, running from the stick, with <strong>Install ewe</strong> first in
@@ -80,19 +91,9 @@
 		</ol>
 		<Installer />
 		<p class="figcap">
-			An illustration of screen five: what you chose, what ewe decided, and the only button in the
-			flow that writes anything.
-		</p>
-	</section>
-
-	<section>
-		<p class="eyebrow">Step 5</p>
-		<h2>First login.</h2>
-		<p>
-			The installed machine boots through the ewe splash into the greeter. Your first login opens a
-			short welcome flow: a network check, waiting updates, one optional sign-in to your Nextcloud, an offer to
-			<a href="/sync/">restore a backup</a> if your account has one from another ewe machine, and a
-			sixty-second tour. It runs once, and never on the live stick.
+			Screen five: what you chose, what ewe decided, and the only button in the flow that writes
+			anything. First login then runs a short welcome flow — network, waiting updates, an optional
+			<a href="/how/">restore from your Nextcloud</a>, and a sixty-second tour.
 		</p>
 	</section>
 
@@ -136,22 +137,78 @@
 		<h2>Take the desktop without the distro.</h2>
 		<p>
 			ewe's desktop is a normal package in a normal pacman repository. Add <code>[ewe]</code> to your
-			<code>/etc/pacman.conf</code> as described in
-			<a href={PKG_REPO}>the repo's README</a>, then:
+			<code>/etc/pacman.conf</code> as described in <a href={PKG_REPO}>the repo's README</a>, then:
 		</p>
 		<Command value="sudo pacman -S ewe" />
 		<p>
-			That pulls the whole desktop and its dependencies onto your existing system. You'll get the DE,
-			the software manager and the settings app — but not the installer's decisions, since your disk
+			That pulls the whole desktop and its dependencies onto your existing system — the DE, the
+			software manager and the settings app, but not the installer's decisions, since your disk
 			layout is already yours.
 		</p>
+	</section>
+
+	<!-- ── the fallback, folded away ────────────────────────────────────── -->
+	<section id="mirrors">
+		<details>
+			<summary><Icon name="hard-drive" size={16} /> Mirrors, and the split copy on GitHub</summary>
+			<div class="det">
+				<p>
+					GitHub caps a release file at 2 GiB and the image is larger, so the copy on the
+					<a href={RELEASE_URL}>GitHub release</a> is split into <code>.part</code> files. It's the
+					same image — use it if the Archive is slow or unreachable. Download every part into one
+					folder, then:
+				</p>
+				<Command value={`cat ${ISO_FILE}.*.part > ${ISO_FILE}`} />
+				<Command value={VERIFY} />
+				<p class="muted">
+					<code>SHA256SUMS</code> on the GitHub release covers both the whole image and each part,
+					so you can check the parts before joining them.
+				</p>
+			</div>
+		</details>
 	</section>
 </div>
 
 <style>
-	.hero-btns {
-		margin-top: 1.6rem;
+	/* ── the download box ────────────────────────────────────────────── */
+	/* the box is the page's whole first act, so it owns the gap to Step 1 —
+	   app.css's `section + section` rhythm can't see a div */
+	.getbox + :global(section) {
+		margin-top: 3rem;
 	}
+	.getbox {
+		margin-top: 1.6rem;
+		background: var(--bg-2);
+		border: var(--stroke-width) solid var(--stroke-2);
+		border-radius: var(--radius-panel);
+		padding: 1.2rem 1.3rem;
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 0.8rem;
+		max-width: 44rem;
+	}
+	.big {
+		font-size: 1rem;
+		padding: 0.65rem 1.2rem;
+	}
+	.meta {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 0.5rem 0.8rem;
+		font-size: 0.85rem;
+		color: var(--fg-3);
+	}
+	.meta code {
+		font-size: 0.8rem;
+	}
+	.hosted {
+		font-size: 0.88rem;
+		color: var(--fg-3);
+		margin: 0;
+	}
+
 	section :global(.cmd + .cmd) {
 		margin-top: 0.55rem;
 	}
@@ -164,35 +221,68 @@
 		padding: 0;
 		display: flex;
 		flex-direction: column;
-		gap: 0.7rem;
+		gap: 0.6rem;
 		max-width: 44rem;
 	}
 	.steps li {
 		display: flex;
 		gap: 1rem;
 		align-items: flex-start;
-		background: var(--elevated);
-		border: 1px solid var(--stroke);
-		border-radius: var(--r-in);
-		padding: 1rem 1.15rem;
+		background: var(--bg-2);
+		border: var(--stroke-width) solid var(--stroke-2);
+		border-radius: var(--radius-card);
+		padding: 0.9rem 1.05rem;
 		margin: 0;
 	}
 	.n {
 		flex: none;
-		width: 1.6rem;
-		height: 1.6rem;
-		border-radius: 50%;
+		width: 1.55rem;
+		height: 1.55rem;
+		border-radius: 999px;
 		display: grid;
 		place-items: center;
-		font-size: 0.8rem;
+		font-size: 0.78rem;
 		color: var(--accent);
-		border: 1px solid color-mix(in srgb, var(--accent) 45%, var(--stroke));
+		border: var(--stroke-width) solid color-mix(in srgb, var(--accent) 45%, var(--stroke-2));
 	}
 	.steps h3 {
-		margin-bottom: 0.25rem;
+		margin-bottom: 0.2rem;
 	}
 	.steps p {
-		font-size: 0.94rem;
+		font-size: 0.92rem;
 		margin: 0;
+	}
+
+	/* ── the folded fallback ─────────────────────────────────────────── */
+	details {
+		border: var(--stroke-width) solid var(--stroke-3);
+		border-radius: var(--radius-card);
+		background: var(--bg-2);
+		max-width: 44rem;
+	}
+	summary {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		padding: 0.75rem 1rem;
+		cursor: pointer;
+		font-size: 0.92rem;
+		color: var(--fg-2);
+		border-radius: var(--radius-card);
+	}
+	summary:hover {
+		color: var(--fg-1);
+	}
+	summary :global(.icon) {
+		color: var(--fg-3);
+	}
+	.det {
+		padding: 0 1rem 1rem;
+	}
+	.det p {
+		font-size: 0.92rem;
+	}
+	.det :global(.cmd) {
+		max-width: none;
 	}
 </style>

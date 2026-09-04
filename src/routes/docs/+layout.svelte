@@ -82,7 +82,7 @@
 		font-size: 0.72rem;
 		letter-spacing: 0.13em;
 		text-transform: uppercase;
-		color: var(--dim);
+		color: var(--fg-3);
 		margin: 1.5rem 0 0.5rem;
 	}
 	ul {
@@ -99,19 +99,19 @@
 	nav a {
 		display: block;
 		text-decoration: none;
-		color: var(--fg2);
+		color: var(--fg-2);
 		font-size: 0.9rem;
 		padding: 0.28rem 0.6rem;
-		border-radius: var(--r-pill);
+		border-radius: var(--radius-control);
 		border-left: 2px solid transparent;
 	}
 	nav a:hover {
-		background: var(--elevated);
-		color: var(--fg);
+		background: var(--bg-2);
+		color: var(--fg-1);
 	}
 	nav a.active {
-		color: var(--fg);
-		background: var(--elevated);
+		color: var(--fg-1);
+		background: var(--bg-2);
 		border-left-color: var(--accent);
 	}
 	.home {
@@ -134,9 +134,9 @@
 			max-height: none;
 			overflow: visible;
 			padding: 0;
-			border: 1px solid var(--stroke);
-			background: var(--elevated);
-			border-radius: var(--r-in);
+			border: var(--stroke-width) solid var(--stroke-2);
+			background: var(--bg-2);
+			border-radius: var(--radius-card);
 		}
 		summary {
 			display: flex;
@@ -146,17 +146,17 @@
 			padding: 0.75rem 1rem;
 			cursor: pointer;
 			font-size: 0.92rem;
-			color: var(--fg2);
+			color: var(--fg-2);
 			list-style: none;
 		}
 		summary::-webkit-details-marker {
 			display: none;
 		}
 		.crumb strong {
-			color: var(--fg);
+			color: var(--fg-1);
 		}
 		.chev {
-			color: var(--dim);
+			color: var(--fg-3);
 			font-size: 0.8rem;
 		}
 		.side[open] .chev {
@@ -164,7 +164,7 @@
 		}
 		nav {
 			padding: 0 0.6rem 1rem;
-			border-top: 1px solid var(--stroke);
+			border-top: var(--stroke-width) solid var(--stroke-2);
 		}
 		.doc {
 			padding-top: 0.6rem;
@@ -181,7 +181,7 @@
 	}
 	.doc :global(h3) {
 		margin-top: 1.9rem;
-		color: var(--fg);
+		color: var(--fg-1);
 		scroll-margin-top: 4.5rem;
 	}
 	.doc :global(h2 + p),

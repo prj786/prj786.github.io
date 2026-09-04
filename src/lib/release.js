@@ -1,0 +1,28 @@
+// The current ISO, in one place.
+//
+// WHY A CONSTANT AND NOT A FETCH. The footer promises no third-party
+// requests, and asking api.github.com or archive.org at page load would make
+// that a lie — so the version is baked in at build time instead. It is one
+// line to move, and `release-iso.yml` prints the exact replacement at the end
+// of every ISO build.
+//
+// WHY THE INTERNET ARCHIVE. A GitHub release asset is capped at 2 GiB and the
+// image is ~3 GB, which is why downloads used to arrive as `.part` files you
+// had to `cat` back together. archive.org hosts freely-licensed images whole,
+// for free and permanently, so the button below is one click and one file.
+// The split parts stay on the GitHub release as a mirror.
+export const VERSION = '0.12.0-beta';
+
+export const ISO_FILE = `ewe-${VERSION}-x86_64.iso`;
+export const IA_ITEM = `ewe-os-${VERSION}`;
+export const IA_DETAILS = `https://archive.org/details/${IA_ITEM}`;
+
+/** One click, one file: the whole ISO. */
+export const ISO_URL = `https://archive.org/download/${IA_ITEM}/${ISO_FILE}`;
+export const SUMS_URL = `https://archive.org/download/${IA_ITEM}/SHA256SUMS`;
+
+/** Rounded, for the button. Exact bytes are in SHA256SUMS beside the image. */
+export const ISO_SIZE = '3.0 GB';
+
+/** The GitHub release for this tag — split parts, notes, source. */
+export const RELEASE_URL = `https://github.com/prj786/ewe-os/releases/tag/v${VERSION}`;

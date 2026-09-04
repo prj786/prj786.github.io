@@ -28,22 +28,22 @@
 		gap: 0.8rem;
 		margin-top: 3.5rem;
 		padding-top: 1.5rem;
-		border-top: 1px solid var(--stroke);
+		border-top: var(--stroke-width) solid var(--stroke-2);
 	}
 	a {
 		display: flex;
 		flex-direction: column;
 		gap: 0.15rem;
 		text-decoration: none;
-		border: 1px solid var(--stroke);
-		background: var(--elevated);
-		border-radius: var(--r-in);
+		border: var(--stroke-width) solid var(--stroke-2);
+		background: var(--bg-2);
+		border-radius: var(--radius-card);
 		padding: 0.7rem 1rem;
 		font-size: 0.94rem;
 		max-width: 48%;
 	}
 	a:hover {
-		background: var(--hover);
+		background: var(--subtle-hover);
 	}
 	.next {
 		text-align: right;
@@ -53,6 +53,6 @@
 		font-size: 0.74rem;
 		letter-spacing: 0.1em;
 		text-transform: uppercase;
-		color: var(--dim);
+		color: var(--fg-3);
 	}
 </style>
