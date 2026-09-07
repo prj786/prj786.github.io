@@ -1,10 +1,15 @@
 <script>
 	// A real screenshot of a running ewe session.
+	// The intrinsic size is a PROP, not a literal. It was hard-coded 1920x1080
+	// while the shot itself is 16:10, so the browser reserved the wrong box and
+	// the page jumped as the image landed.
 	let {
 		src = '/img/desktop',
 		alt,
 		caption = '',
-		priority = false
+		priority = false,
+		w = 2560,
+		h = 1600
 	} = $props();
 </script>
 
@@ -14,8 +19,8 @@
 		<img
 			src="{src}.png"
 			{alt}
-			width="1920"
-			height="1080"
+			width={w}
+			height={h}
 			loading={priority ? 'eager' : 'lazy'}
 			fetchpriority={priority ? 'high' : 'auto'}
 			decoding="async"

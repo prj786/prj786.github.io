@@ -38,8 +38,8 @@
 <div class="wrap wide figure">
 	<Shot
 		priority
-		alt="The ewe desktop: the Settings app open on Appearance with a row of accent colours, the control centre open at the right with Wi-Fi, Bluetooth, VPN, SSH, Do Not Disturb and Insomnia tiles above CPU and memory meters, and the dock along the bottom."
-		caption="A running ewe session. The accent was switched a moment earlier — which is why the control-centre tiles and the window border moved with it. One setting, applied everywhere, live."
+		alt="The ewe desktop: the bar across the top with workspace, tray, notification and update badges; the control centre open at the right with Wi-Fi, Bluetooth, VPN, SSH, Do Not Disturb and Insomnia tiles above CPU and memory meters and volume and brightness sliders; the dock along the bottom."
+		caption="A running ewe session with the control centre open. One accent decides the tiles, the badges, the sliders and the active dock item — and the ink on top of it is measured against the fill, not assumed white."
 	/>
 </div>
 
