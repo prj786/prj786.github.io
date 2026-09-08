@@ -3,7 +3,7 @@
 	import Installer from '$lib/Installer.svelte';
 	import Icon from '$lib/Icon.svelte';
 	import { PKG_REPO, VERIFY, WRITE } from '$lib/nav.js';
-	import { VERSION, ISO_FILE, ISO_SIZE, ISO_URL, SUMS_URL, IA_DETAILS, RELEASE_URL } from '$lib/release.js';
+	import { VERSION, ISO_FILE, ISO_SIZE, ISO_URL, SUMS_URL, IA_DETAILS, RELEASE_URL, DOWNLOAD_URL, WHOLE_ISO_LIVE } from '$lib/release.js';
 </script>
 
 <svelte:head>
@@ -24,7 +24,7 @@
 
 	<!-- ── the one button ───────────────────────────────────────────────── -->
 	<div class="getbox">
-		<a class="btn primary big" href={ISO_URL} download>
+		<a class="btn primary big" href={DOWNLOAD_URL} download={WHOLE_ISO_LIVE || undefined}>
 			<Icon name="download" size={18} />
 			Download ewe {VERSION}
 		</a>
@@ -32,18 +32,26 @@
 			<code>{ISO_FILE}</code>
 			<span>{ISO_SIZE} · x86_64 · hybrid ISO</span>
 		</div>
-		<p class="hosted">
-			Hosted whole on the <a href={IA_DETAILS}>Internet Archive</a> — one file, one click, no parts to
-			join. <a href={SUMS_URL}>SHA256SUMS</a> · <a href={RELEASE_URL}>Release notes</a> ·
-			<a href="#mirrors">Mirrors</a>
-		</p>
+		{#if WHOLE_ISO_LIVE}
+			<p class="hosted">
+				Hosted whole on the <a href={IA_DETAILS}>Internet Archive</a> — one file, one click, no parts
+				to join. <a href={SUMS_URL}>SHA256SUMS</a> · <a href={RELEASE_URL}>Release notes</a> ·
+				<a href="#mirrors">Mirrors</a>
+			</p>
+		{:else}
+			<p class="hosted">
+				The button opens the GitHub release, where the image is in two <code>.part</code> files
+				(GitHub caps a file at 2 GiB). <a href="#mirrors">Joining them</a> is one command. A
+				one-file download arrives with the next image.
+			</p>
+		{/if}
 	</div>
 
 	<section>
 		<p class="eyebrow">Step 1</p>
 		<h2>Check it downloaded intact.</h2>
 		<p>
-			Put <a href={SUMS_URL}>SHA256SUMS</a> next to the image and run:
+			Put <code>SHA256SUMS</code> from the release next to the image and run:
 		</p>
 		<Command value={VERIFY} />
 		<p class="note">

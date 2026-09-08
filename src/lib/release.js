@@ -11,7 +11,19 @@
 // had to `cat` back together. archive.org hosts freely-licensed images whole,
 // for free and permanently, so the button below is one click and one file.
 // The split parts stay on the GitHub release as a mirror.
-export const VERSION = '0.12.0-beta';
+export const VERSION = '0.9-alpha';
+
+/**
+ * Whether the whole-image download on the Internet Archive exists yet.
+ *
+ * It does not, until IA_ACCESS / IA_SECRET are set on ewe-os and a tag is
+ * pushed — so the button below must not point at it: a 404 on the main call
+ * to action is worse than the split parts. While false, the download page
+ * leads with the GitHub release (the parts) and says the one-file download
+ * is coming. Flip this to true in the same commit that moves VERSION to the
+ * first tag the Archive step ran for.
+ */
+export const WHOLE_ISO_LIVE = false;
 
 export const ISO_FILE = `ewe-${VERSION}-x86_64.iso`;
 export const IA_ITEM = `ewe-os-${VERSION}`;
@@ -26,3 +38,6 @@ export const ISO_SIZE = '3.0 GB';
 
 /** The GitHub release for this tag — split parts, notes, source. */
 export const RELEASE_URL = `https://github.com/prj786/ewe-os/releases/tag/v${VERSION}`;
+
+/** What the big button links to today. */
+export const DOWNLOAD_URL = WHOLE_ISO_LIVE ? ISO_URL : RELEASE_URL;
