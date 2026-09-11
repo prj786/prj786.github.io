@@ -1,7 +1,7 @@
 <script>
 	import Icon from '$lib/Icon.svelte';
 	import Command from '$lib/Command.svelte';
-	import { derive, shape, BRAND_STOPS } from '$lib/theme-engine.js';
+	import { derive, shape, colorCss, BRAND_STOPS } from '$lib/theme-engine.js';
 
 	// The presets are the accents ewe ships in Settings, plus a yellow —
 	// which is the one that proves the point about text on a brand fill.
@@ -17,17 +17,18 @@
 	];
 
 	let accent = $state('#0a84ff');
-	let corner = $state('medium');
+	let corner = $state('round');
 
 	// This is not a mock-up. `derive` is a line-for-line port of the colour
 	// half of ewe-theme, checked against it by scripts/check-engine.sh — so
 	// every swatch below is the value a real machine would get.
 	const theme = $derived(derive(accent, 8));
-	const sh = $derived(shape(corner, 'thin', 'comfortable'));
+	const sh = $derived(shape(corner, 'none', 'comfortable'));
 
 	const vars = $derived(
 		[
-			...Object.entries(theme.color).map(([k, v]) => `--${k}:${v}`),
+			// colorCss: strokes carry their alpha, exactly as tokens.css spells them
+			...Object.entries(theme.color).map(([k, v]) => `--${k}:${colorCss(k, v)}`),
 			...Object.entries(sh).map(([k, v]) => `--${k}:${v}px`),
 			// `--accent` is the alias the rest of the site paints marks with;
 			// keep it pointing at the derived value so anything inheriting into
@@ -88,7 +89,7 @@
 					{/each}
 				</div>
 				<div class="corners">
-					{#each ['none', 'small', 'medium', 'large'] as c}
+					{#each ['round', 'none', 'small', 'medium', 'large'] as c}
 						<button class="seg" class:on={corner === c} onclick={() => (corner = c)}>{c}</button>
 					{/each}
 				</div>
@@ -169,9 +170,10 @@
 			<div class="row">
 				<dt><Icon name="ruler" size={16} />corner</dt>
 				<dd>
-					<code>none</code>, <code>small</code>, <code>medium</code> or <code>large</code>. Radius is
-					a theme decision, not a per-component one — <code>none</code> squares the entire system,
-					with no stray rounded corner left behind.
+					<code>round</code> — the default: 12 / 20 / 26 and a capsule — or <code>none</code>,
+					<code>small</code>, <code>medium</code> or <code>large</code>. Radius is a theme decision,
+					not a per-component one — <code>none</code> squares the entire system, with no stray rounded
+					corner left behind.
 				</dd>
 			</div>
 			<div class="row">
@@ -183,7 +185,11 @@
 			</div>
 			<div class="row">
 				<dt><Icon name="type" size={16} />stroke</dt>
-				<dd><code>thin</code> or <code>thick</code>: hairline borders, or drawn ones.</dd>
+				<dd>
+					<code>none</code> — the default — <code>thin</code> or <code>thick</code>. Under
+					<code>none</code> nothing is outlined: a control is told apart by the layer it sits on,
+					while dividers and the window ring keep their hairline.
+				</dd>
 			</div>
 			<div class="row">
 				<dt><Icon name="blend" size={16} />neutral_tint</dt>
@@ -290,7 +296,7 @@
 			</div>
 			<div class="row">
 				<dt><Icon name="type" size={16} />Type</dt>
-				<dd>Ubuntu for text, JetBrains Mono for code, Lucide for icons. Sizes are a density decision; faces are not themed.</dd>
+				<dd>Inter for text, JetBrains Mono for code, Lucide for icons. Sizes are a density decision; faces are not themed.</dd>
 			</div>
 			<div class="row">
 				<dt><Icon name="monitor" size={16} />Light mode</dt>

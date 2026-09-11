@@ -47,6 +47,7 @@ for b in bad[:10]: print("        py=%s js=%s  %s.%s" % (b[2], b[3], b[0], b[1])
 sys.exit(1 if bad else 0)
 PY
 done <<'CASES'
+#0a84ff round comfortable none 8
 #0a84ff medium comfortable thin 8
 #ffcc00 large roomy thick 20
 #30d158 none compact thin 0

@@ -9,7 +9,10 @@
 		caption = '',
 		priority = false,
 		w = 2560,
-		h = 1600
+		h = 1600,
+		// the non-WebP copy: a flat UI shot compresses as PNG, a shot with a
+		// photo wallpaper behind it is ten times smaller as a JPEG
+		fallback = 'png'
 	} = $props();
 </script>
 
@@ -17,13 +20,13 @@
 	<picture>
 		<source srcset="{src}.webp" type="image/webp" />
 		<img
-			src="{src}.png"
+			src="{src}.{fallback}"
 			{alt}
 			width={w}
 			height={h}
 			loading={priority ? 'eager' : 'lazy'}
 			fetchpriority={priority ? 'high' : 'auto'}
-			decoding="async"
+			decoding={priority ? 'auto' : 'async'}
 		/>
 	</picture>
 	{#if caption}

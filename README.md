@@ -11,8 +11,9 @@ GitHub Pages serves finished markup — no client-side rendering, no framework
 needed to read the site. GitHub Pages cannot run a Node server, which is why the
 rendering happens in CI rather than per request.
 
-No analytics, no cookies, no third-party requests: the Ubuntu typeface (the
-desktop's own face) is self-hosted in `static/fonts/`.
+No analytics, no cookies, no third-party requests: Inter (the desktop's own
+face since the 2026-09 revamp) is self-hosted in `static/fonts/` as two
+variable woff2 subsets, weight 400–700 plus the optical-size axis.
 
 ## Develop
 

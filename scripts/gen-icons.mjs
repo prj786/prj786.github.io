@@ -16,7 +16,7 @@ const NAMES = [
 	'arrow-right', 'bell', 'blend', 'box', 'calendar', 'cast', 'check',
 	'chevron-right', 'circle-check', 'circle-user', 'cloud', 'cloud-off',
 	'copy', 'download', 'external-link', 'eye', 'file-text', 'folder-sync',
-	'git-branch', 'hard-drive', 'image', 'info', 'key', 'keyboard', 'layers',
+	'git-branch', 'globe', 'hard-drive', 'image', 'info', 'key', 'keyboard', 'layers',
 	'layout-panel-top', 'lock', 'mail', 'monitor', 'package', 'palette',
 	'panel-bottom', 'refresh-cw', 'rotate-ccw', 'ruler', 'search', 'settings-2',
 	'shield-check', 'shuffle', 'sliders-horizontal', 'smartphone', 'sparkles',

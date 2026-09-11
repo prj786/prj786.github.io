@@ -65,8 +65,8 @@
 
 	.side {
 		position: sticky;
-		top: 56px; /* under the site bar */
-		max-height: calc(100vh - 56px);
+		top: var(--header-h); /* under the floating site bar */
+		max-height: calc(100vh - var(--header-h));
 		overflow-y: auto;
 		scrollbar-width: thin;
 		padding: 1.2rem 0 2rem;

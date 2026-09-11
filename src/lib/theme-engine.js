@@ -65,10 +65,11 @@ export function lchToHex(L, C, H) {
 }
 
 // ═══ ramp 1: the greys ════════════════════════════════════════════════════
-// Fluent's grey ramp is 50 stops keyed by percent lightness — grey[20] is
-// #333333. The keys and the lightness are Fluent's verbatim; only the hue is
-// bent, so every alias below stays Fluent's own mapping.
-const GREY_KEYS = [...Array(49)].map((_, i) => 2 + i * 2).concat(99);
+// Fluent's grey ramp is keyed by percent lightness — grey[20] is #333333.
+// Fluent publishes the even keys; the odd ones are the same formula and exist
+// because the 2026-09 background ladder is Fluent's at HALF the stop index.
+// Only the hue is bent, so every alias below stays Fluent's own mapping.
+const GREY_KEYS = [...Array(99)].map((_, i) => i + 1);
 
 export function greyRamp(accent, tint) {
 	const hue = hexToLch(accent)[2];
@@ -99,68 +100,102 @@ const REF_C = [11.2, 16.6, 20.9, 25.2, 31.3, 36.7, 43.6, 49.8, 52.5, 51.1, 43.7,
 const ANCHOR = 80;
 const TORSION = -13.0;
 
-export function brandRamp(accent) {
+/** REF_L / REF_C read at any stop, linear between the published ones. */
+function refAt(stop) {
+	stop = Math.max(BRAND_STOPS[0], Math.min(BRAND_STOPS.at(-1), stop));
+	let j = 0;
+	BRAND_STOPS.forEach((s, i) => { if (s <= stop) j = i; });
+	if (j === BRAND_STOPS.length - 1) return [REF_L[j], REF_C[j]];
+	const f = (stop - BRAND_STOPS[j]) / (BRAND_STOPS[j + 1] - BRAND_STOPS[j]);
+	return [REF_L[j] + (REF_L[j + 1] - REF_L[j]) * f, REF_C[j] + (REF_C[j + 1] - REF_C[j]) * f];
+}
+
+/** One brand colour at `stop` — a published stop or anything between them.
+ *  The filled roles sit at 45 and 38, which Fluent never named. */
+export function brandAt(accent, stop) {
 	const [L0, C0, H0] = hexToLch(accent);
-	const i = BRAND_STOPS.indexOf(ANCHOR);
-	const La = REF_L[i], Ca = REF_C[i];
+	const [La, Ca] = refAt(ANCHOR);
 	const ks = Ca ? C0 / Ca : 0;
-	const ramp = {};
-	BRAND_STOPS.forEach((s, j) => {
-		const L = REF_L[j];
-		const Lo = L <= La ? L0 * (L / La) : L0 + ((100 - L0) * (L - La)) / (100 - La);
-		const t = L >= La ? (L - La) / (100 - La) : ((La - L) / La) * 0.55;
-		ramp[s] = lchToHex(Lo, REF_C[j] * ks, (((H0 + TORSION * t) % 360) + 360) % 360);
-	});
-	return ramp;
+	const [L, C] = refAt(stop);
+	const Lo = L <= La ? L0 * (L / La) : L0 + ((100 - L0) * (L - La)) / (100 - La);
+	const t = L >= La ? (L - La) / (100 - La) : ((La - L) / La) * 0.55;
+	return lchToHex(Lo, C * ks, (((H0 + TORSION * t) % 360) + 360) % 360);
+}
+
+export function brandRamp(accent) {
+	return Object.fromEntries(BRAND_STOPS.map((s) => [s, brandAt(accent, s)]));
 }
 
 /** Foreground for text sitting ON a fill. Fluent hard-codes white; ewe
  *  cannot, because you may pick yellow. L* 60 is where white gives up. */
 export const on = (fill) => (hexToLch(fill)[0] > 60 ? '#242424' : '#ffffff');
 
-// ═══ the alias layer — Fluent's dark theme, verbatim ══════════════════════
-export function alias(g, b, white = '#ffffff', black = '#000000') {
+// ═══ the alias layer — Fluent's dark theme, remapped for the revamp ═══════
+// The ladder and the hover/pressed/selected deltas are Fluent's, at HALF the
+// stop index; the filled brand roles sit two stops down the brand ramp.
+// `bx(stop)` is the brand ramp read between its stops.
+export function alias(g, b, bx, white = '#ffffff', black = '#000000') {
 	return {
 		'fg-1': white, 'fg-2': g[84], 'fg-2-hover': white,
 		'fg-3': g[68], 'fg-3-hover': g[84], 'fg-4': g[60],
 		'fg-disabled': g[36], 'fg-inverted': g[14],
-		'fg-on-brand': on(b[70]), // DEVIATION: measured, not white
-		'bg-1': g[16], 'bg-1-hover': g[24], 'bg-1-pressed': g[12], 'bg-1-selected': g[22],
-		'bg-2': g[12], 'bg-2-hover': g[20], 'bg-2-pressed': g[8], 'bg-2-selected': g[18],
-		'bg-3': g[8], 'bg-3-hover': g[16], 'bg-3-pressed': g[4], 'bg-3-selected': g[14],
-		'bg-4': g[4], 'bg-4-hover': g[12], 'bg-4-pressed': black, 'bg-4-selected': g[10],
-		'bg-5': black, 'bg-5-hover': g[8], 'bg-5-pressed': g[2], 'bg-5-selected': g[6],
-		'bg-6': g[20], 'bg-disabled': g[8],
+		'fg-on-brand': on(bx(50)), // DEVIATION: measured, not white
+		'bg-1': g[8], 'bg-1-hover': g[12], 'bg-1-pressed': g[6], 'bg-1-selected': g[11],
+		'bg-2': g[6], 'bg-2-hover': g[10], 'bg-2-pressed': g[4], 'bg-2-selected': g[9],
+		'bg-3': g[4], 'bg-3-hover': g[8], 'bg-3-pressed': g[2], 'bg-3-selected': g[7],
+		'bg-4': g[2], 'bg-4-hover': g[6], 'bg-4-pressed': black, 'bg-4-selected': g[5],
+		'bg-5': black, 'bg-5-hover': g[4], 'bg-5-pressed': g[1], 'bg-5-selected': g[3],
+		'bg-6': g[10], 'bg-disabled': g[4],
 		// DEVIATION: Fluent's bg-6 has no states, because its Card component
 		// carries them. ewe's panels are full of tiles that must hover, so the
-		// ladder is extended with Fluent's own deltas (+8 / -4 / +6) off g20.
-		card: g[20], 'card-hover': g[28], 'card-pressed': g[16], 'card-selected': g[26],
-		subtle: 'transparent', 'subtle-hover': g[22], 'subtle-pressed': g[18], 'subtle-selected': g[20],
+		// ladder is extended with Fluent's own deltas (+4 / -2 / +3) off g10.
+		card: g[10], 'card-hover': g[14], 'card-pressed': g[8], 'card-selected': g[13],
+		subtle: 'transparent', 'subtle-hover': g[11], 'subtle-pressed': g[9], 'subtle-selected': g[10],
+		// the greys Fluent uses; CSS carries them at alpha 0.5 — see colorCss
 		'stroke-1': g[40], 'stroke-1-hover': g[46], 'stroke-1-pressed': g[42], 'stroke-1-selected': g[44],
 		'stroke-2': g[32], 'stroke-3': g[24],
 		'stroke-accessible': g[68], 'stroke-disabled': g[26],
 		'stroke-focus-1': black, 'stroke-focus-2': white,
-		'brand-bg': b[70], 'brand-bg-hover': b[80], 'brand-bg-pressed': b[40], 'brand-bg-selected': b[60],
+		'brand-bg': bx(50), 'brand-bg-hover': bx(60), 'brand-bg-pressed': bx(38), 'brand-bg-selected': bx(45),
 		'brand-fg-1': b[100], 'brand-fg-2': b[110],
 		'brand-fg-link': b[100], 'brand-fg-link-hover': b[110],
-		'brand-stroke-1': b[100], 'brand-stroke-2': b[50],
+		'brand-stroke-1': b[100], 'brand-stroke-2': bx(40),
 		'compound-brand-bg': b[100], 'compound-brand-bg-hover': b[110],
 		'compound-brand-bg-pressed': b[90], 'compound-brand-fg': b[100],
 		'compound-brand-stroke': b[100]
 	};
 }
 
-// ═══ the non-colour ramps — Fluent's own, verbatim ═══════════════════════
-export const RADIUS_RAMP = { none: 0, small: 2, medium: 4, large: 6, xlarge: 8, '2xlarge': 12, '3xlarge': 16, '4xlarge': 24, circular: 9999 };
-export const SPACING_RAMP = { none: 0, xxs: 2, xs: 4, snudge: 6, s: 8, mnudge: 10, m: 12, l: 16, xl: 20, xxl: 24, xxxl: 32 };
-export const STROKE_RAMP = { thin: 1, thick: 2, thicker: 3, thickest: 4 };
+// The strokes that carry alpha. alias() keeps them opaque so the maths stays
+// in one colour space; CSS reads them as rgba(). Focus strokes stay opaque.
+const STROKE_ALPHA = 0.5;
+const ALPHA_ROLES = new Set(['stroke-1', 'stroke-1-hover', 'stroke-1-pressed', 'stroke-1-selected',
+	'stroke-2', 'stroke-3', 'stroke-accessible', 'stroke-disabled']);
 
+/** A role's value as tokens.css spells it — ewe-theme's color_css(). */
+export function colorCss(role, hex) {
+	if (!ALPHA_ROLES.has(role)) return hex;
+	const [r, g, b] = [1, 3, 5].map((i) => parseInt(hex.slice(i, i + 2), 16));
+	return `rgba(${r}, ${g}, ${b}, ${STROKE_ALPHA})`;
+}
+
+// ═══ the non-colour ramps — Fluent's own, verbatim ═══════════════════════
+// circular is 999, not 9999: both clamp to half the box — a capsule either way.
+export const RADIUS_RAMP = { none: 0, small: 2, medium: 4, large: 6, xlarge: 8, '2xlarge': 12, '3xlarge': 16, '4xlarge': 24, circular: 999 };
+export const SPACING_RAMP = { none: 0, xxs: 2, xs: 4, snudge: 6, s: 8, mnudge: 10, m: 12, l: 16, xl: 20, xxl: 24, xxxl: 32 };
+// `none` zeroes component OUTLINES; hairlines keep 1px (see shape()).
+export const STROKE_RAMP = { none: 0, thin: 1, thick: 2, thicker: 3, thickest: 4 };
+
+// A rung name on RADIUS_RAMP, or a pixel count for a preset pitched by role:
+// `round` (the default since the revamp) is 12 / 20 / 26 / capsule.
 export const CORNER = {
 	none: { control: 'none', card: 'none', panel: 'none', pill: 'none' },
 	small: { control: 'small', card: 'medium', panel: 'large', pill: 'small' },
 	medium: { control: 'medium', card: 'large', panel: 'xlarge', pill: 'medium' },
-	large: { control: 'large', card: 'xlarge', panel: '2xlarge', pill: 'circular' }
+	large: { control: 'large', card: 'xlarge', panel: '2xlarge', pill: 'circular' },
+	round: { control: 12, card: 20, panel: 26, pill: 'circular' }
 };
+const radius = (v) => (typeof v === 'string' ? RADIUS_RAMP[v] : v);
 // Fluent's own button sizes are 24 / 32 / 40 — exactly this ladder.
 export const DENSITY = {
 	compact: { pad: 's', gap: 'xs', control: 24, row: 28 },
@@ -172,25 +207,28 @@ export const DENSITY = {
 export function derive(accent, tint = 8) {
 	const grey = greyRamp(accent, tint);
 	const brand = brandRamp(accent);
-	return { grey, brand, color: alias(grey, brand) };
+	return { grey, brand, color: alias(grey, brand, (s) => brandAt(accent, s)) };
 }
 
 /** The shape and size half: corners, stroke weight, density. Values in px.
  *  18, not 16, for the middle icon rung: Lucide is stroke art where the old
  *  face was solid, so the same nominal size reads lighter and size is the
  *  only lever a font leaves you for optical weight. */
-export function shape(corner = 'medium', stroke = 'thin', density = 'comfortable') {
-	const c = CORNER[corner] ?? CORNER.medium;
+export function shape(corner = 'round', stroke = 'none', density = 'comfortable') {
+	const c = CORNER[corner] ?? CORNER.round;
 	const d = DENSITY[density] ?? DENSITY.comfortable;
-	const thin = STROKE_RAMP[stroke] ?? 1;
+	const w = STROKE_RAMP[stroke] ?? 0;
 	const icon = d.control >= 40 ? 20 : d.control >= 32 ? 18 : 16;
 	return {
-		'radius-control': RADIUS_RAMP[c.control],
-		'radius-card': RADIUS_RAMP[c.card],
-		'radius-panel': RADIUS_RAMP[c.panel],
-		'radius-pill': RADIUS_RAMP[c.pill],
-		'stroke-width': thin,
-		'stroke-width-thick': Math.min(4, thin + 1),
+		'radius-control': radius(c.control),
+		'radius-card': radius(c.card),
+		'radius-panel': radius(c.panel),
+		'radius-pill': radius(c.pill),
+		// `outline-width` is the edge a component draws around ITSELF, 0 under
+		// `stroke = none`; `stroke-width` is a rule INSIDE a surface, never < 1.
+		'outline-width': w,
+		'stroke-width': Math.max(1, w),
+		'stroke-width-thick': Math.max(2, Math.min(4, w + 1)),
 		'focus-width': 2,
 		pad: SPACING_RAMP[d.pad],
 		gap: SPACING_RAMP[d.gap],
