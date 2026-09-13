@@ -50,6 +50,10 @@
 			<dd>The headless casting daemon behind the Cast card — Miracast and Chromecast, with no foreign window.</dd>
 		</div>
 		<div class="row">
+			<dt><a href="https://github.com/prj786/ewe-plugin-example">ewe-plugin-example</a></dt>
+			<dd>The reference shell plugin — a service, a panel with its own IPC target, a bar widget. Clone it to start yours.</dd>
+		</div>
+		<div class="row">
 			<dt><a href="https://github.com/prj786/prj786.github.io">prj786.github.io</a></dt>
 			<dd>This website.</dd>
 		</div>

@@ -134,7 +134,7 @@
 			<li>A network connection during install, to fetch packages.</li>
 		</ul>
 		<p class="note">
-			It's an alpha. The installer is verified end to end in a VM; real-hardware coverage is thin, so
+			It's a beta. The installer is verified end to end in a VM; real-hardware coverage is thin, so
 			install on something you can afford to reinstall, and please
 			<a href="/docs/troubleshooting/">report what happens</a>.
 		</p>

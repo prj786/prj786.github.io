@@ -137,6 +137,26 @@ exec = "kitty"`} copyable={false} />
 </section>
 
 <section>
+	<h2><code>[plugins]</code></h2>
+	<p>
+		Third-party shell plugins, written by <a href="/docs/cli/ewe-plugin/">ewe-plugin</a>.
+		<code>enabled</code> is the list of plugin ids the shell loads at startup;
+		<code>sources</code> remembers where each was cloned from, so on a fresh machine
+		<code>ewe-plugin list</code> can point at what is enabled here but not installed yet. The
+		plugins themselves live in <code>~/.config/ewe/plugins/</code> — code, not configuration — and
+		never sync. Toggling one restarts the shell; nothing else is regenerated.
+	</p>
+	<Code
+		code={`[plugins]
+enabled = ["acme.weather"]
+
+[plugins.sources]
+"acme.weather" = "https://github.com/acme/ewe-weather.git"`}
+		copyable={false}
+	/>
+</section>
+
+<section>
 	<h2><code>[system]</code></h2>
 	<p>
 		What this machine is, read by the installer and distro tooling only — the desktop never reads it.

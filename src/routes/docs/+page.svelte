@@ -34,7 +34,8 @@
 	<p>
 		The rest are small tools around it: <code>ewe-cloud</code> holds one account, the app
 		<code>ewe-sync</code> moves the file and your folders between machines, Komble installs software
-		and records it in the file, and Settings edits the file. There is no second, hidden path.
+		and records it in the file, and Settings edits the file. <code>ewe-plugin</code> drops third-party
+		bar widgets and panels into the shell and records which are on. There is no second, hidden path.
 	</p>
 	<dl class="rows">
 		<div class="row">
@@ -86,7 +87,7 @@ ewe-conf pull && ewe-conf apply     # become that machine again`}
 	</p>
 	<Callout>
 		<p>
-			ewe is alpha software. The install is verified end to end in a virtual machine and on real
+			ewe is beta software. The install is verified end to end in a virtual machine and on real
 			hardware, but coverage is still thin — install on a machine you can afford to reinstall.
 			<a href="/docs/troubleshooting/">The known limitations →</a>
 		</p>

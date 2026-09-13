@@ -11,7 +11,7 @@
 // had to `cat` back together. archive.org hosts freely-licensed images whole,
 // for free and permanently, so the button below is one click and one file.
 // The split parts stay on the GitHub release as a mirror.
-export const VERSION = '0.9-alpha';
+export const VERSION = '0.12.4-beta';
 
 /**
  * Whether the whole-image download on the Internet Archive exists yet.

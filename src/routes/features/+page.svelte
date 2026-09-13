@@ -171,6 +171,48 @@
 		</dl>
 	</section>
 
+	<section id="plugins">
+		<p class="eyebrow">Plugins</p>
+		<h2>Extend it without forking it.</h2>
+		<p>
+			The shell is one Quickshell process, so a plugin is QML it loads beside its own components —
+			not a widget bolted on from outside. <code>ewe-plugin add &lt;git-url&gt;</code> and it is
+			there at the next start, wearing the desktop's own roles.
+		</p>
+		<dl class="rows">
+			<div class="row">
+				<dt><Icon name="puzzle" size={16} />Three kinds</dt>
+				<dd>
+					Bar widgets packed between the built-in indicators, left, centre or right; panels and
+					overlays the plugin owns and summons over IPC; headless services that run from login.
+				</dd>
+			</div>
+			<div class="row">
+				<dt><Icon name="palette" size={16} />The same vocabulary</dt>
+				<dd>
+					<code>import qs</code> gives a plugin every <code>Theme</code> role and a named part of
+					<code>Globals</code>. Ask for a role, never a value, and it recolours with the accent.
+				</dd>
+			</div>
+			<div class="row">
+				<dt><Icon name="shield-check" size={16} />Honest about trust</dt>
+				<dd>
+					Installing never runs plugin code; enabling does, unsandboxed, and the tool says so. A
+					plugin that crashes the shell gets three strikes in a minute, then the desktop boots
+					without it and names the suspects.
+				</dd>
+			</div>
+			<div class="row">
+				<dt><Icon name="git-branch" size={16} />Yours to write</dt>
+				<dd>
+					A manifest and one QML file per kind. <a href="/docs/plugins/writing/">The guide</a>
+					starts from the reference plugin; <code>ewe-plugin add ./my-plugin</code> tries it before
+					it has a repository.
+				</dd>
+			</div>
+		</dl>
+	</section>
+
 	<section id="cast">
 		<p class="eyebrow">Cast &amp; phone</p>
 		<h2>The TV in the room, and the phone in your pocket.</h2>

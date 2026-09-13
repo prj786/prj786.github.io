@@ -28,10 +28,19 @@ export const SECTIONS = [
 		]
 	},
 	{
+		title: 'Plugins',
+		items: [
+			{ href: '/docs/plugins/', label: 'Plugins', blurb: 'Bar widgets, panels and services from a git URL.' },
+			{ href: '/docs/plugins/writing/', label: 'Writing a plugin', blurb: 'The manifest, the entry points, the loop.' },
+			{ href: '/docs/plugins/api/', label: 'What a plugin may use', blurb: 'Theme roles, the public Globals, IPC.' }
+		]
+	},
+	{
 		title: 'CLI reference',
 		items: [
 			{ href: '/docs/cli/', label: 'Overview', blurb: 'Small tools, one job each, JSON out.' },
 			{ href: '/docs/cli/ewe-conf/', label: 'ewe-conf', blurb: 'The one writer of the one file.' },
+			{ href: '/docs/cli/ewe-plugin/', label: 'ewe-plugin', blurb: 'Shell plugins: add, enable, update, remove.' },
 			{ href: '/docs/cli/ewe-cloud/', label: 'ewe-cloud', blurb: 'Your Nextcloud account, and its app password.' },
 			{ href: '/docs/cli/ewe-sync/', label: 'ewe-sync', blurb: 'The account app: machines, sync, folders.' },
 			{ href: '/docs/cli/ewe-files/', label: 'ewe-files', blurb: 'The account, mounted as a folder.' },

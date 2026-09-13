@@ -18,7 +18,7 @@
 <p class="eyebrow">Reference</p>
 <h1>When something is wrong.</h1>
 <p class="lede">
-	ewe is alpha software and says so. This page is the honest list of what does not work yet, and the
+	ewe is beta software and says so. This page is the honest list of what does not work yet, and the
 	first checks for the things that do.
 </p>
 
@@ -26,7 +26,7 @@
 	<h2>Known limitations</h2>
 	<ul>
 		<li>
-			<strong>It is an alpha.</strong> The install is verified end to end in a virtual machine and on
+			<strong>It is a beta.</strong> The install is verified end to end in a virtual machine and on
 			real hardware, but coverage is thin. Install on a machine you can afford to reinstall.
 		</li>
 		<li><strong>Whole-disk installs only</strong> — no dual-boot and no manual partitioning yet.</li>

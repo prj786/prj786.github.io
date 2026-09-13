@@ -128,7 +128,8 @@
 		<h2>A desktop, not a starting point.</h2>
 		<p>
 			Greeter, bar, dock, launcher, control centre, software manager, settings and lock screen — all
-			first-party, all matching. Nothing to assemble afterwards.
+			first-party, all matching. Nothing to assemble afterwards — and, since 0.14, plugins for what
+			you would add.
 		</p>
 	</div>
 
@@ -180,7 +181,7 @@
 			</p>
 			<span class="go">How it works <Icon name="arrow-right" size={14} /></span>
 		</a>
-		<div class="card tile">
+		<div class="card tile wide">
 			<span class="ico"><Icon name="cast" size={18} /></span>
 			<h3>Cast &amp; phone</h3>
 			<p>
@@ -196,6 +197,15 @@
 				the system and the desktop forward together.
 			</p>
 		</div>
+		<a class="card act tile wide" href="/docs/plugins/">
+			<span class="ico"><Icon name="puzzle" size={18} /></span>
+			<h3>Plugins</h3>
+			<p>
+				A git URL in, a bar widget or a panel out. Third-party QML loads beside the shell's own,
+				wearing the same roles — and a plugin that crashes gets three strikes, not your login.
+			</p>
+			<span class="go">How plugins work <Icon name="arrow-right" size={14} /></span>
+		</a>
 		<div class="card tile">
 			<span class="ico"><Icon name="shield-check" size={18} /></span>
 			<h3>The unglamorous parts</h3>
@@ -265,7 +275,7 @@
 	<div class="finale">
 		<div class="glow" aria-hidden="true"></div>
 		<p class="eyebrow">Honestly</p>
-		<h2>It's an alpha.</h2>
+		<h2>It's a beta.</h2>
 		<p>
 			The install is verified end to end in QEMU — six screens to a booted desktop — and casting has
 			been proven against a real television. <strong>Real-hardware installs are still thin</strong>,
@@ -619,6 +629,7 @@
 	.bento {
 		display: grid;
 		grid-template-columns: repeat(3, minmax(0, 1fr));
+		grid-auto-flow: dense;
 		gap: 0.9rem;
 	}
 	.tile {

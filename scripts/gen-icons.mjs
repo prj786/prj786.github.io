@@ -18,7 +18,7 @@ const NAMES = [
 	'copy', 'download', 'external-link', 'eye', 'file-text', 'folder-sync',
 	'git-branch', 'globe', 'hard-drive', 'image', 'info', 'key', 'keyboard', 'layers',
 	'layout-panel-top', 'lock', 'mail', 'monitor', 'package', 'palette',
-	'panel-bottom', 'refresh-cw', 'rotate-ccw', 'ruler', 'search', 'settings-2',
+	'panel-bottom', 'puzzle', 'refresh-cw', 'rotate-ccw', 'ruler', 'search', 'settings-2',
 	'shield-check', 'shuffle', 'sliders-horizontal', 'smartphone', 'sparkles',
 	'square-terminal', 'terminal', 'triangle-alert', 'type', 'usb',
 	'wand-sparkles', 'wifi', 'zap'
