@@ -13,6 +13,7 @@
 		{ cmd: 'update', args: '[id] [--yes]', does: 'Fast-forward every git-managed plugin, or one. The commits and the diff are shown first; a manifest that stops validating is rolled back. Restarts the shell if an enabled plugin changed.' },
 		{ cmd: 'remove', args: '<id> [--yes]', does: 'Delete a git clone; move a hand-made directory to <id>.bak.<stamp>. Forgets the source and the enabled bit.' },
 		{ cmd: 'validate', args: '<dir>', does: 'Check a manifest and its entry points — every problem, not just the first.', prints: 'ok, or the list; exit 1 on problems' },
+		{ cmd: 'restore', args: '[--yes]', does: 'Clone every plugin ewe.conf knows that is not installed here — the plugin half of Komble’s “For you”. Enabled bits stay as the file says; a "local" source is skipped with a note.' },
 		{ cmd: 'path', does: 'The plugins directory.', prints: '~/.config/ewe/plugins' },
 		{ cmd: 'boot-ok', does: 'Internal — the shell reports a start that stayed up for a minute, which clears the crash counter.' }
 	];
@@ -73,9 +74,10 @@ ewe-plugin add ./my-plugin --enable
 ewe-plugin list
 ewe-plugin update --yes
 
-# a fresh machine after a settings sync: what is enabled but missing
+# a fresh machine after a settings sync: what the other machine had
 ewe-plugin list
-#   acme.weather  on  —  —  not installed — ewe-plugin add https://…`}
+#   acme.weather  on  —  —  not installed — ewe-plugin restore
+ewe-plugin restore --yes`}
 	/>
 </section>
 

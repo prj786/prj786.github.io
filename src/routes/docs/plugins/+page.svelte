@@ -93,9 +93,13 @@ ewe-plugin disable example.hello`}
 		copyable={false}
 	/>
 	<p>
-		Only the on/off list and the sources travel in <a href="/docs/one-file/">the one file</a>, so
-		they sync with the rest of the machine. On a fresh machine <code>ewe-plugin list</code> shows
-		what is enabled but not installed yet, with the command to run.
+		<code>[plugins.sources]</code> is the installed set — every plugin <code>add</code> fetched, on
+		or off, until <code>remove</code> forgets it — and it travels in
+		<a href="/docs/one-file/">the one file</a>, so it syncs with the rest of the machine. On a fresh
+		machine <code>ewe-plugin list</code> shows everything your other machine had, and
+		<code>ewe-plugin restore</code> clones the missing ones from their git URLs; Komble's Plugins
+		section and the Welcome flow offer the same with a button. A plugin added from a plain
+		directory is recorded as <code>"local"</code>: nothing another machine could fetch.
 	</p>
 </section>
 
