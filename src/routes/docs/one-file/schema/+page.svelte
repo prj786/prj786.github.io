@@ -141,8 +141,9 @@ exec = "kitty"`} copyable={false} />
 	<p>
 		Third-party shell plugins, written by <a href="/docs/cli/ewe-plugin/">ewe-plugin</a>.
 		<code>enabled</code> is the list of plugin ids the shell loads at startup;
-		<code>sources</code> remembers where each was cloned from, so on a fresh machine
-		<code>ewe-plugin list</code> can point at what is enabled here but not installed yet. The
+		<code>sources</code> is the installed set — every plugin <code>ewe-plugin add</code> fetched, on
+		or off, until <code>remove</code> forgets it — so on a fresh machine
+		<code>ewe-plugin restore</code> can clone them back. The
 		plugins themselves live in <code>~/.config/ewe/plugins/</code> — code, not configuration — and
 		never sync. Toggling one restarts the shell; nothing else is regenerated.
 	</p>
