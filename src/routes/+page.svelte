@@ -163,8 +163,8 @@
 		</div>
 		<a class="card act tile lit" href="/theming/">
 			<span class="ico"><Icon name="palette" size={18} /></span>
-			<h3>One accent, everywhere</h3>
-			<p>Shell, GTK, Qt, icons, cursor and window borders — derived from a single colour, applied live.</p>
+			<h3>Your colours, everywhere</h3>
+			<p>One accent, an imported scheme, or the wallpaper's own palette — the shell, GTK, Qt, icons, cursor and window borders follow, live.</p>
 			{#each RAMPS as r}
 				<div class="ramp" title="The brand ramp {r.who} is wearing">
 					{#each BRAND_STOPS as s}<span style="background:{r.brand[s]}"></span>{/each}
@@ -201,8 +201,9 @@
 			<span class="ico"><Icon name="puzzle" size={18} /></span>
 			<h3>Plugins</h3>
 			<p>
-				A git URL in, a bar widget or a panel out. Third-party QML loads beside the shell's own,
-				wearing the same roles — and a plugin that crashes gets three strikes, not your login.
+				<code>ewe-plugin create</code> scaffolds a repo; a git URL installs one. Bar widgets, panels,
+				services — and desktop widgets you drag where you like. You draw it; ewe places it, keeps
+				its settings, and gives a crashing plugin three strikes, not your login.
 			</p>
 			<span class="go">How plugins work <Icon name="arrow-right" size={14} /></span>
 		</a>

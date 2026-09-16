@@ -84,7 +84,9 @@ ewe-conf sync-status`}
 		<div class="row"><dt>Fix the desktop after an update</dt><dd><a href="/docs/cli/ewe-setup/">ewe-setup</a>, then log out and in.</dd></div>
 		<div class="row"><dt>Install on another machine</dt><dd><a href="/docs/cli/ewe-install/">ewe-install</a>.</dd></div>
 		<div class="row"><dt>Cast to a television</dt><dd>The Control Center — <a href="/docs/cli/ewe-castd/">ewe-castd</a> is what it drives.</dd></div>
-		<div class="row"><dt>Add a bar widget, a panel, a service</dt><dd><a href="/docs/cli/ewe-plugin/">ewe-plugin</a> — a git URL in, one config bit; <a href="/docs/plugins/">the guide</a>.</dd></div>
+		<div class="row"><dt>Add a bar widget, a desktop widget, a panel</dt><dd><a href="/docs/cli/ewe-plugin/">ewe-plugin</a> — a git URL in, or <code>create</code> your own; <a href="/docs/plugins/">the guide</a>.</dd></div>
+		<div class="row"><dt>Change the colours — a scheme, the wallpaper's</dt><dd><a href="/docs/cli/ewe-theme/">ewe-theme</a> <code>scheme import | from-wallpaper | apply</code>, or Settings → Appearance → Colours.</dd></div>
+		<div class="row"><dt>Fill a login into an app</dt><dd><kbd>Super</kbd>+<kbd>P</kbd>; <a href="/docs/cli/ewe-pass/">ewe-pass</a> is what it runs.</dd></div>
 	</dl>
 </section>
 

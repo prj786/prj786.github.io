@@ -109,12 +109,13 @@
 
 	<section id="look">
 		<p class="eyebrow">The look</p>
-		<h2>One accent, applied live.</h2>
+		<h2>One accent — or a whole scheme — applied live.</h2>
 		<p>
-			There is no theme file and no light mode. You pick one colour, and a generator derives the
-			whole Fluent 2 token set from it — every background level, stroke weight and foreground —
-			then applies it to the shell, GTK, Qt, the icons, the cursor and your window borders without a
-			relogin. <a href="/theming/">See it derive, live →</a>
+			You pick one colour and a generator derives the whole Fluent 2 token set from it — every
+			background level, stroke weight and foreground — then applies it to the shell, GTK, Qt, the
+			icons, the cursor and your window borders without a relogin. Or import a scheme (Base16/24,
+			Omarchy, Catppuccin, Gogh), write your own, or take the colours from your wallpaper; a light
+			scheme is honoured end to end. <a href="/theming/">See it derive, live →</a>
 		</p>
 		<dl class="rows">
 			<div class="row">
@@ -122,6 +123,13 @@
 				<dd>
 					Presets, or any hex you like. Text on the accent is <em>measured</em> against it, so a pale
 					yellow stays as legible as a deep blue.
+				</dd>
+			</div>
+			<div class="row">
+				<dt><Icon name="layers" size={16} />Schemes and wallpaper colours</dt>
+				<dd>
+					Settings → Appearance → Colours: Accent · Scheme · Wallpaper. Import a palette, edit it, export it
+					as Base24; “Wallpaper” follows the picture when it changes. Nothing bundled — your library.
 				</dd>
 			</div>
 			<div class="row">

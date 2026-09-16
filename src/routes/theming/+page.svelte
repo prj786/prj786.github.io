@@ -54,7 +54,7 @@
 	<title>Theming — ewe</title>
 	<meta
 		name="description"
-		content="ewe has no theme file. One accent colour in ewe.conf derives a complete Fluent 2 token set — every background, stroke and foreground on the system — and applies it live to the shell, GTK, Qt and the window borders."
+		content="One accent colour derives a complete Fluent 2 token set and applies it live to the shell, GTK, Qt and the window borders — or import a whole scheme (Base16/24, Omarchy, Catppuccin, Gogh), write your own, or take the colours from your wallpaper."
 	/>
 </svelte:head>
 
@@ -62,10 +62,12 @@
 	<p class="eyebrow">Theming</p>
 	<h1>One colour in. A whole system out.</h1>
 	<p class="lede">
-		ewe has no theme file to download, fork or maintain. You pick <strong>one accent</strong>, and a
-		generator derives everything else — six background levels with four states each, three stroke
-		weights, a sixteen-stop brand ramp, and the foreground colours measured to stay readable on top
-		of them. The panel below runs that generator, for real, in your browser.
+		By default you pick <strong>one accent</strong> and a generator derives everything else — six
+		background levels with four states each, three stroke weights, a sixteen-stop brand ramp, and
+		the foreground colours measured to stay readable on top of them. Since 0.19 a whole
+		<a href="#schemes"><strong>scheme</strong></a> can stand in for the accent — Gruvbox, Catppuccin,
+		your own, or the colours of your wallpaper — through the same generator. The panel below runs
+		it, for real, in your browser.
 	</p>
 
 	<!-- ── the live derivation ─────────────────────────────────────────── -->
@@ -153,12 +155,63 @@
 		</p>
 	</section>
 
+	<!-- ── schemes ──────────────────────────────────────────────────────── -->
+	<section id="schemes">
+		<p class="eyebrow">Schemes · since 0.19</p>
+		<h2>Or a whole palette, through the same engine.</h2>
+		<p>
+			A scheme is a Base24 palette — sixteen colours plus eight optional ones — with an optional
+			accent of its own. It replaces the two ramps the accent would have produced: the five
+			surface levels are pinned on the scheme's backgrounds, the text on its foregrounds, the brand
+			ramp runs through its accent, and success / warning / danger come from its green, yellow and
+			red. The role table is untouched, so every one of the ~90 roles keeps its name and everything
+			downstream — the shell, both apps, GTK, Qt, kitty, the window border — follows for free.
+		</p>
+		<dl class="rows">
+			<div class="row">
+				<dt><Icon name="palette" size={16} />Accent</dt>
+				<dd>The default. Everything derived from one colour, as above.</dd>
+			</div>
+			<div class="row">
+				<dt><Icon name="layers" size={16} />Scheme</dt>
+				<dd>
+					Import one — Base16 / Base24 YAML (Tinted Theming's five hundred), Omarchy's
+					<code>colors.toml</code>, Catppuccin's <code>palette.json</code>, a Gogh terminal theme — from
+					a file or a URL. Nothing is bundled; you add what you like. The accent still works on top
+					of a scheme.
+				</dd>
+			</div>
+			<div class="row">
+				<dt><Icon name="image" size={16} />Wallpaper</dt>
+				<dd>
+					The palette is read out of the picture: its most present colour becomes the surfaces, its
+					strongest the accent. Set it to follow, and it re-derives on every wallpaper change.
+				</dd>
+			</div>
+			<div class="row">
+				<dt><Icon name="monitor" size={16} />Light, if you bring it</dt>
+				<dd>
+					ewe is dark by default, and a scheme that declares itself light is honoured end to end:
+					the surfaces run the other way, hover darkens, GTK and the icon theme switch.
+				</dd>
+			</div>
+		</dl>
+		<Command value="ewe-theme scheme import ~/dl/gruvbox-dark-medium.yaml --apply" />
+		<Command value="ewe-theme scheme from-wallpaper --apply" />
+		<Command value="ewe-theme scheme apply accent" />
+		<p class="note">
+			Or Settings → Appearance → Colours: Accent · Scheme · Wallpaper, an Import… button, and a
+			small editor for the palette. A scheme lives in <code>ewe.conf</code>, so it syncs; <code>export</code>
+			writes it back out as Base24 YAML for another machine or a friend.
+		</p>
+	</section>
+
 	<!-- ── where it lives ───────────────────────────────────────────────── -->
 	<section>
 		<p class="eyebrow">The whole surface</p>
-		<h2>Five keys, in the same file as everything else.</h2>
+		<h2>Six keys, in the same file as everything else.</h2>
 		<p>
-			Theming isn't a separate system with its own storage. It's five keys in
+			Theming isn't a separate system with its own storage. It's six keys in
 			<a href="/how/"><code>~/.config/ewe/ewe.conf</code></a> — the one file that describes your
 			machine — so your theme backs up, syncs and restores with the rest of it.
 		</p>
@@ -166,6 +219,14 @@
 			<div class="row">
 				<dt><Icon name="palette" size={16} />accent</dt>
 				<dd>The seed. Every colour on the system is derived from this one hex value.</dd>
+			</div>
+			<div class="row">
+				<dt><Icon name="layers" size={16} />scheme</dt>
+				<dd>
+					<code>accent</code> — the default — or the slug of a palette in
+					<code>[[desktop.theme.schemes]]</code>, which is where an imported, hand-written or
+					wallpaper-derived scheme is kept.
+				</dd>
 			</div>
 			<div class="row">
 				<dt><Icon name="ruler" size={16} />corner</dt>
@@ -290,8 +351,8 @@
 			<div class="row">
 				<dt><Icon name="triangle-alert" size={16} />Status colours</dt>
 				<dd>
-					Success, warning and danger are fixed. “This failed” must not change meaning because you
-					picked a red accent.
+					In accent mode success, warning and danger are fixed — “this failed” must not change
+					meaning because you picked a red accent. A scheme brings its own red, yellow and green.
 				</dd>
 			</div>
 			<div class="row">
@@ -300,26 +361,26 @@
 			</div>
 			<div class="row">
 				<dt><Icon name="monitor" size={16} />Light mode</dt>
-				<dd>There isn't one, by decision. One look done properly beats two done half-heartedly.</dd>
+				<dd>Not a switch. Dark is the one look ewe ships; a light <em>scheme</em> you import is honoured, so light is yours to bring rather than ours to maintain.</dd>
 			</div>
 		</dl>
 	</section>
 
-	<!-- ── coming soon ──────────────────────────────────────────────────── -->
+	<!-- ── the CLI, in one place ────────────────────────────────────────── -->
 	<section>
 		<div class="soon">
-			<p class="eyebrow">Coming soon</p>
-			<h2><Icon name="wand-sparkles" size={22} />The theme creator</h2>
+			<p class="eyebrow">The command line</p>
+			<h2><Icon name="terminal" size={22} />ewe-theme scheme</h2>
 			<p>
-				The panel at the top of this page is the engine, not the product. The creator adds the rest
-				of it: every one of the five keys as a control, the full role table with contrast measured
-				against each surface, a real desktop preview rather than a sketch — and an export that
-				hands you the <code>ewe-conf</code> lines to paste, or writes them straight into your
-				machine from Settings.
+				<code>list</code> · <code>show</code> · <code>apply &lt;slug|accent&gt;</code> ·
+				<code>import &lt;file|url&gt; [--apply]</code> · <code>remove</code> · <code>export</code> ·
+				<code>set accent|base00…base17|variant|name</code> · <code>from-wallpaper [--light]</code>.
+				Every write goes through <code>ewe-conf</code>, whose hooks repaint the shell and the
+				toolkits — <a href="/docs/cli/ewe-theme/">the reference</a>.
 			</p>
 			<p class="muted">
-				Shared themes come after that, and follow the same rule as everything else here: a theme is
-				five keys, so sharing one is a link — never a package that runs code on your machine.
+				A scheme is data — twenty-four colours in your config — never a package that runs code
+				on your machine. Sharing one is <code>export</code> and a file.
 			</p>
 		</div>
 	</section>

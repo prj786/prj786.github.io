@@ -39,6 +39,22 @@ ewe-plugin disable example.hello`}
 </section>
 
 <section>
+	<h2>Make one</h2>
+	<Code
+		code={`ewe-plugin create acme.clock --name "Desk Clock" --kinds desktop-widget,bar-widget
+cd acme.clock && ewe-plugin dev .     # linked, enabled, shell restarted, log follows`}
+	/>
+	<p>
+		<code>create</code> gives you a git repository with a <em>working</em> plugin in it — a manifest,
+		one QML per kind, a README that states the contract, an MIT licence and a first commit. You own
+		the QML: what it draws and does. ewe owns where it lives and what the user may change: a bar
+		widget's section and visibility, a desktop widget's place, whether it is sticky or hidden, and
+		the values of the <code>settings</code> you declare, which Komble shows as a form. Push the repo
+		and it is installable with <code>ewe-plugin add</code>.
+	</p>
+</section>
+
+<section>
 	<h2>What a plugin can be</h2>
 	<dl class="rows">
 		<div class="row">
@@ -54,6 +70,14 @@ ewe-plugin disable example.hello`}
 			<dd>
 				A window the plugin owns: a floating panel, a fullscreen overlay, a summoned menu. Toggled
 				by the plugin's own IPC target, so a keybind or a script can reach it.
+			</dd>
+		</div>
+		<div class="row">
+			<dt><Icon name="puzzle" size={16} />Desktop widget</dt>
+			<dd>
+				A clock, a note, a reminder — a sized item ewe puts on the desktop. <kbd>Super</kbd>+<kbd>Shift</kbd>+<kbd>W</kbd>
+				is arrange mode: drag it, make it <em>sticky</em> (above windows) or hide it. Its position and
+				options live in <code>ewe.conf</code>, not in the plugin.
 			</dd>
 		</div>
 		<div class="row">

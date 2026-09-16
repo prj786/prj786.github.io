@@ -6,6 +6,7 @@
 	const theme = [
 		['color_scheme', '"dark"', 'Always dark — ewe is dark-only by decision. The key stays because Komble reads it to follow the desktop.'],
 		['accent', '"#0a84ff"', 'Recolours the whole shell live.'],
+		['scheme', '"accent"', 'Or the slug of a palette in [[desktop.theme.schemes]] — an imported, hand-written or wallpaper-derived scheme (ewe-theme scheme …). "wallpaper" follows the wallpaper.'],
 		['theme_name', '"flock"', 'Soft greys, or "blacksheep" for absolute black.'],
 		['tint_borders', 'true', 'Accent-tinted window borders.'],
 		['window_transparency', 'false', 'Translucent unfocused windows.'],
@@ -44,6 +45,31 @@
 			</div>
 		{/each}
 	</dl>
+</section>
+
+<section>
+	<h2><code>[[desktop.theme.schemes]]</code></h2>
+	<p>
+		One record per scheme: <code>name</code>, <code>slug</code>, <code>variant</code> (<code>dark</code>
+		or <code>light</code>), an optional <code>accent</code>, <code>semantic</code> (status colours from
+		the palette, default on) and a <code>palette</code> of <code>base00</code>…<code>base0F</code>
+		(<code>base10</code>…<code>base17</code> optional) — Base24. Written by
+		<a href="/docs/cli/ewe-theme/">ewe-theme scheme</a>, never by hand; it syncs with the file.
+	</p>
+	<Code
+		code={`[desktop.theme]
+scheme = "gruvbox-dark-medium"
+
+[[desktop.theme.schemes]]
+name = "Gruvbox dark, medium"
+slug = "gruvbox-dark-medium"
+variant = "dark"
+accent = "#fe8019"
+[desktop.theme.schemes.palette]
+base00 = "#282828"
+# … base01 – base0F`}
+		copyable={false}
+	/>
 </section>
 
 <section>
@@ -152,9 +178,23 @@ exec = "kitty"`} copyable={false} />
 enabled = ["acme.weather"]
 
 [plugins.sources]
-"acme.weather" = "https://github.com/acme/ewe-weather.git"`}
+"acme.weather" = "https://github.com/acme/ewe-weather.git"
+
+[plugins.widgets]
+"acme.clock" = {x = 420, y = 300, layer = "top", visible = true}
+
+[plugins.settings]
+"acme.clock" = {seconds = true}`}
 		copyable={false}
 	/>
+	<p>
+		<code>widgets</code> is where each desktop widget sits — <code>x</code>, <code>y</code>,
+		<code>layer</code> (<code>desktop</code> below windows or <code>top</code>, sticky above them),
+		<code>visible</code>, an optional <code>output</code>; arrange mode and <code>ewe-plugin place</code>
+		write it. <code>settings</code> holds the values of the options a plugin declared, typed by its
+		manifest; Komble's form and <code>ewe-plugin set</code> write it. Both apply live. Ids carry a dot,
+		so they are quoted.
+	</p>
 </section>
 
 <section>

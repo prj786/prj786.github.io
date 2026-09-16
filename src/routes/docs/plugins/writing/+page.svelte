@@ -34,6 +34,19 @@
 </p>
 
 <section>
+	<h2>0. Or let ewe write the first version</h2>
+	<Code
+		code={`ewe-plugin create acme.weather --name Weather --kinds bar-widget,panel --section right
+cd acme.weather
+ewe-plugin dev .        # links this folder into the plugins dir, enables it,
+                        # restarts the shell and follows its log lines`}
+	/>
+	<p>
+		That is a valid, loadable plugin and a git repository — the steps below are what it already did.
+		<code>dev</code> links your working copy rather than copying it, so an edit is what the shell
+		loads at the next restart; <code>ewe-plugin remove</code> on a link only unlinks it.
+	</p>
+
 	<h2>1. Start from the example</h2>
 	<Code
 		code={`git clone ${EXAMPLE}.git my-plugin
@@ -178,6 +191,43 @@ Item {
 </section>
 
 <section>
+	<h3>A desktop widget — a sized Item ewe places</h3>
+	<Code
+		code={`import QtQuick
+import qs
+
+Item {
+    property var settings: ({})          // your declared options, from ewe.conf, live
+    implicitWidth: 260
+    implicitHeight: 96
+    Rectangle { anchors.fill: parent; radius: Theme.radiusInner; color: Theme.bg1 }
+    Text { anchors.centerIn: parent; text: Qt.formatTime(new Date(), settings.seconds ? "hh:mm:ss" : "hh:mm")
+           font.pixelSize: 40; color: Theme.fg1 }
+}`}
+	/>
+	<p>
+		Give it a size and draw. Where it sits, on which output, whether it is above windows (sticky) or on
+		the desktop, and whether it is shown at all are the <em>user's</em> decisions — arrange mode
+		(<kbd>Super</kbd>+<kbd>Shift</kbd>+<kbd>W</kbd>), Komble, or <code>ewe-plugin place</code> — kept in
+		<code>ewe.conf</code> and applied live.
+	</p>
+
+	<h3>Settings you declare</h3>
+	<Code
+		code={`"settings": [
+  { "key": "seconds", "type": "bool",   "default": false, "label": "Show seconds" },
+  { "key": "city",    "type": "string", "default": "",    "label": "City" },
+  { "key": "unit",    "type": "choice", "default": "C",   "label": "Unit", "choices": ["C", "F"] }
+]`}
+	/>
+	<p>
+		Five types — <code>bool</code>, <code>int</code> (with <code>min</code>/<code>max</code>),
+		<code>string</code>, <code>choice</code>, <code>color</code>. Komble renders them as a form on your
+		plugin's card, <code>ewe-plugin set acme.weather unit F</code> does the same from a terminal, and
+		every entry point that declares <code>property var settings</code> receives the values — on load
+		and on every change, without a restart.
+	</p>
+
 	<h2>4. Check it</h2>
 	<Code code={'ewe-plugin validate ./my-plugin'} />
 	<p>
@@ -187,7 +237,9 @@ Item {
 </section>
 
 <section>
-	<h2>5. Try it, without a repository</h2>
+	<h2>5. Try it — <code>dev</code>, or by hand</h2>
+	<Code code={'ewe-plugin dev ./my-plugin      # link + enable + restart + follow the log'} />
+	<p>Or the long way, copying it in as a hand-made plugin:</p>
 	<Code
 		code={`ewe-plugin add ./my-plugin --enable     # copied in as a hand-made plugin
 cd "$(ewe-plugin path)/acme.weather"    # iterate here …

@@ -14,6 +14,11 @@
 		{ cmd: 'remove', args: '<id> [--yes]', does: 'Delete a git clone; move a hand-made directory to <id>.bak.<stamp>. Forgets the source and the enabled bit.' },
 		{ cmd: 'validate', args: '<dir>', does: 'Check a manifest and its entry points — every problem, not just the first.', prints: 'ok, or the list; exit 1 on problems' },
 		{ cmd: 'restore', args: '[--yes]', does: 'Clone every plugin ewe.conf knows that is not installed here — the plugin half of Komble’s “For you”. Enabled bits stay as the file says; a "local" source is skipped with a note.' },
+		{ cmd: 'create', args: '<ns.name> [--name T] [--kinds a,b] [--section left|center|right] [--dir P] [--no-git]', does: 'A new plugin repository: manifest, one working QML per kind, README, MIT licence, git init and a first commit. Kinds: service, panel, overlay, menu, bar-widget, desktop-widget.', prints: 'the path, and the next two commands' },
+		{ cmd: 'dev', args: '[dir] [--no-follow]', does: 'Link a working copy into the plugins dir, enable it, restart the shell and follow its log lines. remove on a link only unlinks.' },
+		{ cmd: 'place', args: '<id> [--x N --y N] [--layer desktop|top] [--visible on|off] [--output NAME] [--reset]', does: 'Where a desktop widget sits and how — written to [plugins.widgets], applied live.', prints: 'the effective placement as JSON' },
+		{ cmd: 'set', args: '<id> <key> <value>', does: 'A setting the plugin declared, typed by its manifest — a value that does not fit is refused. Live.', prints: 'the effective settings as JSON' },
+		{ cmd: 'get', args: '<id> [key]', does: 'The effective settings (defaults under the user’s values), the schema and the placement.' },
 		{ cmd: 'path', does: 'The plugins directory.', prints: '~/.config/ewe/plugins' },
 		{ cmd: 'boot-ok', does: 'Internal — the shell reports a start that stayed up for a minute, which clears the crash counter.' }
 	];
@@ -23,13 +28,13 @@
 	<title>ewe-plugin — ewe docs</title>
 	<meta
 		name="description"
-		content="ewe-plugin installs, enables, updates and removes third-party shell plugins from git URLs, and runs the crash guard that keeps a bad plugin from becoming a login loop."
+		content="ewe-plugin scaffolds, installs, enables, updates and removes third-party shell plugins, places desktop widgets, sets their declared options, and runs the crash guard that keeps a bad plugin from becoming a login loop."
 	/>
 </svelte:head>
 
 <p class="eyebrow">CLI reference</p>
 <h1><code class="title">ewe-plugin</code></h1>
-<p class="lede">Shell plugins: a git URL in, one config bit.</p>
+<p class="lede">Shell plugins: a git URL in, one config bit — and, since 0.20, the scaffold, the dev loop, and what ewe decides for a plugin.</p>
 
 <section>
 	<h2>Why it exists</h2>

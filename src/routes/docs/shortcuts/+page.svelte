@@ -30,6 +30,8 @@
 			<div><dt><kbd>Super</kbd><kbd>N</kbd></dt><dd>Control centre</dd></div>
 			<div><dt><kbd>Super</kbd><kbd>C</kbd></dt><dd>Calendar</dd></div>
 			<div><dt><kbd>Super</kbd><kbd>Shift</kbd><kbd>C</kbd></dt><dd>Cast to TV</dd></div>
+			<div><dt><kbd>Super</kbd><kbd>P</kbd></dt><dd>Fill a login from your password manager</dd></div>
+			<div><dt><kbd>Super</kbd><kbd>Shift</kbd><kbd>W</kbd></dt><dd>Arrange desktop widgets — drag, sticky, hide; Esc</dd></div>
 		</dl>
 	</div>
 </section>

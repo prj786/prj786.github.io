@@ -106,6 +106,15 @@ Log.debug("acme.weather", "raw", payload)      // HS_LOG_MODULES=acme.weather to
 </section>
 
 <section>
+	<h2><code>settings</code> — what the user chose</h2>
+	<p>
+		Declare <code>property var settings: ({'{'}{'}'})</code> on any entry point's root and ewe fills it
+		with the values of the options your manifest declares — the defaults under the user's own,
+		read from <code>ewe.conf</code> <code>[plugins.settings]</code>. It is assigned when the entry
+		point loads and again whenever a value changes (<code>ewe-plugin set</code>, Komble's form), so
+		bind to it and nothing needs a restart. Keys you did not declare never appear.
+	</p>
+
 	<h2>IPC</h2>
 	<p>
 		Anything a keybind or a script should reach is an <code>IpcHandler</code> in your entry point.
