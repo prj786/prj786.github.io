@@ -54,6 +54,10 @@
 			<dd>The reference shell plugin — a service, a panel with its own IPC target, a bar widget. Clone it to start yours.</dd>
 		</div>
 		<div class="row">
+			<dt><a href="https://github.com/prj786/ewe-plugin-clipboard">ewe-plugin-clipboard</a>, <a href="https://github.com/prj786/ewe-plugin-screenshot">-screenshot</a>, <a href="https://github.com/prj786/ewe-plugin-passwords">-passwords</a></dt>
+			<dd>The three plugins ewe ships enabled — clipboard history, screenshots, the password fill picker. Bundled with the ewe package, removable, and the worked examples for the plugin kit.</dd>
+		</div>
+		<div class="row">
 			<dt><a href="https://github.com/prj786/prj786.github.io">prj786.github.io</a></dt>
 			<dd>This website.</dd>
 		</div>

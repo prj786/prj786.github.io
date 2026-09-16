@@ -55,6 +55,34 @@ cd acme.clock && ewe-plugin dev .     # linked, enabled, shell restarted, log fo
 </section>
 
 <section>
+	<h2>The ones ewe ships</h2>
+	<p>
+		Three of the desktop's own features are plugins, and the proof that the contract is enough:
+		the clipboard history (the scissors, <code>ewe.clipboard</code>), screenshots (the camera and
+		the <kbd>Print</kbd> keys, <code>ewe.screenshot</code>) and the password fill picker
+		(<kbd>Super</kbd>+<kbd>P</kbd>, <code>ewe.passwords</code>). Each has its own repository —
+		<a href="https://github.com/prj786/ewe-plugin-clipboard">ewe-plugin-clipboard</a>,
+		<a href="https://github.com/prj786/ewe-plugin-screenshot">ewe-plugin-screenshot</a>,
+		<a href="https://github.com/prj786/ewe-plugin-passwords">ewe-plugin-passwords</a> — and the
+		ewe package carries a copy that <code>ewe-setup</code> seeds into your plugins directory,
+		enabled, marked <em>bundled</em>.
+	</p>
+	<Code
+		code={`ewe-plugin list                            # the three show as bundled
+ewe-plugin set ewe.screenshot copy false   # a bundled plugin's settings, like any other
+ewe-plugin remove ewe.clipboard            # gone — and ewe updates leave it out
+ewe-plugin seed --restore ewe.clipboard    # back from the package`}
+	/>
+	<p>
+		From there they are ordinary plugins: turn one off, change its settings in Komble, remove it
+		for good. A removal is remembered in <code>[plugins].removed</code>, so the next ewe update does
+		not put it back. They are also the worked examples — a bar widget that opens a panel under
+		itself, a headless service, manifest keybinds, <code>choice</code> and <code>bool</code>
+		settings — read their QML before writing yours.
+	</p>
+</section>
+
+<section>
 	<h2>What a plugin can be</h2>
 	<dl class="rows">
 		<div class="row">

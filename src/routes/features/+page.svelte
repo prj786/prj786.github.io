@@ -102,7 +102,7 @@
 			</div>
 			<div class="card">
 				<h3><Icon name="lock" size={16} />Lock &amp; OSD</h3>
-				<p>Wayland session-lock, volume and brightness OSDs, and clipboard history.</p>
+				<p>Wayland session-lock, volume and brightness OSDs. Clipboard history, screenshots and password fill come as bundled plugins you can remove.</p>
 			</div>
 		</div>
 	</section>

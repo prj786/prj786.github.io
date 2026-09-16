@@ -25,6 +25,13 @@
 <p class="eyebrow">CLI reference</p>
 <h1><code class="title">ewe-pass</code></h1>
 <p class="lede">Logins from your password manager, typed into any window. <kbd>Super</kbd>+<kbd>P</kbd> is the picker.</p>
+<p>
+	Since ewe 0.21 the picker is the bundled <code>ewe.passwords</code> plugin and this tool ships
+	inside it: <code>~/.config/ewe/plugins/ewe.passwords/ewe-pass</code>, not on your PATH. The
+	provider and <code>press_enter</code> are the plugin's settings (<code>ewe-plugin set
+	ewe.passwords provider 1password</code>, or Komble → Plugins); <code>[passwords]</code> in
+	<code>ewe.conf</code> is the fallback the tool reads when they are unset.
+</p>
 
 <section>
 	<h2>Why it exists</h2>

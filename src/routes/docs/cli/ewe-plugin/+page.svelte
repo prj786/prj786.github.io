@@ -13,7 +13,8 @@
 		{ cmd: 'update', args: '[id] [--yes]', does: 'Fast-forward every git-managed plugin, or one. The commits and the diff are shown first; a manifest that stops validating is rolled back. Restarts the shell if an enabled plugin changed.' },
 		{ cmd: 'remove', args: '<id> [--yes]', does: 'Delete a git clone; move a hand-made directory to <id>.bak.<stamp>. Forgets the source and the enabled bit.' },
 		{ cmd: 'validate', args: '<dir>', does: 'Check a manifest and its entry points — every problem, not just the first.', prints: 'ok, or the list; exit 1 on problems' },
-		{ cmd: 'restore', args: '[--yes]', does: 'Clone every plugin ewe.conf knows that is not installed here — the plugin half of Komble’s “For you”. Enabled bits stay as the file says; a "local" source is skipped with a note.' },
+		{ cmd: 'restore', args: '[--yes]', does: 'Clone every plugin ewe.conf knows that is not installed here — the plugin half of Komble’s “For you”. Enabled bits stay as the file says; a "local" or "bundled" source is skipped with a note — the bundled ones come with the ewe package.' },
+		{ cmd: 'seed', args: '<payload-plugins-dir> [--restore <id>] [--no-restart]', does: 'Copy the plugins the ewe package ships (ewe.clipboard, ewe.screenshot, ewe.passwords) into the plugins directory, enabled and marked bundled. ewe-setup runs it on every install; it refreshes a bundled copy when its version changes, and skips one you removed or linked with dev. --restore <id> forgets a removal and seeds that plugin again.', prints: 'what was seeded, refreshed or skipped' },
 		{ cmd: 'create', args: '<ns.name> [--name T] [--kinds a,b] [--section left|center|right] [--dir P] [--no-git]', does: 'A new plugin repository: manifest, one working QML per kind, README, MIT licence, git init and a first commit. Kinds: service, panel, overlay, menu, bar-widget, desktop-widget.', prints: 'the path, and the next two commands' },
 		{ cmd: 'dev', args: '[dir] [--no-follow]', does: 'Link a working copy into the plugins dir, enable it, restart the shell and follow its log lines. remove on a link only unlinks.' },
 		{ cmd: 'place', args: '<id> [--x N --y N] [--layer desktop|top] [--visible on|off] [--output NAME] [--reset]', does: 'Where a desktop widget sits and how — written to [plugins.widgets], applied live.', prints: 'the effective placement as JSON' },
@@ -131,7 +132,8 @@ ewe-plugin restore --yes`}
 	<h2>Where its state lives</h2>
 	<dl class="rows">
 		<div class="row"><dt><code>~/.config/ewe/plugins/&lt;id&gt;/</code></dt><dd>The plugins themselves — code, outside the ewe payload. An upgrade never touches them; they never sync.</dd></div>
-		<div class="row"><dt><code>~/.config/ewe/ewe.conf</code></dt><dd><code>[plugins].enabled</code> and <code>[plugins.sources]</code>, written through <a href="/docs/cli/ewe-conf/">ewe-conf</a>. This is what syncs.</dd></div>
+		<div class="row"><dt><code>~/.config/ewe/ewe.conf</code></dt><dd><code>[plugins].enabled</code>, <code>[plugins].removed</code> (bundled plugins you took away, so a later ewe update leaves them out) and <code>[plugins.sources]</code> (a git URL, <code>local</code>, or <code>bundled</code>), written through <a href="/docs/cli/ewe-conf/">ewe-conf</a>. This is what syncs.</dd></div>
+		<div class="row"><dt><code>~/.config/hypr/generated/plugin-keybinds.lua</code></dt><dd>The Hyprland binds declared by enabled plugins' manifests (<code>keybinds</code>), rewritten after every enable, disable, add, remove, update, dev and seed.</dd></div>
 		<div class="row"><dt><code>~/.local/state/ewe/plugin-boots.json</code></dt><dd>The crash guard: recent start times, and the last safe-mode record with its suspects.</dd></div>
 	</dl>
 	<Callout type="warning" title="Installing never runs plugin code">
