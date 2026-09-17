@@ -10,16 +10,22 @@
 		<meta http-equiv="refresh" content="0; url=/privacy/" />
 		<meta name="robots" content="noindex" />
 		<style>
+			/* This file is served on its own, so it cannot read tokens.css: the
+			   two schemes are written out, Ewe Dark first. */
 			body {
-				background: #020202;
-				color: #aeaeb2;
-				font-family: Ubuntu, system-ui, sans-serif;
+				background: #0b0a08;
+				color: #d5d2cb;
+				font-family: Geist, 'Noto Sans Georgian', system-ui, sans-serif;
 				display: grid;
 				place-items: center;
 				min-height: 100svh;
 				margin: 0;
 			}
-			a { color: #0a84ff; }
+			a { color: #f8c23a; }
+			@media (prefers-color-scheme: light) {
+				body { background: #f4f2ee; color: #423f3a; }
+				a { color: #805708; }
+			}
 		</style>
 	</head>
 	<body>
