@@ -112,7 +112,7 @@
 	</div>
 	<p class="muted">
 		Error codes and technical details belong in a details section or the log, never in the
-		headline. Don't apologise, and don't thank people for waiting.
+		headline. Don't apologize, and don't thank people for waiting.
 	</p>
 </section>
 

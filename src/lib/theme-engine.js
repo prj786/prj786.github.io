@@ -1,6 +1,6 @@
 // ewe-theme, in the browser.
 //
-// A PORT of the colour half of ewe/bin/ewe-theme (Ewe design system v3): the
+// A PORT of the color half of ewe/bin/ewe-theme (Ewe design system v3): the
 // same OKLCH maths, the same two built-in Base24 schemes, the same role
 // table, the same contrast guarantees, the same look-preset and Glass
 // remaps. It exists so the theming page can *show* the derivation instead of
@@ -10,7 +10,7 @@
 // Keep it faithful. If the Python changes, change this — and run
 // scripts/check-engine.sh, which derives both and compares every role.
 
-// ═══ colour math — sRGB <-> OKLCH ════════════════════════════════════════
+// ═══ color math — sRGB <-> OKLCH ════════════════════════════════════════
 const lin = (c) => {
 	c /= 255;
 	return c <= 0.04045 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4;
@@ -368,7 +368,7 @@ function deriveRoles(sc, accent) {
 	return [c, alpha];
 }
 
-/** A status colour as a tinted ground: at the subtle L, chroma capped. */
+/** A status color as a tinted ground: at the subtle L, chroma capped. */
 function statusSubtle(color, variant) {
 	const [Ls, Cmax] = STATUS_SUBTLE[variant];
 	const [, C, H] = oklch(color);
@@ -583,7 +583,7 @@ export function derive({
 				color[st + '-subtle'] = statusSubtle(color[st], variant);
 	}
 
-	// ── look presets: a remap of a few tokens, never colours or type ───────
+	// ── look presets: a remap of a few tokens, never colors or type ───────
 	const [slight, secondary, primary, rounded, full] = CORNER[corner] ?? CORNER.medium;
 	const [ctrlMd, ctrlLg] = DENSITY[density] ?? DENSITY.comfortable;
 	const [bw1, bw2] = STROKE[stroke] ?? STROKE.thin;

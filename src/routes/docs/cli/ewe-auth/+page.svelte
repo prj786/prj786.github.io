@@ -64,7 +64,7 @@
 	<p>Two locations are read, in order:</p>
 	<dl class="rows">
 		<div class="row"><dt><code>~/.config/ewe/oauth-client.json</code></dt><dd>The one to use. Either a flat object or the console's <code>installed</code> download, verbatim.</dd></div>
-		<div class="row"><dt><code>~/.config/quickshell/google-oauth.json</code></dt><dd>The older shell location, still honoured.</dd></div>
+		<div class="row"><dt><code>~/.config/quickshell/google-oauth.json</code></dt><dd>The older shell location, still honored.</dd></div>
 	</dl>
 	<p>
 		Changing the client invalidates the stored refresh token by definition. The broker records which

@@ -126,7 +126,7 @@
 		<p class="eyebrow">What you get</p>
 		<h2>A desktop, not a starting point.</h2>
 		<p>
-			Greeter, bar, dock, launcher, control centre, software manager, settings and lock screen — all
+			Greeter, bar, dock, launcher, Quick settings, software manager, settings and lock screen — all
 			first-party, all matching. Nothing to assemble afterwards — and, since 0.14, plugins for what
 			you would add.
 		</p>
@@ -139,7 +139,7 @@
 				<h3>A shell written once</h3>
 				<p>
 					Hyprland and a first-party Quickshell shell — bar, dock, fuzzy launcher, notifications,
-					control centre, lock, OSD and clipboard history. <code>Super+D</code> finds apps, files and
+					Quick settings, lock, OSD and clipboard history. <code>Super+D</code> finds apps, files and
 					folders.
 				</p>
 			</div>
@@ -162,7 +162,7 @@
 		</div>
 		<a class="card act tile" href="/theming/">
 			<span class="ico"><Icon name="palette" size={18} /></span>
-			<h3>Your colours, everywhere</h3>
+			<h3>Your colors, everywhere</h3>
 			<p>One accent, an imported scheme, or the wallpaper's own palette — the shell, GTK, Qt, icons, cursor and window borders follow, live.</p>
 			{#each RAMPS as r}
 				<div class="ramp" title="The accent ramp {r.who}">
@@ -184,7 +184,7 @@
 			<span class="ico"><Icon name="cast" size={18} /></span>
 			<h3>Cast &amp; phone</h3>
 			<p>
-				Mirror to a Samsung or Android TV from the control centre; phone battery, notifications and
+				Mirror to a Samsung or Android TV from Quick settings; phone battery, notifications and
 				SMS in the same panel.
 			</p>
 		</div>
@@ -211,7 +211,7 @@
 			<h3>The unglamorous parts</h3>
 			<p>
 				Silent boot to a themed greeter, a shell that restarts itself if it crashes, and power
-				behaviour that protects unsaved work.
+				behavior that protects unsaved work.
 			</p>
 		</div>
 	</div>

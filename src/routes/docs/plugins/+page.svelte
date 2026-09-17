@@ -10,7 +10,7 @@
 	<title>Plugins — ewe docs</title>
 	<meta
 		name="description"
-		content="Third-party bar widgets, panels and services for the ewe shell: a git URL in, one config bit, the same colours and the same rules as the first-party desktop."
+		content="Third-party bar widgets, panels and services for the ewe shell: a git URL in, one config bit, the same colors and the same rules as the first-party desktop."
 	/>
 </svelte:head>
 
@@ -46,7 +46,7 @@ cd acme.clock && ewe-plugin dev .     # linked, enabled, shell restarted, log fo
 	/>
 	<p>
 		<code>create</code> gives you a git repository with a <em>working</em> plugin in it — a manifest,
-		one QML per kind, a README that states the contract, an MIT licence and a first commit. You own
+		one QML per kind, a README that states the contract, an MIT license and a first commit. You own
 		the QML: what it draws and does. ewe owns where it lives and what the user may change: a bar
 		widget's section and visibility, a desktop widget's place, whether it is sticky or hidden, and
 		the values of the <code>settings</code> you declare, which Komble shows as a form. Push the repo

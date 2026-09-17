@@ -30,7 +30,7 @@
 		Casting on Linux usually means launching somebody else's application — a window in a toolkit this
 		desktop does not use, controlled by killing the process. ewe does the protocols itself instead:
 		this daemon captures through the desktop portal and speaks to the television directly, so the
-		whole flow stays in the Control Center and no foreign window ever appears.
+		whole flow stays in Quick settings and no foreign window ever appears.
 	</p>
 	<p>
 		It is a <strong>daemon</strong>, not a command with subcommands. It runs outside the shell on
@@ -53,7 +53,7 @@
 	<CommandTable rows={verbs} head="Command" />
 	<Callout>
 		<p>
-			The Control Center sends exactly these. There is no separate command-line client — the socket
+			Quick settings sends exactly these. There is no separate command-line client — the socket
 			is the interface, which is why the Cast card and any script see the same state.
 		</p>
 	</Callout>

@@ -27,7 +27,7 @@
 			<div><dt><kbd>Super</kbd><kbd>E</kbd></dt><dd>File manager</dd></div>
 			<div><dt><kbd>Super</kbd><kbd>B</kbd></dt><dd>Browser</dd></div>
 			<div><dt><kbd>Super</kbd><kbd>,</kbd></dt><dd>Settings</dd></div>
-			<div><dt><kbd>Super</kbd><kbd>N</kbd></dt><dd>Control centre</dd></div>
+			<div><dt><kbd>Super</kbd><kbd>N</kbd></dt><dd>Quick settings</dd></div>
 			<div><dt><kbd>Super</kbd><kbd>C</kbd></dt><dd>Calendar</dd></div>
 			<div><dt><kbd>Super</kbd><kbd>Shift</kbd><kbd>C</kbd></dt><dd>Cast to TV</dd></div>
 			<div><dt><kbd>Super</kbd><kbd>P</kbd></dt><dd>Fill a login from your password manager</dd></div>

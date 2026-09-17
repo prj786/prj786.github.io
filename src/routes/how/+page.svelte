@@ -131,7 +131,7 @@
 			<div class="card">
 				<h3><Icon name="circle-check" size={16} />Synced</h3>
 				<ul>
-					<li>Theme, accent, look and animations</li>
+					<li>Scheme, accent, look and animations</li>
 					<li>Dock, pinned apps, startup apps, places</li>
 					<li>Wallpapers, window rules, display profiles</li>
 					<li>Keyboard, touchpad and input devices</li>

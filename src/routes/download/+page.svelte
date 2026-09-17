@@ -80,7 +80,7 @@
 		</p>
 		<p>
 			You land on the ewe desktop, running from the stick, with <strong>Install ewe</strong> first in
-			the dock. Everything you see is the real system: open the control centre with
+			the dock. Everything you see is the real system: open Quick settings with
 			<code>Super+N</code>, try Komble, change the accent. Nothing is written to your disks until you
 			press the red Install button on the Summary screen.
 		</p>

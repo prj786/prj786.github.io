@@ -1,5 +1,5 @@
 <script>
-	// One colour role, painted with the role itself. The chip is `var(--role)`,
+	// One color role, painted with the role itself. The chip is `var(--role)`,
 	// so it is whatever the active scheme says; the hex appears once the page
 	// is live (see tokens.svelte.js).
 	import { tokenValue } from './tokens.svelte.js';

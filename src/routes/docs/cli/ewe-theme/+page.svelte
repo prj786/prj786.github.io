@@ -7,8 +7,8 @@
 		{ cmd: 'show', does: 'The whole token set for this machine, as JSON — what the shell and the apps read. Includes css_vars, which the apps inject at runtime, and adjusted, the roles the contrast rules had to move.' },
 		{ cmd: 'build', args: '[--json F] [--css F] [--scheme SLUG] [--selector SEL]', does: 'Write theme-tokens.json (this machine) and tokens.css (the repo baseline, built from the defaults). ewe-conf runs it after every [desktop.theme] change. With --scheme it builds the CSS for another scheme without touching ewe.conf, and --selector wraps it in something other than :root — which is how this site gets its light and dark blocks.' },
 		{ cmd: 'check', does: 'Drift: is what is on disk what the generator would build now?', prints: 'ok, or which file is stale' },
-		{ cmd: 'preview', args: '[--out F]', does: 'A specimen page wearing the current tokens: ramps, controls, rows, glass, every type style and every colour.' },
-		{ cmd: 'scheme list', does: 'Every scheme — the two built-in ones first — with a five-colour swatch each, and which is active.' },
+		{ cmd: 'preview', args: '[--out F]', does: 'A specimen page wearing the current tokens: ramps, controls, rows, glass, every type style and every color.' },
+		{ cmd: 'scheme list', does: 'Every scheme — the two built-in ones first — with a five-color swatch each, and which is active.' },
 		{ cmd: 'scheme show', args: '[slug]', does: 'One scheme’s palette, the roles it produces, and every role the guarantees adjusted, with the reason.' },
 		{ cmd: 'scheme apply', args: '<slug>', does: 'Switch to ewe-dark, ewe-light or a user scheme. Repaints everything through ewe-conf’s hooks.' },
 		{ cmd: 'scheme import', args: '<file | url> [--name N] [--slug S] [--accent #hex] [--flavour F] [--apply]', does: 'Base16 / Base24 YAML, Omarchy colors.toml, Catppuccin palette.json (--flavour latte…mocha), Gogh yml. The format is sniffed. A file that claims a built-in slug is refused; give it another name.' },
@@ -16,7 +16,7 @@
 		{ cmd: 'scheme remove', args: '<slug>', does: 'Forget a user scheme; if it was active, back to Ewe Dark. Built-in schemes cannot be removed.' },
 		{ cmd: 'scheme export', args: '[slug]', does: 'The scheme as Base24 YAML on stdout — palette, keys and overrides, ready to import somewhere else.' },
 		{ cmd: 'scheme set', args: '<field> <value> [--slug S]', does: 'One field of a user scheme: accent, name, variant (dark | light), semantic, base00…base17, or overrides.<role> — with none to clear an override. Built-in schemes refuse it; duplicate first.' },
-		{ cmd: 'scheme from-wallpaper', args: '[--path F] [--light] [--name N] [--apply] [--if-changed]', does: 'A palette from the image: its most present colour becomes the surfaces, its strongest the accent. --if-changed does nothing when the wallpaper scheme already comes from that image.' }
+		{ cmd: 'scheme from-wallpaper', args: '[--path F] [--light] [--name N] [--apply] [--if-changed]', does: 'A palette from the image: its most present color becomes the surfaces, its strongest the accent. --if-changed does nothing when the wallpaper scheme already comes from that image.' }
 	];
 
 	const fields = [
@@ -25,7 +25,7 @@
 		['accent', 'Optional. Without it, base0A or the person’s accent setting'],
 		['semantic', 'true takes success, warning, danger and info from the palette; false keeps Ewe’s own'],
 		['palette', 'Base24: base00–base0F required, base10–base17 optional'],
-		['overrides', 'Any colour role by name, applied after derivation — the guarantees still run over it'],
+		['overrides', 'Any color role by name, applied after derivation — the guarantees still run over it'],
 		['builtin', 'Only on Ewe Dark and Ewe Light; they can be applied, exported and duplicated, not changed or removed']
 	];
 </script>
@@ -45,7 +45,7 @@
 <section>
 	<h2>Why it exists</h2>
 	<p>
-		Nothing in ewe carries a colour of its own. Every surface, outline and label asks for a
+		Nothing in ewe carries a color of its own. Every surface, outline and label asks for a
 		<em>role</em>, and this tool decides what each role is worth — from the active scheme, the
 		accent, the look presets and the accessibility modes. <a href="/theming/">How theming works</a>
 		shows the derivation running live, and
@@ -66,7 +66,7 @@
 	<CommandTable rows={verbs} />
 	<p class="muted">
 		The <code>scheme</code> verbs write <code>ewe.conf</code> through <code>ewe-conf</code>, whose
-		hooks rebuild the tokens, run the colour-scheme script for GTK, Qt, kitty and the rest, and poke
+		hooks rebuild the tokens, run the color-scheme script for GTK, Qt, kitty and the rest, and poke
 		the shell. <code>--no-hooks</code> writes only. Every command prints one JSON object and exits
 		0, like the other ewe tools.
 	</p>
@@ -111,7 +111,7 @@ ewe-theme scheme show                           # the roles, and what was adjust
 </section>
 
 <section>
-	<h2>Beyond colour</h2>
+	<h2>Beyond color</h2>
 	<p>
 		The same build also carries the look presets and the accessibility modes, because they are
 		remaps of the same tokens: <code>corner</code>, <code>density</code> and <code>stroke</code> in

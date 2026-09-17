@@ -62,7 +62,7 @@
 <h1>Typography</h1>
 <p class="lede">
 	Interface text is set in Geist, code in Geist Mono — both variable faces with matching italics,
-	under the SIL Open Font Licence. This page is set in them; so is the desktop.
+	under the SIL Open Font License. This page is set in them; so is the desktop.
 </p>
 
 <section>
@@ -112,7 +112,7 @@
 		{/each}
 	</div>
 	<p class="muted">
-		Capitalisation is not part of the style: <code>overline</code> is set in capitals in English and
+		Capitalization is not part of the style: <code>overline</code> is set in capitals in English and
 		left alone in Georgian, which has none.
 	</p>
 </section>

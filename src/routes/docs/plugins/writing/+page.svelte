@@ -270,7 +270,7 @@ ewe-plugin add https://github.com/acme/ewe-weather.git --enable`}
 <section>
 	<h2>Conventions worth keeping</h2>
 	<dl class="rows">
-		<div class="row"><dt>Ask for a role, never a value</dt><dd><code>Theme.bg2</code>, not a hex. The accent is the user's and changes at runtime; a hard-coded colour is the one thing that will look foreign.</dd></div>
+		<div class="row"><dt>Ask for a role, never a value</dt><dd><code>Theme.bg2</code>, not a hex. The accent is the user's and changes at runtime; a hard-coded color is the one thing that will look foreign.</dd></div>
 		<div class="row"><dt>Own your state</dt><dd>Keep files under <code>~/.local/state/ewe/</code> or your own directory; never write <code>ewe.conf</code> — call <code>ewe-conf set</code> if you must persist a setting.</dd></div>
 		<div class="row"><dt>Stay small</dt><dd>People will read your code before enabling it, because the docs tell them to. One file per kind, no build step, a README that says what it talks to.</dd></div>
 	</dl>

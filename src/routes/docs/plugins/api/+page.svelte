@@ -18,7 +18,7 @@
 	const reads = [
 		['version', 'The desktop version, e.g. "0.14.0-beta".'],
 		['accentColor', 'The user’s accent. Theme.accent already follows it; read this only to react to a change.'],
-		['dnd', 'Do Not Disturb is on.'],
+		['dnd', 'Do not disturb is on.'],
 		['onBattery · lowPower', 'Unplugged; and the low-power mode the shell enters on battery.'],
 		['locked', 'The session lock is up — stop animating, stop polling.'],
 		['barShows(key)', 'Whether a bar indicator is shown; your widget’s key is plugin:<id>.']
@@ -52,7 +52,7 @@
 	<p>
 		The whole vocabulary is public, by the names the designer's specification fixes. Ask for a role,
 		never a value: the greys and the brand ramp are derived from the one accent in
-		<code>ewe.conf</code> at runtime, and a plugin that uses roles recolours with the desktop.
+		<code>ewe.conf</code> at runtime, and a plugin that uses roles recolors with the desktop.
 	</p>
 	<dl class="rows">
 		{#each theme as [group, roles]}

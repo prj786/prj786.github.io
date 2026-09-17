@@ -1,6 +1,6 @@
 <script>
 	// A block of literal terminal text. No syntax highlighting: the site ships
-	// no JS to read, and a shell line is legible without colours.
+	// no JS to read, and a shell line is legible without colors.
 	let { code = '', label = 'Copy', copyable = true } = $props();
 	let copied = $state(false);
 

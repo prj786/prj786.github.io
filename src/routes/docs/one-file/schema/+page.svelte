@@ -4,12 +4,15 @@
 	import PageNav from '$lib/docs/PageNav.svelte';
 
 	const theme = [
-		['color_scheme', '"dark"', 'Always dark — ewe is dark-only by decision. The key stays because Komble reads it to follow the desktop.'],
-		['accent', '"#0a84ff"', 'Recolours the whole shell live.'],
-		['scheme', '"accent"', 'Or the slug of a palette in [[desktop.theme.schemes]] — an imported, hand-written or wallpaper-derived scheme (ewe-theme scheme …). "wallpaper" follows the wallpaper.'],
-		['theme_name', '"flock"', 'Soft greys, or "blacksheep" for absolute black.'],
+		['scheme', '"ewe-dark"', 'Ewe Dark, Ewe Light, or the slug of a palette in [[desktop.theme.schemes]] — imported, hand-written or taken from the wallpaper (ewe-theme scheme …).'],
+		['accent', '"#eeb407"', 'Any color. The accent roles and the accent ramp are derived from it, live.'],
+		['corner', '"medium"', 'The radii: none, small, medium or large.'],
+		['density', '"comfortable"', 'Control and row heights: compact (24), comfortable (28) or roomy (32).'],
+		['stroke', '"thin"', 'Outlines: none, thin (1px) or thick (2px).'],
+		['bar_opacity', '100', '0–100. Below 100 the bar, dock and lock card go glass and the wallpaper behind them is blurred; the Glass preset is 80.'],
+		['app_blur', 'false', 'Every window at 85%, blurred behind. Fullscreen windows stay solid.'],
+		['window_transparency', 'false', 'Unfocused windows at 97%.'],
 		['tint_borders', 'true', 'Accent-tinted window borders.'],
-		['window_transparency', 'false', 'Translucent unfocused windows.'],
 		['avatar_shape', '"circle"', 'The greeter and bar avatar mask; or "rounded".']
 	];
 </script>
@@ -36,7 +39,7 @@
 
 <section>
 	<h2><code>[desktop.theme]</code></h2>
-	<p>Colours and look. Applying this section re-themes every toolkit — GTK, Qt, the cursor and the icon hue — in one pass.</p>
+	<p>Colors and look. Applying this section re-themes every toolkit — GTK, Qt, the cursor and the icon hue — in one pass.</p>
 	<dl class="rows">
 		{#each theme as [key, dflt, meaning]}
 			<div class="row">
@@ -51,10 +54,13 @@
 	<h2><code>[[desktop.theme.schemes]]</code></h2>
 	<p>
 		One record per scheme: <code>name</code>, <code>slug</code>, <code>variant</code> (<code>dark</code>
-		or <code>light</code>), an optional <code>accent</code>, <code>semantic</code> (status colours from
-		the palette, default on) and a <code>palette</code> of <code>base00</code>…<code>base0F</code>
+		or <code>light</code>), an optional <code>accent</code>, <code>semantic</code> (status colors from
+		the palette, default on), an <code>overrides</code> table for roles the palette cannot express,
+		and a <code>palette</code> of <code>base00</code>…<code>base0F</code>
 		(<code>base10</code>…<code>base17</code> optional) — Base24. Written by
-		<a href="/docs/cli/ewe-theme/">ewe-theme scheme</a>, never by hand; it syncs with the file.
+		<a href="/docs/cli/ewe-theme/">ewe-theme scheme</a>, never by hand; it syncs with the file. Ewe
+		Dark and Ewe Light are not in here: the generator knows them, so a synced or hand-edited file
+		can never lose them.
 	</p>
 	<Code
 		code={`[desktop.theme]
@@ -70,6 +76,16 @@ base00 = "#282828"
 # … base01 – base0F`}
 		copyable={false}
 	/>
+</section>
+
+<section>
+	<h2><code>[desktop.accessibility]</code></h2>
+	<p>
+		<code>reduce_motion</code>, <code>reduce_transparency</code> and
+		<code>increase_contrast</code> (all false), and <code>text_scale</code> — 100, 115 or 130.
+		Each one remaps tokens rather than changing the layout;
+		<a href="/design/accessibility/">what each changes</a> is in the design system.
+	</p>
 </section>
 
 <section>
@@ -268,7 +284,7 @@ enabled = ["acme.weather"]
 	<h2><code>[desktop.browser]</code></h2>
 	<p>
 		<code>layout</code> chooses the browser's tab layout — vertical, ewe's default, or horizontal. The
-		browser's own colours always follow <code>[desktop.theme]</code>.
+		browser's own colors always follow <code>[desktop.theme]</code>.
 	</p>
 </section>
 
