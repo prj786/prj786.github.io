@@ -1,0 +1,33 @@
+/* Geist and Geist Mono — SIL Open Font Licence 1.1 (GEIST-LICENSE.txt),
+ * self-hosted, no third-party requests. The faces of the Ewe design system,
+ * copied from ewe/design/system/fonts/: variable (100–900) with italics.
+ * Geist has no Georgian; the stacks in tokens.css fall back to a locally
+ * installed Noto Sans Georgian. */
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('/fonts/Geist-Variable.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Geist';
+  font-style: italic;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('/fonts/Geist-Italic-Variable.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('/fonts/GeistMono-Variable.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: italic;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('/fonts/GeistMono-Italic-Variable.woff2') format('woff2');
+}

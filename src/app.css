@@ -27,8 +27,8 @@
 @import './tokens.css';
 
 :root {
-	--font: Inter, system-ui, -apple-system, 'Segoe UI', sans-serif;
-	--mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+	--font: var(--font-sans);
+	--mono: var(--font-mono);
 
 	--measure: 64ch;
 	--page: 58rem;
