@@ -13,7 +13,7 @@
 import { readFileSync, writeFileSync } from 'node:fs';
 
 const NAMES = [
-	'accessibility', 'arrow-right', 'bell', 'blend', 'blocks', 'book-open',
+	'accessibility', 'arrow-right', 'move-horizontal', 'bell', 'blend', 'blocks', 'book-open',
 	'box', 'calendar', 'cast', 'check', 'chevron-right', 'circle-check',
 	'circle-user', 'cloud', 'cloud-off', 'component', 'contrast', 'copy',
 	'download', 'external-link', 'eye', 'file-text', 'folder-sync', 'gauge',

@@ -20,7 +20,7 @@
 
 	const PRINCIPLES = [
 		['sparkles', 'Modern, but restrained', 'Contemporary without chasing a trend: flat, solid color, no gloss, no glow, no heavy shadow.'],
-		['move', 'Symmetric', 'Padding and spacing mirror across opposite sides. 4px on the left is 4px on the right.'],
+		['move-horizontal', 'Symmetric', 'Padding and spacing mirror across opposite sides. 4px on the left is 4px on the right.'],
 		['component', 'Consistent', 'One job, one component, used the same way everywhere it appears.'],
 		['square-round-corner', 'Softly rounded', 'Gentle corners — 8px on controls, 10px on panels. Full pills are kept for badges and tags.'],
 		['ruler', 'Two line weights', 'A border is 1px or 2px. There is no third.'],
