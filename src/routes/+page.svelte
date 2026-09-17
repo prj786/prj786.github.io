@@ -2,7 +2,7 @@
 	import Icon from '$lib/Icon.svelte';
 	import Shot from '$lib/Shot.svelte';
 	import { VERSION, ISO_SIZE } from '$lib/release.js';
-	import { derive, BRAND_STOPS } from '$lib/theme-engine.js';
+	import { accentRamp, RAMP_STEPS, EWELLOW } from '$lib/theme-engine.js';
 
 	// the parts ewe is assembled from — named, not hidden
 	const STACK = [
@@ -18,12 +18,12 @@
 		['circle-user', 'Who you are', 'Name, username, password, and a name for the computer.']
 	];
 
-	// Two accents through the same engine /theming/ runs live, derived at build
-	// time: the default this page wears, and the orange in the screenshots.
+	// Two accents through the same engine /theming/ runs live, derived at
+	// build time: the gold ewe ships with, and the orange in the screenshots.
 	const RAMPS = [
-		['#0a84ff', 'this page'],
-		['#ff9f0a', 'the screenshots']
-	].map(([hex, who]) => ({ who, brand: derive(hex).brand }));
+		[EWELLOW, 'ewe ships with'],
+		['#ff9f0a', 'the screenshots wear']
+	].map(([hex, who]) => ({ who, ramp: accentRamp(hex) }));
 </script>
 
 <svelte:head>
@@ -165,8 +165,8 @@
 			<h3>Your colours, everywhere</h3>
 			<p>One accent, an imported scheme, or the wallpaper's own palette — the shell, GTK, Qt, icons, cursor and window borders follow, live.</p>
 			{#each RAMPS as r}
-				<div class="ramp" title="The brand ramp {r.who} is wearing">
-					{#each BRAND_STOPS as s}<span style="background:{r.brand[s]}"></span>{/each}
+				<div class="ramp" title="The accent ramp {r.who}">
+					{#each RAMP_STEPS as s}<span style="background:{r.ramp[s]}"></span>{/each}
 				</div>
 			{/each}
 			<span class="go">How theming works <Icon name="arrow-right" size={14} /></span>
