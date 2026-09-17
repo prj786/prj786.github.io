@@ -3,6 +3,7 @@
 	import { page } from '$app/stores';
 	import { NAV, OS_REPO, ISSUES } from '$lib/nav.js';
 	import Icon from '$lib/Icon.svelte';
+	import ThemeToggle from '$lib/ThemeToggle.svelte';
 
 	let { children } = $props();
 	const active = (href) => $page.url.pathname === href;
@@ -29,6 +30,7 @@
 
 		<div class="right">
 			<a class="gh" href={OS_REPO}>GitHub</a>
+			<ThemeToggle />
 			<a class="btn primary sm" href="/download/"><Icon name="download" size={15} /> Download</a>
 		</div>
 	</div>

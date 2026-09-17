@@ -40,7 +40,24 @@
 	/* one curve for the whole site, the way the shell has one Animations pane */
 	--ease: cubic-bezier(0.2, 0.8, 0.2, 1);
 
+	/* Motion (design system README): the Normal-speed durations and the two
+	   curves, defined once here because motion cannot be a design token.
+	   ease-out is OutCubic, ease-in-out is InOutCubic; nothing overshoots. */
+	--dur-fast: 150ms;
+	--dur-base: 200ms;
+	--dur-slow: 250ms;
+	--ease-out: cubic-bezier(0.33, 1, 0.68, 1);
+	--ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+
 	color-scheme: dark;
+}
+:root[data-theme='light'] {
+	color-scheme: light;
+}
+@media (prefers-color-scheme: light) {
+	:root:not([data-theme='dark']) {
+		color-scheme: light;
+	}
 }
 
 *,
