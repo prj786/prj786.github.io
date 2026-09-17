@@ -392,11 +392,11 @@
 	   produced, NOT from the page's own tokens — that is the whole point. */
 	.demo {
 		margin-top: 1.5rem;
-		background: var(--bg-3);
-		border: var(--stroke-width) solid var(--stroke-2);
-		border-radius: var(--radius-panel);
+		background: var(--surface-base);
+		border: var(--border-width-1) solid var(--border-subtle);
+		border-radius: var(--rounded);
 		padding: 1.1rem;
-		color: var(--fg-1);
+		color: var(--text-primary);
 	}
 
 	.controls {
@@ -410,9 +410,9 @@
 		display: inline-flex;
 		align-items: center;
 		gap: 0.5rem;
-		background: var(--bg-1);
-		border: var(--stroke-width) solid var(--stroke-1);
-		border-radius: var(--radius-control);
+		background: var(--surface-raised);
+		border: var(--border-width-1) solid var(--border-strong);
+		border-radius: var(--primary);
 		padding: 0.25rem 0.55rem 0.25rem 0.3rem;
 		cursor: pointer;
 	}
@@ -425,9 +425,9 @@
 		cursor: pointer;
 	}
 	.hex {
-		font-family: var(--mono);
+		font-family: var(--font-mono);
 		font-size: 0.78rem;
-		color: var(--fg-2);
+		color: var(--text-secondary);
 		text-transform: lowercase;
 	}
 	.presets {
@@ -437,20 +437,20 @@
 	.preset {
 		width: 22px;
 		height: 22px;
-		border-radius: var(--radius-control);
-		border: var(--stroke-width) solid var(--stroke-2);
+		border-radius: var(--primary);
+		border: var(--border-width-1) solid var(--border-subtle);
 		cursor: pointer;
 		padding: 0;
 	}
 	.preset.on {
-		box-shadow: 0 0 0 2px var(--bg-3), 0 0 0 4px var(--brand-fg-1);
+		box-shadow: 0 0 0 2px var(--surface-base), 0 0 0 4px var(--accent-text);
 	}
 	.corners {
 		display: flex;
 		margin-left: auto;
-		background: var(--bg-2);
-		border: var(--stroke-width) solid var(--stroke-2);
-		border-radius: var(--radius-control);
+		background: var(--surface-raised);
+		border: var(--border-width-1) solid var(--border-subtle);
+		border-radius: var(--primary);
 		overflow: hidden;
 	}
 	.seg {
@@ -459,20 +459,20 @@
 		padding: 0.24rem 0.6rem;
 		background: none;
 		border: 0;
-		color: var(--fg-3);
+		color: var(--text-muted);
 		cursor: pointer;
 	}
 	.seg.on {
-		background: var(--brand-bg);
-		color: var(--fg-on-brand);
+		background: var(--accent);
+		color: var(--on-accent);
 	}
 
 	/* ── the sketch of a desktop ─────────────────────────────────────── */
 	.mock {
-		border: var(--stroke-width) solid var(--stroke-2);
-		border-radius: var(--radius-card);
+		border: var(--border-width-1) solid var(--border-subtle);
+		border-radius: var(--rounded);
 		overflow: hidden;
-		background: var(--bg-4);
+		background: var(--surface-sunken);
 	}
 	.mockbar {
 		display: flex;
@@ -480,9 +480,9 @@
 		gap: 0.6rem;
 		height: 34px;
 		padding: 0 0.7rem;
-		background: var(--bg-3);
-		border-bottom: var(--stroke-width) solid var(--stroke-2);
-		color: var(--fg-3);
+		background: var(--surface-base);
+		border-bottom: var(--border-width-1) solid var(--border-subtle);
+		color: var(--text-muted);
 	}
 	.grow {
 		flex: 1;
@@ -492,12 +492,12 @@
 		line-height: 1;
 		padding: 0.2rem 0.35rem;
 		border-radius: 999px;
-		background: var(--brand-bg);
-		color: var(--fg-on-brand);
+		background: var(--accent);
+		color: var(--on-accent);
 	}
 	.clock {
 		font-size: 0.78rem;
-		color: var(--fg-2);
+		color: var(--text-secondary);
 	}
 	.mockbody {
 		display: flex;
@@ -507,9 +507,9 @@
 	}
 	.tile {
 		flex: 1 1 15rem;
-		background: var(--bg-1);
-		border: var(--stroke-width) solid var(--stroke-2);
-		border-radius: var(--radius-card);
+		background: var(--surface-raised);
+		border: var(--border-width-1) solid var(--border-subtle);
+		border-radius: var(--rounded);
 		padding: 0.8rem;
 	}
 	.tilehead {
@@ -518,10 +518,10 @@
 		gap: 0.45rem;
 		font-size: 0.86rem;
 		margin-bottom: 0.5rem;
-		color: var(--brand-fg-1);
+		color: var(--accent-text);
 	}
 	.tilehead strong {
-		color: var(--fg-1);
+		color: var(--text-primary);
 		font-weight: 500;
 	}
 	.listrow {
@@ -529,21 +529,21 @@
 		align-items: center;
 		justify-content: space-between;
 		font-size: 0.82rem;
-		color: var(--fg-2);
+		color: var(--text-secondary);
 		padding: 0.4rem 0;
-		border-top: var(--stroke-width) solid var(--stroke-3);
+		border-top: var(--border-width-1) solid var(--border-subtle);
 	}
 	.listrow .dot {
 		width: 14px;
 		height: 14px;
 		border-radius: 999px;
-		background: var(--brand-bg);
+		background: var(--accent);
 	}
 	.sw {
 		width: 32px;
 		height: 16px;
 		border-radius: 999px;
-		background: var(--compound-brand-bg);
+		background: var(--accent);
 		position: relative;
 		display: inline-block;
 	}
@@ -554,7 +554,7 @@
 		width: 10px;
 		height: 10px;
 		border-radius: 999px;
-		background: var(--fg-inverted);
+		background: var(--on-accent);
 	}
 	.mockbtns {
 		display: flex;
@@ -565,21 +565,21 @@
 		font: inherit;
 		font-size: 0.8rem;
 		padding: 0.32rem 0.75rem;
-		border-radius: var(--radius-control);
-		border: var(--stroke-width) solid var(--stroke-1);
-		background: var(--bg-1);
-		color: var(--fg-1);
+		border-radius: var(--primary);
+		border: var(--border-width-1) solid var(--border-strong);
+		background: var(--surface-raised);
+		color: var(--text-primary);
 		cursor: pointer;
 	}
 	.mb.primary {
-		background: var(--brand-bg);
-		border-color: var(--brand-bg);
-		color: var(--fg-on-brand);
+		background: var(--accent);
+		border-color: var(--accent);
+		color: var(--on-accent);
 	}
 	.mocknote {
 		flex: 1 1 14rem;
 		font-size: 0.85rem;
-		color: var(--fg-3);
+		color: var(--text-muted);
 		margin: 0;
 		align-self: center;
 	}
@@ -589,15 +589,15 @@
 		font-size: 0.74rem;
 		letter-spacing: 0.1em;
 		text-transform: uppercase;
-		color: var(--fg-4);
+		color: var(--text-muted);
 		margin: 1.1rem 0 0.45rem;
 	}
 	.ramp {
 		display: flex;
 		height: 30px;
-		border-radius: var(--radius-control);
+		border-radius: var(--primary);
 		overflow: hidden;
-		border: var(--stroke-width) solid var(--stroke-2);
+		border: var(--border-width-1) solid var(--border-subtle);
 	}
 	.ramp span {
 		flex: 1;
@@ -614,13 +614,13 @@
 		gap: 0.5rem;
 		font-size: 0.78rem;
 		padding: 0.25rem 0;
-		border-bottom: var(--stroke-width) solid var(--stroke-3);
+		border-bottom: var(--border-width-1) solid var(--border-subtle);
 	}
 	.role s {
 		width: 18px;
 		height: 18px;
-		border-radius: var(--radius-control);
-		border: var(--stroke-width) solid var(--stroke-2);
+		border-radius: var(--primary);
+		border: var(--border-width-1) solid var(--border-subtle);
 		display: block;
 	}
 	.role code {
@@ -628,16 +628,16 @@
 		border: 0;
 		padding: 0;
 		font-size: 0.76rem;
-		color: var(--fg-2);
+		color: var(--text-secondary);
 	}
 	.role span {
-		color: var(--fg-4);
+		color: var(--text-muted);
 	}
 	.role b {
-		font-family: var(--mono);
+		font-family: var(--font-mono);
 		font-size: 0.72rem;
 		font-weight: 400;
-		color: var(--fg-3);
+		color: var(--text-muted);
 	}
 	@media (max-width: 560px) {
 		.role {
@@ -653,7 +653,7 @@
 		margin-top: 0.9rem;
 	}
 	.rows :global(.icon) {
-		color: var(--fg-3);
+		color: var(--text-muted);
 	}
 	.card h3 :global(.icon) {
 		color: var(--accent);
@@ -671,9 +671,9 @@
 		display: flex;
 		gap: 1rem;
 		align-items: flex-start;
-		background: var(--bg-2);
-		border: var(--stroke-width) solid var(--stroke-2);
-		border-radius: var(--radius-card);
+		background: var(--surface-raised);
+		border: var(--border-width-1) solid var(--border-subtle);
+		border-radius: var(--rounded);
 		padding: 0.9rem 1.05rem;
 		margin: 0;
 	}
@@ -686,7 +686,7 @@
 		place-items: center;
 		font-size: 0.78rem;
 		color: var(--accent);
-		border: var(--stroke-width) solid color-mix(in srgb, var(--accent) 45%, var(--stroke-2));
+		border: var(--border-width-1) solid color-mix(in srgb, var(--accent) 45%, var(--border-subtle));
 	}
 	.chain h3 {
 		margin-bottom: 0.2rem;
@@ -696,9 +696,9 @@
 		margin: 0;
 	}
 	.soon {
-		background: var(--bg-2);
-		border: var(--stroke-width) solid var(--brand-stroke-2);
-		border-radius: var(--radius-panel);
+		background: var(--surface-raised);
+		border: var(--border-width-1) solid var(--ewellow-900);
+		border-radius: var(--rounded);
 		padding: 1.3rem 1.4rem;
 	}
 	.soon h2 {

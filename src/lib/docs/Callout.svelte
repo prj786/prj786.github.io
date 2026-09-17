@@ -10,26 +10,28 @@
 
 <style>
 	.callout {
-		border-left: 2px solid var(--stroke-2);
-		padding: 0.15rem 0 0.15rem 1rem;
-		margin: 1.1rem 0 0;
+		border-left: var(--border-width-2) solid var(--border-subtle);
+		padding: var(--space-xxs) 0 var(--space-xxs) var(--space-md);
+		margin: var(--space-md) 0 0;
 		max-width: var(--measure);
-		font-size: 0.94rem;
-		color: var(--fg-2);
+		font-size: var(--font-size-md);
+		line-height: var(--line-height-md);
+		color: var(--text-secondary);
 	}
 	.callout.warning {
 		border-left-color: var(--warning);
 	}
 	strong {
 		display: block;
-		margin-bottom: 0.2rem;
-		color: var(--fg-1);
-		font-weight: 500;
+		margin-bottom: var(--space-xxs);
+		color: var(--text-primary);
+		font-weight: var(--font-weight-medium);
 	}
 	.body :global(p) {
-		font-size: 0.94rem;
+		font-size: var(--font-size-md);
+		line-height: var(--line-height-md);
 	}
 	.body :global(p + p) {
-		margin-top: 0.6rem;
+		margin-top: var(--space-s);
 	}
 </style>

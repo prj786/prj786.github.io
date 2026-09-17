@@ -11,8 +11,8 @@
 
 <a class="skip" href="#main">Skip to content</a>
 
-<!-- The bar floats, the way the shell's own bar sits on the desktop: a glass
-     capsule over the page rather than a band across it. -->
+<!-- The bar runs edge to edge along the top, at bar-height, the way the
+     shell's own bar sits on the desktop: glass over what scrolls beneath. -->
 <header>
 	<div class="bar">
 		<a class="mark" href="/">
@@ -86,62 +86,56 @@
 		left: -9999px;
 	}
 	.skip:focus {
-		left: 1rem;
-		top: 0.6rem;
+		left: var(--space-md);
+		top: var(--space-s);
 		z-index: 10;
-		background: var(--bg-2);
-		border: var(--stroke-width) solid var(--stroke-2);
-		border-radius: var(--radius-pill);
-		padding: 0.4rem 0.9rem;
+		background: var(--surface-overlay);
+		border: var(--border-width-1) solid var(--border-subtle);
+		border-radius: var(--primary);
+		padding: var(--space-xs) calc(var(--space-s) + var(--space-xs));
 		text-decoration: none;
 	}
 
-	/* ── the floating bar ────────────────────────────────────────────── */
+	/* ── the bar ─────────────────────────────────────────────────────── */
 	header {
 		position: sticky;
 		top: 0;
 		z-index: 5;
 		height: var(--header-h);
-		padding: 0.75rem 1rem 0;
-		/* the header box is only air: let clicks through to the page beside
-		   the capsule, and take them back on the capsule itself */
-		pointer-events: none;
+		background: var(--glass-base);
+		border-bottom: var(--border-width-1) solid var(--glass-border);
+		backdrop-filter: blur(var(--blur-glass));
+		-webkit-backdrop-filter: blur(var(--blur-glass));
 	}
 	.bar {
-		pointer-events: auto;
 		display: flex;
 		align-items: center;
-		gap: 1rem;
-		width: fit-content;
-		max-width: 100%;
-		height: 52px;
+		gap: var(--space-md);
+		height: 100%;
+		max-width: var(--page-wide);
 		margin-inline: auto;
-		padding: 0 0.4rem 0 1rem;
-		border-radius: var(--radius-pill);
-		background: color-mix(in srgb, var(--bg-2) 72%, transparent);
-		border: var(--stroke-width) solid var(--stroke-2);
-		backdrop-filter: blur(20px) saturate(1.5);
-		-webkit-backdrop-filter: blur(20px) saturate(1.5);
-		box-shadow: var(--elevation);
+		padding-inline: var(--space-md);
 	}
 
 	.mark {
 		display: flex;
 		align-items: center;
-		gap: 0.5rem;
+		gap: var(--space-s);
 		text-decoration: none;
-		font-weight: 650;
-		font-size: 1.05rem;
-		letter-spacing: -0.02em;
+		color: var(--text-primary);
+		font-size: var(--font-size-lg);
+		line-height: var(--line-height-lg);
+		font-weight: var(--font-weight-semibold);
 		flex: none;
 	}
 	.mark img {
-		opacity: 0.94;
+		width: var(--icon-xl);
+		height: var(--icon-xl);
 	}
 
 	.links {
 		display: flex;
-		gap: 0.1rem;
+		gap: var(--space-xs);
 		min-width: 0;
 		overflow-x: auto;
 		scrollbar-width: none;
@@ -151,60 +145,64 @@
 	}
 	.links a,
 	.gh {
-		color: var(--fg-2);
+		display: inline-flex;
+		align-items: center;
+		height: var(--control-lg);
+		padding: 0 calc(var(--space-s) + var(--space-xs));
+		border-radius: var(--primary);
+		color: var(--text-secondary);
 		text-decoration: none;
-		font-size: 0.92rem;
+		font-size: var(--font-size-md);
+		line-height: var(--line-height-md);
 		white-space: nowrap;
-		padding: 0.4rem 0.8rem;
-		border-radius: var(--radius-pill);
 		transition:
-			background 140ms ease,
-			color 140ms ease;
+			background-color var(--dur-fast) var(--ease-out),
+			color var(--dur-fast) var(--ease-out);
 	}
 	.links a:hover,
 	.gh:hover {
-		background: var(--subtle-hover);
-		color: var(--fg-1);
+		background: var(--glass-hover);
+		color: var(--text-primary);
+	}
+	.links a:active,
+	.gh:active {
+		background: var(--glass-pressed);
 	}
 	.links a.active {
-		background: var(--subtle-selected);
-		color: var(--fg-1);
+		background: var(--accent-subtle);
+		color: var(--text-primary);
 	}
 
 	.right {
 		display: flex;
 		align-items: center;
-		gap: 0.3rem;
+		gap: var(--space-xs);
+		margin-left: auto;
 		flex: none;
 	}
 	.sm {
-		padding: 0.45rem 0.95rem;
-		font-size: 0.88rem;
+		height: var(--control-lg);
+		padding: 0 calc(var(--space-s) + var(--space-xs));
+		font-size: var(--font-size-md);
 	}
 
-	/* the nav scrolls rather than wraps on narrow screens — tighten it first so
-	   all four fit on a phone, and fade the edge when it genuinely overflows */
-	@media (max-width: 720px) {
+	/* the nav scrolls rather than wraps on narrow screens */
+	@media (max-width: 760px) {
 		.gh {
 			display: none;
 		}
+		.bar {
+			gap: var(--space-s);
+			padding-inline: var(--space-s);
+		}
 	}
 	@media (max-width: 600px) {
-		header {
-			padding-inline: 0.6rem;
-		}
-		.bar {
-			width: 100%;
-			gap: 0.5rem;
-			padding-left: 0.85rem;
-		}
 		.links {
 			flex: 1;
 			mask-image: linear-gradient(to right, #000 88%, transparent);
 		}
 		.links a {
-			font-size: 0.86rem;
-			padding: 0.4rem 0.55rem;
+			padding-inline: var(--space-s);
 		}
 	}
 	@media (max-width: 520px) {
@@ -218,61 +216,67 @@
 
 	/* ── footer ──────────────────────────────────────────────────────── */
 	footer {
-		margin-top: 5rem;
-		border-top: var(--stroke-width) solid var(--stroke-3);
-		padding-block: 3.2rem 2.4rem;
-		background: linear-gradient(to bottom, var(--bg-3), var(--bg-4));
+		margin-top: calc(2 * var(--space-md));
+		border-top: var(--border-width-1) solid var(--border-subtle);
+		padding-block: var(--space-md) var(--space-lg);
+		background: var(--surface-raised);
 	}
 	.foot {
 		display: grid;
 		grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr);
-		gap: 2.5rem;
+		gap: var(--space-lg);
 	}
 	.brand p {
-		margin-top: 0.8rem;
-		font-size: 0.93rem;
-		color: var(--fg-3);
+		margin-top: var(--space-s);
+		font-size: var(--font-size-md);
+		line-height: var(--line-height-md);
+		color: var(--text-muted);
 		max-width: 22rem;
 	}
 	.cols {
 		display: grid;
 		grid-template-columns: repeat(3, minmax(0, 1fr));
-		gap: 1.5rem;
+		gap: var(--space-md);
 	}
 	.cols div {
 		display: flex;
 		flex-direction: column;
 		align-items: flex-start;
-		gap: 0.5rem;
+		gap: var(--space-s);
 	}
 	.h {
-		font-size: 0.72rem;
-		font-weight: 600;
-		letter-spacing: 0.14em;
+		font-size: var(--font-size-xs);
+		line-height: var(--line-height-xs);
+		font-weight: var(--font-weight-semibold);
+		letter-spacing: var(--tracking-wide);
 		text-transform: uppercase;
-		color: var(--fg-4);
-		margin-bottom: 0.2rem;
+		color: var(--text-muted);
+		margin-bottom: var(--space-xxs);
 	}
 	.cols a {
-		color: var(--fg-2);
+		color: var(--text-secondary);
 		text-decoration: none;
-		font-size: 0.93rem;
+		font-size: var(--font-size-md);
+		line-height: var(--line-height-md);
 	}
 	.cols a:hover {
-		color: var(--fg-1);
+		color: var(--text-primary);
+		text-decoration: underline;
+		text-underline-offset: 3px;
 	}
 	.legal {
-		margin-top: 2.6rem;
+		margin-top: var(--space-lg);
 	}
 	.legal p {
-		padding-top: 1.4rem;
-		border-top: var(--stroke-width) solid var(--stroke-3);
+		padding-top: var(--space-md);
+		border-top: var(--border-width-1) solid var(--border-subtle);
 		max-width: none;
-		font-size: 0.84rem;
-		color: var(--fg-3);
+		font-size: var(--font-size-s);
+		line-height: var(--line-height-s);
+		color: var(--text-muted);
 	}
 	.legal a {
-		color: var(--fg-3);
+		color: var(--text-muted);
 	}
 	@media (max-width: 760px) {
 		.foot {

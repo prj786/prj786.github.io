@@ -167,6 +167,6 @@ qs ipc call plugins safeMode       # did this session boot with plugins off`}
 		background: none;
 		border: 0;
 		padding: 0;
-		color: var(--fg-2);
+		color: var(--text-secondary);
 	}
 </style>

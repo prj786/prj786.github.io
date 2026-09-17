@@ -279,7 +279,7 @@ enabled = ["acme.weather"]
 		display: block;
 		margin-top: 0.25rem;
 		font-size: 0.86rem;
-		color: var(--fg-3);
+		color: var(--text-muted);
 	}
 	section h2 code {
 		font-size: 0.8em;

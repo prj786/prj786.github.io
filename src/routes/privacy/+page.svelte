@@ -274,19 +274,20 @@
 
 <style>
 	.prose section {
-		margin-top: 2.6rem;
+		margin-top: var(--space-lg);
 	}
 	.prose h2 {
-		font-size: 1.25rem;
+		font-size: var(--font-size-xl);
+		line-height: var(--line-height-xl);
 	}
 	.prose .lede {
-		margin-top: 1.4rem;
+		margin-top: var(--space-md);
 	}
 	.limited {
-		background: var(--bg-2);
-		border: var(--stroke-width) solid var(--stroke-2);
-		border-radius: var(--radius-card);
-		padding: 1rem 1.15rem;
+		background: var(--surface-raised);
+		border: var(--border-width-1) solid var(--border-subtle);
+		border-radius: var(--rounded);
+		padding: var(--space-md);
 		max-width: none;
 	}
 </style>

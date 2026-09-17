@@ -22,11 +22,12 @@
 	.cmd {
 		display: flex;
 		align-items: center;
-		gap: 0.75rem;
-		background: var(--bg-2);
-		border: var(--stroke-width) solid var(--stroke-2);
-		border-radius: var(--radius-card);
-		padding: 0.7rem 0.7rem 0.7rem 0.95rem;
+		gap: var(--space-s);
+		background: var(--surface-raised);
+		border: var(--border-width-1) solid var(--border-subtle);
+		border-radius: var(--rounded);
+		padding: var(--space-s);
+		padding-left: calc(var(--space-s) + var(--space-xs));
 		max-width: 44rem;
 		overflow: hidden;
 	}
@@ -34,8 +35,8 @@
 		border: 0;
 		background: none;
 		padding: 0;
-		font-size: 0.85rem;
-		color: var(--fg-1);
+		font-size: var(--font-size-md);
+		color: var(--text-primary);
 		overflow-x: auto;
 		white-space: nowrap;
 		flex: 1;
@@ -43,17 +44,22 @@
 	}
 	.copy {
 		flex: none;
+		height: var(--control-md);
+		padding: 0 var(--space-s);
 		font: inherit;
-		font-size: 0.8rem;
-		color: var(--fg-2);
-		background: var(--bg-3);
-		border: var(--stroke-width) solid var(--stroke-2);
-		border-radius: var(--radius-control);
-		padding: 0.3rem 0.6rem;
+		font-size: var(--font-size-s);
+		font-weight: var(--font-weight-medium);
+		color: var(--text-primary);
+		background: var(--surface-raised);
+		border: var(--border-width-1) solid var(--border-strong);
+		border-radius: var(--primary);
 		cursor: pointer;
+		transition: background-color var(--dur-fast) var(--ease-out);
 	}
 	.copy:hover {
-		background: var(--subtle-hover);
-		color: var(--fg-1);
+		background: var(--surface-hover);
+	}
+	.copy:active {
+		background: var(--surface-pressed);
 	}
 </style>

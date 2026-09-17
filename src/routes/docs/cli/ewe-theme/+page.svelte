@@ -98,8 +98,8 @@ ewe-theme scheme apply accent`}
 <style>
 	code.title {
 		font-size: 0.62em;
-		background: var(--bg-2);
-		border-color: var(--stroke-2);
+		background: var(--surface-raised);
+		border-color: var(--border-subtle);
 		padding: 0.15em 0.4em;
 	}
 	section {

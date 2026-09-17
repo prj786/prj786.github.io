@@ -79,11 +79,13 @@
 		display: block;
 	}
 	.group {
-		font-size: 0.72rem;
-		letter-spacing: 0.13em;
+		font-size: var(--font-size-xs);
+		line-height: var(--line-height-xs);
+		font-weight: var(--font-weight-semibold);
+		letter-spacing: var(--tracking-wide);
 		text-transform: uppercase;
-		color: var(--fg-3);
-		margin: 1.5rem 0 0.5rem;
+		color: var(--text-muted);
+		margin: var(--space-md) 0 var(--space-xs);
 	}
 	ul {
 		list-style: none;
@@ -91,31 +93,36 @@
 		padding: 0;
 		display: flex;
 		flex-direction: column;
-		gap: 0.1rem;
+		gap: var(--space-xxs);
 	}
 	li {
 		margin: 0;
 	}
 	nav a {
-		display: block;
+		display: flex;
+		align-items: center;
+		min-height: var(--control-md);
 		text-decoration: none;
-		color: var(--fg-2);
-		font-size: 0.9rem;
-		padding: 0.28rem 0.6rem;
-		border-radius: var(--radius-control);
-		border-left: 2px solid transparent;
+		color: var(--text-secondary);
+		font-size: var(--font-size-md);
+		line-height: var(--line-height-md);
+		padding: var(--space-xxs) var(--space-s);
+		border-radius: var(--secondary);
+		transition:
+			background-color var(--dur-fast) var(--ease-out),
+			color var(--dur-fast) var(--ease-out);
 	}
 	nav a:hover {
-		background: var(--bg-2);
-		color: var(--fg-1);
+		background: var(--surface-hover);
+		color: var(--text-primary);
 	}
 	nav a.active {
-		color: var(--fg-1);
-		background: var(--bg-2);
-		border-left-color: var(--accent);
+		color: var(--text-primary);
+		background: var(--accent-subtle);
+		font-weight: var(--font-weight-medium);
 	}
 	.home {
-		font-weight: 500;
+		font-weight: var(--font-weight-medium);
 	}
 
 	.doc {
@@ -134,29 +141,29 @@
 			max-height: none;
 			overflow: visible;
 			padding: 0;
-			border: var(--stroke-width) solid var(--stroke-2);
-			background: var(--bg-2);
-			border-radius: var(--radius-card);
+			border: var(--border-width-1) solid var(--border-subtle);
+			background: var(--surface-raised);
+			border-radius: var(--rounded);
 		}
 		summary {
 			display: flex;
 			align-items: center;
 			justify-content: space-between;
 			gap: 0.8rem;
-			padding: 0.75rem 1rem;
+			padding: var(--space-s) calc(var(--space-s) + var(--space-xs));
 			cursor: pointer;
-			font-size: 0.92rem;
-			color: var(--fg-2);
+			color: var(--text-secondary);
+			font-size: var(--font-size-md);
 			list-style: none;
 		}
 		summary::-webkit-details-marker {
 			display: none;
 		}
 		.crumb strong {
-			color: var(--fg-1);
+			color: var(--text-primary);
 		}
 		.chev {
-			color: var(--fg-3);
+			color: var(--text-muted);
 			font-size: 0.8rem;
 		}
 		.side[open] .chev {
@@ -164,7 +171,7 @@
 		}
 		nav {
 			padding: 0 0.6rem 1rem;
-			border-top: var(--stroke-width) solid var(--stroke-2);
+			border-top: var(--border-width-1) solid var(--border-subtle);
 		}
 		.doc {
 			padding-top: 0.6rem;
@@ -173,7 +180,8 @@
 
 	/* ── shared prose styling for every docs page ──────────────────────── */
 	.doc :global(h1) {
-		font-size: clamp(1.8rem, 1.3rem + 1.9vw, 2.5rem);
+		font-size: clamp(var(--font-size-2xl), 5vw, var(--font-size-3xl));
+		line-height: clamp(var(--line-height-2xl), 6vw, var(--line-height-3xl));
 	}
 	.doc :global(h2) {
 		margin-top: 3rem;
@@ -181,7 +189,7 @@
 	}
 	.doc :global(h3) {
 		margin-top: 1.9rem;
-		color: var(--fg-1);
+		color: var(--text-primary);
 		scroll-margin-top: 4.5rem;
 	}
 	.doc :global(h2 + p),

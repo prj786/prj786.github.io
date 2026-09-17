@@ -280,9 +280,9 @@ ewe-plugin add https://github.com/acme/ewe-weather.git --enable`}
 
 <style>
 	h3 {
-		margin-top: 1.6rem;
+		margin-top: var(--space-lg);
 	}
 	.dflt {
-		color: var(--fg-3);
+		color: var(--text-muted);
 	}
 </style>

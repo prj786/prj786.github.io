@@ -110,13 +110,14 @@ ewe-auth status       # the optional Google client`}
 
 <style>
 	.grid {
-		margin-top: 1rem;
+		margin-top: var(--space-md);
 	}
 	.card h3 a {
+		color: var(--text-primary);
 		text-decoration: none;
 	}
 	.card h3 a:hover {
 		text-decoration: underline;
-		text-decoration-color: var(--accent);
+		text-underline-offset: 3px;
 	}
 </style>

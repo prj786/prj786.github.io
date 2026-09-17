@@ -7,7 +7,7 @@
 	// the parts ewe is assembled from — named, not hidden
 	const STACK = [
 		'Arch Linux', 'Hyprland', 'Quickshell', 'btrfs', 'systemd-boot', 'PipeWire',
-		'NetworkManager', 'greetd', 'Nextcloud', 'KDE Connect', 'Lucide', 'Inter'
+		'NetworkManager', 'greetd', 'Nextcloud', 'KDE Connect', 'Lucide', 'Geist'
 	];
 
 	// the installer's four questions, in the order it asks them
@@ -36,8 +36,11 @@
 
 <!-- ── hero ─────────────────────────────────────────────────────────────── -->
 <section class="hero">
-	<!-- the wallpaper the screenshots below were taken on — ewe, literally -->
-	<div class="meadow" aria-hidden="true">
+	<!-- The wallpaper the screenshots below were taken on — ewe, literally.
+	     The photo and everything drawn on it wear Ewe Dark whatever the page
+	     wears, the rule the lock screen follows, so the copy reads the same
+	     over the picture in both schemes. -->
+	<div class="meadow" data-scheme="ewe-dark" aria-hidden="true">
 		<picture>
 			<source srcset="/img/meadow.webp" type="image/webp" />
 			<!-- the largest paint on the page: fetched first, decoded in step -->
@@ -45,12 +48,12 @@
 		</picture>
 	</div>
 
-	<div class="wrap hero-in">
+	<div class="wrap hero-in" data-scheme="ewe-dark">
 		<a class="news" href="/download/">
 			<span class="dot"></span>ewe {VERSION} is out
 			<Icon name="arrow-right" size={14} />
 		</a>
-		<h1 class="display">A whole desktop, already <mark>decided</mark>.</h1>
+		<h1 class="hero-title">A whole desktop, already <mark>decided</mark>.</h1>
 		<p class="lede">
 			ewe is a complete, Arch-based operating system. One ISO, about ten minutes, and a finished
 			desktop — installer to lock screen, themed end to end.
@@ -70,7 +73,7 @@
 	</div>
 
 	<div class="wrap wide">
-		<div class="stage">
+		<div class="stage" data-scheme="ewe-dark">
 			<Shot
 				priority
 				src="/img/settings"
@@ -90,17 +93,13 @@
 <!-- ── built on ─────────────────────────────────────────────────────────── -->
 <section class="parts" aria-label="Built on">
 	<p class="eyebrow center">Assembled from parts you already trust</p>
-	<div class="marquee">
-		{#each [0, 1] as copy}
-			<ul class="track" aria-hidden={copy ? 'true' : undefined}>
-				{#each STACK as part}<li>{part}</li>{/each}
-			</ul>
-		{/each}
-	</div>
+	<ul class="track">
+		{#each STACK as part}<li>{part}</li>{/each}
+	</ul>
 </section>
 
 <!-- ── the four questions ───────────────────────────────────────────────── -->
-<section class="wrap wide block reveal">
+<section class="wrap wide block">
 	<div class="head">
 		<p class="eyebrow">The installer</p>
 		<h2>It asks four things.</h2>
@@ -122,7 +121,7 @@
 </section>
 
 <!-- ── what you get ─────────────────────────────────────────────────────── -->
-<section class="wrap wide block reveal">
+<section class="wrap wide block">
 	<div class="head">
 		<p class="eyebrow">What you get</p>
 		<h2>A desktop, not a starting point.</h2>
@@ -161,7 +160,7 @@
 			<h3>Komble</h3>
 			<p>The software manager: official repos, the AUR and AppImages behind one search field.</p>
 		</div>
-		<a class="card act tile lit" href="/theming/">
+		<a class="card act tile" href="/theming/">
 			<span class="ico"><Icon name="palette" size={18} /></span>
 			<h3>Your colours, everywhere</h3>
 			<p>One accent, an imported scheme, or the wallpaper's own palette — the shell, GTK, Qt, icons, cursor and window borders follow, live.</p>
@@ -220,7 +219,7 @@
 </section>
 
 <!-- ── decided ──────────────────────────────────────────────────────────── -->
-<section class="wrap wide block reveal" id="decided">
+<section class="wrap wide block" id="decided">
 	<div class="head">
 		<p class="eyebrow">Decided by ewe</p>
 		<h2>What you don't get asked.</h2>
@@ -272,9 +271,8 @@
 </section>
 
 <!-- ── honestly ─────────────────────────────────────────────────────────── -->
-<section class="wrap wide block reveal">
+<section class="wrap wide block">
 	<div class="finale">
-		<div class="glow" aria-hidden="true"></div>
 		<p class="eyebrow">Honestly</p>
 		<h2>It's a beta.</h2>
 		<p>
@@ -295,15 +293,15 @@
 		position: relative;
 		isolation: isolate;
 		overflow: clip;
-		/* run the meadow up under the floating bar */
+		/* the photo runs up under the bar */
 		margin-top: calc(-1 * var(--header-h));
-		padding-block: calc(var(--header-h) + 5rem) 0;
+		padding-block: calc(var(--header-h) + var(--space-xl)) 0;
 		text-align: center;
+		/* the ground the picture dissolves into: read here, in the page's own
+		   scheme, so the Ewe Dark block below cannot change it */
+		--fade-to: var(--surface-base);
 	}
 
-	/* The photo sits behind a scrim drawn from the page ground, so the text
-	   stays legible whatever the wallpaper is, and the meadow dissolves into
-	   --bg-3 before the screenshot ends. The accent tints the sky above it. */
 	.meadow {
 		position: absolute;
 		inset: 0;
@@ -317,24 +315,21 @@
 		height: 100%;
 		object-fit: cover;
 		object-position: 50% 30%;
-		/* the photo is a dark one already — lift it, don't bury it */
-		filter: brightness(1.25) saturate(1.05);
 	}
+	/* One wash, in Ewe Dark's own ground, so text holds over any part of the
+	   photo; then the picture fades into the page below it. */
 	.meadow::after {
 		content: '';
 		position: absolute;
 		inset: 0;
-		background:
-			radial-gradient(44% 30% at 50% 27%, color-mix(in srgb, var(--bg-3) 45%, transparent), transparent 80%),
-			radial-gradient(60% 40% at 50% -6%, color-mix(in oklab, var(--accent) 18%, transparent), transparent 75%),
-			linear-gradient(
-				to bottom,
-				color-mix(in srgb, var(--bg-3) 35%, transparent) 0%,
-				transparent 30%,
-				color-mix(in srgb, var(--bg-3) 40%, transparent) 62%,
-				color-mix(in srgb, var(--bg-3) 85%, transparent) 82%,
-				var(--bg-3) 96%
-			);
+		background: linear-gradient(
+			to bottom,
+			color-mix(in srgb, var(--surface-base) 55%, transparent) 0%,
+			color-mix(in srgb, var(--surface-base) 35%, transparent) 34%,
+			color-mix(in srgb, var(--fade-to) 55%, transparent) 70%,
+			color-mix(in srgb, var(--fade-to) 92%, transparent) 86%,
+			var(--fade-to) 97%
+		);
 	}
 
 	.hero-in {
@@ -342,262 +337,161 @@
 		flex-direction: column;
 		align-items: center;
 	}
+	/* the release note: a Tag */
 	.news {
 		display: inline-flex;
 		align-items: center;
-		gap: 0.5rem;
-		padding: 0.34rem 0.8rem 0.34rem 0.7rem;
-		border-radius: var(--radius-pill);
-		background: color-mix(in srgb, var(--bg-2) 70%, transparent);
-		border: var(--stroke-width) solid var(--stroke-2);
-		backdrop-filter: blur(8px);
-		-webkit-backdrop-filter: blur(8px);
-		font-size: 0.84rem;
-		color: var(--fg-2);
+		gap: var(--space-s);
+		height: var(--control-md);
+		padding: 0 calc(var(--space-s) + var(--space-xs));
+		border-radius: var(--fully-rounded);
+		background: var(--glass-raised);
+		border: var(--border-width-1) solid var(--glass-border);
+		backdrop-filter: blur(var(--blur-glass));
+		-webkit-backdrop-filter: blur(var(--blur-glass));
+		font-size: var(--font-size-md);
+		line-height: var(--line-height-md);
+		color: var(--text-secondary);
 		text-decoration: none;
 		transition:
-			border-color 160ms ease,
-			color 160ms ease;
+			background-color var(--dur-fast) var(--ease-out),
+			color var(--dur-fast) var(--ease-out);
 	}
 	.news:hover {
-		border-color: var(--stroke-1);
-		color: var(--fg-1);
+		background: var(--glass-hover);
+		color: var(--text-primary);
 	}
 	.dot {
-		width: 7px;
-		height: 7px;
-		border-radius: 50%;
+		width: var(--space-s);
+		height: var(--space-s);
+		border-radius: var(--fully-rounded);
 		background: var(--warning);
-		box-shadow: 0 0 0 3px color-mix(in srgb, var(--warning) 22%, transparent);
 	}
 
-	.display {
-		margin-top: 1.6rem;
-		max-width: 15ch;
-		font-size: clamp(2.7rem, 1rem + 6.4vw, 5.6rem);
-		line-height: 1.02;
-		letter-spacing: -0.045em;
-		text-shadow: 0 2px 30px color-mix(in srgb, var(--bg-3) 60%, transparent);
+	/* display-xl on a wide screen, down to display on a phone */
+	.hero-title {
+		margin-top: var(--space-lg);
+		max-width: 16ch;
+		font-size: clamp(var(--font-size-4xl), 9vw, var(--font-size-6xl));
+		line-height: clamp(var(--line-height-4xl), 10.5vw, var(--line-height-6xl));
+		font-weight: var(--font-weight-light);
+		letter-spacing: var(--tracking-tightest);
 	}
-	/* one word underlined by hand, the way you'd mark a page — in the accent */
+	/* one word marked, the way you would underline it on paper */
 	mark {
-		position: relative;
-		isolation: isolate;
 		background: none;
 		color: inherit;
 		white-space: nowrap;
-	}
-	mark::before {
-		content: '';
-		position: absolute;
-		inset-inline: -0.08em;
-		bottom: 0.08em;
-		height: 0.42em;
-		z-index: -1;
-		border-radius: 0.12em;
-		background: color-mix(in oklab, var(--accent) 45%, transparent);
-		transform: rotate(-2deg);
-		transform-origin: left center;
+		box-shadow: inset 0 -0.11em 0 var(--accent);
 	}
 
 	.hero .lede {
-		margin: 1.5rem auto 0;
+		margin: var(--space-md) auto 0;
 		max-width: 38rem;
-		font-size: clamp(1.05rem, 1rem + 0.3vw, 1.2rem);
-		color: var(--fg-1);
+		color: var(--text-primary);
 	}
 	.hero .btns {
-		margin-top: 2.2rem;
+		margin-top: var(--space-lg);
 	}
 	.sz {
-		opacity: 0.72;
-		font-size: 0.82em;
+		color: color-mix(in oklab, currentColor 70%, transparent);
+		font-size: var(--font-size-md);
 	}
 	.facts {
 		display: flex;
 		flex-wrap: wrap;
 		justify-content: center;
 		list-style: none;
-		margin: 1.5rem 0 0;
+		margin: var(--space-md) 0 0;
 		padding: 0;
 		max-width: none;
-		font-size: 0.86rem;
-		color: var(--fg-2);
+		font-size: var(--font-size-md);
+		line-height: var(--line-height-md);
+		color: var(--text-secondary);
 	}
 	.facts li {
 		margin: 0;
 	}
 	.facts li + li::before {
-		content: '•';
-		margin-inline: 0.7rem;
-		color: var(--fg-4);
+		content: '·';
+		margin-inline: var(--space-s);
+		color: var(--text-muted);
 	}
 
-	/* ── the screenshot, on a glass stage over the meadow ─────────────── */
+	/* ── the screenshot, on a glass stage over the photo ──────────────── */
 	.stage {
-		margin-top: 4rem;
-		padding: 0.6rem;
-		border-radius: calc(var(--radius-panel) + 0.6rem);
-		background: color-mix(in srgb, var(--bg-1) 40%, transparent);
-		border: var(--stroke-width) solid var(--stroke-1);
-		backdrop-filter: blur(18px) saturate(1.3);
-		-webkit-backdrop-filter: blur(18px) saturate(1.3);
-		box-shadow:
-			0 50px 120px -40px color-mix(in srgb, var(--bg-5) 90%, transparent),
-			var(--elevation);
+		margin-top: var(--space-xl);
+		padding: var(--space-s);
+		border-radius: calc(var(--rounded) + var(--space-s));
+		background: var(--glass-raised);
+		border: var(--border-width-1) solid var(--glass-border);
+		backdrop-filter: blur(var(--blur-glass));
+		-webkit-backdrop-filter: blur(var(--blur-glass));
 	}
 	.stage :global(.shot picture) {
-		border: 0;
-		border-radius: var(--radius-panel);
-		box-shadow: none;
+		border-color: var(--glass-border);
 	}
 	.figcap.center {
 		text-align: center;
+		margin-inline: auto;
 	}
 
-	/* ── motion: the page arriving ───────────────────────────────────────
-	   CSS only, so it plays on the prerendered page before any script. */
-	@keyframes up {
-		from {
-			opacity: 0;
-			transform: translateY(14px);
-		}
-	}
-	@keyframes rise {
-		from {
-			opacity: 0;
-			transform: perspective(1600px) rotateX(12deg) translateY(48px) scale(0.96);
-		}
-	}
-	@keyframes ink {
-		from {
-			transform: rotate(-2deg) scaleX(0);
-		}
-	}
-	@keyframes settle {
-		from {
-			transform: scale(1.06);
-		}
-	}
-	@media (prefers-reduced-motion: no-preference) {
-		.hero-in > :global(*) {
-			animation: up 800ms var(--ease) both;
-		}
-		.hero-in > :global(:nth-child(2)) {
-			animation-delay: 70ms;
-		}
-		.hero-in > :global(:nth-child(3)) {
-			animation-delay: 140ms;
-		}
-		.hero-in > :global(:nth-child(4)) {
-			animation-delay: 210ms;
-		}
-		.hero-in > :global(:nth-child(5)) {
-			animation-delay: 280ms;
-		}
-		mark::before {
-			animation: ink 700ms var(--ease) 650ms both;
-		}
-		.stage {
-			animation: rise 1100ms var(--ease) 250ms both;
-		}
-		.meadow img {
-			animation: settle 2400ms var(--ease) both;
-		}
-	}
-
-	/* ── built on: the marquee ───────────────────────────────────────── */
+	/* ── built on ────────────────────────────────────────────────────── */
 	.parts {
-		margin-top: 5.5rem;
-	}
-	.marquee {
-		display: flex;
-		gap: 3rem;
-		overflow: hidden;
-		mask-image: linear-gradient(to right, transparent, #000 12%, #000 88%, transparent);
-		-webkit-mask-image: linear-gradient(to right, transparent, #000 12%, #000 88%, transparent);
+		margin-top: var(--space-xl);
 	}
 	.track {
-		flex: none;
 		display: flex;
-		justify-content: space-around;
-		gap: 3rem;
-		min-width: 100%;
-		margin: 0;
-		padding: 0;
+		flex-wrap: wrap;
+		justify-content: center;
+		gap: var(--space-s) var(--space-lg);
+		margin: var(--space-md) 0 0;
+		padding-inline: var(--space-md);
 		list-style: none;
 		max-width: none;
-		animation: marquee 45s linear infinite;
-	}
-	.marquee:hover .track {
-		animation-play-state: paused;
 	}
 	.track li {
 		margin: 0;
 		white-space: nowrap;
-		font-size: 1.1rem;
-		font-weight: 600;
-		letter-spacing: -0.015em;
-		color: var(--fg-3);
-	}
-	@keyframes marquee {
-		to {
-			transform: translateX(calc(-100% - 3rem));
-		}
-	}
-	@media (prefers-reduced-motion: reduce) {
-		.marquee {
-			mask-image: none;
-			-webkit-mask-image: none;
-		}
-		/* standing still, the list must be allowed to shrink or it cannot wrap */
-		.track {
-			flex: 1 1 auto;
-			min-width: 0;
-			animation: none;
-			flex-wrap: wrap;
-			justify-content: center;
-			gap: 0.6rem 2rem;
-			padding-inline: 1.4rem;
-		}
-		.track[aria-hidden] {
-			display: none;
-		}
+		font-size: var(--font-size-lg);
+		line-height: var(--line-height-lg);
+		font-weight: var(--font-weight-medium);
+		color: var(--text-muted);
 	}
 
 	/* ── sections ─────────────────────────────────────────────────────── */
 	.block {
-		margin-top: 7rem;
+		margin-top: calc(var(--space-xl) + var(--space-lg));
 	}
 	.head {
 		max-width: 42rem;
-		margin: 0 auto 2.6rem;
+		margin: 0 auto var(--space-lg);
 		text-align: center;
 	}
 	.head p:not(.eyebrow) {
-		margin: 1rem auto 0;
-		font-size: 1.05rem;
+		margin: var(--space-md) auto 0;
 	}
+	/* the Card component's accent icon tile */
 	.ico {
 		display: inline-grid;
 		place-items: center;
-		width: 2.4rem;
-		height: 2.4rem;
-		margin-bottom: 1rem;
-		border-radius: var(--radius-control);
-		background: color-mix(in oklab, var(--accent) 14%, transparent);
-		color: var(--accent);
+		width: var(--control-lg);
+		height: var(--control-lg);
+		margin-bottom: var(--space-md);
+		border-radius: var(--primary);
+		background: var(--accent-subtle);
+		color: var(--accent-text);
 	}
 	.more {
-		margin-top: 1.6rem;
-		font-size: 0.95rem;
+		margin-top: var(--space-md);
+		font-size: var(--font-size-md);
 	}
 
 	/* the four questions */
 	.asks {
 		display: grid;
 		grid-template-columns: repeat(4, minmax(0, 1fr));
-		gap: 0.9rem;
+		gap: var(--space-s);
 		margin: 0;
 		padding: 0;
 		list-style: none;
@@ -609,11 +503,12 @@
 	}
 	.num {
 		position: absolute;
-		top: 1.2rem;
-		right: 1.3rem;
-		font-family: var(--mono);
-		font-size: 0.8rem;
-		color: var(--fg-4);
+		top: var(--space-md);
+		right: var(--space-md);
+		font-family: var(--font-mono);
+		font-size: var(--font-size-s);
+		font-variant-numeric: tabular-nums;
+		color: var(--text-muted);
 	}
 	@media (max-width: 900px) {
 		.asks {
@@ -631,14 +526,14 @@
 		display: grid;
 		grid-template-columns: repeat(3, minmax(0, 1fr));
 		grid-auto-flow: dense;
-		gap: 0.9rem;
+		gap: var(--space-s);
 	}
 	.tile {
 		display: flex;
 		flex-direction: column;
 		align-items: flex-start;
 		min-height: 13.5rem;
-		padding: 1.5rem;
+		padding: calc(var(--space-md) + var(--space-xs));
 	}
 	.tile.wide {
 		grid-column: span 2;
@@ -648,63 +543,47 @@
 	.pic {
 		display: grid;
 		grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
-		gap: 1.5rem;
-		padding: 0 0 0 1.5rem;
+		gap: var(--space-md);
+		padding: 0 0 0 calc(var(--space-md) + var(--space-xs));
 		overflow: hidden;
 	}
 	.pic .txt {
-		padding-block: 1.5rem;
+		padding-block: calc(var(--space-md) + var(--space-xs));
 	}
 	.pic picture {
 		align-self: end;
-		margin-top: 1.5rem;
+		margin-top: var(--space-md);
 	}
 	.pic img {
 		display: block;
 		width: 100%;
 		height: auto;
-		border-top-left-radius: var(--radius-card);
-		border: var(--stroke-width) solid var(--stroke-2);
-		border-width: var(--stroke-width) 0 0 var(--stroke-width);
+		border-top-left-radius: var(--rounded);
+		border: var(--border-width-1) solid var(--border-subtle);
+		border-width: var(--border-width-1) 0 0 var(--border-width-1);
 	}
 	.go {
 		display: inline-flex;
 		align-items: center;
-		gap: 0.35rem;
+		gap: var(--space-xs);
 		margin-top: auto;
-		padding-top: 1.1rem;
-		font-size: 0.9rem;
-		color: var(--accent);
-	}
-	.go :global(.icon) {
-		transition: transform 200ms var(--ease);
-	}
-	.tile:hover .go :global(.icon) {
-		transform: translateX(2px);
-	}
-	/* the featured tile gets a border that catches the accent at one corner */
-	.lit {
-		border-color: transparent;
-		background:
-			linear-gradient(var(--bg-2), var(--bg-2)) padding-box,
-			linear-gradient(135deg, color-mix(in oklab, var(--accent) 65%, transparent), var(--stroke-2) 55%) border-box;
-	}
-	.lit:hover {
-		border-color: transparent;
-		background:
-			linear-gradient(var(--bg-2-hover), var(--bg-2-hover)) padding-box,
-			linear-gradient(135deg, var(--accent), var(--stroke-1) 55%) border-box;
+		padding-top: var(--space-md);
+		font-size: var(--font-size-md);
+		line-height: var(--line-height-md);
+		font-weight: var(--font-weight-medium);
+		color: var(--accent-text);
 	}
 	.ramp {
 		display: flex;
 		width: 100%;
-		height: 1.1rem;
-		margin-top: 0.9rem;
-		border-radius: var(--radius-pill);
+		height: var(--space-md);
+		margin-top: var(--space-s);
+		border-radius: var(--slight);
 		overflow: hidden;
+		border: var(--border-width-1) solid var(--border-subtle);
 	}
 	.ramp + .ramp {
-		margin-top: 0.4rem;
+		margin-top: var(--space-xs);
 	}
 	.ramp span {
 		flex: 1;
@@ -730,107 +609,94 @@
 			padding-bottom: 0;
 		}
 		.pic .txt {
-			padding: 1.5rem 1.5rem 0 0;
+			padding: calc(var(--space-md) + var(--space-xs)) calc(var(--space-md) + var(--space-xs)) 0 0;
 		}
 	}
 
-	/* the comparison */
+	/* the comparison — the Table component */
 	.scroll {
 		overflow-x: auto;
-		border-radius: var(--radius-panel);
+		border-radius: var(--rounded);
 	}
 	.versus {
 		width: 100%;
 		min-width: 34rem;
 		border-collapse: separate;
 		border-spacing: 0;
-		background: var(--bg-2);
-		border: var(--stroke-width) solid var(--stroke-2);
-		border-radius: var(--radius-panel);
+		background: var(--surface-raised);
+		border: var(--border-width-1) solid var(--border-subtle);
+		border-radius: var(--rounded);
 		overflow: hidden;
 		text-align: left;
-		font-size: 0.95rem;
+		font-size: var(--font-size-md);
+		line-height: var(--line-height-md);
 	}
 	.versus th,
 	.versus td {
-		padding: 1rem 1.3rem;
+		padding: calc(var(--space-s) + var(--space-xs)) var(--space-md);
 		vertical-align: top;
 	}
 	.versus tbody tr > * {
-		border-top: var(--stroke-width) solid var(--stroke-3);
+		border-top: var(--border-width-1) solid var(--border-subtle);
 	}
 	.versus thead th {
-		font-size: 0.72rem;
-		font-weight: 600;
-		letter-spacing: 0.14em;
+		font-size: var(--font-size-xs);
+		line-height: var(--line-height-xs);
+		font-weight: var(--font-weight-semibold);
+		letter-spacing: var(--tracking-wide);
 		text-transform: uppercase;
-		color: var(--fg-4);
-	}
-	.versus thead th:last-child {
-		color: var(--accent);
+		color: var(--text-muted);
+		background: var(--surface-base);
 	}
 	.versus thead img {
 		vertical-align: -4px;
-		margin-right: 0.3rem;
+		margin-right: var(--space-xs);
 	}
 	.versus tbody th {
 		width: 40%;
-		font-weight: 500;
-		color: var(--fg-3);
+		font-weight: var(--font-weight-regular);
+		color: var(--text-muted);
 	}
 	.versus td {
-		color: var(--fg-1);
-		/* the answer column, faintly lit — the side of the table ewe is on */
-		background: color-mix(in oklab, var(--accent) 5%, transparent);
+		color: var(--text-primary);
+		/* the answer column: the side of the table ewe is on */
+		background: var(--accent-subtle);
 	}
 	/* Icon is a block by default (it lives in flex rows); inline in a cell */
 	.versus td :global(.icon) {
 		display: inline-block;
-		color: var(--accent);
-		margin-right: 0.55rem;
+		color: var(--accent-text);
+		margin-right: var(--space-s);
 		vertical-align: -2px;
 	}
 
-	/* the closing panel: the wallpapers' glow, drawn from the accent, with
-	   the sheep where the wallpapers keep it */
+	/* the closing panel: the wallpapers' own glow, which is a slight one */
 	.finale {
 		position: relative;
 		isolation: isolate;
 		overflow: hidden;
-		padding: 4.5rem 1.5rem;
-		border-radius: var(--radius-panel);
-		background: var(--bg-2);
-		border: var(--stroke-width) solid var(--stroke-2);
+		padding: calc(2 * var(--space-lg)) var(--space-md);
+		border-radius: var(--rounded);
+		background: var(--surface-raised) var(--gradient-glow);
+		border: var(--border-width-1) solid var(--border-subtle);
 		text-align: center;
 	}
-	.glow {
-		position: absolute;
-		inset: 0;
-		z-index: -1;
-		pointer-events: none;
-		background:
-			radial-gradient(60% 70% at 50% 115%, color-mix(in oklab, var(--accent) 28%, transparent), transparent 72%),
-			radial-gradient(40% 50% at 10% 100%, color-mix(in oklab, var(--brand-bg) 40%, transparent), transparent 72%);
-	}
-	.glow::after {
+	.finale::after {
 		content: '';
 		position: absolute;
 		right: 4%;
 		bottom: 8%;
+		z-index: -1;
 		width: min(11rem, 30%);
 		aspect-ratio: 1;
 		background: url('/ewe-logo.png') center / contain no-repeat;
 		opacity: 0.07;
 	}
-	.finale h2 {
-		font-size: clamp(2rem, 1.3rem + 2.8vw, 3.3rem);
-		letter-spacing: -0.04em;
-	}
 	.finale p:not(.eyebrow) {
-		margin: 1.1rem auto 0;
+		margin: var(--space-md) auto 0;
 		max-width: 38rem;
 	}
 	.finale .btns {
-		margin-top: 2rem;
+		margin-top: var(--space-lg);
 	}
 </style>

@@ -230,10 +230,10 @@
 
 <style>
 	.rows :global(.icon) {
-		color: var(--fg-3);
+		color: var(--text-muted);
 	}
 	section :global(.cmd) {
-		margin-top: 0.9rem;
+		margin-top: var(--space-md);
 	}
 	.steps {
 		list-style: none;
@@ -241,50 +241,57 @@
 		padding: 0;
 		display: flex;
 		flex-direction: column;
-		gap: 0.6rem;
+		gap: var(--space-s);
 		max-width: 44rem;
 	}
 	.steps li {
 		display: flex;
-		gap: 1rem;
+		gap: var(--space-md);
 		align-items: flex-start;
-		background: var(--bg-2);
-		border: var(--stroke-width) solid var(--stroke-2);
-		border-radius: var(--radius-card);
-		padding: 0.9rem 1.05rem;
+		background: var(--surface-raised);
+		border: var(--border-width-1) solid var(--border-subtle);
+		border-radius: var(--rounded);
+		padding: calc(var(--space-s) + var(--space-xs));
 		margin: 0;
 	}
+	/* the step number: the Step indicator's dot */
 	.n {
 		flex: none;
-		width: 1.55rem;
-		height: 1.55rem;
-		border-radius: 999px;
+		width: var(--control-md);
+		height: var(--control-md);
+		border-radius: var(--fully-rounded);
 		display: grid;
 		place-items: center;
-		font-size: 0.78rem;
-		color: var(--accent);
-		border: var(--stroke-width) solid color-mix(in srgb, var(--accent) 45%, var(--stroke-2));
+		font-family: var(--font-mono);
+		font-size: var(--font-size-s);
+		font-variant-numeric: tabular-nums;
+		background: var(--accent-subtle);
+		color: var(--accent-text);
 	}
 	.steps h3 {
-		margin-bottom: 0.2rem;
+		margin-bottom: var(--space-xxs);
+		font-size: var(--font-size-lg);
+		line-height: var(--line-height-lg);
 	}
 	.steps p {
-		font-size: 0.92rem;
+		font-size: var(--font-size-md);
+		line-height: var(--line-height-md);
 		margin: 0;
 	}
 	.two {
 		display: grid;
-		gap: 0.8rem;
+		gap: var(--space-s);
 		grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
 	}
 	.two ul {
-		font-size: 0.9rem;
+		font-size: var(--font-size-md);
+		line-height: var(--line-height-md);
 		margin: 0;
 	}
 	.two h3 :global(.icon) {
 		color: var(--success);
 	}
 	.two .bad h3 :global(.icon) {
-		color: var(--fg-3);
+		color: var(--text-muted);
 	}
 </style>

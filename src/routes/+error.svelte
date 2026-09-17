@@ -20,9 +20,9 @@
 		flex-direction: column;
 		align-items: center;
 		text-align: center;
-		gap: 1rem;
-		padding-top: 5rem;
-		padding-bottom: 6rem;
+		gap: var(--space-md);
+		padding-top: var(--space-xl);
+		padding-bottom: var(--space-xl);
 	}
 	.center img {
 		opacity: 0.7;

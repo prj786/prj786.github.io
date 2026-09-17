@@ -25,45 +25,46 @@
 <style>
 	.block {
 		position: relative;
-		background: var(--bg-2);
-		border: var(--stroke-width) solid var(--stroke-2);
-		border-radius: var(--radius-card);
-		margin: 1rem 0 0;
+		background: var(--surface-sunken);
+		border: var(--border-width-1) solid var(--border-subtle);
+		border-radius: var(--rounded);
+		margin: var(--space-md) 0 0;
 		max-width: 52rem;
 	}
 	pre {
 		margin: 0;
-		padding: 0.9rem 1rem;
-		font-family: var(--mono);
-		font-size: 0.82rem;
-		line-height: 1.7;
-		color: var(--fg-1);
+		padding: var(--space-s) calc(var(--space-s) + var(--space-xs));
+		font-family: var(--font-mono);
+		font-size: var(--font-size-s);
+		line-height: var(--line-height-lg);
+		color: var(--text-primary);
 		overflow-x: auto;
 		white-space: pre;
 		scrollbar-width: thin;
 	}
 	.copy {
 		position: absolute;
-		top: 0.5rem;
-		right: 0.5rem;
+		top: var(--space-xs);
+		right: var(--space-xs);
+		height: var(--control-sm);
+		padding: 0 var(--space-s);
 		font: inherit;
-		font-size: 0.75rem;
-		color: var(--fg-2);
-		background: var(--bg-3);
-		border: var(--stroke-width) solid var(--stroke-2);
-		border-radius: var(--radius-control);
-		padding: 0.22rem 0.55rem;
+		font-size: var(--font-size-xs);
+		font-weight: var(--font-weight-medium);
+		color: var(--text-primary);
+		background: var(--surface-raised);
+		border: var(--border-width-1) solid var(--border-strong);
+		border-radius: var(--primary);
 		cursor: pointer;
 		opacity: 0;
-		transition: opacity 120ms ease;
+		transition: opacity var(--dur-fast) var(--ease-out);
 	}
 	.block:hover .copy,
 	.copy:focus-visible {
 		opacity: 1;
 	}
 	.copy:hover {
-		background: var(--subtle-hover);
-		color: var(--fg-1);
+		background: var(--surface-hover);
 	}
 	/* touch devices have no hover — keep the button reachable there */
 	@media (hover: none) {

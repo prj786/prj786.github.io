@@ -25,9 +25,9 @@
 <style>
 	.scroll {
 		overflow-x: auto;
-		margin-top: 1rem;
-		border: var(--stroke-width) solid var(--stroke-2);
-		border-radius: var(--radius-card);
+		margin-top: var(--space-md);
+		border: var(--border-width-1) solid var(--border-subtle);
+		border-radius: var(--rounded);
 		max-width: 52rem;
 		scrollbar-width: thin;
 	}
@@ -35,23 +35,24 @@
 		border-collapse: collapse;
 		width: 100%;
 		min-width: 34rem;
-		font-size: 0.93rem;
+		font-size: var(--font-size-md);
+		line-height: var(--line-height-md);
 	}
 	th {
 		text-align: left;
-		font-weight: 500;
-		color: var(--fg-3);
-		font-size: 0.75rem;
-		letter-spacing: 0.1em;
+		font-weight: var(--font-weight-semibold);
+		color: var(--text-muted);
+		font-size: var(--font-size-xs);
+		letter-spacing: var(--tracking-wide);
 		text-transform: uppercase;
-		padding: 0.7rem 1rem;
-		border-bottom: var(--stroke-width) solid var(--stroke-2);
-		background: var(--bg-2);
+		padding: var(--space-s) calc(var(--space-s) + var(--space-xs));
+		border-bottom: var(--border-width-1) solid var(--border-subtle);
+		background: var(--surface-raised);
 	}
 	td {
-		padding: 0.8rem 1rem;
-		border-bottom: var(--stroke-width) solid var(--stroke-2);
-		color: var(--fg-2);
+		padding: var(--space-s) calc(var(--space-s) + var(--space-xs));
+		border-bottom: var(--border-width-1) solid var(--border-subtle);
+		color: var(--text-secondary);
 		vertical-align: top;
 	}
 	tbody tr:last-child td {
@@ -59,21 +60,21 @@
 	}
 	td.c {
 		white-space: nowrap;
-		color: var(--fg-1);
+		color: var(--text-primary);
 	}
 	.args {
 		display: block;
-		margin-top: 0.25rem;
-		font-family: var(--mono);
-		font-size: 0.76rem;
-		color: var(--fg-3);
+		margin-top: var(--space-xxs);
+		font-family: var(--font-mono);
+		font-size: var(--font-size-xs);
+		color: var(--text-muted);
 		white-space: normal;
 	}
 	.prints {
 		display: block;
-		margin-top: 0.3rem;
-		font-size: 0.86rem;
-		color: var(--fg-3);
+		margin-top: var(--space-xs);
+		font-size: var(--font-size-s);
+		color: var(--text-muted);
 	}
 	.prints code {
 		font-size: 0.82em;

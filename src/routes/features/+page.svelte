@@ -320,26 +320,32 @@
 	.toc {
 		display: flex;
 		flex-wrap: wrap;
-		gap: 0.45rem;
-		margin-top: 1.5rem;
+		gap: var(--space-xs);
+		margin-top: var(--space-md);
 	}
 	.toc a {
-		font-size: 0.85rem;
-		color: var(--fg-2);
+		display: inline-flex;
+		align-items: center;
+		height: var(--control-sm);
+		padding: 0 var(--space-s);
+		font-size: var(--font-size-s);
+		font-weight: var(--font-weight-medium);
+		color: var(--text-secondary);
 		text-decoration: none;
-		border: var(--stroke-width) solid var(--stroke-2);
-		background: var(--bg-2);
-		border-radius: var(--radius-control);
-		padding: 0.3rem 0.7rem;
+		border: var(--border-width-1) solid var(--border-strong);
+		border-radius: var(--fully-rounded);
+		transition:
+			background-color var(--dur-fast) var(--ease-out),
+			color var(--dur-fast) var(--ease-out);
 	}
 	.toc a:hover {
-		background: var(--bg-2-hover);
-		color: var(--fg-1);
+		background: var(--surface-hover);
+		color: var(--text-primary);
 	}
 	.rows :global(.icon) {
-		color: var(--fg-3);
+		color: var(--text-muted);
 	}
 	.card h3 :global(.icon) {
-		color: var(--accent);
+		color: var(--accent-text);
 	}
 </style>

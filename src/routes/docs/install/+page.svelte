@@ -86,6 +86,6 @@ ewe-setup              # deploy it for your user`}
 
 <style>
 	.btns {
-		margin-top: 1.4rem;
+		margin-top: var(--space-md);
 	}
 </style>
