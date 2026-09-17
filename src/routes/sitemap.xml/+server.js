@@ -4,6 +4,7 @@
 // /philosophy/ and /sync/ (now merged into /how/) and none of the 26 docs
 // pages. Building it from $lib/docs/nav.js means adding a page adds it here.
 import { SECTIONS } from '$lib/docs/nav.js';
+import { PAGES as DESIGN } from '$lib/design/nav.js';
 
 export const prerender = true;
 
@@ -16,8 +17,10 @@ const PAGES = [
 	['/theming/', 0.8],
 	['/how/', 0.8],
 	['/docs/', 0.8],
+	['/design/', 0.8],
 	['/privacy/', 0.4],
-	...SECTIONS.flatMap((s) => s.items.map((i) => [i.href, 0.6]))
+	...SECTIONS.flatMap((s) => s.items.map((i) => [i.href, 0.6])),
+	...DESIGN.map((i) => [i.href, 0.6])
 ];
 
 export function GET() {

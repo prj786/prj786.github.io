@@ -1,7 +1,18 @@
 <script>
+	// Previous and next, within one section. `flat` is that section's pages in
+	// reading order; it defaults to the docs, and the design system passes its
+	// own list.
 	import { page } from '$app/stores';
-	import { neighbours } from '$lib/docs/nav.js';
-	const nav = $derived(neighbours($page.url.pathname));
+	import { FLAT } from '$lib/docs/nav.js';
+
+	let { flat = FLAT } = $props();
+	const nav = $derived.by(() => {
+		const i = flat.findIndex((p) => p.href === $page.url.pathname);
+		return {
+			prev: i > 0 ? flat[i - 1] : null,
+			next: i >= 0 && i < flat.length - 1 ? flat[i + 1] : null
+		};
+	});
 </script>
 
 {#if nav.prev || nav.next}
