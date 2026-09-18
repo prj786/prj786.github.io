@@ -206,6 +206,11 @@ export const BAR = {
 	large: { module: 40, icon: 24 }
 };
 for (const b of Object.values(BAR)) b.height = b.module + 2 * SPACE_S;
+const BAR_STEPS = ['small', 'normal', 'large'];
+export const TEXT_SCALES = [100, 115, 130];
+
+/** Text size scales a pixel size, rounded to a whole pixel (ewe-theme's _scale). */
+export const scalePx = (px, pct) => pyRound((px * pct) / 100);
 
 // shadows: (x, y, blur) and the alpha per variant; the color is derived
 const SHADOW = {
@@ -508,7 +513,9 @@ function gradients(c) {
  * Everything `ewe-theme build` would derive, for one scheme and one accent.
  *
  * @param {object} opts scheme (slug or record), accent, corner, density,
- *   stroke, barOpacity (0–100), increaseContrast, reduceTransparency, barIconSize
+ *   stroke, barOpacity (0–100), increaseContrast, reduceTransparency,
+ *   barIconSize, textScale (100 | 115 | 130: the controls grow with the type,
+ *   and at 130 the bar's icons move one step up)
  */
 export function derive({
 	scheme = 'ewe-dark',
@@ -519,7 +526,8 @@ export function derive({
 	barOpacity = 100,
 	increaseContrast = false,
 	reduceTransparency = false,
-	barIconSize = 'normal'
+	barIconSize = 'normal',
+	textScale = 100
 } = {}) {
 	const sc = typeof scheme === 'string' ? BY_SLUG[scheme] || BY_SLUG['ewe-dark'] : scheme;
 	const variant = sc.variant;
@@ -622,8 +630,15 @@ export function derive({
 		'focus-width': increaseContrast ? 2 : FOCUS_WIDTH,
 		'field-border-width': Math.max(increaseContrast ? 2 : FIELD_BORDER_WIDTH, bw1)
 	};
-	const size = { 'control-sm': 24, 'control-md': ctrlMd, 'control-lg': ctrlLg, 'control-xl': 40, 'control-2xl': 48 };
-	const bar = BAR[barIconSize] ?? BAR.normal;
+	// any other value snaps to the nearest step, as ewe-theme does
+	const ts = TEXT_SCALES.reduce((best, s) => (Math.abs(s - textScale) < Math.abs(best - textScale) ? s : best), TEXT_SCALES[0]);
+	const size = Object.fromEntries(
+		Object.entries({ 'control-sm': 24, 'control-md': ctrlMd, 'control-lg': ctrlLg, 'control-xl': 40, 'control-2xl': 48 })
+			.map(([k, v]) => [k, scalePx(v, ts)])
+	);
+	let barStep = BAR[barIconSize] ? barIconSize : 'normal';
+	if (ts === 130) barStep = BAR_STEPS[Math.min(BAR_STEPS.indexOf(barStep) + 1, BAR_STEPS.length - 1)];
+	const bar = BAR[barStep];
 
 	const ink = dark ? BLACK : inRange(sc.palette.base05);
 	const shadow = Object.fromEntries(
@@ -638,7 +653,7 @@ export function derive({
 		alpha,
 		shape,
 		size,
-		bar: { iconSize: BAR[barIconSize] ? barIconSize : 'normal', ...bar, padding: SPACE_S },
+		bar: { iconSize: barStep, ...bar, padding: SPACE_S },
 		shadow,
 		gradient: gradients(color),
 		adjusted,
