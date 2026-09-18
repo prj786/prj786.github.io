@@ -13,9 +13,10 @@
 #   [data-scheme="ewe-dark"]               Ewe Dark colour roles for one part of
 #                                          the page (the hero over the photo)
 #
-# Only the Ewe token names are kept. The generator still emits the Fluent 2
-# aliases for the desktop's unmigrated components; the site reads none of
-# them, so the block from "Fluent aliases" to the end of each rule is dropped.
+# The generator emits Ewe token names only (the Fluent aliases are gone). Its
+# closing `--accent-default` / `--accent: var(--accent-default)` pair is for
+# the apps' runtime accent; each block already sets --accent itself, so the
+# pair is dropped here.
 #
 # The generator runs with an empty, throwaway XDG_CONFIG_HOME, so it uses the
 # design defaults (accent #eeb407) and never reads or writes a real ewe.conf.
@@ -53,10 +54,9 @@ def parts(name):
     head = re.search(r"This file: scheme (\S+) \(([^)]*)\), accent (#[0-9a-f]{6})", text)
     m = re.search(r"^([^\n{/*][^\n{]*) \{\n(.*?)^\}\n", text, re.S | re.M)
     selector, body = m.group(1), m.group(2)
-    # the Ewe tokens only: drop the Fluent alias layer (and the trailing
-    # `--accent: var(--accent-default)` that points into it)
-    body = body.split("  /* ── Fluent aliases", 1)[0]
-    body = "\n".join(l for l in body.split("\n") if l.strip())
+    # the apps' runtime-accent pair is not the site's (see the header)
+    body = "\n".join(l for l in body.split("\n") if l.strip()
+                     and not l.strip().startswith(("--accent-default:", "--accent: var(--accent-default)")))
     assert "--surface-base" in body and "--bg-1:" not in body, name
     types = text.split("/* type styles */", 1)[1].strip()
     version = re.search(r"design system, version (\d+)", text).group(1)
