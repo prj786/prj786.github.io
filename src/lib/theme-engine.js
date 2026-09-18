@@ -106,11 +106,6 @@ function okToward(hexv, target, dL) {
 	return oklchHex(L + (Lt >= L ? dL : -dL), C, H);
 }
 
-const moveL = (hexv, L) => {
-	const [, C, H] = oklch(hexv);
-	return oklchHex(L, C, H);
-};
-
 // ── WCAG contrast ────────────────────────────────────────────────────────
 export function luminance(hexv) {
 	const [r, g, b] = rgb(hexv).map(lin);
@@ -130,10 +125,6 @@ function over(fg, alpha, bg) {
 	return hex(...[0, 1, 2].map((i) => f[i] * alpha + b[i] * (1 - alpha)));
 }
 
-/** black or white, whichever contrasts more with `fill`. */
-const onColor = (fill, dark = '#020202', light = '#ffffff') =>
-	contrast(fill, dark) >= contrast(fill, light) ? dark : light;
-
 // ═══ FOUNDATIONS — the design system's fixed values ══════════════════════
 export const EWELLOW = '#eeb407';
 const BLACK = '#020202';
@@ -142,6 +133,7 @@ export const NEUTRAL = {
 	400: '#a8a49d', 500: '#7f7b75', 600: '#5d5a55', 700: '#423f3a', 800: '#2c2a26',
 	850: '#201e1a', 900: '#151411', 950: '#0b0a08'
 };
+const WHITE = NEUTRAL[0];
 const REF_RAMP = {
 	50: '#fff6e4', 100: '#ffedc6', 200: '#ffdf9a', 300: '#fdcf64', 400: '#f8c23a',
 	500: EWELLOW, 600: '#ce9707', 700: '#a77607', 800: '#805708', 900: '#5a3b09', 950: '#352206'
@@ -149,18 +141,35 @@ const REF_RAMP = {
 export const RAMP_STEPS = Object.keys(REF_RAMP).map(Number);
 export const NEUTRAL_STEPS = Object.keys(NEUTRAL).map(Number);
 
+// The Accent picker's presets: values a person can pick as their accent.
+export const ACCENT_PRESETS = [
+	{ name: 'Ewellow', hex: EWELLOW }, { name: 'Amber', hex: '#f08a3c' },
+	{ name: 'Coral', hex: '#e5675b' }, { name: 'Rose', hex: '#d86fb3' },
+	{ name: 'Iris', hex: '#9a8cf0' }, { name: 'Sky', hex: '#62a8f5' },
+	{ name: 'Teal', hex: '#4cc1b0' }, { name: 'Moss', hex: '#7cc36a' },
+	{ name: 'Stone', hex: '#a8a49d' }
+];
+
 const EWE_STATUS = {
 	dark: { success: '#69d6aa', warning: '#f9a870', danger: '#ffa196', info: '#76c7ff' },
 	light: { success: '#047554', warning: '#964d09', danger: '#a04038', info: '#026a9d' }
 };
-// Where the accent roles sit on the ramp: hover and pressed are relative to
-// the accent's own lightness, the rest are absolute.
-const ACCENT_L = {
-	dark: { hover: +4, pressed: -10, subtle: 27, text: 84, ring: 84 },
-	light: { hover: -10, pressed: -20, subtle: 97, text: 49, ring: 60 }
+// Which step of the accent ramp each accent role is. `accent` is step 500
+// and `on-accent` is chosen by contrast.
+export const ACCENT_STEP = {
+	dark: {
+		'accent-hover': 400, 'accent-pressed': 600, 'accent-subtle': 950,
+		'accent-text': 400, 'focus-ring': 400, 'glass-accent': 400
+	},
+	light: {
+		'accent-hover': 600, 'accent-pressed': 700, 'accent-subtle': 50,
+		'accent-text': 800, 'focus-ring': 700, 'glass-accent': 900
+	}
 };
 const STATUS_SUBTLE = { dark: [27, 0.045], light: [95, 0.026] };
 const SUNKEN_DL = 4;
+const PRESSED_DL = { dark: 8, light: 6 };
+const BORDER_SUBTLE_MIX = 0.3;
 const SCRIM_ALPHA = { dark: 0.64, light: 0.32 };
 const GLASS_ALPHA = {
 	dark: { border: 0.1, hover: 0.08, pressed: 0.14 },
@@ -185,6 +194,28 @@ export const CORNER = {
 export const DENSITY = { compact: [24, 28], comfortable: [28, 32], roomy: [32, 40] };
 export const STROKE = { none: [0, 2], thin: [1, 2], thick: [2, 3] };
 const FOCUS_WIDTH = 1;
+const FIELD_BORDER_WIDTH = 1;
+
+// The top bar: its size follows its icons. icon_size small | normal | large
+// picks the module and the glyph; the bar is that module plus space-s above
+// and below, so 44 / 48 / 56.
+const SPACE_S = 8;
+export const BAR = {
+	small: { module: DENSITY.comfortable[0], icon: 16 },
+	normal: { module: DENSITY.comfortable[1], icon: 20 },
+	large: { module: 40, icon: 24 }
+};
+for (const b of Object.values(BAR)) b.height = b.module + 2 * SPACE_S;
+
+// shadows: (x, y, blur) and the alpha per variant; the color is derived
+const SHADOW = {
+	'shadow-sm': [[0, 1, 2], { dark: 0.4, light: 0.08 }],
+	'shadow-float': [[0, 2, 6], { dark: 0.35, light: 0.1 }]
+};
+const GRADIENT_ANGLE = { 'gradient-ewellow': 135, 'gradient-ember': 160, 'gradient-night': 180 };
+const GRADIENT_EWELLOW_MIX = [0.5, 0.25];
+const EMBER_TINT = 0.4;
+const GLOW_ALPHA = 0.08;
 
 const SURFACES = [
 	'surface-base', 'surface-raised', 'surface-overlay', 'surface-sunken',
@@ -192,6 +223,7 @@ const SURFACES = [
 ];
 const RESTING = SURFACES.filter((s) => s !== 'surface-pressed');
 const STATUS = ['success', 'warning', 'danger', 'info'];
+const STATUS_FINISH = ['on-status', ...STATUS.map((s) => s + '-subtle')];
 export const ROLES = [
 	...SURFACES,
 	'border-subtle', 'border-strong', 'text-primary', 'text-secondary', 'text-muted',
@@ -202,12 +234,8 @@ export const ROLES = [
 	'on-status', 'glass-accent'
 ];
 const TEXT_ROLES = ['text-primary', 'text-secondary', 'text-muted', 'accent-text', ...STATUS];
-const ACCENT_ROLES = [
-	'accent', 'accent-hover', 'accent-pressed', 'on-accent', 'accent-subtle', 'accent-text',
-	'focus-ring', 'glass-accent'
-];
 
-// ═══ the two built-in schemes ════════════════════════════════════════════
+// ═══ the two built-in schemes: palette + accent, no overrides ════════════
 export const BUILTIN_SCHEMES = [
 	{
 		slug: 'ewe-dark', name: 'Ewe Dark', variant: 'dark', builtin: true, accent: EWELLOW,
@@ -217,14 +245,8 @@ export const BUILTIN_SCHEMES = [
 			base04: '#a8a49d', base05: '#faf9f6', base06: '#d5d2cb', base07: '#fefdfc',
 			base08: '#ffa196', base09: '#f9a870', base0A: '#eeb407', base0B: '#69d6aa',
 			base0C: '#64d1d7', base0D: '#76c7ff', base0E: '#e0a4ee', base0F: '#805708',
-			base10: '#020202', base11: '#000000', base12: '#febfb7', base13: '#ffc29a',
+			base10: '#020202', base11: '#020202', base12: '#febfb7', base13: '#ffc29a',
 			base14: '#7deabd', base15: '#79e5eb', base16: '#a3d8ff', base17: '#f1bafe'
-		},
-		overrides: {
-			'on-accent': '#020202', 'accent-text': '#f8c23a', 'focus-ring': '#f8c23a',
-			'surface-overlay': '#201e1a', 'surface-pressed': '#423f3a',
-			'surface-selected': '#2c2a26', 'border-subtle': '#2c2a26',
-			'border-strong': '#7f7b75', 'accent-subtle': '#352206'
 		}
 	},
 	{
@@ -237,21 +259,36 @@ export const BUILTIN_SCHEMES = [
 			base0C: '#057176', base0D: '#026a9d', base0E: '#814a8d', base0F: '#805708',
 			base10: '#e9e6e0', base11: '#d5d2cb', base12: '#8c2e28', base13: '#7f3f02',
 			base14: '#016245', base15: '#035e62', base16: '#025884', base17: '#6f397b'
-		},
-		overrides: {
-			'on-accent': '#020202', 'accent-text': '#805708', 'focus-ring': '#a77607',
-			'surface-overlay': '#fefdfc', 'surface-pressed': '#d5d2cb',
-			'surface-selected': '#fefdfc', 'border-subtle': '#d5d2cb',
-			'border-strong': '#7f7b75', 'accent-subtle': '#fff6e4'
 		}
 	}
 ];
 const BY_SLUG = Object.fromEntries(BUILTIN_SCHEMES.map((s) => [s.slug, s]));
 
+// ═══ one black, one white ════════════════════════════════════════════════
+const L_FLOOR = oklch(BLACK)[0]; // nothing emitted is darker than `black`
+const L_CEIL = oklch(WHITE)[0]; // nothing emitted is lighter than `neutral-0`
+
+/** `hexv`, or `black` / `neutral-0` when it lies beyond them. */
+function inRange(hexv) {
+	const L = oklch(hexv)[0];
+	if (L < L_FLOOR - 1e-6) return BLACK;
+	if (L > L_CEIL + 1e-6) return WHITE;
+	return hexv;
+}
+
+/** `hexv` at lightness L (hue and chroma kept), inside the range. */
+function atL(hexv, L) {
+	const [, C, H] = oklch(hexv);
+	return inRange(oklchHex(Math.max(L_FLOOR, Math.min(L_CEIL, L)), C, H));
+}
+
+/** `black` or `neutral-0`, whichever contrasts more with `fill`. */
+export const onColor = (fill) => (contrast(fill, BLACK) >= contrast(fill, WHITE) ? BLACK : WHITE);
+
 // ═══ the accent ramp ═════════════════════════════════════════════════════
 /** The reference ramp as [L, chroma ratio to step 500, hue delta]. */
 const PROFILE = (() => {
-	const [L5, C5, H5] = oklch(REF_RAMP[500]);
+	const [, C5, H5] = oklch(REF_RAMP[500]);
 	const p = {};
 	for (const step of RAMP_STEPS) {
 		const [L, C, H] = oklch(REF_RAMP[step]);
@@ -260,46 +297,18 @@ const PROFILE = (() => {
 	return p;
 })();
 
-/** Every step of the accent's ramp, in OKLCH. */
-function accentRampLch(accent) {
+/** The accent's own ramp, step 500 being the accent itself. */
+export function accentRamp(accent) {
 	const [L0, C0, H0] = oklch(accent);
 	const La = PROFILE[500][0];
-	const steps = {};
+	const ramp = {};
 	for (const step of RAMP_STEPS) {
 		const [L, cr, dh] = PROFILE[step];
 		const Ls = L >= La ? L0 + ((100 - L0) * (L - La)) / (100 - La) : (L0 * L) / La;
-		steps[step] = [Ls, C0 * cr, mod360(H0 + dh)];
+		ramp[step] = oklchHex(Ls, C0 * cr, mod360(H0 + dh));
 	}
-	return steps;
-}
-
-/** The accent's own ramp, step 500 being the accent itself. */
-export function accentRamp(accent) {
-	const lch = accentRampLch(accent);
-	const ramp = {};
-	for (const step of RAMP_STEPS) ramp[step] = oklchHex(...lch[step]);
 	ramp[500] = accent.toLowerCase();
 	return ramp;
-}
-
-/** The ramp read at lightness L — "the accent at 84 L" means this. */
-function rampAt(accent, L) {
-	const pts = Object.values(accentRampLch(accent)).sort(
-		(a, b) => a[0] - b[0] || a[1] - b[1] || a[2] - b[2]
-	);
-	if (L <= pts[0][0]) return oklchHex(L, pts[0][1], pts[0][2]);
-	const last = pts[pts.length - 1];
-	if (L >= last[0]) return oklchHex(L, last[1], last[2]);
-	for (let i = 0; i < pts.length - 1; i++) {
-		const [L1, C1, H1] = pts[i];
-		const [L2, C2, H2] = pts[i + 1];
-		if (L1 <= L && L <= L2) {
-			const f = L2 > L1 ? (L - L1) / (L2 - L1) : 0;
-			const d = (((H2 - H1 + 180) % 360) + 360) % 360 - 180;
-			return oklchHex(L, C1 + (C2 - C1) * f, mod360(H1 + d * f));
-		}
-	}
-	return oklchHex(L, last[1], last[2]);
 }
 
 // ═══ role derivation ═════════════════════════════════════════════════════
@@ -312,6 +321,7 @@ function deriveRoles(sc, accent) {
 	for (const s of RAMP_STEPS) c['ewellow-' + s] = ramp[s];
 	for (const k of NEUTRAL_STEPS) c['neutral-' + k] = NEUTRAL[k];
 	const sunken = p.base10 || okShift(p.base00, -SUNKEN_DL);
+	const pressed = okToward(p.base02, p.base05, PRESSED_DL[variant]);
 	if (dark) {
 		Object.assign(c, {
 			'surface-base': p.base00,
@@ -319,7 +329,7 @@ function deriveRoles(sc, accent) {
 			'surface-overlay': okMix(p.base01, p.base02, 0.5),
 			'surface-sunken': sunken,
 			'surface-hover': p.base02,
-			'surface-pressed': okToward(p.base02, p.base05, 8),
+			'surface-pressed': pressed,
 			'surface-selected': p.base02,
 			'border-subtle': p.base02,
 			'border-strong': okMix(p.base03, p.base04, 0.5)
@@ -335,9 +345,9 @@ function deriveRoles(sc, accent) {
 			'surface-overlay': top,
 			'surface-sunken': sunken,
 			'surface-hover': p.base02,
-			'surface-pressed': okToward(p.base02, p.base05, 8),
+			'surface-pressed': pressed,
 			'surface-selected': top,
-			'border-subtle': okMix(p.base02, p.base03, 0.5),
+			'border-subtle': okMix(p.base02, p.base03, BORDER_SUBTLE_MIX),
 			'border-strong': okMix(p.base03, p.base04, 0.5)
 		});
 	}
@@ -347,24 +357,18 @@ function deriveRoles(sc, accent) {
 		'text-muted': p.base04,
 		'text-disabled': p.base03
 	});
-	const L0 = oklch(accent)[0];
-	const A = ACCENT_L[variant];
-	c['accent'] = accent;
-	c['accent-hover'] = rampAt(accent, L0 + A.hover);
-	c['accent-pressed'] = rampAt(accent, L0 + A.pressed);
-	c['on-accent'] = onColor(accent, BLACK, '#ffffff');
-	c['accent-subtle'] = rampAt(accent, A.subtle);
-	c['accent-text'] = rampAt(accent, A.text);
-	c['focus-ring'] = rampAt(accent, A.ring);
+	// the accent roles are steps of the ramp generated from the accent
+	c['accent'] = ramp[500];
+	for (const [role, step] of Object.entries(ACCENT_STEP[variant])) c[role] = ramp[step];
 	if (sc.semantic !== false) {
-		Object.assign(c, {
-			danger: p.base08, warning: p.base09, success: p.base0B, info: p.base0D
-		});
+		Object.assign(c, { danger: p.base08, warning: p.base09, success: p.base0B, info: p.base0D });
 	} else {
 		Object.assign(c, EWE_STATUS[variant]);
 	}
 	const alpha = { scrim: SCRIM_ALPHA[variant] };
 	c['scrim'] = dark ? p.base11 || BLACK : p.base05;
+	for (const k of Object.keys(c)) c[k] = inRange(c[k]); // one black, one white
+	c['on-accent'] = onColor(c['accent']);
 	return [c, alpha];
 }
 
@@ -372,34 +376,39 @@ function deriveRoles(sc, accent) {
 function statusSubtle(color, variant) {
 	const [Ls, Cmax] = STATUS_SUBTLE[variant];
 	const [, C, H] = oklch(color);
-	return oklchHex(Ls, Math.min(C, Cmax), H);
+	return inRange(oklchHex(Ls, Math.min(C, Cmax), H));
 }
 
 function finishStatus(c, variant) {
 	for (const s of STATUS) c[s + '-subtle'] = statusSubtle(c[s], variant);
 	// one on-status for the four fills: whichever holds best on all of them
 	const score = (cand) => Math.min(...STATUS.map((s) => contrast(c[s], cand)));
-	c['on-status'] = score('#020202') >= score('#ffffff') ? '#020202' : '#ffffff';
+	c['on-status'] = score(BLACK) >= score(WHITE) ? BLACK : WHITE;
 }
 
 // ═══ the guarantees ══════════════════════════════════════════════════════
+const worstOn = (hexv, c, surfaces) => Math.min(...surfaces.map((s) => contrast(hexv, c[s])));
+
 function ensureContrast(c, role, surfaces, target, adjusted, why) {
-	const worst = Math.min(...surfaces.map((s) => contrast(c[role], c[s])));
+	const worst = worstOn(c[role], c, surfaces);
 	if (worst >= target - 1e-9) return;
 	const [L, C, H] = oklch(c[role]);
 	const mean = surfaces.reduce((n, s) => n + oklch(c[s])[0], 0) / surfaces.length;
 	const first = L >= mean ? 1 : -1;
+	const move = (cand) => {
+		adjusted.push({ role, from: c[role], to: cand, why: `${why} (was ${worst.toFixed(2)}:1)` });
+		c[role] = cand;
+	};
 	for (const direction of [first, -first]) {
 		for (let step = 1; step <= 100; step++) {
 			const Ln = L + direction * step;
-			if (Ln < 0 || Ln > 100) break;
-			const cand = oklchHex(Ln, C, H);
-			if (Math.min(...surfaces.map((s) => contrast(cand, c[s]))) >= target) {
-				adjusted.push({ role, from: c[role], to: cand, why: `${why} (was ${worst.toFixed(2)}:1)` });
-				c[role] = cand;
-				return;
-			}
+			if (Ln < L_FLOOR || Ln > L_CEIL) break;
+			const cand = inRange(oklchHex(Ln, C, H));
+			if (worstOn(cand, c, surfaces) >= target) return move(cand);
 		}
+		// the last step inside the range, before turning round
+		const cand = atL(c[role], direction > 0 ? L_CEIL : L_FLOOR);
+		if (worstOn(cand, c, surfaces) >= target) return move(cand);
 	}
 	adjusted.push({
 		role,
@@ -411,7 +420,8 @@ function ensureContrast(c, role, surfaces, target, adjusted, why) {
 
 function guarantees(c, variant, accent, adjusted) {
 	const dark = variant === 'dark';
-	// 1. surfaces stay apart
+	// 1. surfaces stay apart, as far as the range between black and
+	//    neutral-0 allows
 	for (const [below, role] of [
 		['surface-base', 'surface-raised'],
 		['surface-raised', 'surface-overlay'],
@@ -421,7 +431,9 @@ function guarantees(c, variant, accent, adjusted) {
 			L = oklch(c[role])[0];
 		if (Math.abs(L - Lb) >= SURFACE_STEP - 0.05) continue;
 		const sign = Math.abs(L - Lb) > 1e-6 ? (L > Lb ? 1 : -1) : dark ? 1 : -1;
-		const nw = moveL(c[role], Math.max(0, Math.min(100, Lb + sign * SURFACE_STEP)));
+		const want = Math.max(L_FLOOR, Math.min(L_CEIL, Lb + sign * SURFACE_STEP));
+		if (Math.abs(want - Lb) <= Math.abs(L - Lb) + 0.05) continue; // no room left
+		const nw = atL(c[role], want);
 		if (nw !== c[role]) {
 			adjusted.push({ role, from: c[role], to: nw, why: `at least ${SURFACE_STEP} L from ${below}` });
 			c[role] = nw;
@@ -435,7 +447,7 @@ function guarantees(c, variant, accent, adjusted) {
 		if (Math.abs(d) < WARNING_HUE_GAP) {
 			const toward = (((RED_HUE - Ha + 180) % 360) + 360) % 360 - 180;
 			const sign = toward >= 0 ? 1 : -1;
-			const nw = oklchHex(Lw, Cw, mod360(Ha + sign * WARNING_HUE_GAP));
+			const nw = inRange(oklchHex(Lw, Cw, mod360(Ha + sign * WARNING_HUE_GAP)));
 			adjusted.push({
 				role: 'warning',
 				from: c['warning'],
@@ -455,22 +467,40 @@ function guarantees(c, variant, accent, adjusted) {
 		ensureContrast(c, role, RESTING, CONTRAST_BORDER, adjusted, `${CONTRAST_BORDER}:1 on every surface`);
 }
 
-/** derive -> overrides -> guarantees. */
+/** derive -> overrides (user schemes only) -> guarantees. */
 function schemeColors(sc, accent) {
 	const [c, alpha] = deriveRoles(sc, accent);
-	const ov = sc.overrides || {};
-	for (const [k, v] of Object.entries(ov)) {
-		// an override of an accent role belongs to the accent the file was
-		// written for; a built-in always wears the person's accent
-		if (ACCENT_ROLES.includes(k) && sc.builtin && accent !== sc.accent) continue;
-		c[k] = v;
-	}
+	const ov = Object.fromEntries(Object.entries(sc.overrides || {}).map(([k, v]) => [k, inRange(v)]));
+	for (const [k, v] of Object.entries(ov)) if (!STATUS_FINISH.includes(k)) c[k] = v;
 	const adjusted = [];
 	guarantees(c, sc.variant, accent, adjusted);
+	// glass-accent is accent-text inside glass: where they are the same ramp
+	// step (the dark), it follows accent-text through the guarantees
+	const steps = ACCENT_STEP[sc.variant];
+	if (!('glass-accent' in ov) && steps['glass-accent'] === steps['accent-text'])
+		c['glass-accent'] = c['accent-text'];
 	finishStatus(c, sc.variant);
-	if ('on-status' in ov) c['on-status'] = ov['on-status'];
-	for (const s of STATUS) if (s + '-subtle' in ov) c[s + '-subtle'] = ov[s + '-subtle'];
+	for (const k of STATUS_FINISH) if (k in ov) c[k] = ov[k];
 	return { color: c, alpha, adjusted };
+}
+
+/** The four gradients, from the ramp and the surfaces. */
+function gradients(c) {
+	const [fa, fb] = GRADIENT_EWELLOW_MIX;
+	const [, Cs, Hs] = oklch(c['accent-subtle']);
+	const Lr = oklch(c['surface-raised'])[0];
+	const ember = inRange(oklchHex(Lr, Cs * EMBER_TINT, Hs));
+	return {
+		'gradient-ewellow': { kind: 'linear', angle: GRADIENT_ANGLE['gradient-ewellow'], stops: [
+			[inRange(okMix(c['ewellow-400'], c['accent'], fa)), 1, 0],
+			[inRange(okMix(c['accent'], c['ewellow-600'], fb)), 1, 100]] },
+		'gradient-ember': { kind: 'linear', angle: GRADIENT_ANGLE['gradient-ember'], stops: [
+			[ember, 1, 0], [c['surface-base'], 1, 100]] },
+		'gradient-night': { kind: 'linear', angle: GRADIENT_ANGLE['gradient-night'], stops: [
+			[c['surface-raised'], 1, 0], [c['surface-base'], 1, 100]] },
+		'gradient-glow': { kind: 'radial', at: '50% 0%', stops: [
+			[c['accent'], GLOW_ALPHA, 0], [c['accent'], 0, 60]] }
+	};
 }
 
 // ═══ the token set ═══════════════════════════════════════════════════════
@@ -478,7 +508,7 @@ function schemeColors(sc, accent) {
  * Everything `ewe-theme build` would derive, for one scheme and one accent.
  *
  * @param {object} opts scheme (slug or record), accent, corner, density,
- *   stroke, barOpacity (0–100), increaseContrast, reduceTransparency
+ *   stroke, barOpacity (0–100), increaseContrast, reduceTransparency, barIconSize
  */
 export function derive({
 	scheme = 'ewe-dark',
@@ -488,12 +518,13 @@ export function derive({
 	stroke = 'thin',
 	barOpacity = 100,
 	increaseContrast = false,
-	reduceTransparency = false
+	reduceTransparency = false,
+	barIconSize = 'normal'
 } = {}) {
 	const sc = typeof scheme === 'string' ? BY_SLUG[scheme] || BY_SLUG['ewe-dark'] : scheme;
 	const variant = sc.variant;
 	const dark = variant === 'dark';
-	const acc = sc.builtin ? accent : sc.accent || sc.palette.base0A;
+	const acc = inRange((sc.builtin ? accent : sc.accent || sc.palette.base0A).toLowerCase());
 	const { color, alpha, adjusted } = schemeColors(sc, acc);
 
 	// ── Increase contrast remaps roles ─────────────────────────────────────
@@ -507,11 +538,9 @@ export function derive({
 	const op = barOpacity;
 	const glassSolid = increaseContrast || reduceTransparency;
 	const glassAlpha = glassSolid ? 1.0 : op < 100 ? op / 100 : OPACITY_GLASS;
-	const tint =
-		contrast(sc.palette.base05, color['surface-base']) >=
-		contrast(sc.palette.base07, color['surface-base'])
-			? sc.palette.base05
-			: sc.palette.base07;
+	const t05 = inRange(sc.palette.base05),
+		t07 = inRange(sc.palette.base07);
+	const tint = contrast(t05, color['surface-base']) >= contrast(t07, color['surface-base']) ? t05 : t07;
 	const ga = GLASS_ALPHA[variant];
 	if (glassSolid) {
 		Object.assign(color, {
@@ -537,12 +566,6 @@ export function derive({
 			'glass-pressed': ga.pressed
 		});
 	}
-	color['glass-accent'] = dark
-		? color['accent-text']
-		: rampAt(acc, oklch(color['ewellow-900'])[0]);
-	const ov = sc.overrides || {};
-	if ('glass-accent' in ov && !(sc.builtin && acc !== sc.accent))
-		color['glass-accent'] = ov['glass-accent'];
 	if (!glassSolid && op < 100) {
 		// The Glass contrast rule: at the preset, text and the accent mark hold
 		// 4.5:1 and status glyphs 3:1 over the fill on white AND black.
@@ -561,11 +584,11 @@ export function derive({
 		]) {
 			const worst = Math.min(...backs.map((b) => contrast(color[role], b)));
 			if (worst >= target - 1e-9) continue;
-			const [L, C, H] = oklch(color[role]);
+			const L = oklch(color[role])[0];
 			for (let step = 1; step <= 100; step++) {
 				const Ln = L + direction * step;
-				if (Ln < 0 || Ln > 100) break;
-				const cand = oklchHex(Ln, C, H);
+				const edge = Ln < L_FLOOR || Ln > L_CEIL;
+				const cand = atL(color[role], Ln); // at the edge: black / neutral-0
 				if (Math.min(...backs.map((b) => contrast(cand, b))) >= target) {
 					adjusted.push({
 						role,
@@ -576,6 +599,7 @@ export function derive({
 					color[role] = cand;
 					break;
 				}
+				if (edge) break;
 			}
 		}
 		for (const st of STATUS)
@@ -595,9 +619,16 @@ export function derive({
 		'fully-rounded': full,
 		'border-width-1': bw1,
 		'border-width-2': bw2,
-		'focus-width': increaseContrast ? 2 : FOCUS_WIDTH
+		'focus-width': increaseContrast ? 2 : FOCUS_WIDTH,
+		'field-border-width': Math.max(increaseContrast ? 2 : FIELD_BORDER_WIDTH, bw1)
 	};
 	const size = { 'control-sm': 24, 'control-md': ctrlMd, 'control-lg': ctrlLg, 'control-xl': 40, 'control-2xl': 48 };
+	const bar = BAR[barIconSize] ?? BAR.normal;
+
+	const ink = dark ? BLACK : inRange(sc.palette.base05);
+	const shadow = Object.fromEntries(
+		Object.entries(SHADOW).map(([k, [[x, y, blur], a]]) => [k, { x, y, blur, color: ink, alpha: a[variant] }])
+	);
 
 	return {
 		scheme: { slug: sc.slug, name: sc.name, variant, builtin: !!sc.builtin },
@@ -607,6 +638,9 @@ export function derive({
 		alpha,
 		shape,
 		size,
+		bar: { iconSize: BAR[barIconSize] ? barIconSize : 'normal', ...bar, padding: SPACE_S },
+		shadow,
+		gradient: gradients(color),
 		adjusted,
 		brand: Object.fromEntries(RAMP_STEPS.map((s) => [s, color['ewellow-' + s]])),
 		glass: { alpha: glassAlpha, solid: glassSolid, blurred: !glassSolid && op >= 10 && op < 100 }
@@ -618,14 +652,26 @@ const fmt = (x) => {
 	return s === '' || s === '-' ? '0' : s;
 };
 
+const rgba = (v, a) => {
+	const [r, g, b] = rgb(v);
+	return `rgba(${r}, ${g}, ${b}, ${fmt(a)})`;
+};
+
 /** A role's value as tokens.css spells it: translucent roles as rgba(). */
 export function colorCss(role, color, alpha) {
 	const v = color[role];
-	if (alpha && role in alpha) {
-		const [r, g, b] = rgb(v);
-		return `rgba(${r}, ${g}, ${b}, ${fmt(alpha[role])})`;
-	}
-	return v;
+	return alpha && role in alpha ? rgba(v, alpha[role]) : v;
+}
+
+const px = (v) => (v === 0 ? '0' : `${v}px`);
+
+export const shadowCss = (sh) => (sh ? `${px(sh.x)} ${px(sh.y)} ${px(sh.blur)} ${rgba(sh.color, sh.alpha)}` : 'none');
+
+export function gradientCss(g) {
+	const stops = g.stops.map(([c, a, pos]) => `${a < 1 ? rgba(c, a) : c} ${pos}%`).join(', ');
+	return g.kind === 'radial'
+		? `radial-gradient(circle at ${g.at}, ${stops})`
+		: `linear-gradient(${g.angle}deg, ${stops})`;
 }
 
 /** Every role as a `--name:value` declaration list, for a style attribute. */
@@ -633,6 +679,8 @@ export function cssVars(t) {
 	return [
 		...Object.keys(t.color).map((k) => `--${k}:${colorCss(k, t.color, t.alpha)}`),
 		...Object.entries(t.shape).map(([k, v]) => `--${k}:${v}px`),
-		...Object.entries(t.size).map(([k, v]) => `--${k}:${v}px`)
+		...Object.entries(t.size).map(([k, v]) => `--${k}:${v}px`),
+		...Object.entries(t.shadow).map(([k, v]) => `--${k}:${shadowCss(v)}`),
+		...Object.entries(t.gradient).map(([k, v]) => `--${k}:${gradientCss(v)}`)
 	].join(';');
 }
