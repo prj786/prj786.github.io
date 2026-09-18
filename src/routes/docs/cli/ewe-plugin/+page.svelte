@@ -91,11 +91,11 @@ ewe-plugin restore --yes`}
 	<h2>Output</h2>
 	<p><code>list --json</code> — what the shell reads at startup:</p>
 	<Code
-		code={`{"ok": true, "apiVersion": 1, "dir": "/home/you/.config/ewe/plugins",
+		code={`{"ok": true, "apiVersion": 2, "dir": "/home/you/.config/ewe/plugins",
  "plugins": [{"id": "example.hello", "dir": "…/plugins/example.hello",
               "installed": true, "git": true,
               "source": "https://github.com/prj786/ewe-plugin-example.git",
-              "name": "Hello", "version": "0.1.0", "apiVersion": 1,
+              "name": "Hello", "version": "0.1.0", "apiVersion": 2,
               "kinds": ["service", "panel", "bar-widget"],
               "entryPoints": {"service": "Service.qml", "panel": "Panel.qml",
                               "bar-widget": "Widget.qml"},
