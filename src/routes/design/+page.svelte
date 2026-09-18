@@ -1,7 +1,9 @@
 <script>
 	import Icon from '$lib/Icon.svelte';
 	import PageNav from '$lib/docs/PageNav.svelte';
-	import { PAGES, FLAT } from '$lib/design/nav.js';
+	import Downloads from '$lib/design/Downloads.svelte';
+	import { TOPICS, DOCS, FLAT } from '$lib/design/nav.js';
+	import DATA from '$lib/design/token-data.json';
 
 	// Nielsen Norman Group's ten usability heuristics, which Ewe adopts as its
 	// UX values, each with what it means on this desktop.
@@ -16,6 +18,22 @@
 		['Keep it quiet', 'One primary action per view, flat surfaces, slight gradients, and rare options behind Advanced rather than on the page.'],
 		['Explain a failure', 'What happened, then what to do: "Disk is full. Free up 2.1 GB and try again." Codes go in a details section, never the headline, and there is always a way to recover.'],
 		['Help where the question is', 'Settings explain themselves in their description line, empty states say what to do next, icon-only controls have tooltips, and longer help works offline.']
+	];
+
+	const DOWNLOADS = [
+		{ href: '/schemes/scheme-template.yaml', label: 'scheme-template.yaml', note: 'Start your own scheme' },
+		{ href: '/schemes/ewe-dark.yaml', label: 'ewe-dark.yaml', note: 'Ewe Dark' },
+		{ href: '/schemes/ewe-light.yaml', label: 'ewe-light.yaml', note: 'Ewe Light' },
+		{ href: '/design/tokens.css', label: 'tokens.css', note: 'Every token, both schemes' },
+		{ href: '/design/tokens.json', label: 'tokens.json', note: 'Every token, with usage notes' }
+	];
+
+	// the short review: what the system decides, in one line each
+	const GLANCE = [
+		['palette', 'One gold, one near-black', 'Ewellow #eeb407 on warm near-black, with a warm grey scale between. One black and one white; nothing goes past either.'],
+		['swatch-book', 'Roles, not colors', 'A component asks for surface-raised or text-muted, never a hex. The scheme decides what the role is worth.'],
+		['wand-sparkles', 'One generator', 'ewe-theme derives every token from a palette and an accent, then checks contrast. The shell, the apps, GTK, Qt, kitty and this site read its output.'],
+		['accessibility', 'Readable in every mode', 'WCAG 2.2 AA in both schemes, and four modes — reduce motion, reduce transparency, increase contrast, text size — applied as remaps.']
 	];
 
 	const PRINCIPLES = [
@@ -44,6 +62,23 @@
 	system — the decisions, the values behind them, and the vocabulary a plugin or an app can reach
 	for. The website you are reading wears it too, so every swatch below is live.
 </p>
+
+<section>
+	<h2>At a glance</h2>
+	<p>
+		Ewe’s design language is quiet on purpose: people come to a desktop to do something else, so the
+		interface stays out of the way, reads easily, and behaves the same everywhere. Version
+		{DATA.version} of the system is what ewe <code>{DATA.ewe}</code> ships.
+	</p>
+	<dl class="rows">
+		{#each GLANCE as [icon, title, body]}
+			<div class="row">
+				<dt><Icon name={icon} size={16} />{title}</dt>
+				<dd>{body}</dd>
+			</div>
+		{/each}
+	</dl>
+</section>
 
 <section>
 	<h2>The goal is calm</h2>
@@ -131,16 +166,35 @@
 		decided, and it is never a component.
 	</p>
 	<p class="note">
-		The desktop is being moved onto this system now: the generator and the two built-in schemes are
-		in, the shell and the three apps follow. <a href="/theming/">Theming</a> shows the derivation
-		running live, and <a href="/docs/cli/ewe-theme/">ewe-theme</a> is the command that does it.
+		Since ewe 0.22.0-beta the whole desktop runs on this system; <a href="/design/changelog/">Versions</a>
+		lists the few places where it differs from the documents on purpose.
+		<a href="/theming/">Theming</a> shows the derivation running live, and
+		<a href="/docs/cli/ewe-theme/">ewe-theme</a> is the command that does it.
 	</p>
 </section>
 
 <section>
-	<h2>Read on</h2>
-	<div class="grid">
-		{#each PAGES as p}
+	<h2 id="documentation">Documentation</h2>
+	<p>
+		For people who build with the system or write their own scheme: the files, the names and the
+		values, generated from the code that ships.
+	</p>
+	<div class="grid docs two">
+		{#each DOCS as p}
+			<a class="card act" href={p.href}>
+				<h3>{p.label}</h3>
+				<p>{p.blurb}</p>
+			</a>
+		{/each}
+	</div>
+	<Downloads items={DOWNLOADS} label="Design system files" />
+</section>
+
+<section>
+	<h2 id="foundations">Foundations</h2>
+	<p>The decisions themselves, one topic a page.</p>
+	<div class="grid docs">
+		{#each TOPICS as p}
 			<a class="card act" href={p.href}>
 				<h3>{p.label}</h3>
 				<p>{p.blurb}</p>
@@ -152,8 +206,12 @@
 <PageNav flat={FLAT} />
 
 <style>
-	.principles {
+	.principles,
+	.docs {
 		margin-top: var(--space-md);
+	}
+	.two {
+		grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
 	}
 	.values {
 		list-style: none;

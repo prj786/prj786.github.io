@@ -100,3 +100,6 @@ out = [
 print("\n".join(out), end="")
 PY
 echo "ok src/tokens.css <- $THEME (ewe-dark, ewe-light)"
+
+# the design section's data and downloads (static/design/tokens.css among them)
+bash scripts/sync-design.sh "$THEME"

@@ -35,8 +35,35 @@ export const PAGES = [
 		href: '/design/components/',
 		label: 'Components',
 		blurb: 'All 85 specs, in five groups, from Button to Workspace indicator.'
+	},
+	{
+		href: '/design/schemes/',
+		label: 'Scheme files',
+		group: 'Documentation',
+		blurb: 'Write your own scheme: every key, every palette slot, and the ways a file comes in.'
+	},
+	{
+		href: '/design/tokens/',
+		label: 'Token reference',
+		group: 'Documentation',
+		blurb: 'Every token with its CSS and QML name and its value in both schemes.'
+	},
+	{
+		href: '/design/build/',
+		label: 'Building with the system',
+		group: 'Documentation',
+		blurb: 'Tokens in a shell plugin and in a web app, the rules, and a check before you ship.'
+	},
+	{
+		href: '/design/changelog/',
+		label: 'Versions',
+		group: 'Documentation',
+		blurb: 'What version 3 changed, and where ewe 0.22 differs from the documents.'
 	}
 ];
+
+export const TOPICS = PAGES.filter((p) => !p.group);
+export const DOCS = PAGES.filter((p) => p.group === 'Documentation');
 
 export const FLAT = [{ href: '/design/', label: 'Design system' }, ...PAGES];
 

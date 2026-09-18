@@ -31,7 +31,7 @@
 		<div class="right">
 			<a class="gh" href={OS_REPO}>GitHub</a>
 			<ThemeToggle />
-			<a class="btn primary sm" href="/download/"><Icon name="download" size={15} /> Download</a>
+			<a class="btn primary sm" href="/download/" aria-label="Download"><Icon name="download" size={15} /> <span class="dl-label">Download</span></a>
 		</div>
 	</div>
 </header>
@@ -197,21 +197,32 @@
 			padding-inline: var(--space-s);
 		}
 	}
+	/* Phones: the nav gets a row of its own under the mark, so every page
+	   stays one tap away; Download keeps its glyph. --header-h follows
+	   (app.css) so sticky offsets below still line up. */
 	@media (max-width: 600px) {
+		.bar {
+			flex-wrap: wrap;
+			align-content: center;
+			row-gap: var(--space-xs);
+		}
 		.links {
-			flex: 1;
-			mask-image: linear-gradient(to right, #000 88%, transparent);
+			order: 3;
+			flex: 1 0 100%;
+			justify-content: space-between;
 		}
 		.links a {
 			padding-inline: var(--space-s);
 		}
 	}
 	@media (max-width: 520px) {
-		.sm {
+		.dl-label {
 			display: none;
 		}
-		.mark span {
-			display: none;
+		.sm {
+			width: var(--control-lg);
+			padding: 0;
+			justify-content: center;
 		}
 	}
 

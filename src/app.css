@@ -517,3 +517,10 @@ a.card:active,
 }
 :root [data-scheme="ewe-dark"] .logo-on-dark { display: inline; }
 :root [data-scheme="ewe-dark"] .logo-on-light { display: none; }
+
+/* Phones: the header's nav sits on its own row (+layout.svelte). */
+@media (max-width: 600px) {
+	:root {
+		--header-h: calc(2 * var(--control-lg) + 3 * var(--space-xs));
+	}
+}
