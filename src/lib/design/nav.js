@@ -35,8 +35,17 @@ export const PAGES = [
 		href: '/design/components/',
 		label: 'Components',
 		blurb: 'All 85 specs, in five groups, from Button to Workspace indicator.'
+	},
+	{
+		href: '/design/schemes/',
+		label: 'Scheme files',
+		group: 'Documentation',
+		blurb: 'Write your own scheme: every key, every palette slot, and the ways a file comes in.'
 	}
 ];
+
+export const TOPICS = PAGES.filter((p) => !p.group);
+export const DOCS = PAGES.filter((p) => p.group === 'Documentation');
 
 export const FLAT = [{ href: '/design/', label: 'Design system' }, ...PAGES];
 

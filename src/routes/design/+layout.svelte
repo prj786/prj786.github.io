@@ -26,7 +26,10 @@
 		<nav aria-label="Design system">
 			<a class="home" href="/design/" class:active={active('/design/')}>Overview</a>
 			<ul>
-				{#each PAGES as item}
+				{#each PAGES as item, i}
+					{#if item.group && item.group !== PAGES[i - 1]?.group}
+						<li class="group" role="presentation">{item.group}</li>
+					{/if}
 					<li>
 						<a
 							href={item.href}
@@ -75,6 +78,15 @@
 	}
 	li {
 		margin: 0;
+	}
+	li.group {
+		margin-top: var(--space-md);
+		padding: 0 var(--space-s) var(--space-xxs);
+		font-size: var(--font-size-xs);
+		line-height: var(--line-height-xs);
+		font-weight: var(--font-weight-semibold);
+		letter-spacing: var(--tracking-wide);
+		color: var(--text-muted);
 	}
 	nav a {
 		display: flex;
@@ -187,5 +199,58 @@
 	}
 	.doc :global(section + section) {
 		margin-top: 0;
+	}
+
+	/* ── a table that scrolls inside its own box (the documentation pages) ── */
+	.doc :global(.tbl) {
+		overflow-x: auto;
+		margin-top: var(--space-md);
+		border: var(--border-width-1) solid var(--border-subtle);
+		border-radius: var(--rounded);
+		max-width: 60rem;
+		scrollbar-width: thin;
+	}
+	.doc :global(.tbl table) {
+		border-collapse: collapse;
+		width: 100%;
+		min-width: 36rem;
+		font-size: var(--font-size-md);
+		line-height: var(--line-height-md);
+	}
+	.doc :global(.tbl th) {
+		text-align: left;
+		font-size: var(--font-size-xs);
+		line-height: var(--line-height-xs);
+		font-weight: var(--font-weight-semibold);
+		letter-spacing: var(--tracking-wide);
+		color: var(--text-muted);
+		padding: var(--space-s) calc(var(--space-s) + var(--space-xs));
+		background: var(--surface-raised);
+		border-bottom: var(--border-width-1) solid var(--border-subtle);
+		white-space: nowrap;
+	}
+	.doc :global(.tbl td) {
+		padding: var(--space-s) calc(var(--space-s) + var(--space-xs));
+		border-bottom: var(--border-width-1) solid var(--border-subtle);
+		color: var(--text-secondary);
+		vertical-align: top;
+	}
+	.doc :global(.tbl tbody tr:last-child td) {
+		border-bottom: 0;
+	}
+	.doc :global(.tbl td code) {
+		background: none;
+		border: 0;
+		padding: 0;
+		color: var(--text-primary);
+	}
+	.doc :global(.tbl td.nowrap) {
+		white-space: nowrap;
+	}
+	.doc :global(.tbl td.num) {
+		font-family: var(--font-mono);
+		font-size: var(--font-size-s);
+		font-variant-numeric: tabular-nums;
+		white-space: nowrap;
 	}
 </style>
