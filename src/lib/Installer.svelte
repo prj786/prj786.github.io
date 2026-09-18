@@ -68,20 +68,19 @@
 	.win {
 		display: flex;
 		aspect-ratio: 16 / 10;
-		background: var(--bg-3);
-		border: var(--stroke-width) solid var(--stroke-2);
-		border-radius: var(--radius-panel);
+		background: var(--surface-base);
+		border: var(--border-width-1) solid var(--border-subtle);
+		border-radius: var(--rounded);
 		overflow: hidden;
-		box-shadow: var(--elevation);
 		font-size: 1.55cqw;
-		color: var(--fg-1);
+		color: var(--text-primary);
 	}
 
 	.rail {
 		flex: none;
 		width: 26%;
-		background: var(--bg-4);
-		border-right: var(--stroke-width) solid var(--stroke-2);
+		background: var(--surface-sunken);
+		border-right: var(--border-width-1) solid var(--border-subtle);
 		padding: 2cqw 1.4cqw;
 		display: flex;
 		flex-direction: column;
@@ -92,32 +91,32 @@
 		align-items: center;
 		gap: 0.8cqw;
 		font-size: 0.85em;
-		color: var(--fg-4);
+		color: var(--text-muted);
 	}
 	.pip {
 		width: 1.9cqw;
 		height: 1.9cqw;
-		border-radius: 50%;
-		border: var(--stroke-width) solid var(--stroke-1);
+		border-radius: var(--fully-rounded);
+		border: var(--border-width-1) solid var(--border-strong);
 		display: grid;
 		place-items: center;
 		font-size: 0.75em;
 		flex: none;
 	}
 	.step.done {
-		color: var(--fg-2);
+		color: var(--text-secondary);
 	}
 	.step.done .pip {
-		background: var(--brand-bg);
-		border-color: var(--brand-bg);
-		color: var(--fg-on-brand);
+		background: var(--accent);
+		border-color: var(--accent);
+		color: var(--on-accent);
 	}
 	.step.now {
-		color: var(--fg-1);
+		color: var(--text-primary);
 	}
 	.step.now .pip {
-		border-color: var(--accent);
-		color: var(--accent);
+		border-color: var(--accent-text);
+		color: var(--accent-text);
 	}
 
 	.body {
@@ -136,7 +135,7 @@
 	.sub {
 		margin: 0.3cqw 0 0;
 		font-size: 0.82em;
-		color: var(--fg-3);
+		color: var(--text-muted);
 	}
 
 	.chose {
@@ -149,16 +148,16 @@
 		justify-content: space-between;
 		gap: 1cqw;
 		padding: 0.75cqw 0;
-		border-bottom: var(--stroke-width) solid var(--stroke-3);
+		border-bottom: var(--border-width-1) solid var(--border-subtle);
 		font-size: 0.82em;
 	}
 	.chose dt {
-		color: var(--fg-3);
+		color: var(--text-muted);
 		flex: none;
 	}
 	.chose dd {
 		margin: 0;
-		color: var(--fg-1);
+		color: var(--text-primary);
 		text-align: right;
 	}
 	.danger dd {
@@ -167,8 +166,8 @@
 
 	.decided {
 		margin-top: 1.6cqw;
-		background: var(--bg-2);
-		border: var(--stroke-width) solid var(--stroke-2);
+		background: var(--surface-raised);
+		border: var(--border-width-1) solid var(--border-subtle);
 		border-radius: 1.1cqw;
 		padding: 1.1cqw 1.2cqw;
 	}
@@ -176,7 +175,7 @@
 		font-size: 0.68em;
 		letter-spacing: 0.14em;
 		text-transform: uppercase;
-		color: var(--fg-4);
+		color: var(--text-muted);
 	}
 	.chips {
 		display: flex;
@@ -186,9 +185,9 @@
 	}
 	.chip {
 		font-size: 0.72em;
-		color: var(--fg-2);
-		background: var(--bg-3);
-		border: var(--stroke-width) solid var(--stroke-3);
+		color: var(--text-secondary);
+		background: var(--surface-base);
+		border: var(--border-width-1) solid var(--border-subtle);
 		border-radius: 0.6cqw;
 		padding: 0.35cqw 0.7cqw;
 	}
@@ -208,12 +207,12 @@
 		padding: 0.6cqw 1.4cqw;
 	}
 	.ghost {
-		color: var(--fg-1);
-		background: var(--bg-1);
-		border: var(--stroke-width) solid var(--stroke-1);
+		color: var(--text-primary);
+		background: var(--surface-raised);
+		border: var(--border-width-1) solid var(--border-strong);
 	}
 	.go {
 		background: var(--danger);
-		color: var(--fg-inverted);
+		color: var(--on-status);
 	}
 </style>

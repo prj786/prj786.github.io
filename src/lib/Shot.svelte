@@ -40,11 +40,10 @@
 	}
 	picture {
 		display: block;
-		border: var(--stroke-width) solid var(--stroke-2);
-		border-radius: var(--radius-panel);
+		border: var(--border-width-1) solid var(--border-subtle);
+		border-radius: var(--rounded);
 		overflow: hidden;
-		background: var(--bg-4);
-		box-shadow: var(--elevation);
+		background: var(--surface-sunken);
 	}
 	img {
 		display: block;
@@ -52,9 +51,10 @@
 		height: auto;
 	}
 	figcaption {
-		margin-top: 1rem;
-		font-size: 0.9rem;
-		color: var(--fg-3);
+		margin-top: var(--space-md);
+		font-size: var(--font-size-md);
+		line-height: var(--line-height-md);
+		color: var(--text-muted);
 		max-width: 46rem;
 	}
 </style>

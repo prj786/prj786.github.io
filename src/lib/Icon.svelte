@@ -1,11 +1,11 @@
 <script>
 	// Lucide, inline. One <svg> wrapper so the grid, the stroke weight and the
 	// caps are decided once — an icon that sets its own stroke-width is the
-	// same class of mistake as a component that carries a colour literal.
+	// same class of mistake as a component that carries a color literal.
 	//
 	// `size` defaults to the token the shell uses for a bar glyph, so an icon
 	// beside 16px body text lands at the same optical weight it does on the
-	// desktop. Colour is inherited: put the colour on the parent.
+	// desktop. Color is inherited: put the color on the parent.
 	import { ICONS } from './icons.js';
 
 	let { name, size = 18, stroke = 2, label = '' } = $props();

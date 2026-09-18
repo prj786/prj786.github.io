@@ -66,10 +66,6 @@ export const SECTIONS = [
 	}
 ];
 
-// flat order, for previous/next
+// flat order, for previous/next (PageNav)
 export const FLAT = [{ href: '/docs/', label: 'Docs' }, ...SECTIONS.flatMap((s) => s.items)];
 
-export function neighbours(pathname) {
-	const i = FLAT.findIndex((p) => p.href === pathname);
-	return { prev: i > 0 ? FLAT[i - 1] : null, next: i >= 0 && i < FLAT.length - 1 ? FLAT[i + 1] : null };
-}

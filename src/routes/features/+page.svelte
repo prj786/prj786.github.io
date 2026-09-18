@@ -93,8 +93,8 @@
 				<p><code>Super+D</code> — fuzzy search across apps and files, press again to dismiss.</p>
 			</div>
 			<div class="card">
-				<h3><Icon name="sliders-horizontal" size={16} />Control centre</h3>
-				<p>Wi-Fi, Bluetooth, VPN, SSH, Do Not Disturb and Insomnia as tiles; live CPU and memory. A rail switches to calendar, mail, phone and cast.</p>
+				<h3><Icon name="sliders-horizontal" size={16} />Quick settings</h3>
+				<p>Wi-Fi, Bluetooth, VPN, SSH, Do not disturb and Keep awake as tiles; live CPU and memory. A rail switches to calendar, mail, phone and cast.</p>
 			</div>
 			<div class="card">
 				<h3><Icon name="bell" size={16} />Notifications</h3>
@@ -111,32 +111,33 @@
 		<p class="eyebrow">The look</p>
 		<h2>One accent — or a whole scheme — applied live.</h2>
 		<p>
-			You pick one colour and a generator derives the whole Fluent 2 token set from it — every
-			background level, stroke weight and foreground — then applies it to the shell, GTK, Qt, the
-			icons, the cursor and your window borders without a relogin. Or import a scheme (Base16/24,
-			Omarchy, Catppuccin, Gogh), write your own, or take the colours from your wallpaper; a light
-			scheme is honoured end to end. <a href="/theming/">See it derive, live →</a>
+			A scheme and an accent decide everything: one generator derives every role — surfaces, text,
+			outlines, the accent set, status and glass — and applies them to the shell, GTK, Qt, the
+			icons, the cursor and your window borders without signing out. ewe ships Ewe Dark and Ewe
+			Light; import a palette (Base16/24, Omarchy, Catppuccin, Gogh), write your own, or take the
+			colors from your wallpaper. <a href="/theming/">See it derive, live →</a>
 		</p>
 		<dl class="rows">
 			<div class="row">
 				<dt><Icon name="palette" size={16} />Any accent</dt>
 				<dd>
-					Presets, or any hex you like. Text on the accent is <em>measured</em> against it, so a pale
-					yellow stays as legible as a deep blue.
+					Nine presets, or any hex you like. Text on the accent is <em>measured</em> against it, so a
+					pale yellow stays as legible as a deep blue.
 				</dd>
 			</div>
 			<div class="row">
-				<dt><Icon name="layers" size={16} />Schemes and wallpaper colours</dt>
+				<dt><Icon name="layers" size={16} />Schemes and wallpaper colors</dt>
 				<dd>
-					Settings → Appearance → Colours: Accent · Scheme · Wallpaper. Import a palette, edit it, export it
-					as Base24; “Wallpaper” follows the picture when it changes. Nothing bundled — your library.
+					Settings → Appearance lists every scheme as a card, with Import, Export and Duplicate.
+					Import a palette or take one from the picture on screen; a scheme is a file, so it travels.
 				</dd>
 			</div>
 			<div class="row">
-				<dt><Icon name="ruler" size={16} />Shape and density are tokens too</dt>
+				<dt><Icon name="ruler" size={16} />Shape and density are presets</dt>
 				<dd>
-					Corner radius, border weight and spacing move as a system — <code>corner = "none"</code>
+					Corner, density and stroke remap a few tokens at once — <code>corner = "none"</code>
 					squares everything, with no stray rounded corner left behind.
+					<a href="/design/shape/#presets">Every value</a>.
 				</dd>
 			</div>
 			<div class="row">
@@ -145,7 +146,7 @@
 			</div>
 			<div class="row">
 				<dt><Icon name="zap" size={16} />Motion you control</dt>
-				<dd>One pane sets speed and curve for the compositor and the shell together — snappy to off.</dd>
+				<dd>One pane sets speed and curve for the compositor and the shell together, from snappy to off. Nothing bounces or overshoots.</dd>
 			</div>
 		</dl>
 	</section>
@@ -199,7 +200,7 @@
 				<dt><Icon name="palette" size={16} />The same vocabulary</dt>
 				<dd>
 					<code>import qs</code> gives a plugin every <code>Theme</code> role and a named part of
-					<code>Globals</code>. Ask for a role, never a value, and it recolours with the accent.
+					<code>Globals</code>. Ask for a role, never a value, and it recolors with the accent.
 				</dd>
 			</div>
 			<div class="row">
@@ -226,7 +227,7 @@
 		<h2>The TV in the room, and the phone in your pocket.</h2>
 		<p>
 			Screen mirroring on Wayland is usually a research project, or a borrowed GTK window bolted onto
-			a desktop that has no GTK. Here it's a card in the control centre, served by ewe's own headless
+			a desktop that has no GTK. Here it's a card in Quick settings, served by ewe's own headless
 			daemon — <strong>no foreign window ever appears</strong>.
 		</p>
 		<dl class="rows">
@@ -298,7 +299,7 @@
 				</dd>
 			</div>
 			<div class="row">
-				<dt><Icon name="monitor" size={16} />Sensible power behaviour</dt>
+				<dt><Icon name="monitor" size={16} />Sensible power behavior</dt>
 				<dd>
 					Locks at 5 minutes; on battery, suspends at 15. Warns at 20% and 10%, suspends at 5% to
 					protect unsaved work. Hibernation is set up at install when there's a battery.
@@ -320,26 +321,32 @@
 	.toc {
 		display: flex;
 		flex-wrap: wrap;
-		gap: 0.45rem;
-		margin-top: 1.5rem;
+		gap: var(--space-xs);
+		margin-top: var(--space-md);
 	}
 	.toc a {
-		font-size: 0.85rem;
-		color: var(--fg-2);
+		display: inline-flex;
+		align-items: center;
+		height: var(--control-sm);
+		padding: 0 var(--space-s);
+		font-size: var(--font-size-s);
+		font-weight: var(--font-weight-medium);
+		color: var(--text-secondary);
 		text-decoration: none;
-		border: var(--stroke-width) solid var(--stroke-2);
-		background: var(--bg-2);
-		border-radius: var(--radius-control);
-		padding: 0.3rem 0.7rem;
+		border: var(--border-width-1) solid var(--border-strong);
+		border-radius: var(--fully-rounded);
+		transition:
+			background-color var(--dur-fast) var(--ease-out),
+			color var(--dur-fast) var(--ease-out);
 	}
 	.toc a:hover {
-		background: var(--bg-2-hover);
-		color: var(--fg-1);
+		background: var(--surface-hover);
+		color: var(--text-primary);
 	}
 	.rows :global(.icon) {
-		color: var(--fg-3);
+		color: var(--text-muted);
 	}
 	.card h3 :global(.icon) {
-		color: var(--accent);
+		color: var(--accent-text);
 	}
 </style>

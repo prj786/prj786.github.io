@@ -13,52 +13,53 @@
 
 <style>
 	.term {
-		margin: 1.2rem 0 0;
-		background: var(--bg-4);
-		border: var(--stroke-width) solid var(--stroke-2);
-		border-radius: var(--radius-card);
+		margin: var(--space-md) 0 0;
+		background: var(--surface-sunken);
+		border: var(--border-width-1) solid var(--border-subtle);
+		border-radius: var(--rounded);
 		overflow: hidden;
 		max-width: 46rem;
 	}
 	.tt {
 		display: flex;
 		align-items: center;
-		gap: 0.6rem;
-		padding: 0.5rem 0.8rem;
-		border-bottom: var(--stroke-width) solid var(--stroke-2);
-		font-size: 0.75rem;
-		color: var(--fg-3);
-		background: var(--bg-2);
+		gap: var(--space-s);
+		height: var(--control-lg);
+		padding: 0 calc(var(--space-s) + var(--space-xs));
+		border-bottom: var(--border-width-1) solid var(--border-subtle);
+		font-size: var(--font-size-xs);
+		color: var(--text-muted);
+		background: var(--surface-raised);
 	}
 	.dots {
 		display: flex;
-		gap: 0.28rem;
+		gap: var(--space-xs);
 	}
 	.dots i {
-		width: 0.5rem;
-		height: 0.5rem;
-		border-radius: 50%;
-		background: var(--stroke-1);
+		width: var(--space-s);
+		height: var(--space-s);
+		border-radius: var(--fully-rounded);
+		background: var(--border-strong);
 	}
 	pre {
 		margin: 0;
-		padding: 0.9rem 1rem;
-		font-family: var(--mono);
-		font-size: 0.8rem;
-		line-height: 1.75;
+		padding: var(--space-s) calc(var(--space-s) + var(--space-xs));
+		font-family: var(--font-mono);
+		font-size: var(--font-size-s);
+		line-height: var(--line-height-lg);
 		overflow-x: auto;
 		white-space: pre;
 	}
 	.p {
-		color: var(--accent);
+		color: var(--accent-text);
 	}
 	.c {
-		color: var(--fg-1);
+		color: var(--text-primary);
 	}
 	.o {
-		color: var(--fg-2);
+		color: var(--text-secondary);
 	}
 	.h {
-		color: var(--fg-3);
+		color: var(--text-muted);
 	}
 </style>

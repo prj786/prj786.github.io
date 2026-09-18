@@ -98,16 +98,17 @@ ewe-conf pull && ewe-conf apply     # become that machine again`}
 
 <style>
 	section {
-		margin-top: 3rem;
+		margin-top: var(--space-lg);
 	}
 	.grid {
-		margin-top: 1rem;
+		margin-top: var(--space-md);
 	}
 	.card h3 a {
+		color: var(--text-primary);
 		text-decoration: none;
 	}
 	.card h3 a:hover {
 		text-decoration: underline;
-		text-decoration-color: var(--accent);
+		text-underline-offset: 3px;
 	}
 </style>

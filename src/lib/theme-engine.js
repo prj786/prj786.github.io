@@ -1,239 +1,701 @@
 // ewe-theme, in the browser.
 //
-// A LINE-FOR-LINE PORT of the colour half of ewe/bin/ewe-theme — the same
-// CIELAB maths, the same reference ladders, the same Fluent 2 alias table.
-// It exists so the theming page can *show* the derivation instead of
-// describing it: you move one accent and every role on the page moves with
-// it, exactly as `ewe-theme build` would move them on a real machine.
+// A PORT of the color half of ewe/bin/ewe-theme (Ewe design system v3): the
+// same OKLCH maths, the same two built-in Base24 schemes, the same role
+// table, the same contrast guarantees, the same look-preset and Glass
+// remaps. It exists so the theming page can *show* the derivation instead of
+// describing it: pick an accent and every role on the page moves with it,
+// exactly as `ewe-theme build` would move it on a real machine.
 //
-// Keep it faithful. If the Python changes, change this — and check a couple
-// of stops against `ewe-theme show` before believing the result.
+// Keep it faithful. If the Python changes, change this — and run
+// scripts/check-engine.sh, which derives both and compares every role.
 
-// ═══ colour math — sRGB <-> CIELAB <-> LCH, D65 ═══════════════════════════
-const Xn = 0.95047, Yn = 1.0, Zn = 1.08883;
-
+// ═══ color math — sRGB <-> OKLCH ════════════════════════════════════════
 const lin = (c) => {
 	c /= 255;
 	return c <= 0.04045 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4;
 };
 const gam = (c) => (c <= 0.0031308 ? 12.92 * c : 1.055 * c ** (1 / 2.4) - 0.055);
+const cbrt = (x) => Math.cbrt(x);
+const mod360 = (h) => ((h % 360) + 360) % 360;
 
-export function hexToLch(h) {
-	h = h.replace('#', '');
+/** Python's round(): half to even, which is not what Math.round does. */
+const pyRound = (x) => {
+	const f = Math.floor(x);
+	const d = x - f;
+	if (d > 0.5) return f + 1;
+	if (d < 0.5) return f;
+	return f % 2 === 0 ? f : f + 1;
+};
+
+function rgb(hex) {
+	let h = hex.replace('#', '');
 	if (h.length === 3) h = [...h].map((c) => c + c).join('');
-	const [r, g, b] = [0, 2, 4].map((i) => lin(parseInt(h.slice(i, i + 2), 16)));
-	const X = 0.4124564 * r + 0.3575761 * g + 0.1804375 * b;
-	const Y = 0.2126729 * r + 0.7151522 * g + 0.072175 * b;
-	const Z = 0.0193339 * r + 0.119192 * g + 0.9503041 * b;
-	const f = (t) => (t > 216 / 24389 ? Math.cbrt(t) : ((24389 / 27) * t + 16) / 116);
-	const fx = f(X / Xn), fy = f(Y / Yn), fz = f(Z / Zn);
-	const L = 116 * fy - 16, a = 500 * (fx - fy), bb = 200 * (fy - fz);
-	return [L, Math.hypot(a, bb), ((Math.atan2(bb, a) * 180) / Math.PI + 360) % 360];
+	return [0, 2, 4].map((i) => parseInt(h.slice(i, i + 2), 16));
 }
 
-function lchToRgb(L, C, H) {
-	const a = C * Math.cos((H * Math.PI) / 180);
-	const b = C * Math.sin((H * Math.PI) / 180);
-	const fy = (L + 16) / 116;
-	const fx = fy + a / 500, fz = fy - b / 200;
-	const g = (t) => (t ** 3 > 216 / 24389 ? t ** 3 : (116 * t - 16) / (24389 / 27));
-	const X = g(fx) * Xn;
-	const Y = (L > 8 ? ((L + 16) / 116) ** 3 : L / (24389 / 27)) * Yn;
-	const Z = g(fz) * Zn;
+function hex(r, g, b) {
+	const q = (c) => Math.max(0, Math.min(255, pyRound(c)));
+	return '#' + [r, g, b].map((c) => q(c).toString(16).padStart(2, '0')).join('');
+}
+
+/** '#rrggbb' -> [L 0..100, C, h degrees] in OKLCH. */
+export function oklch(hexv) {
+	const [r, g, b] = rgb(hexv).map(lin);
+	const l = cbrt(0.4122214708 * r + 0.5363325363 * g + 0.0514459929 * b);
+	const m = cbrt(0.2119034982 * r + 0.6806995451 * g + 0.1073969566 * b);
+	const s = cbrt(0.0883024619 * r + 0.2817188376 * g + 0.6299787005 * b);
+	const L = 0.2104542553 * l + 0.793617785 * m - 0.0040720468 * s;
+	const a = 1.9779984951 * l - 2.428592205 * m + 0.4505937099 * s;
+	const bb = 0.0259040371 * l + 0.7827717662 * m - 0.808675766 * s;
+	return [L * 100, Math.hypot(a, bb), mod360((Math.atan2(bb, a) * 180) / Math.PI)];
+}
+
+function oklchRgb(L, C, h) {
+	L /= 100;
+	const a = C * Math.cos((h * Math.PI) / 180);
+	const b = C * Math.sin((h * Math.PI) / 180);
+	const l = (L + 0.3963377774 * a + 0.2158037573 * b) ** 3;
+	const m = (L - 0.1055613458 * a - 0.0638541728 * b) ** 3;
+	const s = (L - 0.0894841775 * a - 1.291485548 * b) ** 3;
 	return [
-		gam(3.2404542 * X - 1.5371385 * Y - 0.4985314 * Z),
-		gam(-0.969266 * X + 1.8760108 * Y + 0.041556 * Z),
-		gam(0.0556434 * X - 0.2040259 * Y + 1.0572252 * Z)
+		gam(4.0767416621 * l - 3.3077115913 * m + 0.2309699292 * s),
+		gam(-1.2684380046 * l + 2.6097574011 * m - 0.3413193965 * s),
+		gam(-0.0041960863 * l - 0.7034186147 * m + 1.707614701 * s)
 	];
 }
 
 const fits = (t) => t.every((c) => c >= -0.0005 && c <= 1.0005);
 
-/** Fluent's snap_into_gamut: hold L and H, drop chroma until sRGB fits. */
-export function lchToHex(L, C, H) {
-	if (!fits(lchToRgb(L, C, H))) {
-		let lo = 0, hi = C;
+/** OKLCH -> '#rrggbb'. Holds L and h, drops chroma until sRGB fits. */
+export function oklchHex(L, C, h) {
+	L = Math.max(0, Math.min(100, L));
+	if (!fits(oklchRgb(L, C, h))) {
+		let lo = 0,
+			hi = C;
 		for (let i = 0; i < 32; i++) {
 			const mid = (lo + hi) / 2;
-			if (fits(lchToRgb(L, mid, H))) lo = mid;
+			if (fits(oklchRgb(L, mid, h))) lo = mid;
 			else hi = mid;
 		}
 		C = lo;
 	}
-	const q = (c) => Math.max(0, Math.min(255, Math.round(c * 255)));
-	return '#' + lchToRgb(L, C, H).map((c) => q(c).toString(16).padStart(2, '0')).join('');
+	const [r, g, b] = oklchRgb(L, C, h);
+	return hex(r * 255, g * 255, b * 255);
 }
 
-// ═══ ramp 1: the greys ════════════════════════════════════════════════════
-// Fluent's grey ramp is keyed by percent lightness — grey[20] is #333333.
-// Fluent publishes the even keys; the odd ones are the same formula and exist
-// because the 2026-09 background ladder is Fluent's at HALF the stop index.
-// Only the hue is bent, so every alias below stays Fluent's own mapping.
-const GREY_KEYS = [...Array(99)].map((_, i) => i + 1);
+/** h1 -> h2 at f, hue along the short arc; a grey takes the other's hue. */
+function okMix(h1, h2, f) {
+	let [L1, C1, H1] = oklch(h1);
+	let [L2, C2, H2] = oklch(h2);
+	if (C1 < 0.005) H1 = H2;
+	if (C2 < 0.005) H2 = H1;
+	const d = (((H2 - H1 + 180) % 360) + 360) % 360 - 180;
+	return oklchHex(L1 + (L2 - L1) * f, C1 + (C2 - C1) * f, mod360(H1 + d * f));
+}
 
-export function greyRamp(accent, tint) {
-	const hue = hexToLch(accent)[2];
-	const ramp = {};
-	for (const k of GREY_KEYS) {
-		const v = Math.round(2.55 * k);
-		const base = '#' + [v, v, v].map((c) => c.toString(16).padStart(2, '0')).join('');
-		if (!tint) { ramp[k] = base; continue; }
-		const L = hexToLch(base)[0];
-		const t = L / 100;
-		// Weighted to the DARK end on purpose: the dark rungs are the large
-		// surfaces, and that is where a hue actually reads. The light rungs
-		// are text, which must stay neutral or it goes muddy.
-		const C = tint * 0.32 * Math.exp(-(((t - 0.22) / 0.3) ** 2));
-		ramp[k] = lchToHex(L, C, hue);
+function okShift(hexv, dL) {
+	const [L, C, H] = oklch(hexv);
+	return oklchHex(L + dL, C, H);
+}
+
+/** `hexv` moved `dL` in lightness toward `target`, keeping its hue. */
+function okToward(hexv, target, dL) {
+	const [L, C, H] = oklch(hexv);
+	const Lt = oklch(target)[0];
+	return oklchHex(L + (Lt >= L ? dL : -dL), C, H);
+}
+
+// ── WCAG contrast ────────────────────────────────────────────────────────
+export function luminance(hexv) {
+	const [r, g, b] = rgb(hexv).map(lin);
+	return 0.2126 * r + 0.7152 * g + 0.0722 * b;
+}
+
+export function contrast(a, b) {
+	const la = luminance(a),
+		lb = luminance(b);
+	return (Math.max(la, lb) + 0.05) / (Math.min(la, lb) + 0.05);
+}
+
+/** `fg` at `alpha` composited over `bg`, as the compositor does. */
+function over(fg, alpha, bg) {
+	const f = rgb(fg),
+		b = rgb(bg);
+	return hex(...[0, 1, 2].map((i) => f[i] * alpha + b[i] * (1 - alpha)));
+}
+
+// ═══ FOUNDATIONS — the design system's fixed values ══════════════════════
+export const EWELLOW = '#eeb407';
+const BLACK = '#020202';
+export const NEUTRAL = {
+	0: '#fefdfc', 50: '#faf9f6', 100: '#f4f2ee', 200: '#e9e6e0', 300: '#d5d2cb',
+	400: '#a8a49d', 500: '#7f7b75', 600: '#5d5a55', 700: '#423f3a', 800: '#2c2a26',
+	850: '#201e1a', 900: '#151411', 950: '#0b0a08'
+};
+const WHITE = NEUTRAL[0];
+const REF_RAMP = {
+	50: '#fff6e4', 100: '#ffedc6', 200: '#ffdf9a', 300: '#fdcf64', 400: '#f8c23a',
+	500: EWELLOW, 600: '#ce9707', 700: '#a77607', 800: '#805708', 900: '#5a3b09', 950: '#352206'
+};
+export const RAMP_STEPS = Object.keys(REF_RAMP).map(Number);
+export const NEUTRAL_STEPS = Object.keys(NEUTRAL).map(Number);
+
+// The Accent picker's presets: values a person can pick as their accent.
+export const ACCENT_PRESETS = [
+	{ name: 'Ewellow', hex: EWELLOW }, { name: 'Amber', hex: '#f08a3c' },
+	{ name: 'Coral', hex: '#e5675b' }, { name: 'Rose', hex: '#d86fb3' },
+	{ name: 'Iris', hex: '#9a8cf0' }, { name: 'Sky', hex: '#62a8f5' },
+	{ name: 'Teal', hex: '#4cc1b0' }, { name: 'Moss', hex: '#7cc36a' },
+	{ name: 'Stone', hex: '#a8a49d' }
+];
+
+const EWE_STATUS = {
+	dark: { success: '#69d6aa', warning: '#f9a870', danger: '#ffa196', info: '#76c7ff' },
+	light: { success: '#047554', warning: '#964d09', danger: '#a04038', info: '#026a9d' }
+};
+// Which step of the accent ramp each accent role is. `accent` is step 500
+// and `on-accent` is chosen by contrast.
+export const ACCENT_STEP = {
+	dark: {
+		'accent-hover': 400, 'accent-pressed': 600, 'accent-subtle': 950,
+		'accent-text': 400, 'focus-ring': 400, 'glass-accent': 400
+	},
+	light: {
+		'accent-hover': 600, 'accent-pressed': 700, 'accent-subtle': 50,
+		'accent-text': 800, 'focus-ring': 700, 'glass-accent': 900
 	}
+};
+const STATUS_SUBTLE = { dark: [27, 0.045], light: [95, 0.026] };
+const SUNKEN_DL = 4;
+const PRESSED_DL = { dark: 8, light: 6 };
+const BORDER_SUBTLE_MIX = 0.3;
+const SCRIM_ALPHA = { dark: 0.64, light: 0.32 };
+const GLASS_ALPHA = {
+	dark: { border: 0.1, hover: 0.08, pressed: 0.14 },
+	light: { border: 0.1, hover: 0.06, pressed: 0.12 }
+};
+const CONTRAST_TEXT = 4.5,
+	CONTRAST_BORDER = 3.0;
+const SURFACE_STEP = 2.0;
+const WARNING_HUE_GAP = 20.0;
+const RED_HUE = 27.0;
+const GLASS_PRESET = 80;
+const OPACITY_GLASS = GLASS_PRESET / 100;
+
+// Look presets: corner -> the five radii; density -> control-md and -lg;
+// stroke -> the two border widths.
+export const CORNER = {
+	none: [0, 0, 0, 0, 0],
+	small: [2, 2, 4, 6, 9999],
+	medium: [4, 6, 8, 10, 9999],
+	large: [6, 8, 12, 16, 9999]
+};
+export const DENSITY = { compact: [24, 28], comfortable: [28, 32], roomy: [32, 40] };
+export const STROKE = { none: [0, 2], thin: [1, 2], thick: [2, 3] };
+const FOCUS_WIDTH = 1;
+const FIELD_BORDER_WIDTH = 1;
+
+// The top bar: its size follows its icons. icon_size small | normal | large
+// picks the module and the glyph; the bar is that module plus space-s above
+// and below, so 44 / 48 / 56.
+const SPACE_S = 8;
+export const BAR = {
+	small: { module: DENSITY.comfortable[0], icon: 16 },
+	normal: { module: DENSITY.comfortable[1], icon: 20 },
+	large: { module: 40, icon: 24 }
+};
+for (const b of Object.values(BAR)) b.height = b.module + 2 * SPACE_S;
+const BAR_STEPS = ['small', 'normal', 'large'];
+export const TEXT_SCALES = [100, 115, 130];
+
+/** Text size scales a pixel size, rounded to a whole pixel (ewe-theme's _scale). */
+export const scalePx = (px, pct) => pyRound((px * pct) / 100);
+
+// shadows: (x, y, blur) and the alpha per variant; the color is derived
+const SHADOW = {
+	'shadow-sm': [[0, 1, 2], { dark: 0.4, light: 0.08 }],
+	'shadow-float': [[0, 2, 6], { dark: 0.35, light: 0.1 }]
+};
+const GRADIENT_ANGLE = { 'gradient-ewellow': 135, 'gradient-ember': 160, 'gradient-night': 180 };
+const GRADIENT_EWELLOW_MIX = [0.5, 0.25];
+const EMBER_TINT = 0.4;
+const GLOW_ALPHA = 0.08;
+
+const SURFACES = [
+	'surface-base', 'surface-raised', 'surface-overlay', 'surface-sunken',
+	'surface-hover', 'surface-pressed', 'surface-selected'
+];
+const RESTING = SURFACES.filter((s) => s !== 'surface-pressed');
+const STATUS = ['success', 'warning', 'danger', 'info'];
+const STATUS_FINISH = ['on-status', ...STATUS.map((s) => s + '-subtle')];
+export const ROLES = [
+	...SURFACES,
+	'border-subtle', 'border-strong', 'text-primary', 'text-secondary', 'text-muted',
+	'text-disabled', 'accent', 'accent-hover', 'accent-pressed', 'on-accent', 'accent-subtle',
+	'accent-text', 'focus-ring',
+	...STATUS,
+	...STATUS.map((s) => s + '-subtle'),
+	'on-status', 'glass-accent'
+];
+const TEXT_ROLES = ['text-primary', 'text-secondary', 'text-muted', 'accent-text', ...STATUS];
+
+// ═══ the two built-in schemes: palette + accent, no overrides ════════════
+export const BUILTIN_SCHEMES = [
+	{
+		slug: 'ewe-dark', name: 'Ewe Dark', variant: 'dark', builtin: true, accent: EWELLOW,
+		semantic: true,
+		palette: {
+			base00: '#0b0a08', base01: '#151411', base02: '#2c2a26', base03: '#5d5a55',
+			base04: '#a8a49d', base05: '#faf9f6', base06: '#d5d2cb', base07: '#fefdfc',
+			base08: '#ffa196', base09: '#f9a870', base0A: '#eeb407', base0B: '#69d6aa',
+			base0C: '#64d1d7', base0D: '#76c7ff', base0E: '#e0a4ee', base0F: '#805708',
+			base10: '#020202', base11: '#020202', base12: '#febfb7', base13: '#ffc29a',
+			base14: '#7deabd', base15: '#79e5eb', base16: '#a3d8ff', base17: '#f1bafe'
+		}
+	},
+	{
+		slug: 'ewe-light', name: 'Ewe Light', variant: 'light', builtin: true, accent: EWELLOW,
+		semantic: true,
+		palette: {
+			base00: '#f4f2ee', base01: '#faf9f6', base02: '#e9e6e0', base03: '#a8a49d',
+			base04: '#5d5a55', base05: '#0b0a08', base06: '#423f3a', base07: '#fefdfc',
+			base08: '#a04038', base09: '#964d09', base0A: '#eeb407', base0B: '#047554',
+			base0C: '#057176', base0D: '#026a9d', base0E: '#814a8d', base0F: '#805708',
+			base10: '#e9e6e0', base11: '#d5d2cb', base12: '#8c2e28', base13: '#7f3f02',
+			base14: '#016245', base15: '#035e62', base16: '#025884', base17: '#6f397b'
+		}
+	}
+];
+const BY_SLUG = Object.fromEntries(BUILTIN_SCHEMES.map((s) => [s.slug, s]));
+
+// ═══ one black, one white ════════════════════════════════════════════════
+const L_FLOOR = oklch(BLACK)[0]; // nothing emitted is darker than `black`
+const L_CEIL = oklch(WHITE)[0]; // nothing emitted is lighter than `neutral-0`
+
+/** `hexv`, or `black` / `neutral-0` when it lies beyond them. */
+function inRange(hexv) {
+	const L = oklch(hexv)[0];
+	if (L < L_FLOOR - 1e-6) return BLACK;
+	if (L > L_CEIL + 1e-6) return WHITE;
+	return hexv;
+}
+
+/** `hexv` at lightness L (hue and chroma kept), inside the range. */
+function atL(hexv, L) {
+	const [, C, H] = oklch(hexv);
+	return inRange(oklchHex(Math.max(L_FLOOR, Math.min(L_CEIL, L)), C, H));
+}
+
+/** `black` or `neutral-0`, whichever contrasts more with `fill`. */
+export const onColor = (fill) => (contrast(fill, BLACK) >= contrast(fill, WHITE) ? BLACK : WHITE);
+
+// ═══ the accent ramp ═════════════════════════════════════════════════════
+/** The reference ramp as [L, chroma ratio to step 500, hue delta]. */
+const PROFILE = (() => {
+	const [, C5, H5] = oklch(REF_RAMP[500]);
+	const p = {};
+	for (const step of RAMP_STEPS) {
+		const [L, C, H] = oklch(REF_RAMP[step]);
+		p[step] = [L, C / C5, (((H - H5 + 180) % 360) + 360) % 360 - 180];
+	}
+	return p;
+})();
+
+/** The accent's own ramp, step 500 being the accent itself. */
+export function accentRamp(accent) {
+	const [L0, C0, H0] = oklch(accent);
+	const La = PROFILE[500][0];
+	const ramp = {};
+	for (const step of RAMP_STEPS) {
+		const [L, cr, dh] = PROFILE[step];
+		const Ls = L >= La ? L0 + ((100 - L0) * (L - La)) / (100 - La) : (L0 * L) / La;
+		ramp[step] = oklchHex(Ls, C0 * cr, mod360(H0 + dh));
+	}
+	ramp[500] = accent.toLowerCase();
 	return ramp;
 }
 
-// ═══ ramp 2: the brand ════════════════════════════════════════════════════
-// Fluent's real generator walks a curved helix through CIELAB with a per-hue
-// snapping table. This is its faithful reduction: hold the hue, ride a
-// lightness ladder anchored so the accent lands EXACTLY on stop 80, scale
-// chroma by the measured envelope, twist slightly toward the ends, snap.
-export const BRAND_STOPS = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150, 160];
-const REF_L = [7.0, 12.9, 18.0, 23.7, 29.1, 34.7, 39.2, 44.9, 54.8, 63.7, 68.2, 72.6, 78.3, 84.3, 89.7, 95.5];
-const REF_C = [11.2, 16.6, 20.9, 25.2, 31.3, 36.7, 43.6, 49.8, 52.5, 51.1, 43.7, 38.1, 30.7, 21.5, 13.2, 5.3];
-const ANCHOR = 80;
-const TORSION = -13.0;
-
-/** REF_L / REF_C read at any stop, linear between the published ones. */
-function refAt(stop) {
-	stop = Math.max(BRAND_STOPS[0], Math.min(BRAND_STOPS.at(-1), stop));
-	let j = 0;
-	BRAND_STOPS.forEach((s, i) => { if (s <= stop) j = i; });
-	if (j === BRAND_STOPS.length - 1) return [REF_L[j], REF_C[j]];
-	const f = (stop - BRAND_STOPS[j]) / (BRAND_STOPS[j + 1] - BRAND_STOPS[j]);
-	return [REF_L[j] + (REF_L[j + 1] - REF_L[j]) * f, REF_C[j] + (REF_C[j + 1] - REF_C[j]) * f];
+// ═══ role derivation ═════════════════════════════════════════════════════
+function deriveRoles(sc, accent) {
+	const p = sc.palette;
+	const variant = sc.variant;
+	const dark = variant === 'dark';
+	const c = { ewellow: EWELLOW, black: BLACK };
+	const ramp = accentRamp(accent);
+	for (const s of RAMP_STEPS) c['ewellow-' + s] = ramp[s];
+	for (const k of NEUTRAL_STEPS) c['neutral-' + k] = NEUTRAL[k];
+	const sunken = p.base10 || okShift(p.base00, -SUNKEN_DL);
+	const pressed = okToward(p.base02, p.base05, PRESSED_DL[variant]);
+	if (dark) {
+		Object.assign(c, {
+			'surface-base': p.base00,
+			'surface-raised': p.base01,
+			'surface-overlay': okMix(p.base01, p.base02, 0.5),
+			'surface-sunken': sunken,
+			'surface-hover': p.base02,
+			'surface-pressed': pressed,
+			'surface-selected': p.base02,
+			'border-subtle': p.base02,
+			'border-strong': okMix(p.base03, p.base04, 0.5)
+		});
+	} else {
+		// base07 is the lightest surface in Ewe Light. A light scheme in the
+		// Base16 convention runs the other way, and a black menu is not a menu.
+		const top =
+			oklch(p.base07)[0] >= oklch(p.base00)[0] ? p.base07 : okShift(p.base00, SURFACE_STEP);
+		Object.assign(c, {
+			'surface-base': p.base00,
+			'surface-raised': p.base01,
+			'surface-overlay': top,
+			'surface-sunken': sunken,
+			'surface-hover': p.base02,
+			'surface-pressed': pressed,
+			'surface-selected': top,
+			'border-subtle': okMix(p.base02, p.base03, BORDER_SUBTLE_MIX),
+			'border-strong': okMix(p.base03, p.base04, 0.5)
+		});
+	}
+	Object.assign(c, {
+		'text-primary': p.base05,
+		'text-secondary': p.base06,
+		'text-muted': p.base04,
+		'text-disabled': p.base03
+	});
+	// the accent roles are steps of the ramp generated from the accent
+	c['accent'] = ramp[500];
+	for (const [role, step] of Object.entries(ACCENT_STEP[variant])) c[role] = ramp[step];
+	if (sc.semantic !== false) {
+		Object.assign(c, { danger: p.base08, warning: p.base09, success: p.base0B, info: p.base0D });
+	} else {
+		Object.assign(c, EWE_STATUS[variant]);
+	}
+	const alpha = { scrim: SCRIM_ALPHA[variant] };
+	c['scrim'] = dark ? p.base11 || BLACK : p.base05;
+	for (const k of Object.keys(c)) c[k] = inRange(c[k]); // one black, one white
+	c['on-accent'] = onColor(c['accent']);
+	return [c, alpha];
 }
 
-/** One brand colour at `stop` — a published stop or anything between them.
- *  The filled roles sit at 45 and 38, which Fluent never named. */
-export function brandAt(accent, stop) {
-	const [L0, C0, H0] = hexToLch(accent);
-	const [La, Ca] = refAt(ANCHOR);
-	const ks = Ca ? C0 / Ca : 0;
-	const [L, C] = refAt(stop);
-	const Lo = L <= La ? L0 * (L / La) : L0 + ((100 - L0) * (L - La)) / (100 - La);
-	const t = L >= La ? (L - La) / (100 - La) : ((La - L) / La) * 0.55;
-	return lchToHex(Lo, C * ks, (((H0 + TORSION * t) % 360) + 360) % 360);
+/** A status color as a tinted ground: at the subtle L, chroma capped. */
+function statusSubtle(color, variant) {
+	const [Ls, Cmax] = STATUS_SUBTLE[variant];
+	const [, C, H] = oklch(color);
+	return inRange(oklchHex(Ls, Math.min(C, Cmax), H));
 }
 
-export function brandRamp(accent) {
-	return Object.fromEntries(BRAND_STOPS.map((s) => [s, brandAt(accent, s)]));
+function finishStatus(c, variant) {
+	for (const s of STATUS) c[s + '-subtle'] = statusSubtle(c[s], variant);
+	// one on-status for the four fills: whichever holds best on all of them
+	const score = (cand) => Math.min(...STATUS.map((s) => contrast(c[s], cand)));
+	c['on-status'] = score(BLACK) >= score(WHITE) ? BLACK : WHITE;
 }
 
-/** Foreground for text sitting ON a fill. Fluent hard-codes white; ewe
- *  cannot, because you may pick yellow. L* 60 is where white gives up. */
-export const on = (fill) => (hexToLch(fill)[0] > 60 ? '#242424' : '#ffffff');
+// ═══ the guarantees ══════════════════════════════════════════════════════
+const worstOn = (hexv, c, surfaces) => Math.min(...surfaces.map((s) => contrast(hexv, c[s])));
 
-// ═══ the alias layer — Fluent's dark theme, remapped for the revamp ═══════
-// The ladder and the hover/pressed/selected deltas are Fluent's, at HALF the
-// stop index; the filled brand roles sit two stops down the brand ramp.
-// `bx(stop)` is the brand ramp read between its stops.
-export function alias(g, b, bx, white = '#ffffff', black = '#000000') {
+function ensureContrast(c, role, surfaces, target, adjusted, why) {
+	const worst = worstOn(c[role], c, surfaces);
+	if (worst >= target - 1e-9) return;
+	const [L, C, H] = oklch(c[role]);
+	const mean = surfaces.reduce((n, s) => n + oklch(c[s])[0], 0) / surfaces.length;
+	const first = L >= mean ? 1 : -1;
+	const move = (cand) => {
+		adjusted.push({ role, from: c[role], to: cand, why: `${why} (was ${worst.toFixed(2)}:1)` });
+		c[role] = cand;
+	};
+	for (const direction of [first, -first]) {
+		for (let step = 1; step <= 100; step++) {
+			const Ln = L + direction * step;
+			if (Ln < L_FLOOR || Ln > L_CEIL) break;
+			const cand = inRange(oklchHex(Ln, C, H));
+			if (worstOn(cand, c, surfaces) >= target) return move(cand);
+		}
+		// the last step inside the range, before turning round
+		const cand = atL(c[role], direction > 0 ? L_CEIL : L_FLOOR);
+		if (worstOn(cand, c, surfaces) >= target) return move(cand);
+	}
+	adjusted.push({
+		role,
+		from: c[role],
+		to: c[role],
+		why: `${why} — could not be reached by moving lightness alone (${worst.toFixed(2)}:1)`
+	});
+}
+
+function guarantees(c, variant, accent, adjusted) {
+	const dark = variant === 'dark';
+	// 1. surfaces stay apart, as far as the range between black and
+	//    neutral-0 allows
+	for (const [below, role] of [
+		['surface-base', 'surface-raised'],
+		['surface-raised', 'surface-overlay'],
+		['surface-raised', 'surface-hover']
+	]) {
+		const Lb = oklch(c[below])[0],
+			L = oklch(c[role])[0];
+		if (Math.abs(L - Lb) >= SURFACE_STEP - 0.05) continue;
+		const sign = Math.abs(L - Lb) > 1e-6 ? (L > Lb ? 1 : -1) : dark ? 1 : -1;
+		const want = Math.max(L_FLOOR, Math.min(L_CEIL, Lb + sign * SURFACE_STEP));
+		if (Math.abs(want - Lb) <= Math.abs(L - Lb) + 0.05) continue; // no room left
+		const nw = atL(c[role], want);
+		if (nw !== c[role]) {
+			adjusted.push({ role, from: c[role], to: nw, why: `at least ${SURFACE_STEP} L from ${below}` });
+			c[role] = nw;
+		}
+	}
+	// 2. warning never looks like the accent
+	const [, Ca, Ha] = oklch(accent);
+	const [Lw, Cw, Hw] = oklch(c['warning']);
+	if (Ca > 0.02 && Cw > 0.02) {
+		const d = (((Hw - Ha + 180) % 360) + 360) % 360 - 180;
+		if (Math.abs(d) < WARNING_HUE_GAP) {
+			const toward = (((RED_HUE - Ha + 180) % 360) + 360) % 360 - 180;
+			const sign = toward >= 0 ? 1 : -1;
+			const nw = inRange(oklchHex(Lw, Cw, mod360(Ha + sign * WARNING_HUE_GAP)));
+			adjusted.push({
+				role: 'warning',
+				from: c['warning'],
+				to: nw,
+				why: `hue within ${WARNING_HUE_GAP}° of the accent; turned toward red`
+			});
+			c['warning'] = nw;
+		}
+	}
+	// 3. text reads on every surface; pressed carries primary and secondary
+	for (const role of TEXT_ROLES)
+		ensureContrast(c, role, RESTING, CONTRAST_TEXT, adjusted, `${CONTRAST_TEXT}:1 on every surface`);
+	for (const role of ['text-primary', 'text-secondary'])
+		ensureContrast(c, role, ['surface-pressed'], CONTRAST_TEXT, adjusted, `${CONTRAST_TEXT}:1 on surface-pressed`);
+	// 4. outlines and the focus ring are visible on every surface
+	for (const role of ['border-strong', 'focus-ring'])
+		ensureContrast(c, role, RESTING, CONTRAST_BORDER, adjusted, `${CONTRAST_BORDER}:1 on every surface`);
+}
+
+/** derive -> overrides (user schemes only) -> guarantees. */
+function schemeColors(sc, accent) {
+	const [c, alpha] = deriveRoles(sc, accent);
+	const ov = Object.fromEntries(Object.entries(sc.overrides || {}).map(([k, v]) => [k, inRange(v)]));
+	for (const [k, v] of Object.entries(ov)) if (!STATUS_FINISH.includes(k)) c[k] = v;
+	const adjusted = [];
+	guarantees(c, sc.variant, accent, adjusted);
+	// glass-accent is accent-text inside glass: where they are the same ramp
+	// step (the dark), it follows accent-text through the guarantees
+	const steps = ACCENT_STEP[sc.variant];
+	if (!('glass-accent' in ov) && steps['glass-accent'] === steps['accent-text'])
+		c['glass-accent'] = c['accent-text'];
+	finishStatus(c, sc.variant);
+	for (const k of STATUS_FINISH) if (k in ov) c[k] = ov[k];
+	return { color: c, alpha, adjusted };
+}
+
+/** The four gradients, from the ramp and the surfaces. */
+function gradients(c) {
+	const [fa, fb] = GRADIENT_EWELLOW_MIX;
+	const [, Cs, Hs] = oklch(c['accent-subtle']);
+	const Lr = oklch(c['surface-raised'])[0];
+	const ember = inRange(oklchHex(Lr, Cs * EMBER_TINT, Hs));
 	return {
-		'fg-1': white, 'fg-2': g[84], 'fg-2-hover': white,
-		'fg-3': g[68], 'fg-3-hover': g[84], 'fg-4': g[60],
-		'fg-disabled': g[36], 'fg-inverted': g[14],
-		'fg-on-brand': on(bx(50)), // DEVIATION: measured, not white
-		'bg-1': g[8], 'bg-1-hover': g[12], 'bg-1-pressed': g[6], 'bg-1-selected': g[11],
-		'bg-2': g[6], 'bg-2-hover': g[10], 'bg-2-pressed': g[4], 'bg-2-selected': g[9],
-		'bg-3': g[4], 'bg-3-hover': g[8], 'bg-3-pressed': g[2], 'bg-3-selected': g[7],
-		'bg-4': g[2], 'bg-4-hover': g[6], 'bg-4-pressed': black, 'bg-4-selected': g[5],
-		'bg-5': black, 'bg-5-hover': g[4], 'bg-5-pressed': g[1], 'bg-5-selected': g[3],
-		'bg-6': g[10], 'bg-disabled': g[4],
-		// DEVIATION: Fluent's bg-6 has no states, because its Card component
-		// carries them. ewe's panels are full of tiles that must hover, so the
-		// ladder is extended with Fluent's own deltas (+4 / -2 / +3) off g10.
-		card: g[10], 'card-hover': g[14], 'card-pressed': g[8], 'card-selected': g[13],
-		subtle: 'transparent', 'subtle-hover': g[11], 'subtle-pressed': g[9], 'subtle-selected': g[10],
-		// the greys Fluent uses; CSS carries them at alpha 0.5 — see colorCss
-		'stroke-1': g[40], 'stroke-1-hover': g[46], 'stroke-1-pressed': g[42], 'stroke-1-selected': g[44],
-		'stroke-2': g[32], 'stroke-3': g[24],
-		'stroke-accessible': g[68], 'stroke-disabled': g[26],
-		'stroke-focus-1': black, 'stroke-focus-2': white,
-		'brand-bg': bx(50), 'brand-bg-hover': bx(60), 'brand-bg-pressed': bx(38), 'brand-bg-selected': bx(45),
-		'brand-fg-1': b[100], 'brand-fg-2': b[110],
-		'brand-fg-link': b[100], 'brand-fg-link-hover': b[110],
-		'brand-stroke-1': b[100], 'brand-stroke-2': bx(40),
-		'compound-brand-bg': b[100], 'compound-brand-bg-hover': b[110],
-		'compound-brand-bg-pressed': b[90], 'compound-brand-fg': b[100],
-		'compound-brand-stroke': b[100]
+		'gradient-ewellow': { kind: 'linear', angle: GRADIENT_ANGLE['gradient-ewellow'], stops: [
+			[inRange(okMix(c['ewellow-400'], c['accent'], fa)), 1, 0],
+			[inRange(okMix(c['accent'], c['ewellow-600'], fb)), 1, 100]] },
+		'gradient-ember': { kind: 'linear', angle: GRADIENT_ANGLE['gradient-ember'], stops: [
+			[ember, 1, 0], [c['surface-base'], 1, 100]] },
+		'gradient-night': { kind: 'linear', angle: GRADIENT_ANGLE['gradient-night'], stops: [
+			[c['surface-raised'], 1, 0], [c['surface-base'], 1, 100]] },
+		'gradient-glow': { kind: 'radial', at: '50% 0%', stops: [
+			[c['accent'], GLOW_ALPHA, 0], [c['accent'], 0, 60]] }
 	};
 }
 
-// The strokes that carry alpha. alias() keeps them opaque so the maths stays
-// in one colour space; CSS reads them as rgba(). Focus strokes stay opaque.
-const STROKE_ALPHA = 0.5;
-const ALPHA_ROLES = new Set(['stroke-1', 'stroke-1-hover', 'stroke-1-pressed', 'stroke-1-selected',
-	'stroke-2', 'stroke-3', 'stroke-accessible', 'stroke-disabled']);
+// ═══ the token set ═══════════════════════════════════════════════════════
+/**
+ * Everything `ewe-theme build` would derive, for one scheme and one accent.
+ *
+ * @param {object} opts scheme (slug or record), accent, corner, density,
+ *   stroke, barOpacity (0–100), increaseContrast, reduceTransparency,
+ *   barIconSize, textScale (100 | 115 | 130: the controls grow with the type,
+ *   and at 130 the bar's icons move one step up)
+ */
+export function derive({
+	scheme = 'ewe-dark',
+	accent = EWELLOW,
+	corner = 'medium',
+	density = 'comfortable',
+	stroke = 'thin',
+	barOpacity = 100,
+	increaseContrast = false,
+	reduceTransparency = false,
+	barIconSize = 'normal',
+	textScale = 100
+} = {}) {
+	const sc = typeof scheme === 'string' ? BY_SLUG[scheme] || BY_SLUG['ewe-dark'] : scheme;
+	const variant = sc.variant;
+	const dark = variant === 'dark';
+	const acc = inRange((sc.builtin ? accent : sc.accent || sc.palette.base0A).toLowerCase());
+	const { color, alpha, adjusted } = schemeColors(sc, acc);
 
-/** A role's value as tokens.css spells it — ewe-theme's color_css(). */
-export function colorCss(role, hex) {
-	if (!ALPHA_ROLES.has(role)) return hex;
-	const [r, g, b] = [1, 3, 5].map((i) => parseInt(hex.slice(i, i + 2), 16));
-	return `rgba(${r}, ${g}, ${b}, ${STROKE_ALPHA})`;
-}
+	// ── Increase contrast remaps roles ─────────────────────────────────────
+	if (increaseContrast) {
+		color['border-subtle'] = color['border-strong'];
+		color['text-muted'] = color['text-secondary'];
+		color['surface-hover'] = color['surface-pressed'];
+	}
 
-// ═══ the non-colour ramps — Fluent's own, verbatim ═══════════════════════
-// circular is 999, not 9999: both clamp to half the box — a capsule either way.
-export const RADIUS_RAMP = { none: 0, small: 2, medium: 4, large: 6, xlarge: 8, '2xlarge': 12, '3xlarge': 16, '4xlarge': 24, circular: 999 };
-export const SPACING_RAMP = { none: 0, xxs: 2, xs: 4, snudge: 6, s: 8, mnudge: 10, m: 12, l: 16, xl: 20, xxl: 24, xxxl: 32 };
-// `none` zeroes component OUTLINES; hairlines keep 1px (see shape()).
-export const STROKE_RAMP = { none: 0, thin: 1, thick: 2, thicker: 3, thickest: 4 };
+	// ── Glass: the bar, dock and lock card ────────────────────────────────
+	const op = barOpacity;
+	const glassSolid = increaseContrast || reduceTransparency;
+	const glassAlpha = glassSolid ? 1.0 : op < 100 ? op / 100 : OPACITY_GLASS;
+	const t05 = inRange(sc.palette.base05),
+		t07 = inRange(sc.palette.base07);
+	const tint = contrast(t05, color['surface-base']) >= contrast(t07, color['surface-base']) ? t05 : t07;
+	const ga = GLASS_ALPHA[variant];
+	if (glassSolid) {
+		Object.assign(color, {
+			'glass-base': color['surface-base'],
+			'glass-raised': color['surface-raised'],
+			'glass-border': color['border-subtle'],
+			'glass-hover': color['surface-hover'],
+			'glass-pressed': color['surface-pressed']
+		});
+	} else {
+		Object.assign(color, {
+			'glass-base': color['surface-base'],
+			'glass-raised': color['surface-raised'],
+			'glass-border': tint,
+			'glass-hover': tint,
+			'glass-pressed': tint
+		});
+		Object.assign(alpha, {
+			'glass-base': glassAlpha,
+			'glass-raised': glassAlpha,
+			'glass-border': ga.border,
+			'glass-hover': ga.hover,
+			'glass-pressed': ga.pressed
+		});
+	}
+	if (!glassSolid && op < 100) {
+		// The Glass contrast rule: at the preset, text and the accent mark hold
+		// 4.5:1 and status glyphs 3:1 over the fill on white AND black.
+		const backs = ['glass-base', 'glass-raised'].flatMap((k) =>
+			['#ffffff', '#000000'].map((w) => over(color[k], OPACITY_GLASS, w))
+		);
+		const direction = dark ? 1 : -1;
+		for (const [role, target] of [
+			['text-primary', CONTRAST_TEXT],
+			['text-secondary', CONTRAST_TEXT],
+			['glass-accent', CONTRAST_TEXT],
+			['success', CONTRAST_BORDER],
+			['warning', CONTRAST_BORDER],
+			['danger', CONTRAST_BORDER],
+			['info', CONTRAST_BORDER]
+		]) {
+			const worst = Math.min(...backs.map((b) => contrast(color[role], b)));
+			if (worst >= target - 1e-9) continue;
+			const L = oklch(color[role])[0];
+			for (let step = 1; step <= 100; step++) {
+				const Ln = L + direction * step;
+				const edge = Ln < L_FLOOR || Ln > L_CEIL;
+				const cand = atL(color[role], Ln); // at the edge: black / neutral-0
+				if (Math.min(...backs.map((b) => contrast(cand, b))) >= target) {
+					adjusted.push({
+						role,
+						from: color[role],
+						to: cand,
+						why: `${target}:1 over glass at ${GLASS_PRESET}% (was ${worst.toFixed(2)}:1)`
+					});
+					color[role] = cand;
+					break;
+				}
+				if (edge) break;
+			}
+		}
+		for (const st of STATUS)
+			if (adjusted.some((a) => a.role === st && a.why.includes('glass')))
+				color[st + '-subtle'] = statusSubtle(color[st], variant);
+	}
 
-// A rung name on RADIUS_RAMP, or a pixel count for a preset pitched by role:
-// `round` (the default since the revamp) is 12 / 20 / 26 / capsule.
-export const CORNER = {
-	none: { control: 'none', card: 'none', panel: 'none', pill: 'none' },
-	small: { control: 'small', card: 'medium', panel: 'large', pill: 'small' },
-	medium: { control: 'medium', card: 'large', panel: 'xlarge', pill: 'medium' },
-	large: { control: 'large', card: 'xlarge', panel: '2xlarge', pill: 'circular' },
-	round: { control: 12, card: 20, panel: 26, pill: 'circular' }
-};
-const radius = (v) => (typeof v === 'string' ? RADIUS_RAMP[v] : v);
-// Fluent's own button sizes are 24 / 32 / 40 — exactly this ladder.
-export const DENSITY = {
-	compact: { pad: 's', gap: 'xs', control: 24, row: 28 },
-	comfortable: { pad: 'm', gap: 's', control: 32, row: 36 },
-	roomy: { pad: 'l', gap: 'm', control: 40, row: 44 }
-};
-
-/** Everything `ewe-theme build` would derive from one accent. */
-export function derive(accent, tint = 8) {
-	const grey = greyRamp(accent, tint);
-	const brand = brandRamp(accent);
-	return { grey, brand, color: alias(grey, brand, (s) => brandAt(accent, s)) };
-}
-
-/** The shape and size half: corners, stroke weight, density. Values in px.
- *  18, not 16, for the middle icon rung: Lucide is stroke art where the old
- *  face was solid, so the same nominal size reads lighter and size is the
- *  only lever a font leaves you for optical weight. */
-export function shape(corner = 'round', stroke = 'none', density = 'comfortable') {
-	const c = CORNER[corner] ?? CORNER.round;
-	const d = DENSITY[density] ?? DENSITY.comfortable;
-	const w = STROKE_RAMP[stroke] ?? 0;
-	const icon = d.control >= 40 ? 20 : d.control >= 32 ? 18 : 16;
-	return {
-		'radius-control': radius(c.control),
-		'radius-card': radius(c.card),
-		'radius-panel': radius(c.panel),
-		'radius-pill': radius(c.pill),
-		// `outline-width` is the edge a component draws around ITSELF, 0 under
-		// `stroke = none`; `stroke-width` is a rule INSIDE a surface, never < 1.
-		'outline-width': w,
-		'stroke-width': Math.max(1, w),
-		'stroke-width-thick': Math.max(2, Math.min(4, w + 1)),
-		'focus-width': 2,
-		pad: SPACING_RAMP[d.pad],
-		gap: SPACING_RAMP[d.gap],
-		control: d.control,
-		row: d.row,
-		icon
+	// ── look presets: a remap of a few tokens, never colors or type ───────
+	const [slight, secondary, primary, rounded, full] = CORNER[corner] ?? CORNER.medium;
+	const [ctrlMd, ctrlLg] = DENSITY[density] ?? DENSITY.comfortable;
+	const [bw1, bw2] = STROKE[stroke] ?? STROKE.thin;
+	const shape = {
+		slight,
+		secondary,
+		primary,
+		rounded,
+		'fully-rounded': full,
+		'border-width-1': bw1,
+		'border-width-2': bw2,
+		'focus-width': increaseContrast ? 2 : FOCUS_WIDTH,
+		'field-border-width': Math.max(increaseContrast ? 2 : FIELD_BORDER_WIDTH, bw1)
 	};
+	// any other value snaps to the nearest step, as ewe-theme does
+	const ts = TEXT_SCALES.reduce((best, s) => (Math.abs(s - textScale) < Math.abs(best - textScale) ? s : best), TEXT_SCALES[0]);
+	const size = Object.fromEntries(
+		Object.entries({ 'control-sm': 24, 'control-md': ctrlMd, 'control-lg': ctrlLg, 'control-xl': 40, 'control-2xl': 48 })
+			.map(([k, v]) => [k, scalePx(v, ts)])
+	);
+	let barStep = BAR[barIconSize] ? barIconSize : 'normal';
+	if (ts === 130) barStep = BAR_STEPS[Math.min(BAR_STEPS.indexOf(barStep) + 1, BAR_STEPS.length - 1)];
+	const bar = BAR[barStep];
+
+	const ink = dark ? BLACK : inRange(sc.palette.base05);
+	const shadow = Object.fromEntries(
+		Object.entries(SHADOW).map(([k, [[x, y, blur], a]]) => [k, { x, y, blur, color: ink, alpha: a[variant] }])
+	);
+
+	return {
+		scheme: { slug: sc.slug, name: sc.name, variant, builtin: !!sc.builtin },
+		accent: acc,
+		variant,
+		color,
+		alpha,
+		shape,
+		size,
+		bar: { iconSize: barStep, ...bar, padding: SPACE_S },
+		shadow,
+		gradient: gradients(color),
+		adjusted,
+		brand: Object.fromEntries(RAMP_STEPS.map((s) => [s, color['ewellow-' + s]])),
+		glass: { alpha: glassAlpha, solid: glassSolid, blurred: !glassSolid && op >= 10 && op < 100 }
+	};
+}
+
+const fmt = (x) => {
+	const s = x.toFixed(3).replace(/0+$/, '').replace(/\.$/, '');
+	return s === '' || s === '-' ? '0' : s;
+};
+
+const rgba = (v, a) => {
+	const [r, g, b] = rgb(v);
+	return `rgba(${r}, ${g}, ${b}, ${fmt(a)})`;
+};
+
+/** A role's value as tokens.css spells it: translucent roles as rgba(). */
+export function colorCss(role, color, alpha) {
+	const v = color[role];
+	return alpha && role in alpha ? rgba(v, alpha[role]) : v;
+}
+
+const px = (v) => (v === 0 ? '0' : `${v}px`);
+
+export const shadowCss = (sh) => (sh ? `${px(sh.x)} ${px(sh.y)} ${px(sh.blur)} ${rgba(sh.color, sh.alpha)}` : 'none');
+
+export function gradientCss(g) {
+	const stops = g.stops.map(([c, a, pos]) => `${a < 1 ? rgba(c, a) : c} ${pos}%`).join(', ');
+	return g.kind === 'radial'
+		? `radial-gradient(circle at ${g.at}, ${stops})`
+		: `linear-gradient(${g.angle}deg, ${stops})`;
+}
+
+/** Every role as a `--name:value` declaration list, for a style attribute. */
+export function cssVars(t) {
+	return [
+		...Object.keys(t.color).map((k) => `--${k}:${colorCss(k, t.color, t.alpha)}`),
+		...Object.entries(t.shape).map(([k, v]) => `--${k}:${v}px`),
+		...Object.entries(t.size).map(([k, v]) => `--${k}:${v}px`),
+		...Object.entries(t.shadow).map(([k, v]) => `--${k}:${shadowCss(v)}`),
+		...Object.entries(t.gradient).map(([k, v]) => `--${k}:${gradientCss(v)}`)
+	].join(';');
 }

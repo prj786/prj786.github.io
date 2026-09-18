@@ -16,7 +16,7 @@
 	<title>ewe-mail — ewe docs</title>
 	<meta
 		name="description"
-		content="ewe-mail reads an unread count and the newest messages from any IMAP account for the Control Center mail badge — the password stays in the keyring."
+		content="ewe-mail reads an unread count and the newest messages from any IMAP account for the Quick settings mail badge — the password stays in the keyring."
 	/>
 </svelte:head>
 
@@ -101,8 +101,8 @@ ewe-mail unseen --limit 5`}
 <style>
 	code.title {
 		font-size: 0.62em;
-		background: var(--bg-2);
-		border-color: var(--stroke-2);
+		background: var(--surface-raised);
+		border-color: var(--border-subtle);
 		padding: 0.15em 0.4em;
 	}
 </style>

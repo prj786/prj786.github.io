@@ -83,9 +83,9 @@ ewe-conf sync-status`}
 		<div class="row"><dt>Get at my files</dt><dd><a href="/docs/cli/ewe-files/">ewe-files</a> to mount the account, or folder pairs in <a href="/docs/cli/ewe-sync/">ewe-sync</a>.</dd></div>
 		<div class="row"><dt>Fix the desktop after an update</dt><dd><a href="/docs/cli/ewe-setup/">ewe-setup</a>, then log out and in.</dd></div>
 		<div class="row"><dt>Install on another machine</dt><dd><a href="/docs/cli/ewe-install/">ewe-install</a>.</dd></div>
-		<div class="row"><dt>Cast to a television</dt><dd>The Control Center — <a href="/docs/cli/ewe-castd/">ewe-castd</a> is what it drives.</dd></div>
+		<div class="row"><dt>Cast to a television</dt><dd>Quick settings — <a href="/docs/cli/ewe-castd/">ewe-castd</a> is what it drives.</dd></div>
 		<div class="row"><dt>Add a bar widget, a desktop widget, a panel</dt><dd><a href="/docs/cli/ewe-plugin/">ewe-plugin</a> — a git URL in, or <code>create</code> your own; <a href="/docs/plugins/">the guide</a>.</dd></div>
-		<div class="row"><dt>Change the colours — a scheme, the wallpaper's</dt><dd><a href="/docs/cli/ewe-theme/">ewe-theme</a> <code>scheme import | from-wallpaper | apply</code>, or Settings → Appearance → Colours.</dd></div>
+		<div class="row"><dt>Change the colors — a scheme, the wallpaper's</dt><dd><a href="/docs/cli/ewe-theme/">ewe-theme</a> <code>scheme import | from-wallpaper | apply</code>, or Settings → Appearance → Colors.</dd></div>
 		<div class="row"><dt>Fill a login into an app</dt><dd><kbd>Super</kbd>+<kbd>P</kbd>; <a href="/docs/cli/ewe-pass/">ewe-pass</a> is what it runs.</dd></div>
 	</dl>
 </section>
@@ -94,14 +94,15 @@ ewe-conf sync-status`}
 
 <style>
 	.grid {
-		margin-top: 1rem;
+		margin-top: var(--space-md);
 	}
 	.card h3 a {
+		color: var(--text-primary);
 		text-decoration: none;
 	}
 	.card h3 a:hover {
 		text-decoration: underline;
-		text-decoration-color: var(--accent);
+		text-underline-offset: 3px;
 	}
 	.card code {
 		background: none;

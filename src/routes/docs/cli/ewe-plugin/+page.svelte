@@ -15,7 +15,7 @@
 		{ cmd: 'validate', args: '<dir>', does: 'Check a manifest and its entry points — every problem, not just the first.', prints: 'ok, or the list; exit 1 on problems' },
 		{ cmd: 'restore', args: '[--yes]', does: 'Clone every plugin ewe.conf knows that is not installed here — the plugin half of Komble’s “For you”. Enabled bits stay as the file says; a "local" or "bundled" source is skipped with a note — the bundled ones come with the ewe package.' },
 		{ cmd: 'seed', args: '<payload-plugins-dir> [--restore <id>] [--no-restart]', does: 'Copy the plugins the ewe package ships (ewe.clipboard, ewe.screenshot, ewe.passwords) into the plugins directory, enabled and marked bundled. ewe-setup runs it on every install; it refreshes a bundled copy when its version changes, and skips one you removed or linked with dev. --restore <id> forgets a removal and seeds that plugin again.', prints: 'what was seeded, refreshed or skipped' },
-		{ cmd: 'create', args: '<ns.name> [--name T] [--kinds a,b] [--section left|center|right] [--dir P] [--no-git]', does: 'A new plugin repository: manifest, one working QML per kind, README, MIT licence, git init and a first commit. Kinds: service, panel, overlay, menu, bar-widget, desktop-widget.', prints: 'the path, and the next two commands' },
+		{ cmd: 'create', args: '<ns.name> [--name T] [--kinds a,b] [--section left|center|right] [--dir P] [--no-git]', does: 'A new plugin repository: manifest, one working QML per kind, README, MIT license, git init and a first commit. Kinds: service, panel, overlay, menu, bar-widget, desktop-widget.', prints: 'the path, and the next two commands' },
 		{ cmd: 'dev', args: '[dir] [--no-follow]', does: 'Link a working copy into the plugins dir, enable it, restart the shell and follow its log lines. remove on a link only unlinks.' },
 		{ cmd: 'place', args: '<id> [--x N --y N] [--layer desktop|top] [--visible on|off] [--output NAME] [--reset]', does: 'Where a desktop widget sits and how — written to [plugins.widgets], applied live.', prints: 'the effective placement as JSON' },
 		{ cmd: 'set', args: '<id> <key> <value>', does: 'A setting the plugin declared, typed by its manifest — a value that does not fit is refused. Live.', prints: 'the effective settings as JSON' },
@@ -91,11 +91,11 @@ ewe-plugin restore --yes`}
 	<h2>Output</h2>
 	<p><code>list --json</code> — what the shell reads at startup:</p>
 	<Code
-		code={`{"ok": true, "apiVersion": 1, "dir": "/home/you/.config/ewe/plugins",
+		code={`{"ok": true, "apiVersion": 2, "dir": "/home/you/.config/ewe/plugins",
  "plugins": [{"id": "example.hello", "dir": "…/plugins/example.hello",
               "installed": true, "git": true,
               "source": "https://github.com/prj786/ewe-plugin-example.git",
-              "name": "Hello", "version": "0.1.0", "apiVersion": 1,
+              "name": "Hello", "version": "0.1.0", "apiVersion": 2,
               "kinds": ["service", "panel", "bar-widget"],
               "entryPoints": {"service": "Service.qml", "panel": "Panel.qml",
                               "bar-widget": "Widget.qml"},
@@ -158,8 +158,8 @@ ewe-plugin restore --yes`}
 <style>
 	code.title {
 		font-size: 0.62em;
-		background: var(--bg-2);
-		border-color: var(--stroke-2);
+		background: var(--surface-raised);
+		border-color: var(--border-subtle);
 		padding: 0.15em 0.4em;
 	}
 	section {

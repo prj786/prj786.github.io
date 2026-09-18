@@ -80,7 +80,7 @@
 		</p>
 		<p>
 			You land on the ewe desktop, running from the stick, with <strong>Install ewe</strong> first in
-			the dock. Everything you see is the real system: open the control centre with
+			the dock. Everything you see is the real system: open Quick settings with
 			<code>Super+N</code>, try Komble, change the accent. Nothing is written to your disks until you
 			press the red Install button on the Summary screen.
 		</p>
@@ -182,46 +182,46 @@
 	/* the box is the page's whole first act, so it owns the gap to Step 1 —
 	   app.css's `section + section` rhythm can't see a div */
 	.getbox + :global(section) {
-		margin-top: 3rem;
+		margin-top: var(--space-lg);
 	}
 	.getbox {
-		margin-top: 1.6rem;
-		background: var(--bg-2);
-		border: var(--stroke-width) solid var(--stroke-2);
-		border-radius: var(--radius-panel);
-		padding: 1.2rem 1.3rem;
+		margin-top: var(--space-md);
+		background: var(--surface-raised);
+		border: var(--border-width-1) solid var(--border-subtle);
+		border-radius: var(--rounded);
+		padding: calc(var(--space-md) + var(--space-xs));
 		display: flex;
 		flex-direction: column;
 		align-items: flex-start;
-		gap: 0.8rem;
+		gap: var(--space-s);
 		max-width: 44rem;
 	}
 	.big {
-		font-size: 1rem;
-		padding: 0.65rem 1.2rem;
+		height: var(--control-2xl);
+		padding: 0 calc(var(--space-md) + var(--space-s));
+		font-size: var(--font-size-lg);
 	}
 	.meta {
 		display: flex;
 		flex-wrap: wrap;
 		align-items: center;
-		gap: 0.5rem 0.8rem;
-		font-size: 0.85rem;
-		color: var(--fg-3);
-	}
-	.meta code {
-		font-size: 0.8rem;
+		gap: var(--space-xs) var(--space-s);
+		font-size: var(--font-size-md);
+		line-height: var(--line-height-md);
+		color: var(--text-muted);
 	}
 	.hosted {
-		font-size: 0.88rem;
-		color: var(--fg-3);
+		font-size: var(--font-size-md);
+		line-height: var(--line-height-md);
+		color: var(--text-muted);
 		margin: 0;
 	}
 
 	section :global(.cmd + .cmd) {
-		margin-top: 0.55rem;
+		margin-top: var(--space-s);
 	}
 	section :global(.cmd) {
-		margin-top: 0.85rem;
+		margin-top: var(--space-md);
 	}
 	.steps {
 		list-style: none;
@@ -229,66 +229,76 @@
 		padding: 0;
 		display: flex;
 		flex-direction: column;
-		gap: 0.6rem;
+		gap: var(--space-s);
 		max-width: 44rem;
 	}
 	.steps li {
 		display: flex;
-		gap: 1rem;
+		gap: var(--space-md);
 		align-items: flex-start;
-		background: var(--bg-2);
-		border: var(--stroke-width) solid var(--stroke-2);
-		border-radius: var(--radius-card);
-		padding: 0.9rem 1.05rem;
+		background: var(--surface-raised);
+		border: var(--border-width-1) solid var(--border-subtle);
+		border-radius: var(--rounded);
+		padding: calc(var(--space-s) + var(--space-xs));
 		margin: 0;
 	}
+	/* the step number: the Step indicator's dot */
 	.n {
 		flex: none;
-		width: 1.55rem;
-		height: 1.55rem;
-		border-radius: 999px;
+		width: var(--control-md);
+		height: var(--control-md);
+		border-radius: var(--fully-rounded);
 		display: grid;
 		place-items: center;
-		font-size: 0.78rem;
-		color: var(--accent);
-		border: var(--stroke-width) solid color-mix(in srgb, var(--accent) 45%, var(--stroke-2));
+		font-family: var(--font-mono);
+		font-size: var(--font-size-s);
+		font-variant-numeric: tabular-nums;
+		background: var(--accent-subtle);
+		color: var(--accent-text);
 	}
 	.steps h3 {
-		margin-bottom: 0.2rem;
+		margin-bottom: var(--space-xxs);
+		font-size: var(--font-size-lg);
+		line-height: var(--line-height-lg);
 	}
 	.steps p {
-		font-size: 0.92rem;
+		font-size: var(--font-size-md);
+		line-height: var(--line-height-md);
 		margin: 0;
 	}
 
-	/* ── the folded fallback ─────────────────────────────────────────── */
+	/* ── the folded fallback (the Accordion) ─────────────────────────── */
 	details {
-		border: var(--stroke-width) solid var(--stroke-3);
-		border-radius: var(--radius-card);
-		background: var(--bg-2);
+		border: var(--border-width-1) solid var(--border-subtle);
+		border-radius: var(--rounded);
+		background: var(--surface-raised);
 		max-width: 44rem;
 	}
 	summary {
 		display: flex;
 		align-items: center;
-		gap: 0.5rem;
-		padding: 0.75rem 1rem;
+		gap: var(--space-s);
+		min-height: var(--control-xl);
+		padding: var(--space-s) calc(var(--space-s) + var(--space-xs));
 		cursor: pointer;
-		font-size: 0.92rem;
-		color: var(--fg-2);
-		border-radius: var(--radius-card);
+		font-size: var(--font-size-md);
+		line-height: var(--line-height-md);
+		font-weight: var(--font-weight-medium);
+		color: var(--text-primary);
+		border-radius: var(--rounded);
 	}
 	summary:hover {
-		color: var(--fg-1);
+		background: var(--surface-hover);
 	}
 	summary :global(.icon) {
-		color: var(--fg-3);
+		color: var(--text-secondary);
 	}
 	.det {
-		padding: 0 1rem 1rem;
+		padding: 0 calc(var(--space-s) + var(--space-xs)) calc(var(--space-s) + var(--space-xs));
 	}
 	.det p {
-		font-size: 0.92rem;
+		font-size: var(--font-size-md);
+		line-height: var(--line-height-md);
 	}
 	.det :global(.cmd) {
 		max-width: none;

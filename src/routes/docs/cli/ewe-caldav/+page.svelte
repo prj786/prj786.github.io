@@ -6,7 +6,7 @@
 
 	const verbs = [
 		{ cmd: 'events', args: '[--days N] [--no-cache]', does: 'Upcoming events from every calendar in the account. Seven days by default; N is clamped between 1 and 60. --no-cache forces a fetch.', prints: 'ok, events, offline, fetched_at' },
-		{ cmd: 'calendars', does: 'The calendars the account holds, with their display names and colours.', prints: 'ok, calendars' },
+		{ cmd: 'calendars', does: 'The calendars the account holds, with their display names and colors.', prints: 'ok, calendars' },
 		{ cmd: 'parse', args: '<file.ics>', does: 'Parse a local iCalendar file into the same event shape. For debugging what a server sent.', prints: 'the parsed events' }
 	];
 </script>
@@ -111,8 +111,8 @@
 <style>
 	code.title {
 		font-size: 0.62em;
-		background: var(--bg-2);
-		border-color: var(--stroke-2);
+		background: var(--surface-raised);
+		border-color: var(--border-subtle);
 		padding: 0.15em 0.4em;
 	}
 </style>

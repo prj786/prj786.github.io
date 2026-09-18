@@ -9,7 +9,7 @@
 		['id', '"acme.weather"', 'namespace.name, lowercase [a-z0-9_-], at least one dot. "ewe." is reserved. The install directory is named after it.'],
 		['name', '"Weather"', 'What list shows.'],
 		['version', '"0.1.0"', 'Yours to bump; list shows it.'],
-		['apiVersion', '1', 'The plugin API this was written against. A mismatch is refused at install, never at login.'],
+		['apiVersion', '2', 'The plugin API this was written against. A mismatch is refused at install, never at login.'],
 		['kinds', '["bar-widget", "panel"]', 'One or more of service, panel, overlay, menu, bar-widget.'],
 		['entryPoints', '{ "bar-widget": "Widget.qml", … }', 'One .qml file per kind, relative, inside the plugin. A symlink that resolves outside it is rejected.'],
 		['barWidget.defaultSection', '"right"', 'left, center or right — where the widget is packed. Optional.'],
@@ -67,7 +67,7 @@ cd my-plugin && ls
   "id": "acme.weather",
   "name": "Weather",
   "version": "0.1.0",
-  "apiVersion": 1,
+  "apiVersion": 2,
   "description": "Current conditions in the bar, forecast in a panel.",
   "homepage": "https://github.com/acme/ewe-weather",
   "kinds": ["bar-widget", "panel"],
@@ -124,18 +124,20 @@ Scope {
     PanelWindow {
         visible: root.shown
         anchors { bottom: true; right: true }
-        margins { bottom: 12; right: 12 }
-        implicitWidth: 320; implicitHeight: 180
+        margins { bottom: Theme.windowGap; right: Theme.windowGap }
+        implicitWidth: Theme.panelSm; implicitHeight: 180
         color: "transparent"
         Rectangle {
             anchors.fill: parent
-            radius: Theme.radius
-            color: Theme.bg2
+            radius: Theme.radiusRounded
+            color: Theme.surfaceRaised
+            border.width: Theme.borderWidth1; border.color: Theme.borderSubtle
             Text {
                 anchors.centerIn: parent
                 text: "Partly cloudy, 21°"
-                color: Theme.fg1
-                font.family: Theme.fontText; font.pixelSize: Theme.fsBody
+                color: Theme.textPrimary
+                font.family: Theme.type.body.family
+                font.pixelSize: Theme.type.body.size; font.weight: Theme.type.body.weight
             }
         }
     }
@@ -155,19 +157,21 @@ import qs
 
 Item {
     id: root
-    implicitWidth: row.implicitWidth + 2 * Theme.barItemPad
-    implicitHeight: Theme.barItemHeight
+    implicitWidth: row.implicitWidth + 2 * Theme.spaceS
+    implicitHeight: Theme.barModule
     Rectangle {
         anchors.fill: parent
-        radius: Theme.barItemRadius
-        color: ma.containsMouse ? Theme.barHover : "transparent"
+        radius: Theme.radiusPrimary
+        color: ma.pressed ? Theme.barPressedFill : ma.containsMouse ? Theme.barHoverFill : "transparent"
     }
     Row {
         id: row
         anchors.centerIn: parent
-        spacing: 5
-        Text { text: Theme.icSun; font.family: Theme.fontIcons; font.pixelSize: Theme.barIconPx; color: Theme.fg2 }
-        Text { text: "21°"; font.family: Theme.fontText; font.pixelSize: 12; color: Theme.fg1 }
+        spacing: Theme.spaceXs
+        Text { text: Theme.icSun; font.family: Theme.fontIcons; font.pixelSize: Theme.barIcon
+               color: ma.containsMouse ? Theme.textPrimary : Theme.textSecondary }
+        Text { text: "21°"; color: Theme.textPrimary; font.family: Theme.type.label.family
+               font.pixelSize: Theme.type.label.size; font.weight: Theme.type.label.weight }
     }
     MouseArea {
         id: ma
@@ -182,9 +186,12 @@ Item {
 	<Callout title="The bar-widget contract">
 		<p>
 			The root is an <code>Item</code> with an implicit size; the bar's row packs it like any
-			built-in indicator, once per monitor. <code>Theme.barItemHeight</code>,
-			<code>barItemRadius</code>, <code>barItemPad</code> and <code>barIconPx</code> are the
-			conventions that make it look native. Widgets append to their section after the built-ins,
+			built-in indicator, once per monitor. A module is <code>Theme.barModule</code> tall with
+			<code>radiusPrimary</code> corners and no fill until pointed at
+			(<code>barHoverFill</code>, then <code>barPressedFill</code>). Its glyph is
+			<code>barIcon</code> in <code>textSecondary</code>, and <code>textPrimary</code> on hover.
+			A single glyph is a <code>barModule</code> square; a widget with text adds
+			<code>spaceS</code> at each side. Widgets append to their section after the built-ins,
 			in id order; the centre yields on an output too narrow to hold it.
 		</p>
 	</Callout>
@@ -200,9 +207,11 @@ Item {
     property var settings: ({})          // your declared options, from ewe.conf, live
     implicitWidth: 260
     implicitHeight: 96
-    Rectangle { anchors.fill: parent; radius: Theme.radiusInner; color: Theme.bg1 }
+    Rectangle { anchors.fill: parent; radius: Theme.radiusRounded; color: Theme.surfaceRaised
+                border.width: Theme.borderWidth1; border.color: Theme.borderSubtle }
     Text { anchors.centerIn: parent; text: Qt.formatTime(new Date(), settings.seconds ? "hh:mm:ss" : "hh:mm")
-           font.pixelSize: 40; color: Theme.fg1 }
+           font.pixelSize: Theme.type.display.size; font.weight: Theme.type.display.weight
+           color: Theme.textPrimary }
 }`}
 	/>
 	<p>
@@ -270,7 +279,7 @@ ewe-plugin add https://github.com/acme/ewe-weather.git --enable`}
 <section>
 	<h2>Conventions worth keeping</h2>
 	<dl class="rows">
-		<div class="row"><dt>Ask for a role, never a value</dt><dd><code>Theme.bg2</code>, not a hex. The accent is the user's and changes at runtime; a hard-coded colour is the one thing that will look foreign.</dd></div>
+		<div class="row"><dt>Ask for a role, never a value</dt><dd><code>Theme.surfaceBase</code>, not a hex; <code>Theme.spaceS</code>, not 8. The scheme, the accent and Text size are the user's and change at runtime; a hard-coded value is the one thing that will look foreign. The names are on <a href="/docs/plugins/api/">What a plugin may use</a>, with the table for moving an API 1 plugin.</dd></div>
 		<div class="row"><dt>Own your state</dt><dd>Keep files under <code>~/.local/state/ewe/</code> or your own directory; never write <code>ewe.conf</code> — call <code>ewe-conf set</code> if you must persist a setting.</dd></div>
 		<div class="row"><dt>Stay small</dt><dd>People will read your code before enabling it, because the docs tell them to. One file per kind, no build step, a README that says what it talks to.</dd></div>
 	</dl>
@@ -280,9 +289,9 @@ ewe-plugin add https://github.com/acme/ewe-weather.git --enable`}
 
 <style>
 	h3 {
-		margin-top: 1.6rem;
+		margin-top: var(--space-lg);
 	}
 	.dflt {
-		color: var(--fg-3);
+		color: var(--text-muted);
 	}
 </style>

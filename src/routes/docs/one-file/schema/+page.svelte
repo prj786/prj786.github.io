@@ -4,12 +4,15 @@
 	import PageNav from '$lib/docs/PageNav.svelte';
 
 	const theme = [
-		['color_scheme', '"dark"', 'Always dark — ewe is dark-only by decision. The key stays because Komble reads it to follow the desktop.'],
-		['accent', '"#0a84ff"', 'Recolours the whole shell live.'],
-		['scheme', '"accent"', 'Or the slug of a palette in [[desktop.theme.schemes]] — an imported, hand-written or wallpaper-derived scheme (ewe-theme scheme …). "wallpaper" follows the wallpaper.'],
-		['theme_name', '"flock"', 'Soft greys, or "blacksheep" for absolute black.'],
+		['scheme', '"ewe-dark"', 'Ewe Dark, Ewe Light, or the slug of a palette in [[desktop.theme.schemes]] — imported, hand-written or taken from the wallpaper (ewe-theme scheme …).'],
+		['accent', '"#eeb407"', 'Any color. The accent roles and the accent ramp are derived from it, live.'],
+		['corner', '"medium"', 'The radii: none, small, medium or large.'],
+		['density', '"comfortable"', 'Control and row heights: compact (24), comfortable (28) or roomy (32).'],
+		['stroke', '"thin"', 'Outlines: none, thin (1px) or thick (2px).'],
+		['bar_opacity', '100', '0–100. Below 100 the bar, dock and lock card go glass and the wallpaper behind them is blurred; the Glass preset is 80.'],
+		['app_blur', 'false', 'Every window at 85%, blurred behind. Fullscreen windows stay solid.'],
+		['window_transparency', 'false', 'Unfocused windows at 97%.'],
 		['tint_borders', 'true', 'Accent-tinted window borders.'],
-		['window_transparency', 'false', 'Translucent unfocused windows.'],
 		['avatar_shape', '"circle"', 'The greeter and bar avatar mask; or "rounded".']
 	];
 </script>
@@ -18,7 +21,7 @@
 	<title>ewe.conf schema — ewe docs</title>
 	<meta
 		name="description"
-		content="Every section of ewe.conf: theme, dock, animations, power, displays, window rules, wallpapers, input, layout, keybinds, apps, system, sync and network."
+		content="Every section of ewe.conf: theme, bar, dock, animations, power, displays, window rules, wallpapers, input, layout, keybinds, apps, system, sync and network."
 	/>
 </svelte:head>
 
@@ -36,7 +39,7 @@
 
 <section>
 	<h2><code>[desktop.theme]</code></h2>
-	<p>Colours and look. Applying this section re-themes every toolkit — GTK, Qt, the cursor and the icon hue — in one pass.</p>
+	<p>Colors and look. Applying this section re-themes every toolkit — GTK, Qt, the cursor and the icon hue — in one pass.</p>
 	<dl class="rows">
 		{#each theme as [key, dflt, meaning]}
 			<div class="row">
@@ -45,16 +48,24 @@
 			</div>
 		{/each}
 	</dl>
+	<p>
+		Two older keys are still read and written so a synced file from an older machine round-trips:
+		<code>color_scheme</code> and <code>theme_name</code>. Neither changes anything any more — the
+		<code>scheme</code> decides.
+	</p>
 </section>
 
 <section>
 	<h2><code>[[desktop.theme.schemes]]</code></h2>
 	<p>
 		One record per scheme: <code>name</code>, <code>slug</code>, <code>variant</code> (<code>dark</code>
-		or <code>light</code>), an optional <code>accent</code>, <code>semantic</code> (status colours from
-		the palette, default on) and a <code>palette</code> of <code>base00</code>…<code>base0F</code>
+		or <code>light</code>), an optional <code>accent</code>, <code>semantic</code> (status colors from
+		the palette, default on), an optional <code>overrides</code> table for roles set by hand,
+		and a <code>palette</code> of <code>base00</code>…<code>base0F</code>
 		(<code>base10</code>…<code>base17</code> optional) — Base24. Written by
-		<a href="/docs/cli/ewe-theme/">ewe-theme scheme</a>, never by hand; it syncs with the file.
+		<a href="/docs/cli/ewe-theme/">ewe-theme scheme</a>, never by hand; it syncs with the file. Ewe
+		Dark and Ewe Light are not in here: the generator knows them, so a synced or hand-edited file
+		can never lose them. They are a palette and an accent only, with no overrides.
 	</p>
 	<Code
 		code={`[desktop.theme]
@@ -73,8 +84,33 @@ base00 = "#282828"
 </section>
 
 <section>
+	<h2><code>[desktop.accessibility]</code></h2>
+	<p>
+		<code>reduce_motion</code>, <code>reduce_transparency</code> and
+		<code>increase_contrast</code> (all false), and <code>text_scale</code> — 100, 115 or 130.
+		Each one remaps tokens rather than changing the layout;
+		<a href="/design/accessibility/">what each changes</a> is in the design system.
+	</p>
+</section>
+
+<section>
 	<h2><code>[desktop.dock]</code></h2>
 	<p><code>enabled</code>, <code>autohide</code> and <code>icon_size</code> — small, medium or large.</p>
+</section>
+
+<section>
+	<h2><code>[desktop.bar]</code></h2>
+	<p>
+		<code>enabled</code>, <code>show</code> for each indicator, and <code>icon_size</code>: small,
+		normal or large, default normal. There is no height setting. The bar is its icons plus padding,
+		44, 48 or 56px, and text size 130% moves the icons one size up. The older <code>size</code> key
+		is gone; a <code>size = "large"</code> left in an older file still reads as large icons.
+	</p>
+	<Code
+		code={`[desktop.bar]
+icon_size = "large"   # 56px`}
+		copyable={false}
+	/>
 </section>
 
 <section>
@@ -82,7 +118,8 @@ base00 = "#282828"
 	<p>
 		<code>speed</code> is one multiplier over every animation: zero turns them off, one is the
 		default, two is showy. <code>detail</code> holds per-animation overrides exactly as the
-		Animations pane writes them.
+		Animations pane writes them. Nothing overshoots: a <code>detail</code> that uses the retired
+		overshoot curve, as the old Bouncy preset did, is saved as the default, Snappy.
 	</p>
 </section>
 
@@ -268,7 +305,7 @@ enabled = ["acme.weather"]
 	<h2><code>[desktop.browser]</code></h2>
 	<p>
 		<code>layout</code> chooses the browser's tab layout — vertical, ewe's default, or horizontal. The
-		browser's own colours always follow <code>[desktop.theme]</code>.
+		browser's own colors always follow <code>[desktop.theme]</code>.
 	</p>
 </section>
 
@@ -279,7 +316,7 @@ enabled = ["acme.weather"]
 		display: block;
 		margin-top: 0.25rem;
 		font-size: 0.86rem;
-		color: var(--fg-3);
+		color: var(--text-muted);
 	}
 	section h2 code {
 		font-size: 0.8em;
