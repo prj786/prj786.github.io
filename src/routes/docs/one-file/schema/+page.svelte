@@ -21,7 +21,7 @@
 	<title>ewe.conf schema — ewe docs</title>
 	<meta
 		name="description"
-		content="Every section of ewe.conf: theme, dock, animations, power, displays, window rules, wallpapers, input, layout, keybinds, apps, system, sync and network."
+		content="Every section of ewe.conf: theme, bar, dock, animations, power, displays, window rules, wallpapers, input, layout, keybinds, apps, system, sync and network."
 	/>
 </svelte:head>
 
@@ -60,12 +60,12 @@
 	<p>
 		One record per scheme: <code>name</code>, <code>slug</code>, <code>variant</code> (<code>dark</code>
 		or <code>light</code>), an optional <code>accent</code>, <code>semantic</code> (status colors from
-		the palette, default on), an <code>overrides</code> table for roles the palette cannot express,
+		the palette, default on), an optional <code>overrides</code> table for roles set by hand,
 		and a <code>palette</code> of <code>base00</code>…<code>base0F</code>
 		(<code>base10</code>…<code>base17</code> optional) — Base24. Written by
 		<a href="/docs/cli/ewe-theme/">ewe-theme scheme</a>, never by hand; it syncs with the file. Ewe
 		Dark and Ewe Light are not in here: the generator knows them, so a synced or hand-edited file
-		can never lose them.
+		can never lose them. They are a palette and an accent only, with no overrides.
 	</p>
 	<Code
 		code={`[desktop.theme]
@@ -99,11 +99,27 @@ base00 = "#282828"
 </section>
 
 <section>
+	<h2><code>[desktop.bar]</code></h2>
+	<p>
+		<code>enabled</code>, <code>show</code> for each indicator, and <code>icon_size</code>: small,
+		normal or large, default normal. There is no height setting. The bar is its icons plus padding,
+		44, 48 or 56px, and text size 130% moves the icons one size up. The older <code>size</code> key
+		is gone; a <code>size = "large"</code> left in an older file still reads as large icons.
+	</p>
+	<Code
+		code={`[desktop.bar]
+icon_size = "large"   # 56px`}
+		copyable={false}
+	/>
+</section>
+
+<section>
 	<h2><code>[desktop.animations]</code></h2>
 	<p>
 		<code>speed</code> is one multiplier over every animation: zero turns them off, one is the
 		default, two is showy. <code>detail</code> holds per-animation overrides exactly as the
-		Animations pane writes them.
+		Animations pane writes them. Nothing overshoots: a <code>detail</code> that uses the retired
+		overshoot curve, as the old Bouncy preset did, is saved as the default, Snappy.
 	</p>
 </section>
 

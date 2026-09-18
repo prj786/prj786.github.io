@@ -121,8 +121,8 @@
 			<div class="row">
 				<dt><Icon name="palette" size={16} />Any accent</dt>
 				<dd>
-					Presets, or any hex you like. Text on the accent is <em>measured</em> against it, so a pale
-					yellow stays as legible as a deep blue.
+					Nine presets, or any hex you like. Text on the accent is <em>measured</em> against it, so a
+					pale yellow stays as legible as a deep blue.
 				</dd>
 			</div>
 			<div class="row">
@@ -146,7 +146,7 @@
 			</div>
 			<div class="row">
 				<dt><Icon name="zap" size={16} />Motion you control</dt>
-				<dd>One pane sets speed and curve for the compositor and the shell together — snappy to off.</dd>
+				<dd>One pane sets speed and curve for the compositor and the shell together, from snappy to off. Nothing bounces or overshoots.</dd>
 			</div>
 		</dl>
 	</section>

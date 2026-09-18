@@ -1,20 +1,18 @@
 <script>
 	import Icon from '$lib/Icon.svelte';
 	import Command from '$lib/Command.svelte';
-	import { derive, cssVars, colorCss, accentRamp, RAMP_STEPS, EWELLOW } from '$lib/theme-engine.js';
+	import {
+		derive,
+		cssVars,
+		colorCss,
+		accentRamp,
+		RAMP_STEPS,
+		EWELLOW,
+		ACCENT_PRESETS
+	} from '$lib/theme-engine.js';
 
-	// A few accents worth trying — including a yellow, which is what proves
-	// the point about text on an accent fill.
-	const PRESETS = [
-		{ name: 'Ewellow', hex: EWELLOW },
-		{ name: 'Blue', hex: '#0a84ff' },
-		{ name: 'Purple', hex: '#bf5af2' },
-		{ name: 'Green', hex: '#30d158' },
-		{ name: 'Yellow', hex: '#ffcc00' },
-		{ name: 'Orange', hex: '#ff9f0a' },
-		{ name: 'Red', hex: '#ff453a' },
-		{ name: 'Teal', hex: '#40c8e0' }
-	];
+	// The desktop's own Accent picker presets, from the same generator.
+	const PRESETS = ACCENT_PRESETS;
 
 	let scheme = $state('ewe-dark');
 	let accent = $state(EWELLOW);
@@ -211,9 +209,11 @@
 			{/if}
 		</div>
 		<p class="figcap">
-			Every role comes from one palette entry, a mix of two, or the accent — mixed in OKLCH so hue
-			stays steady — and then the guarantees run: text at 4.5:1, outlines and the focus ring at
-			3:1, surfaces at least 2 L apart, warning never within 20° of the accent.
+			Every role comes from one palette entry, a mix of two, or a step of the ramp built from the
+			accent. Mixes happen in OKLCH so hue stays steady, and nothing is darker than
+			<code>black</code> or lighter than <code>neutral-0</code>. Then the guarantees run: text at
+			4.5:1, outlines and the focus ring at 3:1, surfaces at least 2 L apart, warning never within
+			20° of the accent.
 			<a href="/design/color/">Color</a> in the design system has the whole table.
 		</p>
 	</section>
@@ -226,7 +226,9 @@
 			Both built-in schemes are accent-led and use the same roles, so nothing in the shell or the
 			apps checks which one is active. Ewe Dark is warm near-black with the gold accent; Ewe Light
 			is the same design on warm off-white, with a deeper gold for text and focus rings so they
-			stay readable. Neither can be edited or removed — duplicate one and the copy is yours.
+			stay readable. Each is only a palette and an accent, with no hand-set roles, so what you see
+			is the same derivation an imported scheme gets. Neither can be edited or removed. Duplicate
+			one and the copy is yours.
 		</p>
 		<Command value="ewe-theme scheme apply ewe-light" />
 		<Command value="ewe-theme scheme duplicate ewe-dark --name 'Night shift' --apply" />
@@ -244,9 +246,9 @@
 			<div class="row">
 				<dt><Icon name="blend" size={16} />Pick an accent</dt>
 				<dd>
-					Any color. The accent roles and the whole ramp are regenerated from it, and
-					<code>on-accent</code> switches between black and white so text on the fill keeps 4.5:1 — which
-					is why a yellow accent gets ink, not white.
+					The picker's nine presets or any color. The ramp is regenerated from it and each accent
+					role is one of its steps. <code>on-accent</code> is Ewe’s one black or one white,
+					whichever holds more contrast on the fill, which is why a yellow accent gets black text.
 				</dd>
 			</div>
 			<div class="row">
@@ -279,10 +281,9 @@
 				>base17</code
 			> optional. On top of that, <code>name</code> and <code>slug</code>,
 			<code>variant</code> (which way the surfaces run), an optional <code>accent</code>,
-			<code>semantic</code> to take status colors from the palette, and an
-			<code>overrides</code> table for the handful of roles a palette cannot express — the overlay
-			and pressed surfaces, both outlines, accent text and the focus ring. Overrides are applied
-			after derivation, and the guarantees still run over them.
+			<code>semantic</code> to take status colors from the palette, and an optional
+			<code>overrides</code> table for any role you want to set by hand. Overrides are applied
+			after derivation, and the guarantees still run over them. The built-in schemes have none.
 		</p>
 		<Command value="ewe-theme scheme set overrides.border-subtle '#363646'" />
 		<p class="note">
@@ -303,7 +304,13 @@
 			reduce transparency, increase contrast and text size at 100/115/130% — are remaps too, so they
 			combine with any scheme and any preset. Try the four rows in the panel above.
 		</p>
+		<p>
+			The bar has one setting of its own, <code>icon_size</code>: small, normal or large. It has no
+			height setting. The bar is its icons plus padding, so it’s 44, 48 or 56px tall, and text size
+			130% makes the icons one size larger.
+		</p>
 		<Command value="ewe-conf set desktop.theme.corner 'large'" />
+		<Command value="ewe-conf set desktop.bar.icon_size 'large'" />
 		<p class="muted">
 			<a href="/design/shape/#presets">Every preset value</a> and
 			<a href="/design/accessibility/">what each mode changes</a> are in the design system.

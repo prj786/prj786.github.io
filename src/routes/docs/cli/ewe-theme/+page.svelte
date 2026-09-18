@@ -4,7 +4,7 @@
 	import PageNav from '$lib/docs/PageNav.svelte';
 
 	const verbs = [
-		{ cmd: 'show', does: 'The whole token set for this machine, as JSON — what the shell and the apps read. Includes css_vars, which the apps inject at runtime, and adjusted, the roles the contrast rules had to move.' },
+		{ cmd: 'show', does: 'The whole token set for this machine, as JSON — what the shell and the apps read. Includes css_vars, which the apps inject at runtime; adjusted, the roles the contrast rules had to move; bar, its icon size and the height that follows; and accent_presets, the Accent picker’s nine swatches with the ink each takes.' },
 		{ cmd: 'build', args: '[--json F] [--css F] [--scheme SLUG] [--selector SEL]', does: 'Write theme-tokens.json (this machine) and tokens.css (the repo baseline, built from the defaults). ewe-conf runs it after every [desktop.theme] change. With --scheme it builds the CSS for another scheme without touching ewe.conf, and --selector wraps it in something other than :root — which is how this site gets its light and dark blocks.' },
 		{ cmd: 'check', does: 'Drift: is what is on disk what the generator would build now?', prints: 'ok, or which file is stale' },
 		{ cmd: 'preview', args: '[--out F]', does: 'A specimen page wearing the current tokens: ramps, controls, rows, glass, every type style and every color.' },
@@ -25,8 +25,8 @@
 		['accent', 'Optional. Without it, base0A or the person’s accent setting'],
 		['semantic', 'true takes success, warning, danger and info from the palette; false keeps Ewe’s own'],
 		['palette', 'Base24: base00–base0F required, base10–base17 optional'],
-		['overrides', 'Any color role by name, applied after derivation — the guarantees still run over it'],
-		['builtin', 'Only on Ewe Dark and Ewe Light; they can be applied, exported and duplicated, not changed or removed']
+		['overrides', 'Optional. Any color role by name, applied after derivation — the guarantees still run over it'],
+		['builtin', 'Only on Ewe Dark and Ewe Light, which are a palette and an accent with no overrides. They can be applied, exported and duplicated, not changed or removed']
 	];
 </script>
 
@@ -94,9 +94,11 @@ ewe-theme scheme show                           # the roles, and what was adjust
 		A Base24 palette plus a few keys. <code>base00</code>–<code>base07</code> run from the deepest
 		background to the brightest foreground, <code>base08</code>–<code>base0F</code> are the eight
 		hues, and <code>base10</code>–<code>base17</code> add deeper backgrounds and bright hues. Every
-		role is derived from one entry, a mix of two, or the accent; then the scheme's
-		<code>overrides</code> are applied, and then the guarantees run — text at 4.5:1, outlines and
-		the focus ring at 3:1, surfaces at least 2 L apart, warning never within 20° of the accent.
+		role is derived from one entry, a mix of two, or a step of the ramp built from the accent, and
+		nothing is darker than <code>black</code> or lighter than <code>neutral-0</code>. Then a user
+		scheme’s <code>overrides</code> are applied, and then the guarantees run — text at 4.5:1,
+		outlines and the focus ring at 3:1, surfaces at least 2 L apart, warning never within 20° of
+		the accent. Shadows and gradients are derived from the same roles.
 	</p>
 	<dl class="rows">
 		{#each fields as [key, meaning]}
@@ -118,7 +120,9 @@ ewe-theme scheme show                           # the roles, and what was adjust
 		<code>[desktop.theme]</code>, and <code>reduce_motion</code>,
 		<code>reduce_transparency</code>, <code>increase_contrast</code> and <code>text_scale</code> in
 		<code>[desktop.accessibility]</code>. Bar opacity below 100 switches the bar, the dock and the
-		lock card to the glass roles and turns the compositor's blur on.
+		lock card to the glass roles and turns the compositor's blur on. <code>[desktop.bar]
+		icon_size</code> (small, normal, large) sets the bar’s modules and glyphs, and the bar’s height
+		follows: 44, 48 or 56px.
 	</p>
 </section>
 

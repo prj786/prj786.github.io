@@ -17,7 +17,7 @@
 		],
 		[
 			'Text size',
-			'100%, 115% or 130%. The type scale grows and controls grow with it rather than clipping; at 130% the bar switches to its large size.'
+			'100%, 115% or 130%. The type scale grows and controls grow with it rather than clipping; at 130% the bar’s icons are one size larger.'
 		]
 	];
 </script>

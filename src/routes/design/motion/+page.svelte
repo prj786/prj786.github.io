@@ -79,6 +79,10 @@
 		<a href="/design/accessibility/">Reduce motion</a> turns every slide and zoom into a fade at
 		<code>fast</code>.
 	</p>
+	<p>
+		The compositor’s window animations follow the same rule. No curve overshoots, and there is no
+		bouncy preset: an older setting that used one is read as the default, Snappy.
+	</p>
 </section>
 
 <section>

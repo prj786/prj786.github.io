@@ -27,6 +27,13 @@
 		['control-2xl', 48, 'A large field in the installer']
 	];
 
+	// The bar is its icons plus space-s above and below.
+	const BAR = [
+		['small', '44px', 'control-md · 28px', 'icon-md · 16px'],
+		['normal (default)', '48px · bar-height', 'control-lg · 32px', 'icon-lg · 20px'],
+		['large', '56px · bar-height-lg', 'control-xl · 40px', 'icon-xl · 24px']
+	];
+
 	const ICONS = [
 		['icon-xs', 12],
 		['icon-sm', 14],
@@ -148,10 +155,30 @@
 		{/each}
 	</div>
 	<p>
-		The bar is <code>bar-height</code> (48px), or <code>bar-height-lg</code> (64px) for a roomier
-		layout. Side panels are <code>panel-sm</code> (360px) or <code>panel-md</code> (400px); the
-		launcher and wide popups use <code>panel-lg</code> (560px). Tiled windows keep
-		<code>window-gap</code> (8px) from each other and from the screen edge.
+		Side panels are <code>panel-sm</code> (360px) or <code>panel-md</code> (400px); the launcher
+		and wide popups use <code>panel-lg</code> (560px). Tiled windows keep <code>window-gap</code>
+		(8px) from each other and from the screen edge.
+	</p>
+
+	<h3 id="bar">The bar</h3>
+	<p>
+		The bar’s size follows its icons. It has no height of its own: it is its modules plus
+		<code>space-s</code> above and below. <code>[desktop.bar] icon_size</code> picks one of three
+		steps.
+	</p>
+	<div class="scroll">
+		<table>
+			<thead>
+				<tr><th>Icon size</th><th>Bar</th><th>Modules</th><th>Glyphs</th></tr>
+			</thead>
+			<tbody>
+				{#each BAR as [v, bar, mod, ico]}<tr><td>{v}</td><td class="num">{bar}</td><td>{mod}</td><td>{ico}</td></tr>{/each}
+			</tbody>
+		</table>
+	</div>
+	<p class="muted">
+		Taller content, such as a larger text size or Georgian, makes the bar taller. Text size 130%
+		moves the icons one size up.
 	</p>
 </section>
 
@@ -186,7 +213,10 @@
 			</tbody>
 		</table>
 	</div>
-	<p class="muted">The bar and the dock have their own size settings and ignore density.</p>
+	<p class="muted">
+		The bar and the dock have their own size settings and ignore density. See
+		<a href="#bar">the bar</a>.
+	</p>
 
 	<h3>Stroke</h3>
 	<div class="scroll">

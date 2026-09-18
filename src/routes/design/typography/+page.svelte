@@ -62,7 +62,8 @@
 <h1>Typography</h1>
 <p class="lede">
 	Interface text is set in Geist, code in Geist Mono — both variable faces with matching italics,
-	under the SIL Open Font License. This page is set in them; so is the desktop.
+	under the SIL Open Font License. This page is set in them; so is the desktop, from the greeter
+	onward, where they’re installed for every user.
 </p>
 
 <section>

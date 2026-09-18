@@ -56,16 +56,24 @@
 		['glass-accent', 'The accent as a mark on glass, deep enough to hold over a wallpaper']
 	];
 
+	// [role, dark scheme, light scheme]
 	const DERIVED = [
-		['surface-base · surface-raised', 'base00 · base01', 'The ground and everything raised on it'],
-		['surface-overlay', 'halfway from base01 to base02 in the dark; base07 in the light', 'Menus and tooltips'],
-		['surface-sunken', 'base10, or base00 darkened', 'Wells and fields'],
-		['surface-hover · surface-pressed', 'base02 · base02 moved 8 L toward base05', 'The two states of a surface'],
-		['border-subtle · border-strong', 'base02 · halfway from base03 to base04', 'The two outlines'],
-		['text-primary · secondary · muted · disabled', 'base05 · base06 · base04 · base03', 'The four levels of text'],
-		['the accent set', 'the accent, read up and down its own ramp', 'hover and pressed are relative to the accent; subtle, text and ring sit at fixed lightness'],
-		['success · warning · danger · info', 'base0B · base09 · base08 · base0D, or Ewe’s own', 'palette colors when the scheme says semantic'],
-		['scrim', 'base11 at 64% in the dark, base05 at 32% in the light', 'The wash under a dialog']
+		['surface-base · surface-raised', 'base00 · base01', 'same'],
+		['surface-overlay', 'halfway from base01 to base02', 'base07'],
+		['surface-sunken', 'base10, or base00 darkened', 'same'],
+		['surface-hover', 'base02', 'base02'],
+		['surface-pressed', 'base02 moved 8 L toward base05', 'base02 moved 6 L toward base05'],
+		['surface-selected', 'base02', 'base07'],
+		['border-subtle', 'base02', '30% of the way from base02 to base03'],
+		['border-strong', 'halfway from base03 to base04', 'same'],
+		['text-primary · secondary · muted · disabled', 'base05 · base06 · base04 · base03', 'same'],
+		['accent · accent-hover · accent-pressed', 'ewellow-500 (the accent) · 400 · 600', 'ewellow-500 · 600 · 700'],
+		['accent-subtle', 'ewellow-950', 'ewellow-50'],
+		['accent-text · focus-ring · glass-accent', 'ewellow-400 · 400 · 400', 'ewellow-800 · 700 · 900'],
+		['on-accent · on-status', 'black or neutral-0, whichever contrasts more', 'same'],
+		['success · warning · danger · info', 'base0B · base09 · base08 · base0D when the scheme says semantic, else Ewe’s own', 'same'],
+		['the four *-subtle', 'the status color at 27 L, low chroma', 'the status color at 95 L, low chroma'],
+		['scrim', 'base11 at 64%', 'base05 at 32%']
 	];
 </script>
 
@@ -91,15 +99,17 @@
 		<strong>Ewellow</strong> (<code>#eeb407</code>) is the hue Ewe is built on: a gold between
 		yellow and orange that leans into neither. It is the default accent, and it stays the brand
 		color for the logo, the installer and the wallpapers even when someone picks another accent.
-		<strong>Black</strong> (<code>#020202</code>) is the deepest ground. Every other color steps from
-		those two: the accent ramp below, and the neutrals, tinted warm toward the gold.
+		<strong>Black</strong> (<code>#020202</code>) is the deepest ground and
+		<strong>neutral-0</strong> (<code>#fefdfc</code>) the lightest: Ewe has one black and one white,
+		and nothing on screen goes past either. Every other color steps from the gold and the black:
+		the accent ramp below, and the neutrals, tinted warm toward the gold.
 	</p>
 	<Ramp prefix="ewellow" steps={EWELLOW} label="Accent ramp — the accent itself is step 500" />
 	<Ramp prefix="neutral" steps={NEUTRAL} label="Neutrals — a warm scale, not a grey one" />
 	<p class="note">
 		Pick your own accent and the <code>ewellow-*</code> ramp is regenerated from it: the same
-		lightness ladder, the same chroma envelope, your hue. Build interfaces from the roles below,
-		not from these steps.
+		lightness ladder, the same chroma envelope, your hue. Each accent role is one of its steps.
+		Build interfaces from the roles below, not from these steps.
 	</p>
 </section>
 
@@ -162,7 +172,7 @@
 	</div>
 	<p class="muted">
 		Ember for the wallpaper and the lock screen, night and glow behind panels, ewellow for large
-		accent areas only.
+		accent areas only. Their stops come from the scheme and the accent, so they change with both.
 	</p>
 </section>
 
@@ -176,8 +186,10 @@
 		is that switch, and no page knows it happened.
 	</p>
 	<p>
-		They are ordinary scheme records marked built-in: they can be applied, exported and duplicated,
-		but not edited or removed. Duplicate one to start your own.
+		They are ordinary scheme records marked built-in, and they hold only a palette and an accent.
+		No role is set by hand, so every value they show comes from the same derivation an imported
+		scheme goes through. They can be applied, exported and duplicated, but not edited or removed.
+		Duplicate one to start your own.
 	</p>
 </section>
 
@@ -186,8 +198,8 @@
 	<p>
 		A scheme is a Base24 palette — <code>base00</code> to <code>base0F</code>, plus eight optional
 		steps — with a handful of Ewe keys: a name and slug, the variant (dark or light), an optional
-		accent, whether status colors come from the palette, and an <code>overrides</code> table for
-		roles a palette cannot express on its own. From least to most effort, people can:
+		accent, whether status colors come from the palette, and an optional <code>overrides</code>
+		table for any role someone wants to set by hand. From least to most effort, people can:
 	</p>
 	<dl class="rows">
 		<div class="row">
@@ -228,24 +240,31 @@
 <section>
 	<h2>How a palette becomes a desktop</h2>
 	<p>
-		Every role comes from one palette entry, a mix of two, or the accent. Mixes happen in OKLCH, so
-		a mix keeps its hue instead of drifting through grey.
+		Every role comes from one palette entry, a mix of two, or a step of the accent’s ramp. Mixes
+		happen in OKLCH, so a mix keeps its hue instead of drifting through grey.
 	</p>
 	<div class="scroll">
 		<table>
 			<thead>
-				<tr><th>Role</th><th>Comes from</th><th>What it is</th></tr>
+				<tr><th>Role</th><th>Dark scheme</th><th>Light scheme</th></tr>
 			</thead>
 			<tbody>
-				{#each DERIVED as [role, from, what]}
-					<tr><td><code>{role}</code></td><td>{from}</td><td>{what}</td></tr>
+				{#each DERIVED as [role, dark, light]}
+					<tr><td><code>{role}</code></td><td>{dark}</td><td>{light}</td></tr>
 				{/each}
 			</tbody>
 		</table>
 	</div>
 	<p>
-		The scheme's own <code>overrides</code> are applied on top of that — and then the guarantees
-		run.
+		A derived value past <code>black</code> or <code>neutral-0</code>, an imported
+		<code>#000000</code> or <code>#ffffff</code> included, becomes that end of the range. Shadows
+		and gradients follow the scheme too: shadows are <code>black</code> in a dark scheme and
+		<code>base05</code> in a light one, and the gradients take their stops from the surfaces and
+		the ramp.
+	</p>
+	<p>
+		A user scheme’s own <code>overrides</code> are applied on top of all that, and then the
+		guarantees run. The built-in schemes have no overrides.
 	</p>
 </section>
 
@@ -257,11 +276,12 @@
 		hue:
 	</p>
 	<ul>
-		<li>Every level of text, and the accent text, reaches 4.5:1 on every resting surface.</li>
+		<li>Every level of text, the accent text and the status colors reach 4.5:1 on every resting surface.</li>
 		<li>Control outlines and the focus ring reach 3:1 on every resting surface.</li>
 		<li>
 			Raised, overlay and hover surfaces stay at least 2 L from the surface below, so layers never
-			merge into one flat color.
+			merge into one flat color, as far as the range from <code>black</code> to
+			<code>neutral-0</code> allows. A surface already at the end of that range stays there.
 		</li>
 		<li>
 			If the accent lands within 20° of warning, warning turns toward red — a warning must never be

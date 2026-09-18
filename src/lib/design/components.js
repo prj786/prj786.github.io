@@ -45,7 +45,7 @@ export const GROUPS = [
 			['Menu', 'A floating list of actions — dropdowns, context menus, the user menu, the content of Select.'],
 			['Sheet', 'A tall panel that slides in from a screen edge, such as the notification center.'],
 			['Tooltip', 'A short label that names a control on hover or keyboard focus.'],
-			['Toast', 'Confirms what just happened inside an app and offers one way back, usually Undo.'],
+			['Toast', 'Confirms what just happened and offers one way back, usually an Undo button. It has no shortcut.'],
 			['Notification', 'Something happened elsewhere: a message, a finished download, a low battery.'],
 			['Notification center', 'Every notification, grouped by app and day, with Do not disturb.'],
 			['Inline alert', 'A message that belongs to the page it is on: a paused sync, a needed restart.'],
@@ -80,7 +80,7 @@ export const GROUPS = [
 		title: 'Shell and apps',
 		blurb: 'The surfaces of the desktop itself, and the patterns the three apps share.',
 		items: [
-			['Bar', 'Edge to edge along the top: workspace and focused app on the left; tray, updates, layout, Quick settings and the clock on the right.'],
+			['Bar', 'Edge to edge along the top: workspace and focused app on the left; tray, updates, layout, Quick settings and the clock on the right. As tall as its icons: 44, 48 or 56px.'],
 			['Workspace indicator', 'The chip at the start of the bar showing the focused workspace.'],
 			['Dock', 'Floats at the bottom with the launchers and one group per workspace.'],
 			['Launcher panel', 'Opens above the dock: pinned apps and a quick search.'],
