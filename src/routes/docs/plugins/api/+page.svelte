@@ -4,15 +4,72 @@
 	import PageNav from '$lib/docs/PageNav.svelte';
 
 	const theme = [
-		['Backgrounds', 'bg1 … bg6, card, subtle, panel — each with Hover / Pressed / Selected'],
-		['Foregrounds', 'fg1 … fg4, fgDisabled, fgInverted, fgOnBrand'],
-		['Brand & accent', 'accent, accentText, accentFill, brandBg, brandFg1, brandStroke1, link'],
-		['Semantic', 'success, warning, danger, info — and their Bg / Border pairs'],
-		['Strokes & radii', 'stroke1 … stroke3, strokeFocus1; radius, radiusInner, radiusControl, radiusPill'],
-		['The bar', 'barHeight, barItemHeight, barItemRadius, barItemPad, barIconPx, barItemSpacing, barHover'],
-		['Type', 'fontText, fontMono, fontIcons; fsSmall, fsBody, fsLarge, fsTitle'],
-		['Motion', 'durFast, durBase, durSlow, ease'],
+		['Surfaces', 'surfaceBase, surfaceRaised, surfaceOverlay, surfaceSunken, surfaceHover, surfacePressed, surfaceSelected'],
+		['Text', 'textPrimary, textSecondary, textMuted, textDisabled'],
+		['Borders & focus', 'borderSubtle, borderStrong, focusRing; borderWidth1, borderWidth2, focusWidth, fieldBorderWidth'],
+		['Accent', 'accent, accentHover, accentPressed, accentSubtle, accentText, onAccent; the ewellow50 … ewellow950 ramp'],
+		['Status', 'success, warning, danger, info — and successSubtle, warningSubtle, dangerSubtle, infoSubtle; onStatus'],
+		['Glass & depth', 'glassBase, glassRaised, glassBorder, glassHover, glassPressed, glassAccent; scrim, shadowSm, shadowFloat'],
+		['The bar & dock', 'barGround, barOutline, barHoverFill, barPressedFill, barAccentText, barTextMuted; barModule, barIcon, barHeight; dockGround, dockOutline'],
+		['Space & radii', 'spaceXxs, spaceXs, spaceS, spaceMd, spaceLg, spaceXl; radiusSlight, radiusSecondary, radiusPrimary, radiusRounded, radiusFull'],
+		['Sizes', 'controlSm … control2xl, iconXs … icon4xl, panelSm, panelMd, panelLg, windowGap'],
+		['Type', 'fontSans, fontMono, fontIcons; fontSizeXs … fontSize6xl, lineHeight*, fontWeight*; the styles as Theme.type.<style> (body, label, caption, overline, h1 …)'],
+		['Motion & modes', 'durFast, durBase, durSlow, ease, easeFast, easeSlow, slideOffset; reduceMotion, textScale …'],
 		['Icons', 'the ic* Lucide glyphs — icSun, icWifi, icBell, icStar … — drawn with fontIcons']
+	];
+
+	// API 1 (the Fluent-era names) → API 2 (the Ewe names)
+	const renames = [
+		['bg1 · bgDisabled · card · panel', 'surfaceRaised'],
+		['bg2 · bg3', 'surfaceBase'],
+		['bg4 · bg5', 'surfaceSunken'],
+		['bg6', 'surfaceOverlay'],
+		['bgNHover · cardHover · subtleHover', 'surfaceHover'],
+		['bgNPressed · cardPressed · subtlePressed', 'surfacePressed'],
+		['bgNSelected · cardSelected · subtleSelected', 'accentSubtle'],
+		['subtle', '"transparent"'],
+		['stroke1 · stroke1Pressed · strokeAccessible', 'borderStrong'],
+		['stroke1Hover', 'textMuted'],
+		['stroke1Selected', 'accentText'],
+		['stroke2 · stroke3 · strokeDisabled · cardStroke', 'borderSubtle'],
+		['strokeFocus2 · brandStroke1 · compoundBrandStroke', 'focusRing'],
+		['strokeFocus1', null, 'Removed. Ewe draws one focus ring.'],
+		['fg1 · fg2Hover · fg3Hover', 'textPrimary'],
+		['fg2', 'textSecondary'],
+		['fg3 · fg4', 'textMuted'],
+		['fgDisabled', 'textDisabled'],
+		['fgInverted · fgOnBrand · accentOn', 'onAccent'],
+		['brandBg · compoundBrandBg · accentFill · linkSolid', 'accent'],
+		['brandBgHover · compoundBrandBgHover', 'accentHover'],
+		['brandBgPressed · brandBgSelected · compoundBrandBgPressed', 'accentPressed'],
+		['brandFg1 · brandFg2 · brandFgLink · brandFgLinkHover · compoundBrandFg · link', 'accentText'],
+		['brandStroke2', 'ewellow900'],
+		['successBg · warningBg · dangerBg · infoBg', 'successSubtle · warningSubtle · dangerSubtle · infoSubtle'],
+		['successBorder · warningBorder · dangerBorder · infoBorder', 'success · warning · danger · info'],
+		['shadow', 'scrim', 'For a dim backdrop. For elevation, shadowFloat.color.'],
+		['barTop · barBottom · barFill', 'barGround'],
+		['barBorder', 'barOutline'],
+		['dockFill', 'dockGround'],
+		['dockStroke', 'dockOutline'],
+		['barHover', 'barHoverFill'],
+		['barActive', 'barPressedFill'],
+		['barItemRadius · radiusInner · radiusControl', 'radiusPrimary'],
+		['barItemHeight', 'barModule'],
+		['barIconPx · trayIconPx', 'barIcon'],
+		['barCellPx', 'barIcon + spaceXxs'],
+		['barItemSpacing · trayItemSpacing', 'spaceXs'],
+		['barItemPad · gap', 'spaceS'],
+		['pad', 'spaceS + spaceXs'],
+		['fontText · fontDisplay', 'fontSans'],
+		['fsSmall · fsBody · fsLarge · fsTitle', 'fontSizeS · fontSizeMd · fontSizeLg · fontSize2xl', 'Better: a type style, Theme.type.<style>.'],
+		['labelWeight', 'fontWeightMedium'],
+		['labelCaps · labelTracking', 'Theme.type.overline'],
+		['radius', 'radiusRounded'],
+		['radiusPill', 'radiusFull'],
+		['outline · border · borderThin · hairline · cardBorder', 'borderWidth1'],
+		['hoverInset', 'Math.max(1, borderWidth1)'],
+		['shadowOffset', null, 'Removed.'],
+		['rowHeight · controlHeight', 'controlMd']
 	];
 
 	const reads = [
@@ -35,7 +92,7 @@
 	<title>What a plugin may use — ewe docs</title>
 	<meta
 		name="description"
-		content="The public API of the ewe shell for plugins: every Theme role, a named subset of Globals, Log, IPC targets, and what is private."
+		content="The public API of the ewe shell for plugins: every Theme role, a named subset of Globals, Log, IPC targets, what is private, and how to move a plugin from API 1 to API 2."
 	/>
 </svelte:head>
 
@@ -50,9 +107,9 @@
 <section>
 	<h2><code>Theme</code> — every role</h2>
 	<p>
-		The whole vocabulary is public, by the names the designer's specification fixes. Ask for a role,
-		never a value: the greys and the brand ramp are derived from the one accent in
-		<code>ewe.conf</code> at runtime, and a plugin that uses roles recolors with the desktop.
+		The whole vocabulary is public, under the QML names of the Ewe design system. Ask for a role,
+		never a value: the scheme, the accent and the look presets are the user's and change at
+		runtime, and a plugin that uses roles changes with the desktop.
 	</p>
 	<dl class="rows">
 		{#each theme as [group, roles]}
@@ -60,11 +117,17 @@
 		{/each}
 	</dl>
 	<Code
-		code={`Rectangle { color: Theme.bg2; radius: Theme.radius }
-Text { color: Theme.fg1; font.family: Theme.fontText; font.pixelSize: Theme.fsBody }
-Text { text: Theme.icBell; font.family: Theme.fontIcons; font.pixelSize: Theme.barIconPx }`}
+		code={`Rectangle { color: Theme.surfaceRaised; radius: Theme.radiusRounded
+            border.width: Theme.borderWidth1; border.color: Theme.borderSubtle }
+Text { color: Theme.textPrimary; font.family: Theme.type.body.family
+       font.pixelSize: Theme.type.body.size; font.weight: Theme.type.body.weight }
+Text { text: Theme.icBell; font.family: Theme.fontIcons; font.pixelSize: Theme.barIcon }`}
 		copyable={false}
 	/>
+	<p>
+		In the bar, use the <code>bar*</code> roles rather than the surface roles. They already follow
+		Glass, so a widget never has to ask whether Glass is on.
+	</p>
 </section>
 
 <section>
@@ -154,15 +217,124 @@ qs ipc call plugins safeMode       # did this session boot with plugins off`}
 <section>
 	<h2>Versioning</h2>
 	<p>
-		The plugin API is <code>1</code>. It moves only on an incompatible change to this page; a
-		manifest whose <code>apiVersion</code> differs is refused by <code>ewe-plugin add</code>, so an
-		old plugin fails at install — never at login.
+		The plugin API is <code>2</code>. It changes only when something on this page changes in a way
+		that breaks plugins. <code>ewe-plugin add</code> refuses a manifest whose
+		<code>apiVersion</code> differs, so an old plugin fails at install, never at login.
 	</p>
+	<dl class="rows">
+		<div class="row"><dt><code>2</code></dt><dd>The Ewe design system, version 3: <code>Theme</code> speaks the Ewe names above.</dd></div>
+		<div class="row"><dt><code>1</code></dt><dd>The Fluent-era names (<code>bg1</code>, <code>fg1</code>, <code>stroke2</code>, <code>brandBg</code>, <code>fsBody</code> …). They no longer exist.</dd></div>
+	</dl>
+</section>
+
+<section>
+	<h2 id="api-1-to-2">Moving a plugin from API 1 to API 2</h2>
+	<p>
+		Only <code>Theme</code> changed. <code>Globals</code>, <code>Log</code>, IPC, settings and the
+		manifest format are the same. A plugin still on API 1 is refused at install. One that was
+		already installed still loads, but every old name reads as undefined, so it loses its colors
+		and sizes.
+	</p>
+	<ol class="steps">
+		<li>In <code>manifest.json</code>, set <code>"apiVersion": 2</code> and bump <code>version</code>.</li>
+		<li>Rename every <code>Theme</code> name with the table below. Where several old names became one, use the one.</li>
+		<li>
+			Check sizes, not just names. Ewe's controls are smaller and its corners tighter than
+			before, and the bar module is <code>Theme.barModule</code> tall, so a layout built on
+			fixed offsets may need a look.
+		</li>
+		<li>Run <code>ewe-plugin validate .</code>, then <code>ewe-plugin dev .</code> and look at it in both schemes.</li>
+	</ol>
+	<Code
+		code={`// API 1
+Rectangle { color: Theme.bg2; radius: Theme.radius }
+Text { color: Theme.fg1; font.family: Theme.fontText; font.pixelSize: Theme.fsBody }
+
+// API 2
+Rectangle { color: Theme.surfaceBase; radius: Theme.radiusRounded }
+Text { color: Theme.textPrimary; font.family: Theme.fontSans; font.pixelSize: Theme.fontSizeMd }`}
+		copyable={false}
+	/>
+	<p>
+		<code>bgN</code> stands for any of <code>bg1</code> … <code>bg6</code>: <code>bg2Hover</code>,
+		<code>bg4Pressed</code> and so on.
+	</p>
+	<div class="scroll">
+		<table>
+			<thead>
+				<tr><th>API 1</th><th>API 2</th></tr>
+			</thead>
+			<tbody>
+				{#each renames as [from, to, note]}
+					<tr>
+						<td><code>{from}</code></td>
+						<td>
+							{#if to}<code>{to}</code>{/if}
+							{#if note}<span class="rename-note">{note}</span>{/if}
+						</td>
+					</tr>
+				{/each}
+			</tbody>
+		</table>
+	</div>
 </section>
 
 <PageNav />
 
 <style>
+	.steps {
+		max-width: 44rem;
+		padding-left: var(--space-md);
+		color: var(--text-secondary);
+	}
+	.steps li + li {
+		margin-top: var(--space-xs);
+	}
+	.scroll {
+		overflow-x: auto;
+		margin-top: var(--space-md);
+		border: var(--border-width-1) solid var(--border-subtle);
+		border-radius: var(--rounded);
+		max-width: 52rem;
+		scrollbar-width: thin;
+	}
+	table {
+		border-collapse: collapse;
+		width: 100%;
+		min-width: 34rem;
+		font-size: var(--font-size-md);
+		line-height: var(--line-height-md);
+	}
+	th {
+		text-align: left;
+		font-weight: var(--font-weight-semibold);
+		color: var(--text-muted);
+		font-size: var(--font-size-xs);
+		letter-spacing: var(--tracking-wide);
+		text-transform: uppercase;
+		padding: var(--space-s) calc(var(--space-s) + var(--space-xs));
+		border-bottom: var(--border-width-1) solid var(--border-subtle);
+		background: var(--surface-raised);
+	}
+	td {
+		padding: var(--space-s) calc(var(--space-s) + var(--space-xs));
+		border-bottom: var(--border-width-1) solid var(--border-subtle);
+		color: var(--text-secondary);
+		vertical-align: top;
+	}
+	td:first-child {
+		width: 55%;
+	}
+	tbody tr:last-child td {
+		border-bottom: 0;
+	}
+	.rename-note {
+		display: block;
+		color: var(--text-muted);
+	}
+	td code + .rename-note {
+		margin-top: var(--space-xxs);
+	}
 	code.soft {
 		background: none;
 		border: 0;
