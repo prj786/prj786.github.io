@@ -8,7 +8,8 @@
 		"build": "vite build",
 		"preview": "vite preview",
 		"icons": "node scripts/gen-icons.mjs",
-		"tokens": "bash scripts/sync-tokens.sh"
+		"tokens": "bash scripts/sync-tokens.sh",
+		"design": "bash scripts/sync-design.sh"
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-static": "^3.0.8",

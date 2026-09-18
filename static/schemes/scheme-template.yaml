@@ -1,0 +1,52 @@
+# An ewe color scheme: a Base24 palette plus a few ewe keys.
+#
+# Start from this file, change the values, then bring it in:
+#     ewe-theme scheme import scheme-template.yaml --apply
+# or Settings -> Appearance -> Import scheme.
+#
+# Only `palette` is required. Every other key has a default.
+# Quote every color: "#rrggbb". A # without quotes starts a comment.
+# The palette below is Ewe Dark's, so the file works as it is.
+# Guide: https://prj786.github.io/design/schemes/
+
+system: "base24"          # the file format; ewe reads Base16 and Base24
+name: "My scheme"         # shown on the scheme card in Settings
+slug: "my-scheme"         # how ewe.conf stores it; defaults to the name, lowercased
+author: "you"             # credit, shown nowhere else
+variant: "dark"           # dark | light: which way the surfaces run; also picks GTK, Qt and icons
+accent: "#eeb407"         # optional; without it, base0A is the accent
+semantic: true            # true: status colors come from base08, base09, base0B, base0D
+                          # false: ewe's own success, warning, danger and info
+
+palette:                  # base00-base0F required, base10-base17 optional
+  base00: "#0b0a08"       # surface-base: the ground
+  base01: "#151411"       # surface-raised: panels and cards
+  base02: "#2c2a26"       # surface-hover, surface-pressed; dark: surface-selected, border-subtle
+  base03: "#5d5a55"       # text-disabled; border-strong (mixed with base04)
+  base04: "#a8a49d"       # text-muted; border-strong (mixed with base03)
+  base05: "#faf9f6"       # text-primary; light: the scrim and shadow ink
+  base06: "#d5d2cb"       # text-secondary
+  base07: "#fefdfc"       # light: surface-overlay, surface-selected; glass tint
+  base08: "#ffa196"       # danger (semantic: true); terminal red
+  base09: "#f9a870"       # warning (semantic: true)
+  base0A: "#eeb407"       # the accent when `accent` is left out; terminal yellow
+  base0B: "#69d6aa"       # success (semantic: true); terminal green
+  base0C: "#64d1d7"       # terminal cyan
+  base0D: "#76c7ff"       # info (semantic: true); terminal blue
+  base0E: "#e0a4ee"       # terminal magenta
+  base0F: "#805708"       # not used by ewe; kept for other tools
+  base10: "#020202"       # surface-sunken; without it, base00 darkened
+  base11: "#020202"       # dark: the scrim color; without it, black
+  base12: "#febfb7"       # terminal bright red
+  base13: "#ffc29a"       # terminal bright yellow
+  base14: "#7deabd"       # terminal bright green
+  base15: "#79e5eb"       # terminal bright cyan
+  base16: "#a3d8ff"       # terminal bright blue
+  base17: "#f1bafe"       # terminal bright magenta
+
+overrides:                # optional: set any color role by hand, applied after derivation
+                          # the contrast guarantees still run on top of it
+  # border-subtle: "#363646"
+  # accent-text: "#f8c23a"
+
+# builtin: true           # only on Ewe Dark and Ewe Light; ignored in a file
