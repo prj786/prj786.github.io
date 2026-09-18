@@ -197,6 +197,12 @@
 	.doc :global(.rows) {
 		margin-top: var(--space-md);
 	}
+	.doc :global(.block + p),
+	.doc :global(.tbl + p),
+	.doc :global(ol + p),
+	.doc :global(.block + .callout) {
+		margin-top: var(--space-md);
+	}
 	.doc :global(section + section) {
 		margin-top: 0;
 	}

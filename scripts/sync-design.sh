@@ -8,6 +8,7 @@
 #                                      it must import and export cleanly
 #   static/design/tokens.css           a copy of src/tokens.css (sync-tokens.sh)
 #   static/design/tokens.json          a copy of ewe/design/system/tokens.json
+#   static/design/components.css       a copy of ewe/design/components.css
 #   src/lib/design/token-data.json     every token for /design/tokens/: the
 #                                      values `ewe-theme show` gives for Ewe
 #                                      Dark and Ewe Light, the QML names read
@@ -218,5 +219,6 @@ PY
 # ── the two token files, for download ────────────────────────────────────────
 cp src/tokens.css static/design/tokens.css
 cp "$SPEC" static/design/tokens.json
+cp "$COMPONENTS" static/design/components.css
 
-echo "ok static/schemes/{ewe-dark,ewe-light}.yaml, static/design/tokens.{css,json}, src/lib/design/token-data.json <- $THEME ($(git -C "$EWE" describe --tags --always))"
+echo "ok static/schemes/{ewe-dark,ewe-light}.yaml, static/design/{tokens.css,tokens.json,components.css}, src/lib/design/token-data.json <- $THEME ($(git -C "$EWE" describe --tags --always))"

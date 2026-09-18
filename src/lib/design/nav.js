@@ -47,6 +47,12 @@ export const PAGES = [
 		label: 'Token reference',
 		group: 'Documentation',
 		blurb: 'Every token with its CSS and QML name and its value in both schemes.'
+	},
+	{
+		href: '/design/build/',
+		label: 'Building with the system',
+		group: 'Documentation',
+		blurb: 'Tokens in a shell plugin and in a web app, the rules, and a check before you ship.'
 	}
 ];
 
