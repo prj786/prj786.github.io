@@ -48,6 +48,11 @@
 			</div>
 		{/each}
 	</dl>
+	<p>
+		Two older keys are still read and written so a synced file from an older machine round-trips:
+		<code>color_scheme</code> and <code>theme_name</code>. Neither changes anything any more — the
+		<code>scheme</code> decides.
+	</p>
 </section>
 
 <section>
