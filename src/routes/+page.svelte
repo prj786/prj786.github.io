@@ -233,7 +233,7 @@
 			<thead>
 				<tr>
 					<th scope="col">A normal Arch install asks</th>
-					<th scope="col"><img src="/ewe-logo.png" alt="" width="18" height="18" /> ewe decides</th>
+					<th scope="col"><img class="logo-on-dark" src="/ewe-logo.png" alt="" width="18" height="18" /><img class="logo-on-light" src="/ewe-logo-light.png" alt="" width="18" height="18" /> ewe decides</th>
 				</tr>
 			</thead>
 			<tbody>

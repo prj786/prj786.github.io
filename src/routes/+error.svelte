@@ -5,7 +5,7 @@
 <svelte:head><title>{$page.status} — ewe</title></svelte:head>
 
 <div class="wrap page center">
-	<img src="/ewe-logo.png" alt="" width="80" height="80" />
+	<img class="logo-on-dark" src="/ewe-logo.png" alt="" width="80" height="80" /><img class="logo-on-light" src="/ewe-logo-light.png" alt="" width="80" height="80" />
 	<h1>{$page.status}</h1>
 	<p class="lede">{$page.error?.message ?? 'This one wandered off.'}</p>
 	<div class="btns">

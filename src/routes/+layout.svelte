@@ -16,7 +16,7 @@
 <header>
 	<div class="bar">
 		<a class="mark" href="/">
-			<img src="/ewe-logo.png" alt="" width="26" height="26" />
+			<img class="logo-on-dark" src="/ewe-logo.png" alt="" width="26" height="26" /><img class="logo-on-light" src="/ewe-logo-light.png" alt="" width="26" height="26" />
 			<span>ewe</span>
 		</a>
 
@@ -44,7 +44,7 @@
 	<div class="wrap wide foot">
 		<div class="brand">
 			<a class="mark" href="/">
-				<img src="/ewe-logo.png" alt="" width="26" height="26" />
+				<img class="logo-on-dark" src="/ewe-logo.png" alt="" width="26" height="26" /><img class="logo-on-light" src="/ewe-logo-light.png" alt="" width="26" height="26" />
 				<span>ewe</span>
 			</a>
 			<p>A complete, Arch-based operating system — decided, so you don't have to.</p>

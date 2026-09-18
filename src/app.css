@@ -504,3 +504,16 @@ a.card:active,
 	color: var(--text-primary);
 	color-scheme: dark;
 }
+
+/* The mark has two inks (design/system/assets/Logos): white on dark grounds,
+ * dark on light ones. The page shows whichever fits the scheme it wears;
+ * anything inside an Ewe Dark island keeps the white one. */
+.logo-on-light { display: none; }
+:root[data-theme="light"] .logo-on-dark { display: none; }
+:root[data-theme="light"] .logo-on-light { display: inline; }
+@media (prefers-color-scheme: light) {
+	:root:not([data-theme="dark"]) .logo-on-dark { display: none; }
+	:root:not([data-theme="dark"]) .logo-on-light { display: inline; }
+}
+:root [data-scheme="ewe-dark"] .logo-on-dark { display: inline; }
+:root [data-scheme="ewe-dark"] .logo-on-light { display: none; }
