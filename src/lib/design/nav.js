@@ -41,6 +41,12 @@ export const PAGES = [
 		label: 'Scheme files',
 		group: 'Documentation',
 		blurb: 'Write your own scheme: every key, every palette slot, and the ways a file comes in.'
+	},
+	{
+		href: '/design/tokens/',
+		label: 'Token reference',
+		group: 'Documentation',
+		blurb: 'Every token with its CSS and QML name and its value in both schemes.'
 	}
 ];
 
