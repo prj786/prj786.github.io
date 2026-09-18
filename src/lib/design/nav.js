@@ -53,6 +53,12 @@ export const PAGES = [
 		label: 'Building with the system',
 		group: 'Documentation',
 		blurb: 'Tokens in a shell plugin and in a web app, the rules, and a check before you ship.'
+	},
+	{
+		href: '/design/changelog/',
+		label: 'Versions',
+		group: 'Documentation',
+		blurb: 'What version 3 changed, and where ewe 0.22 differs from the documents.'
 	}
 ];
 
