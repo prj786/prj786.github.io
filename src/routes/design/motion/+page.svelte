@@ -4,7 +4,7 @@
 
 	const MOTION = [
 		['fast', '150ms', 'ease-out', 'Hover, pressed, focus and other color changes; menus and toasts closing'],
-		['base', '200ms', 'ease-out', 'Panels, popups, the launcher and toasts opening: a fade plus a 4px slide from their edge; the dock hiding'],
+		['base', '200ms', 'ease-out', 'Panels and toasts opening: a fade plus a 4px slide from their edge — dock panels and the launcher fade only; the dock hiding'],
 		['slow', '250ms', 'ease-in-out', 'Workspace switches, the Overview zoom, Welcome'],
 		['dim', '1500ms', 'linear', 'The screen dimming before it locks']
 	];
@@ -12,7 +12,7 @@
 	const LAYERS = [
 		['background', 'The wallpaper'],
 		['bottom', 'Desktop widgets'],
-		['top', 'The bar and the dock — the dock moves up while the Overview is open'],
+		['top', 'The bar and the dock — both slide out of view while the Overview is open; their reserved strips stay'],
 		['overlay', 'Popups, menus, the launcher, Quick settings, the notification center, notifications, the on-screen display'],
 		['overlay (exclusive)', 'The lock screen and the power menu']
 	];
