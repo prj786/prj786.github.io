@@ -1,11 +1,14 @@
 <script>
 	import Icon from '$lib/Icon.svelte';
+	import { ADDONS } from '$lib/docs/addons.js';
 
 	const TOC = [
 		['os', 'The OS'],
 		['shell', 'The shell'],
+		['addons', 'Add-ons'],
 		['look', 'The look'],
 		['apps', 'Apps'],
+		['plugins', 'Plugins'],
 		['cast', 'Cast & phone'],
 		['account', 'Your account'],
 		['system', 'System']
@@ -16,7 +19,7 @@
 	<title>Features — ewe</title>
 	<meta
 		name="description"
-		content="ewe OS in full: the installer and its decisions, rolling updates, the Quickshell desktop, theming, Komble, cast to TV, phone link, your Nextcloud account and the system parts."
+		content="ewe OS in full: the installer and its decisions, rolling updates, the Quickshell desktop, the thirteen add-ons you choose, theming, Komble, plugins, cast to TV, phone link, your Nextcloud account and the system parts."
 	/>
 </svelte:head>
 
@@ -39,9 +42,9 @@
 			<div class="row">
 				<dt><Icon name="hard-drive" size={16} />A first-party installer</dt>
 				<dd>
-					Six screens in the desktop's own design. It asks what's personal and decides the rest —
-					btrfs subvolumes, systemd-boot, GPU drivers, hibernation —
-					<a href="/download/#decided">showing every decision</a> before you commit.
+					Eight screens in the desktop's own design. It asks what's personal — and which add-ons
+					you want — and decides the rest: btrfs subvolumes, systemd-boot, GPU drivers,
+					hibernation, <a href="/download/#decided">showing every decision</a> before you commit.
 				</dd>
 			</div>
 			<div class="row">
@@ -65,8 +68,8 @@
 			<div class="row">
 				<dt><Icon name="circle-user" size={16} />A welcome flow, once</dt>
 				<dd>
-					First login connects you, installs what's waiting, offers your Nextcloud and a restore, and
-					gives a sixty-second tour. Then it never appears again.
+					First login connects you, installs what's waiting, offers your Nextcloud and a restore, lets
+					you pick add-ons, and gives a sixty-second tour. Then it never appears again.
 				</dd>
 			</div>
 		</dl>
@@ -82,11 +85,11 @@
 		<div class="grid">
 			<div class="card">
 				<h3><Icon name="layout-panel-top" size={16} />Bar</h3>
-				<p>Workspaces, window title, tray, battery, network, mail, media. Counts sit in accent badges; sync state is a glyph.</p>
+				<p>Workspaces, window title, tray, battery, network, sound. Counts sit in accent badges; sync state is a glyph — and the add-ons add theirs: an envelope, a shield, a phone.</p>
 			</div>
 			<div class="card">
-				<h3><Icon name="panel-bottom" size={16} />Dock</h3>
-				<p>Pinned apps, then your windows grouped by workspace — see what's on 3 without going there. Optional hide, three sizes.</p>
+				<h3><Icon name="layers" size={16} />Overview</h3>
+				<p>Tap <code>Super</code>: every window on every workspace over the wallpaper, in one step. Type and you are searching.</p>
 			</div>
 			<div class="card">
 				<h3><Icon name="search" size={16} />Launcher</h3>
@@ -94,7 +97,7 @@
 			</div>
 			<div class="card">
 				<h3><Icon name="sliders-horizontal" size={16} />Quick settings</h3>
-				<p>Wi-Fi, Bluetooth, VPN, SSH, Do not disturb and Keep awake as tiles; live CPU and memory. A rail switches to calendar, mail, phone and cast.</p>
+				<p>Wi-Fi, Bluetooth, sound and Do not disturb as tiles; a rail for calendar and notifications. Add-ons add their own tiles and pages — VPN, SSH, Insomnia, CPU and memory, mail, phone, Cast.</p>
 			</div>
 			<div class="card">
 				<h3><Icon name="bell" size={16} />Notifications</h3>
@@ -102,9 +105,24 @@
 			</div>
 			<div class="card">
 				<h3><Icon name="lock" size={16} />Lock &amp; OSD</h3>
-				<p>Wayland session-lock, volume and brightness OSDs. Clipboard history, screenshots and password fill come as bundled plugins you can remove.</p>
+				<p>Wayland session-lock, volume and brightness OSDs. Lid open fades in once, with no flicker and no instant re-sleep.</p>
 			</div>
 		</div>
+	</section>
+	<section id="addons">
+		<p class="eyebrow">Add-ons</p>
+		<h2>Lean by default. Yours by choice.</h2>
+		<p>
+			A fresh ewe is the core above plus Settings, Komble and ewe-sync — and nothing else. Thirteen
+			first-party add-ons ship inside ewe, work offline, and install only when you ask: at install,
+			on first login, or one click in Komble → Add-ons, which also fetches any package an add-on
+			needs. Upgraders keep what they had. <a href="/docs/add-ons/">Each one, documented →</a>
+		</p>
+		<ul class="addons">
+			{#each ADDONS as a}
+				<li><Icon name={a.icon} size={16} /><strong>{a.name}</strong><span>{a.blurb}</span></li>
+			{/each}
+		</ul>
 	</section>
 
 	<section id="look">
@@ -165,9 +183,10 @@
 			<div class="row">
 				<dt><Icon name="settings-2" size={16} />ewe-settings</dt>
 				<dd>
-					Sixteen panes, all writing the one config file: Appearance, Animations, Layout &amp; Dock,
-					Window Rules, Displays, Networking, Wallpaper, Keyboard &amp; Mouse, Screensaver, Power,
-					Default Apps, Startup, Shortcuts, Time &amp; Place, User and System.
+					Eighteen panes, all writing the one config file: Appearance, Accessibility, Animations,
+					Layout and dock, Window rules, Displays, Networking, Bluetooth, Wallpaper, Keyboard and
+					mouse, Screensaver, Power, Default apps, Startup, Shortcuts, Time and place, User and
+					System. A pane for a feature you have not installed says so and offers the add-on.
 				</dd>
 			</div>
 			<div class="row">
@@ -190,17 +209,20 @@
 		</p>
 		<dl class="rows">
 			<div class="row">
-				<dt><Icon name="puzzle" size={16} />Three kinds</dt>
+				<dt><Icon name="puzzle" size={16} />Ten kinds</dt>
 				<dd>
-					Bar widgets packed between the built-in indicators, left, centre or right; panels and
-					overlays the plugin owns and summons over IPC; headless services that run from login.
+					Quick settings tiles and pages, glyphs in the bar's pill, dock items, bar widgets packed
+					between the built-in indicators, desktop widgets you drag into place, panels and
+					overlays summoned over IPC, headless services that run from login. The thirteen add-ons
+					are made of exactly these.
 				</dd>
 			</div>
 			<div class="row">
 				<dt><Icon name="palette" size={16} />The same vocabulary</dt>
 				<dd>
-					<code>import qs</code> gives a plugin every <code>Theme</code> role and a named part of
-					<code>Globals</code>. Ask for a role, never a value, and it recolors with the accent.
+					<code>import qs</code> gives a plugin every <code>Theme</code> role, the
+					<code>Shell</code> singleton and the components the desktop itself is built from. Ask for a
+					role, never a value, and it recolors with the accent.
 				</dd>
 			</div>
 			<div class="row">
@@ -227,8 +249,9 @@
 		<h2>The TV in the room, and the phone in your pocket.</h2>
 		<p>
 			Screen mirroring on Wayland is usually a research project, or a borrowed GTK window bolted onto
-			a desktop that has no GTK. Here it's a card in Quick settings, served by ewe's own headless
-			daemon — <strong>no foreign window ever appears</strong>.
+			a desktop that has no GTK. Here it's the Cast add-on in Quick settings, served by ewe's own
+			headless daemon — <strong>no foreign window ever appears</strong>. Both are add-ons: install
+			the ones you have a TV or a phone for.
 		</p>
 		<dl class="rows">
 			<div class="row">
@@ -253,9 +276,9 @@
 			<div class="row">
 				<dt><Icon name="smartphone" size={16} />Phone link</dt>
 				<dd>
-					Pair over Wi-Fi for phone battery in the bar, notifications you can dismiss and reply to,
-					and full SMS. KDE Connect provides the daemon; the interface is ewe's, and pairing keys
-					stay in the daemon.
+					The Phone add-on: pair over Wi-Fi for phone battery in the bar, notifications you can
+					dismiss and reply to, and full SMS. KDE Connect provides the daemon — Komble installs it
+					with the add-on; the interface is ewe's, and pairing keys stay in the daemon.
 				</dd>
 			</div>
 		</dl>
@@ -271,8 +294,9 @@
 			password, your two-factor — and ewe receives an app password you can revoke any time.
 		</p>
 		<p>
-			<strong>Mail</strong> is any IMAP account, for the unread badge and notifications.
-			<strong>Google</strong> is optional and needs your own OAuth client file.
+			<strong>Mail</strong> — the Mail add-on — is any IMAP account or Gmail, for the unread badge,
+			an Inbox page and notifications. <strong>Google</strong> is optional and needs your own OAuth
+			client file.
 			<a href="/docs/cli/ewe-sync/"><strong>ewe-sync</strong></a> lives in the tray and is the only
 			thing with a sync button: your machines, folder sync, conflicts resolved in place.
 		</p>
@@ -294,8 +318,9 @@
 			<div class="row">
 				<dt><Icon name="shield-check" size={16} />Survives a crash</dt>
 				<dd>
-					The shell is a restart-on-failure user service, so bar, dock and lock come back on their
-					own. Outputs stay locked even if the shell dies while locked.
+					The shell is a restart-on-failure user service, so bar, add-ons and lock come back on their
+					own. Outputs stay locked even if the shell dies while locked. A plugin that crashes it
+					three times in a minute is left out of the next start, and named.
 				</dd>
 			</div>
 			<div class="row">
@@ -348,5 +373,39 @@
 	}
 	.card h3 :global(.icon) {
 		color: var(--accent-text);
+	}
+	/* the thirteen add-ons: a glyph, the name, one line */
+	.addons {
+		list-style: none;
+		margin: var(--space-md) 0 0;
+		padding: 0;
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
+		gap: var(--space-s) var(--space-md);
+		max-width: none;
+	}
+	.addons li {
+		display: grid;
+		grid-template-columns: auto minmax(0, 1fr);
+		column-gap: var(--space-s);
+		align-items: baseline;
+		margin: 0;
+		padding: var(--space-s) 0;
+		border-top: var(--border-width-1) solid var(--border-subtle);
+		font-size: var(--font-size-md);
+		line-height: var(--line-height-md);
+		color: var(--text-secondary);
+	}
+	.addons li :global(.icon) {
+		color: var(--accent-text);
+		align-self: start;
+		margin-top: 0.2em;
+	}
+	.addons strong {
+		color: var(--text-primary);
+		font-weight: var(--font-weight-medium);
+	}
+	.addons span {
+		grid-column: 2;
 	}
 </style>

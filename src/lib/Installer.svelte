@@ -1,13 +1,15 @@
 <script>
-	// A drawing of the installer's fifth screen — the one that matters, because
+	// A drawing of the installer's seventh screen — the one that matters, because
 	// it is the last moment before anything is written and the only place the
 	// machine's decisions are all visible at once.
-	const STEPS = ['Welcome', 'Time & place', 'Disk', 'Your account', 'Summary', 'Install'];
+	const STEPS = ['Welcome', 'Network', 'Time & place', 'Disk', 'Your account', 'Add-ons', 'Summary', 'Install'];
+	const DONE = STEPS.indexOf('Summary');
 	const CHOSE = [
 		['Keyboard', 'English (US)'],
 		['Time zone', 'Asia/Tbilisi — detected'],
 		['Language', 'en_US.UTF-8'],
-		['Account', 'scubba · ewe-laptop']
+		['Account', 'scubba · ewe-laptop'],
+		['Add-ons', 'Dock · Music · Clipboard & emoji']
 	];
 	const DECIDED = [
 		'btrfs · @ + @home · zstd',
@@ -23,8 +25,8 @@
 	<div class="win">
 		<nav class="rail">
 			{#each STEPS as s, i}
-				<div class="step" class:done={i < 4} class:now={i === 4}>
-					<span class="pip">{i < 4 ? '✓' : i + 1}</span>
+				<div class="step" class:done={i < DONE} class:now={i === DONE}>
+					<span class="pip">{i < DONE ? '✓' : i + 1}</span>
 					<span class="nm">{s}</span>
 				</div>
 			{/each}

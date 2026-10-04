@@ -10,12 +10,13 @@
 		'NetworkManager', 'greetd', 'Nextcloud', 'KDE Connect', 'Lucide', 'Geist'
 	];
 
-	// the installer's four questions, in the order it asks them
+	// the installer's five questions, in the order it asks them
 	const ASKS = [
 		['keyboard', 'Your keyboard', 'The layout, with a field to test it before you move on.'],
 		['globe', 'Your place', 'Timezone detected — two providers have to agree — plus language and locale.'],
 		['hard-drive', 'Which disk', "The whole disk is erased, and you're told so twice."],
-		['circle-user', 'Who you are', 'Name, username, password, and a name for the computer.']
+		['circle-user', 'Who you are', 'Name, username, password, and a name for the computer.'],
+		['puzzle', 'Which add-ons', 'The dock, music, mail, Cast and more — nothing pre-checked, all of it one click away later.']
 	];
 
 	// Two accents through the same engine /theming/ runs live, derived at
@@ -30,7 +31,7 @@
 	<title>ewe — a complete Arch-based operating system</title>
 	<meta
 		name="description"
-		content="ewe is an Arch-based operating system that installs from one ISO in about ten minutes. It asks what's personal — keyboard, place, disk, who you are — and decides everything technical for you."
+		content="ewe is an Arch-based operating system that installs from one ISO in about ten minutes. It asks what's personal — keyboard, place, disk, who you are, which add-ons — and decides everything technical for you."
 	/>
 </svelte:head>
 
@@ -80,12 +81,12 @@
 				fallback="jpg"
 				w={2560}
 				h={1440}
-				alt="The ewe desktop over a photo of a sheep in a meadow: the bar across the top, the dock along the bottom, and ewe-settings open on Layout & Dock with toggles for the power profile, keyboard layout, system tray, screenshot button and dock autohide, all in an orange accent."
+				alt="The ewe desktop over a photo of a sheep in a meadow: the bar across the top, the Dock add-on along the bottom, and ewe-settings open on Layout and dock with toggles for the power profile, keyboard layout, system tray, screenshot button and dock autohide, all in an orange accent."
 			/>
 		</div>
 		<p class="figcap center">
-			A real session, with Settings open on Layout &amp; Dock. The toggles, the selected pane and the
-			active dock item all follow one accent.
+			A real session with the Dock add-on, and Settings open on Layout and dock. The toggles, the
+			selected pane and the active dock item all follow one accent.
 		</p>
 	</div>
 </section>
@@ -102,10 +103,11 @@
 <section class="wrap wide block">
 	<div class="head">
 		<p class="eyebrow">The installer</p>
-		<h2>It asks four things.</h2>
+		<h2>It asks five things.</h2>
 		<p>
 			Everything technical is decided by ewe — and shown to you on one summary screen before a single
-			byte is written.
+			byte is written. The fifth question is the only one about the desktop itself: which of the
+			thirteen add-ons you want. The honest default is none.
 		</p>
 	</div>
 	<ol class="asks">
@@ -126,9 +128,10 @@
 		<p class="eyebrow">What you get</p>
 		<h2>A desktop, not a starting point.</h2>
 		<p>
-			Greeter, bar, dock, launcher, Quick settings, software manager, settings and lock screen — all
-			first-party, all matching. Nothing to assemble afterwards — and, since 0.14, plugins for what
-			you would add.
+			Greeter, bar, launcher, Overview, Quick settings, software manager, settings and lock screen —
+			all first-party, all matching. Then the add-ons you choose — the dock, music, mail, Cast and
+			nine more — and plugins for what you would add. Nothing to assemble, nothing you did not ask
+			for.
 		</p>
 	</div>
 
@@ -138,9 +141,9 @@
 				<span class="ico"><Icon name="layout-panel-top" size={18} /></span>
 				<h3>A shell written once</h3>
 				<p>
-					Hyprland and a first-party Quickshell shell — bar, dock, fuzzy launcher, notifications,
-					Quick settings, lock, OSD and clipboard history. <code>Super+D</code> finds apps, files and
-					folders.
+					Hyprland and a first-party Quickshell shell — bar, fuzzy launcher, Overview, notifications,
+					Quick settings, lock and OSD. A tap of <code>Super</code> shows every window at once, in
+					one step; <code>Super+D</code> finds apps, files and folders.
 				</p>
 			</div>
 			<picture>
@@ -180,14 +183,16 @@
 			</p>
 			<span class="go">How it works <Icon name="arrow-right" size={14} /></span>
 		</a>
-		<div class="card tile wide">
+		<a class="card act tile wide" href="/docs/add-ons/">
 			<span class="ico"><Icon name="cast" size={18} /></span>
-			<h3>Cast &amp; phone</h3>
+			<h3>Add-ons you choose</h3>
 			<p>
-				Mirror to a Samsung or Android TV from Quick settings; phone battery, notifications and
-				SMS in the same panel.
+				Thirteen first-party extras ship inside ewe and install only when you ask: the dock, music,
+				Places, your phone, mail, VPN, SSH, Cast to TV, Insomnia, a system monitor, clipboard
+				history, screenshots, password fill. One click in Komble, or at install.
 			</p>
-		</div>
+			<span class="go">The thirteen <Icon name="arrow-right" size={14} /></span>
+		</a>
 		<div class="card tile">
 			<span class="ico"><Icon name="refresh-cw" size={18} /></span>
 			<h3>Rolling, from one repo</h3>
@@ -200,9 +205,10 @@
 			<span class="ico"><Icon name="puzzle" size={18} /></span>
 			<h3>Plugins</h3>
 			<p>
-				<code>ewe-plugin create</code> scaffolds a repo; a git URL installs one. Bar widgets, panels,
-				services — and desktop widgets you drag where you like. You draw it; ewe places it, keeps
-				its settings, and gives a crashing plugin three strikes, not your login.
+				<code>ewe-plugin create</code> scaffolds a repo; a git URL installs one. Quick settings tiles
+				and pages, bar glyphs, dock items, panels, services — and desktop widgets you drag where you
+				like. You draw it; ewe places it, keeps its settings, and gives a crashing plugin three
+				strikes, not your login. The add-ons are built the same way.
 			</p>
 			<span class="go">How plugins work <Icon name="arrow-right" size={14} /></span>
 		</a>
@@ -276,7 +282,7 @@
 		<p class="eyebrow">Honestly</p>
 		<h2>It's a beta.</h2>
 		<p>
-			The install is verified end to end in QEMU — six screens to a booted desktop — and casting has
+			The install is verified end to end in QEMU — eight screens to a booted desktop — and casting has
 			been proven against a real television. <strong>Real-hardware installs are still thin</strong>,
 			and that's the next gate. If you try it on metal, a report is the most useful thing you can send.
 		</p>
@@ -487,10 +493,10 @@
 		font-size: var(--font-size-md);
 	}
 
-	/* the four questions */
+	/* the five questions */
 	.asks {
 		display: grid;
-		grid-template-columns: repeat(4, minmax(0, 1fr));
+		grid-template-columns: repeat(5, minmax(0, 1fr));
 		gap: var(--space-s);
 		margin: 0;
 		padding: 0;
@@ -509,6 +515,11 @@
 		font-size: var(--font-size-s);
 		font-variant-numeric: tabular-nums;
 		color: var(--text-muted);
+	}
+	@media (max-width: 1100px) {
+		.asks {
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+		}
 	}
 	@media (max-width: 900px) {
 		.asks {
