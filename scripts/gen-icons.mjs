@@ -14,13 +14,13 @@ import { readFileSync, writeFileSync } from 'node:fs';
 
 const NAMES = [
 	'accessibility', 'arrow-right', 'move-horizontal', 'bell', 'blend', 'blocks', 'book-open',
-	'box', 'calendar', 'cast', 'check', 'chevron-right', 'circle-check',
-	'circle-user', 'cloud', 'cloud-off', 'component', 'contrast', 'copy',
-	'download', 'external-link', 'eye', 'file-text', 'folder-sync', 'gauge',
+	'box', 'calendar', 'camera', 'cast', 'check', 'chevron-right', 'circle-check',
+	'circle-user', 'cloud', 'cloud-off', 'component', 'contrast', 'copy', 'cpu',
+	'dock', 'download', 'external-link', 'eye', 'file-text', 'folder', 'folder-sync', 'gauge',
 	'git-branch', 'globe', 'hard-drive', 'image', 'info', 'key', 'keyboard',
 	'layers', 'layout-grid', 'layout-panel-top', 'lock', 'mail', 'monitor',
-	'moon', 'package', 'palette', 'panel-bottom', 'pen-line', 'puzzle',
-	'refresh-cw', 'rotate-ccw', 'ruler', 'search', 'settings-2', 'shield-check',
+	'moon', 'music', 'package', 'palette', 'panel-bottom', 'pen-line', 'puzzle',
+	'refresh-cw', 'rotate-ccw', 'ruler', 'scissors', 'search', 'settings-2', 'shield', 'shield-check',
 	'shuffle', 'sliders-horizontal', 'smartphone', 'sparkles',
 	'square-round-corner', 'square-terminal', 'sun', 'swatch-book', 'terminal',
 	'triangle-alert', 'type', 'usb', 'wand-sparkles', 'wifi', 'zap'
