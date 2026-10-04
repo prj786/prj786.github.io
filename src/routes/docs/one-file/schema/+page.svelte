@@ -192,7 +192,7 @@ exec = "kitty"`} copyable={false} />
 <section>
 	<h2><code>[apps]</code></h2>
 	<dl class="rows">
-		<div class="row"><dt><code>pinned</code></dt><dd>The dock's pinned launchers, in order.</dd></div>
+		<div class="row"><dt><code>pinned</code></dt><dd>Your pinned apps, in order — what the Dock add-on's launcher shows first.</dd></div>
 		<div class="row"><dt><code>[[apps.startup]]</code></dt><dd>Login autostart entries: name, exec, icon, enabled.</dd></div>
 		<div class="row"><dt><code>[[apps.places]]</code></dt><dd>The Places panel's folder shortcuts.</dd></div>
 		<div class="row"><dt><code>[apps.installed]</code></dt><dd>Komble's manifest of every package and AppImage it manages here. This is the restore loop: a fresh machine that pulls your file can offer to reinstall all of it. Komble maintains this section; nothing else touches it.</dd></div>
@@ -202,19 +202,24 @@ exec = "kitty"`} copyable={false} />
 <section>
 	<h2><code>[plugins]</code></h2>
 	<p>
-		Third-party shell plugins, written by <a href="/docs/cli/ewe-plugin/">ewe-plugin</a>.
+		Add-ons and third-party shell plugins, written by <a href="/docs/cli/ewe-plugin/">ewe-plugin</a>.
 		<code>enabled</code> is the list of plugin ids the shell loads at startup;
-		<code>sources</code> is the installed set — every plugin <code>ewe-plugin add</code> fetched, on
-		or off, until <code>remove</code> forgets it — so on a fresh machine
-		<code>ewe-plugin restore</code> can clone them back. The
-		plugins themselves live in <code>~/.config/ewe/plugins/</code> — code, not configuration — and
-		never sync. Toggling one restarts the shell; nothing else is regenerated.
+		<code>sources</code> is the installed set — every plugin <code>install</code> or <code>add</code>
+		put in, on or off, until <code>remove</code> forgets it — so on a fresh machine
+		<code>ewe-plugin restore</code> can bring them back: a git URL is cloned, <code>"bundled"</code>
+		is copied from the ewe package, <code>"local"</code> cannot be fetched. <code>removed</code> is
+		the add-ons you took away, so an update leaves them out. The plugins themselves live in
+		<code>~/.config/ewe/plugins/</code> — code, not configuration — and never sync. Toggling one
+		restarts the shell; the generated plugin keybinds are rewritten, nothing else.
 	</p>
 	<Code
 		code={`[plugins]
-enabled = ["acme.weather"]
+enabled = ["ewe.dock", "ewe.media", "acme.weather"]
+removed = ["ewe.clipboard"]
 
 [plugins.sources]
+"ewe.dock" = "bundled"
+"ewe.media" = "bundled"
 "acme.weather" = "https://github.com/acme/ewe-weather.git"
 
 [plugins.widgets]

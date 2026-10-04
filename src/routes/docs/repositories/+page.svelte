@@ -1,13 +1,14 @@
 <script>
 	import PageNav from '$lib/docs/PageNav.svelte';
 	import { OS_REPO, DE_REPO, PKG_REPO } from '$lib/nav.js';
+	import { ADDONS, GITHUB, EXAMPLE } from '$lib/docs/addons.js';
 </script>
 
 <svelte:head>
 	<title>Repositories — ewe docs</title>
 	<meta
 		name="description"
-		content="ewe is built as layers, each in its own repository: the distro, the desktop, the package repository, the software manager, settings, the account app and the casting daemon."
+		content="ewe is built as layers, each in its own repository: the distro, the desktop, the package repository, the software manager, settings, the account app, the casting daemon — and one repository per add-on."
 	/>
 </svelte:head>
 
@@ -27,40 +28,53 @@
 		</div>
 		<div class="row">
 			<dt><a href={DE_REPO}>ewe</a></dt>
-			<dd>The desktop environment — the compositor configuration, the Quickshell shell, the command-line tools — and the <code>ewe</code> package that installs it.</dd>
+			<dd>The desktop environment — the compositor configuration, the Quickshell shell, the command-line tools, the vendored add-ons — and the <code>ewe</code> package that installs it.</dd>
 		</div>
 		<div class="row">
 			<dt><a href={PKG_REPO}>ewe-repo</a></dt>
 			<dd>The <code>[ewe]</code> pacman repository everything ships through, and the workflow that builds it.</dd>
 		</div>
 		<div class="row">
-			<dt><a href="https://github.com/prj786/komble-arch">komble-arch</a></dt>
-			<dd>Komble, the software manager: your repositories, the AUR and AppImages in one window.</dd>
+			<dt><a href="{GITHUB}komble-arch">komble-arch</a></dt>
+			<dd>Komble, the software manager: your repositories, the AUR and AppImages in one window — and the Add-ons page.</dd>
 		</div>
 		<div class="row">
-			<dt><a href="https://github.com/prj786/ewe-settings">ewe-settings</a></dt>
+			<dt><a href="{GITHUB}ewe-settings">ewe-settings</a></dt>
 			<dd>The settings application — the one that edits the one file.</dd>
 		</div>
 		<div class="row">
-			<dt><a href="https://github.com/prj786/ewe-sync">ewe-sync</a></dt>
+			<dt><a href="{GITHUB}ewe-sync">ewe-sync</a></dt>
 			<dd>The account application: your machines, settings sync, folder sync, and the tray icon.</dd>
 		</div>
 		<div class="row">
-			<dt><a href="https://github.com/prj786/ewe-cast">ewe-cast</a></dt>
-			<dd>The headless casting daemon behind the Cast card — Miracast and Chromecast, with no foreign window.</dd>
+			<dt><a href="{GITHUB}ewe-cast">ewe-cast</a></dt>
+			<dd>The headless casting daemon behind the Cast add-on — Miracast and Chromecast, with no foreign window.</dd>
 		</div>
 		<div class="row">
-			<dt><a href="https://github.com/prj786/ewe-plugin-example">ewe-plugin-example</a></dt>
+			<dt><a href={EXAMPLE}>ewe-plugin-example</a></dt>
 			<dd>The reference shell plugin — a service, a panel with its own IPC target, a bar widget. Clone it to start yours.</dd>
 		</div>
 		<div class="row">
-			<dt><a href="https://github.com/prj786/ewe-plugin-clipboard">ewe-plugin-clipboard</a>, <a href="https://github.com/prj786/ewe-plugin-screenshot">-screenshot</a>, <a href="https://github.com/prj786/ewe-plugin-passwords">-passwords</a></dt>
-			<dd>The three plugins ewe ships enabled — clipboard history, screenshots, the password fill picker. Bundled with the ewe package, removable, and the worked examples for the plugin kit.</dd>
-		</div>
-		<div class="row">
-			<dt><a href="https://github.com/prj786/prj786.github.io">prj786.github.io</a></dt>
+			<dt><a href="{GITHUB}prj786.github.io">prj786.github.io</a></dt>
 			<dd>This website.</dd>
 		</div>
+	</dl>
+</section>
+
+<section>
+	<h2>One repository per add-on</h2>
+	<p>
+		Every <a href="/docs/add-ons/">add-on</a> is developed and released in its own repository and
+		copied into the ewe package at release time, so a fix lands in the add-on's repo first and
+		reaches you with the next ewe. The thirteen:
+	</p>
+	<dl class="rows addons">
+		{#each ADDONS as a}
+			<div class="row">
+				<dt><a href="{GITHUB}{a.repo}">{a.repo}</a></dt>
+				<dd>{a.name} — <code>{a.id}</code></dd>
+			</div>
+		{/each}
 	</dl>
 </section>
 
@@ -68,11 +82,19 @@
 	<h2>Which one do I file an issue against?</h2>
 	<dl class="rows">
 		<div class="row"><dt>The installer or the ISO</dt><dd><a href={OS_REPO}>ewe-os</a></dd></div>
-		<div class="row"><dt>The bar, the dock, a keybinding, a tool</dt><dd><a href={DE_REPO}>ewe</a></dd></div>
-		<div class="row"><dt>Installing software</dt><dd><a href="https://github.com/prj786/komble-arch">komble-arch</a></dd></div>
-		<div class="row"><dt>Sync, or the account</dt><dd><a href="https://github.com/prj786/ewe-sync">ewe-sync</a></dd></div>
+		<div class="row"><dt>The bar, the Overview, a keybinding, a tool</dt><dd><a href={DE_REPO}>ewe</a></dd></div>
+		<div class="row"><dt>The dock, music, mail, Cast — an add-on</dt><dd>Its own repository above, <code>ewe-plugin-&lt;name&gt;</code></dd></div>
+		<div class="row"><dt>Installing software, or the Add-ons page</dt><dd><a href="{GITHUB}komble-arch">komble-arch</a></dd></div>
+		<div class="row"><dt>Sync, or the account</dt><dd><a href="{GITHUB}ewe-sync">ewe-sync</a></dd></div>
 		<div class="row"><dt>Not sure</dt><dd><a href={OS_REPO}>ewe-os</a> — it gets routed.</dd></div>
 	</dl>
 </section>
 
 <PageNav />
+
+<style>
+	.addons dt a {
+		font-family: var(--font-mono);
+		font-size: var(--font-size-s);
+	}
+</style>

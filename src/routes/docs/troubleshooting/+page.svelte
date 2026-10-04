@@ -11,7 +11,7 @@
 	<title>Troubleshooting — ewe docs</title>
 	<meta
 		name="description"
-		content="Known limitations of ewe OS, the first things to check when the desktop, the keyring or sync misbehaves, and where to report what you find."
+		content="Known limitations of ewe OS, where the dock went on a fresh install, the first things to check when the desktop, an add-on, the keyring or sync misbehaves, and where to report what you find."
 	/>
 </svelte:head>
 
@@ -39,9 +39,33 @@
 		<li>On battery, the machine locks at five minutes and suspends at fifteen. Both are one edit away.</li>
 		<li>The session lock works, but it is the youngest security-relevant component here.</li>
 		<li>Multi-monitor hotplug is lightly tested.</li>
+		<li>
+			<strong>X11 apps have one scale for every screen.</strong> ewe picks the smallest scale of
+			the monitors connected at login — soft on a high-density laptop panel, the right size on
+			the external. Docking after login needs a re-login to change it.
+		</li>
 		<li>No input method yet — CJK and complex-script input is not wired up.</li>
 		<li>Chromecast mirroring carries a few seconds of latency; Miracast is the real-time path.</li>
 	</ul>
+</section>
+
+<section>
+	<h2>Where did my dock go?</h2>
+	<p>
+		On a fresh 0.25 install it was never there: the dock is an <a href="/docs/add-ons/">add-on</a>,
+		and a fresh ewe installs none of them. The same goes for the clipboard scissors, the Cast tile,
+		music, Places, mail, phone, VPN, SSH, Insomnia and the system monitor. Komble → Add-ons, or:
+	</p>
+	<Code
+		code={`ewe-plugin list --json | jq '.available[] | "\\(.id)  installed=\\(.installed)"'
+ewe-plugin install ewe.dock`}
+	/>
+	<p>
+		After an <em>upgrade</em> the features you had are brought back once by
+		<code>ewe-plugin migrate</code>; the dock is skipped only if you had turned it off, and anything
+		you had removed stays out. Settings → Layout says "The dock is an add-on" with a button instead
+		of showing controls for a dock that is not there.
+	</p>
 </section>
 
 <section>
@@ -49,7 +73,19 @@
 	<dl class="rows">
 		<div class="row">
 			<dt>The desktop looks stale after an update</dt>
-			<dd>Run <code>ewe-setup</code>, then log out and back in. It refreshes the shipped files and never touches your own state.</dd>
+			<dd>Run <code>ewe-setup</code>, then log out and back in. It refreshes the shipped files and never touches your own state. The system side — greeter, splash — is <code>bash /usr/share/ewe/install.sh --no-packages</code>, as your user, never under <code>sudo</code>.</dd>
+		</div>
+		<div class="row">
+			<dt>A tile, a bar glyph or an old keybind is missing</dt>
+			<dd><code>ewe-plugin list</code> — is the add-on installed and on? <code>qs ipc call cast toggle</code>, <code>quicksettings tab mail</code> and <kbd>Super</kbd>+<kbd>Shift</kbd>+<kbd>C</kbd> all exist only while their add-on does.</dd>
+		</div>
+		<div class="row">
+			<dt>Opening the lid blinks, or the machine sleeps again right after waking</dt>
+			<dd>Fixed in 0.25: lid-open now touches only a display that is off, and every sleep decision re-reads the lid. If you still see it, <code>journalctl --user -u ewe.service | grep 'lid:'</code> names the reason, and a report with it is welcome.</dd>
+		</div>
+		<div class="row">
+			<dt>Casting finds no TV</dt>
+			<dd>Run the Cast add-on's own check: <code>~/.config/ewe/plugins/ewe.cast/cast-check.sh</code>. It tests the Wi-Fi Direct and mDNS prerequisites and prints the fix for each.</dd>
 		</div>
 		<div class="row">
 			<dt>A setting will not stick</dt>
@@ -65,12 +101,13 @@
 		</div>
 		<div class="row">
 			<dt>The mail badge is empty</dt>
-			<dd><code>ewe-mail status</code>, then <code>ewe-mail unseen</code>. An <code>auth-failed</code> usually means the provider wants an application-specific password.</dd>
+			<dd>The badge is the Mail add-on — <code>ewe-plugin list</code> first. Then <code>ewe-mail status</code> and <code>ewe-mail unseen</code>; an <code>auth-failed</code> usually means the provider wants an application-specific password.</dd>
 		</div>
 	</dl>
 	<Code
 		code={`ewe-cloud status      # account and keyring
 ewe-conf sync-status  # the backup, and this machine
+ewe-plugin list       # add-ons and plugins: installed, on, safe mode
 ewe-mail status       # the mail account
 ewe-auth status       # the optional Google client`}
 	/>
