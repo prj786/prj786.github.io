@@ -4,15 +4,15 @@
 
 	const MOTION = [
 		['fast', '150ms', 'ease-out', 'Hover, pressed, focus and other color changes; menus and toasts closing'],
-		['base', '200ms', 'ease-out', 'Panels and toasts opening: a fade plus a 4px slide from their edge — dock panels and the launcher fade only; the dock hiding'],
-		['slow', '250ms', 'ease-in-out', 'Workspace switches, the Overview zoom, Welcome'],
+		['base', '200ms', 'ease-out', 'Panels and toasts opening: a fade plus a 4px slide from their edge — dock panels and the launcher fade only; the dock hiding; the Overview’s cards, search and pager, and the bar and dock sliding away for it'],
+		['slow', '250ms', 'ease-in-out', 'Workspace switches, Welcome'],
 		['dim', '1500ms', 'linear', 'The screen dimming before it locks']
 	];
 
 	const LAYERS = [
 		['background', 'The wallpaper'],
 		['bottom', 'Desktop widgets'],
-		['top', 'The bar and the dock — both slide out of view while the Overview is open; their reserved strips stay'],
+		['top', 'The bar, and the dock when its add-on is installed — both slide out of view while the Overview is open; their reserved strips stay'],
 		['overlay', 'Popups, menus, the launcher, Quick settings, the notification center, notifications, the on-screen display'],
 		['overlay (exclusive)', 'The lock screen and the power menu']
 	];
@@ -82,6 +82,29 @@
 	<p>
 		The compositor’s window animations follow the same rule. No curve overshoots, and there is no
 		bouncy preset: an older setting that used one is read as the default, Snappy.
+	</p>
+</section>
+
+<section id="overview">
+	<h2>The Overview, in one step</h2>
+	<p>
+		The Overview takes the whole screen, wallpaper first, and since ewe 0.25 it opens in
+		<strong>one step</strong>: on the frame it is asked for, the backdrop fades in at
+		<code>fast</code>, the bar slides up and the dock slides down at <code>base</code>, and the window
+		cards, the search field and the pager fade and zoom in at <code>base</code> with the ease-out
+		curve. The backdrop reads first only because its fade is the shorter one. Trigger to a settled,
+		focused Overview is about 240 ms — it used to be two steps and 500 ms or more.
+	</p>
+	<p>
+		Closing keeps two beats, because leaving should feel lighter than arriving: the cards go at
+		<code>base</code>, then after <code>fast</code> the backdrop fades out and the bar and dock slide
+		back. Under Reduce motion everything cross-fades at <code>fast</code> and nothing slides or zooms.
+	</p>
+	<p class="muted">
+		The dock is an add-on since 0.25, so its half of the slide is its own: it reads
+		<code>Shell.overviewOpen</code> and moves itself, on the same durations and curve. Without the
+		add-on there is nothing along the bottom to move, and the panels that would have opened above
+		it read <code>Shell.bottomInset</code> as zero.
 	</p>
 </section>
 
