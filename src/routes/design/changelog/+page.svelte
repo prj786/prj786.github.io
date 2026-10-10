@@ -165,12 +165,12 @@
 		<li>
 			<span class="ic"><Icon name="dock" size={16} /></span>
 			<div>
-				<h3>ewe 0.25: the Dock and Launcher panel cards are an add-on</h3>
+				<h3>ewe 0.25: the Dock and Launcher panel cards are a plugin</h3>
 				<p>
 					The Dock, Launcher panel, Places and media player specs are no longer shell components;
 					they are implemented by the <code>ewe.dock</code>, <code>ewe.places</code> and
-					<code>ewe.media</code> <a href="/docs/add-ons/">add-ons</a>, and a fresh ewe installs
-					none of them. The specs are unchanged — the dock still slides out for the Overview on
+					<code>ewe.media</code> <a href="/docs/add-ons/">plugins that ship with ewe</a>, and a
+					fresh ewe installs none of them. The specs are unchanged — the dock still slides out for the Overview on
 					<code>base</code>, Glass still applies — but the dock now moves itself, from
 					<code>Shell.overviewOpen</code>, and a surface that opens above it reads
 					<code>Shell.bottomInset</code> rather than assuming a dock. Keep awake is called

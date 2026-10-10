@@ -69,11 +69,11 @@ ewe-conf apply                  turns it into the runtime files
 <section>
 	<h2>Reading and writing it</h2>
 	<Code
-		code={`ewe-conf path                     # where it is
-ewe-conf dump | jq .desktop.theme # the whole document, as JSON
-ewe-conf get desktop.dock.enabled # one value
-ewe-conf set desktop.dock.enabled false
-ewe-conf apply                    # rebuild every runtime file`}
+		code={`ewe-conf path                      # where it is
+ewe-conf dump | jq .desktop.theme  # the whole document, as JSON
+ewe-conf get desktop.bar.icon_size # one value
+ewe-conf set desktop.bar.icon_size large
+ewe-conf apply                     # rebuild every runtime file`}
 	/>
 </section>
 

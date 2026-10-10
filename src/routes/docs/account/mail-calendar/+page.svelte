@@ -41,8 +41,10 @@
 		provider gives you, one you host, or a work account. Add it in
 		<a href="/docs/cli/ewe-sync/">ewe-sync</a> → Mail — or with
 		<a href="/docs/cli/ewe-mail/"><code>ewe-mail login</code></a> if you would rather type.
-		Settings → User shows the account and its notification switch, but does not add or remove one.
-		The badge shows the unread count and the newest unseen messages behind it.
+		The badge — the envelope with the unread count, and the newest unseen messages behind it on the
+		Inbox page — is the <a href="/docs/add-ons/">Mail plugin</a>. Notifications for new mail are its
+		own <code>notify</code> setting: Komble → Plugins → Mail → Options, the bell on the Inbox page,
+		or <code>ewe-plugin set ewe.mail notify false</code>.
 	</p>
 	<p>
 		The password goes into the system keyring once. The account itself — host, user, port — is

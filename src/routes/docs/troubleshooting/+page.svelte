@@ -11,7 +11,7 @@
 	<title>Troubleshooting — ewe docs</title>
 	<meta
 		name="description"
-		content="Known limitations of ewe OS, where the dock went on a fresh install, the first things to check when the desktop, an add-on, the keyring or sync misbehaves, and where to report what you find."
+		content="Known limitations of ewe OS, where the dock went on a fresh install, the first things to check when the desktop, a plugin, the keyring or sync misbehaves, and where to report what you find."
 	/>
 </svelte:head>
 
@@ -52,9 +52,10 @@
 <section>
 	<h2>Where did my dock go?</h2>
 	<p>
-		On a fresh 0.25 install it was never there: the dock is an <a href="/docs/add-ons/">add-on</a>,
-		and a fresh ewe installs none of them. The same goes for the clipboard scissors, the Cast tile,
-		music, Places, mail, phone, VPN, SSH, Insomnia and the system monitor. Komble → Add-ons, or:
+		On a fresh 0.25 install it was never there: the dock is a
+		<a href="/docs/add-ons/">plugin that ships with ewe</a>, and a fresh ewe installs none of them.
+		The same goes for the clipboard scissors, the Cast tile, music, Places, mail, phone, VPN, SSH,
+		Insomnia and the system monitor. Komble → Plugins, or:
 	</p>
 	<Code
 		code={`ewe-plugin list --json | jq '.available[] | "\\(.id)  installed=\\(.installed)"'
@@ -63,8 +64,15 @@ ewe-plugin install ewe.dock`}
 	<p>
 		After an <em>upgrade</em> the features you had are brought back once by
 		<code>ewe-plugin migrate</code>; the dock is skipped only if you had turned it off, and anything
-		you had removed stays out. Settings → Layout says "The dock is an add-on" with a button instead
+		you had removed stays out. Settings → Layout says "The dock is a plugin" with a button instead
 		of showing controls for a dock that is not there.
+	</p>
+	<p>
+		Turning the dock off is turning the Dock plugin off in Komble → Plugins. Its settings —
+		Intelligent auto-hide and Icon size — are the plugin's own, in Komble → Plugins → Dock →
+		Options; Settings → Layout only has a <em>Dock options</em> button that opens that dialog. A
+		dock you set up before keeps its <code>[desktop.dock]</code> values until you change them there.
+		<a href="/docs/add-ons/#dock-settings">Where the dock's settings live →</a>
 	</p>
 </section>
 
@@ -77,7 +85,7 @@ ewe-plugin install ewe.dock`}
 		</div>
 		<div class="row">
 			<dt>A tile, a bar glyph or an old keybind is missing</dt>
-			<dd><code>ewe-plugin list</code> — is the add-on installed and on? <code>qs ipc call cast toggle</code>, <code>quicksettings tab mail</code> and <kbd>Super</kbd>+<kbd>Shift</kbd>+<kbd>C</kbd> all exist only while their add-on does.</dd>
+			<dd><code>ewe-plugin list</code> — is the plugin installed and on? <code>qs ipc call cast toggle</code>, <code>quicksettings tab mail</code> and <kbd>Super</kbd>+<kbd>Shift</kbd>+<kbd>C</kbd> all exist only while their plugin does. A bar button or glyph can also be hidden by the plugin's <em>Show in bar</em> switch — <code>ewe-plugin bar &lt;id&gt;</code> prints it.</dd>
 		</div>
 		<div class="row">
 			<dt>Opening the lid blinks, or the machine sleeps again right after waking</dt>
@@ -85,7 +93,7 @@ ewe-plugin install ewe.dock`}
 		</div>
 		<div class="row">
 			<dt>Casting finds no TV</dt>
-			<dd>Run the Cast add-on's own check: <code>~/.config/ewe/plugins/ewe.cast/cast-check.sh</code>. It tests the Wi-Fi Direct and mDNS prerequisites and prints the fix for each.</dd>
+			<dd>Run the Cast plugin's own check: <code>~/.config/ewe/plugins/ewe.cast/cast-check.sh</code>. It tests the Wi-Fi Direct and mDNS prerequisites and prints the fix for each.</dd>
 		</div>
 		<div class="row">
 			<dt>A setting will not stick</dt>
@@ -97,17 +105,17 @@ ewe-plugin install ewe.dock`}
 		</div>
 		<div class="row">
 			<dt>Sync refuses to upload</dt>
-			<dd><code>ewe-conf sync-status</code> names which machine saved the backup and when. <code>remote-newer</code> means pull first; <code>remote-exists</code> means restore first. <a href="/docs/account/settings-sync/">More →</a></dd>
+			<dd><code>ewe-conf sync-status</code> names which machine saved the backup and when, whether that was this one (<code>remote_is_this_machine</code>), and what a push would answer right now (<code>conflict</code>). <code>remote-newer</code> means pull first; <code>remote-exists</code> means restore first. A push cut off by a suspend, or the Nextcloud desktop client re-uploading the same file, no longer reads as another machine's save. <a href="/docs/account/settings-sync/">More →</a></dd>
 		</div>
 		<div class="row">
 			<dt>The mail badge is empty</dt>
-			<dd>The badge is the Mail add-on — <code>ewe-plugin list</code> first. Then <code>ewe-mail status</code> and <code>ewe-mail unseen</code>; an <code>auth-failed</code> usually means the provider wants an application-specific password.</dd>
+			<dd>The badge is the Mail plugin — <code>ewe-plugin list</code> first. Then <code>ewe-mail status</code> and <code>ewe-mail unseen</code>; an <code>auth-failed</code> usually means the provider wants an application-specific password.</dd>
 		</div>
 	</dl>
 	<Code
 		code={`ewe-cloud status      # account and keyring
 ewe-conf sync-status  # the backup, and this machine
-ewe-plugin list       # add-ons and plugins: installed, on, safe mode
+ewe-plugin list       # every plugin: installed, on, safe mode
 ewe-mail status       # the mail account
 ewe-auth status       # the optional Google client`}
 	/>

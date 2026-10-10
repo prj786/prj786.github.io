@@ -9,8 +9,8 @@
 		['corner', '"medium"', 'The radii: none, small, medium or large.'],
 		['density', '"comfortable"', 'Control and row heights: compact (24), comfortable (28) or roomy (32).'],
 		['stroke', '"thin"', 'Outlines: none, thin (1px) or thick (2px).'],
-		['bar_opacity', '100', '0–100. Below 100 the bar, dock and lock card go glass and the wallpaper behind them is blurred; the Glass preset is 80.'],
-		['app_blur', 'false', 'Every window at 85%, blurred behind. Fullscreen windows stay solid.'],
+		['bar_opacity', '100', '0–100. Below 100 the bar, dock and lock card go glass and what is behind them is blurred; the Glass preset is 80. It moves only those three: the Overview and desktop widgets keep the Glass material at 80%.'],
+		['app_blur', 'false', 'Every window at 85%, blurred behind. Fullscreen windows stay solid. Without it, Glass never blurs behind an app window.'],
 		['window_transparency', 'false', 'Unfocused windows at 97%.'],
 		['tint_borders', 'true', 'Accent-tinted window borders.'],
 		['avatar_shape', '"circle"', 'The greeter and bar avatar mask; or "rounded".']
@@ -95,14 +95,23 @@ base00 = "#282828"
 
 <section>
 	<h2><code>[desktop.dock]</code></h2>
-	<p><code>enabled</code>, <code>autohide</code> and <code>icon_size</code> — small, medium or large.</p>
+	<p>
+		<code>enabled</code>, <code>autohide</code> and <code>icon_size</code> — small, normal or large.
+		Since the dock became a plugin these are only where its settings carry over from: the Dock's own
+		<code>autohide</code> and <code>icon_size</code> live in <code>[plugins.settings]."ewe.dock"</code>,
+		and until you set one there, the value here stands. <code>enabled</code> no longer hides the
+		dock — turning the <code>ewe.dock</code> plugin off does; it only told the 0.25 migration whether
+		to bring the dock back. <a href="/docs/add-ons/#dock-settings">The dock's settings →</a>
+	</p>
 </section>
 
 <section>
 	<h2><code>[desktop.bar]</code></h2>
 	<p>
 		<code>enabled</code>, <code>show</code> for each indicator, and <code>icon_size</code>: small,
-		normal or large, default normal. There is no height setting. The bar is its icons plus padding,
+		normal or large, default normal — Settings → Layout → Top bar. A plugin's bar button and pill
+		glyph are <code>show."plugin:&lt;id&gt;"</code>, its <em>Show in bar</em> switch, written by
+		<code>ewe-plugin bar</code> and Komble's Options. There is no height setting. The bar is its icons plus padding,
 		44, 48 or 56px, and text size 130% moves the icons one size up. The older <code>size</code> key
 		is gone; a <code>size = "large"</code> left in an older file still reads as large icons.
 	</p>
@@ -192,7 +201,7 @@ exec = "kitty"`} copyable={false} />
 <section>
 	<h2><code>[apps]</code></h2>
 	<dl class="rows">
-		<div class="row"><dt><code>pinned</code></dt><dd>Your pinned apps, in order — what the Dock add-on's launcher shows first.</dd></div>
+		<div class="row"><dt><code>pinned</code></dt><dd>Your pinned apps, in order — what the Dock plugin's launcher shows first.</dd></div>
 		<div class="row"><dt><code>[[apps.startup]]</code></dt><dd>Login autostart entries: name, exec, icon, enabled.</dd></div>
 		<div class="row"><dt><code>[[apps.places]]</code></dt><dd>The Places panel's folder shortcuts.</dd></div>
 		<div class="row"><dt><code>[apps.installed]</code></dt><dd>Komble's manifest of every package and AppImage it manages here. This is the restore loop: a fresh machine that pulls your file can offer to reinstall all of it. Komble maintains this section; nothing else touches it.</dd></div>
@@ -202,13 +211,14 @@ exec = "kitty"`} copyable={false} />
 <section>
 	<h2><code>[plugins]</code></h2>
 	<p>
-		Add-ons and third-party shell plugins, written by <a href="/docs/cli/ewe-plugin/">ewe-plugin</a>.
+		Shell plugins — the ones that ship with ewe and the ones from a git URL — written by
+		<a href="/docs/cli/ewe-plugin/">ewe-plugin</a>.
 		<code>enabled</code> is the list of plugin ids the shell loads at startup;
 		<code>sources</code> is the installed set — every plugin <code>install</code> or <code>add</code>
 		put in, on or off, until <code>remove</code> forgets it — so on a fresh machine
 		<code>ewe-plugin restore</code> can bring them back: a git URL is cloned, <code>"bundled"</code>
 		is copied from the ewe package, <code>"local"</code> cannot be fetched. <code>removed</code> is
-		the add-ons you took away, so an update leaves them out. The plugins themselves live in
+		the first-party plugins you took away, so an update leaves them out. The plugins themselves live in
 		<code>~/.config/ewe/plugins/</code> — code, not configuration — and never sync. Toggling one
 		restarts the shell; the generated plugin keybinds are rewritten, nothing else.
 	</p>
@@ -223,19 +233,24 @@ removed = ["ewe.clipboard"]
 "acme.weather" = "https://github.com/acme/ewe-weather.git"
 
 [plugins.widgets]
-"acme.clock" = {x = 420, y = 300, layer = "top", visible = true}
+"acme.clock" = {x = 420, y = 300, layer = "top", visible = true, pin_level = "top", locked = false}
 
 [plugins.settings]
-"acme.clock" = {seconds = true}`}
+"acme.clock" = {seconds = true}
+"ewe.dock" = {autohide = true, icon_size = "small"}`}
 		copyable={false}
 	/>
 	<p>
-		<code>widgets</code> is where each desktop widget sits — <code>x</code>, <code>y</code>,
-		<code>layer</code> (<code>desktop</code> below windows or <code>top</code>, sticky above them),
-		<code>visible</code>, an optional <code>output</code>; arrange mode and <code>ewe-plugin place</code>
-		write it. <code>settings</code> holds the values of the options a plugin declared, typed by its
-		manifest; Komble's form and <code>ewe-plugin set</code> write it. Both apply live. Ids carry a dot,
-		so they are quoted.
+		<code>widgets</code> is where each desktop widget sits and how: <code>x</code>, <code>y</code>, an
+		optional <code>output</code>, <code>layer</code> — <code>desktop</code> under the windows,
+		<code>top</code> pinned above them, <code>overlay</code> pinned above everything, fullscreen apps
+		too — <code>visible</code>, <code>pin_level</code> (<code>top</code> or <code>overlay</code>:
+		where pinning puts it, remembered while it is unpinned) and <code>locked</code>, which stops
+		dragging. Dragging a widget, its hover toolbar, arrange mode, Komble's Options and
+		<code>ewe-plugin place</code> write it. <code>settings</code> holds the values of the options a
+		plugin declared, typed by its manifest; Komble's Options dialog, <code>ewe-plugin set</code> and
+		the plugin's own <code>Shell.setSetting</code> write it. Both apply live. Ids carry a dot, so they
+		are quoted.
 	</p>
 </section>
 
@@ -255,6 +270,12 @@ removed = ["ewe.clipboard"]
 		<code>provider</code> (<code>nextcloud</code> or <code>google</code>), <code>server</code>,
 		<code>user</code>, <code>folder</code> — default <code>ewe</code> — and <code>enabled</code>,
 		which is the auto-sync switch. Identity only, so a restored machine knows where its backup lives.
+	</p>
+	<p>
+		Beside the file in your account, <code>ewe.conf.meta.json</code> records which machine saved it
+		and when — its hostname, and <code>machine_id</code>: a salted hash of
+		<code>/etc/machine-id</code>, never the raw id, so two computers with the same hostname are told
+		apart. <a href="/docs/account/settings-sync/">How sync decides →</a>
 	</p>
 	<p>
 		<code>[[sync.folders]]</code> holds the folder pairs.

@@ -77,19 +77,20 @@
 		['apiVersion', '3.'],
 		['overviewOpen · quickSettingsOpen · lowPower · onBattery · locked · dnd', 'Shell state, bindable.'],
 		['bottomInset · bottomReserved · dockPresent', 'The pixels a dock takes from the bottom of the screen (0 without one), whether it reserves that strip, and the shorthand. A panel that opens above the dock keeps bottomInset clear, so nothing leaves a gap when no dock is installed.'],
-		['dockPrefs · pinnedApps · primaryScreenName', 'The user’s [desktop.dock] prefs, the pinned desktop ids, the primary output — what a dock plugin obeys. Read-only; Settings and ewe-conf write them.'],
+		['dockPrefs · pinnedApps · primaryScreenName', 'The pre-plugin [desktop.dock] prefs (enabled, autohide, iconSize), the pinned desktop ids, the primary output. Read-only. Since Dock 1.1.0 the dock’s settings are its own and these are only its fallback; pin and unpin through setPinned.'],
 		['dockItems · activeCount', 'The dock-item registry of every enabled plugin, in order; how many actions report themselves open (an autohide dock stays out while > 0).']
 	];
 	const shellCalls = [
 		['toast(text, kind)', 'A bottom-centre toast; kind is "", "info", "warning" or "danger", or an options object with actionLabel, action, icon, timeout.'],
 		['openQuickSettings(tab) · closeQuickSettings()', 'A built-in key or a plugin page’s quickPage.key — the same route as qs ipc call quicksettings tab <key>.'],
-		['openSettings(page) · openStore(page)', 'ewe-settings and Komble, focused if already open; page is forwarded (komble --addons, ewe-settings --page …).'],
+		['openSettings(page) · openStore(page)', 'ewe-settings and Komble, focused if already open; page is forwarded (ewe-settings --page …, komble --<page>): "addons" opens Komble on Plugins, "options=" + pluginId opens your own Options dialog there (komble --options=<id>).'],
 		['toggleOverview()', 'Open or close the Overview in-shell — what a dock’s Overview button does.'],
 		['launch(desktopId) · focusApp([classes])', 'Run a .desktop id (focusing an existing window first); bring a window of one of these classes forward. false when unknown.'],
 		['registerAction(name, fn) · runAction(name, anchor)', 'A named function a dockItem.action names, and how the dock — or another plugin — runs it.'],
 		['setActive(name, on) · isActive(name)', 'An action’s open state; its dock item lights. AnchoredPopup reports it for you through action.'],
 		['setDockItemShown(id, on) · dockItemShown(id)', 'Hide or show your own dock item at runtime — a player with nothing playing, a “bar only” setting.'],
-		['closePopups(exceptId)', 'The one-popup rule: asks every add-on popup but exceptId’s to close. AnchoredPopup honours it and calls it when it opens; a plugin with its own PanelWindow listens to popupsClosing and calls it on open.'],
+		['setSetting(pluginId, key, value)', 'Write one of your own declared settings from your own UI — a bell on your page, a choice in your popup; the value Komble’s Options dialog shows. Live in every instance at once, persisted through ewe-plugin set, which validates it against your manifest (a refused value snaps back). Added in ewe 0.25.1, still API 3: check typeof Shell.setSetting === "function" to run on 0.25.0 too.'],
+		['closePopups(exceptId)', 'The one-popup rule: asks every plugin popup but exceptId’s to close. AnchoredPopup honours it and calls it when it opens; a plugin with its own PanelWindow listens to popupsClosing and calls it on open.'],
 		['setBottomInset(id, px, reserved) · setPinned(desktopId, on)', 'What a dock plugin publishes (0 withdraws it); pin or unpin an app through ewe-conf.'],
 		['anchorFor(item, window)', 'An anchor for a popup — the item’s centre in its window and the edge, "top" or "bottom". Pass barWindow or your own PanelWindow.']
 	];
@@ -154,9 +155,9 @@
 	<h2>The <code>Shell</code> singleton</h2>
 	<p>
 		API 3's front door: what the shell knows that a plugin may react to, and the few things a plugin
-		may ask it to do. Every add-on goes through it; a dock plugin is <em>only</em> a reader of
-		<code>dockPrefs</code>, <code>pinnedApps</code> and <code>dockItems</code> and a publisher of
-		<code>bottomInset</code>.
+		may ask it to do. Every plugin that ships with ewe goes through it; a dock plugin is <em>only</em>
+		a reader of <code>pinnedApps</code>, <code>dockItems</code> and its own <code>settings</code> and a
+		publisher of <code>bottomInset</code>.
 	</p>
 	<p>Read:</p>
 	<dl class="rows">
@@ -180,6 +181,7 @@
 		code={`Shell.toast("Forecast updated")
 Shell.openQuickSettings("weather")                       // your page's key
 Shell.registerAction("acme.weather.toggle", (a) => pop.toggleAt(a))
+Shell.setSetting(pluginId, "unit", "F")                  // one of your own settings
 Connections { target: Shell; function onResumed() { root.fetch() } }`}
 		copyable={false}
 	/>
@@ -286,8 +288,10 @@ Log.debug("acme.weather", "raw", payload)      // HS_LOG_MODULES=acme.weather to
 		Declare <code>property var settings: ({'{'}{'}'})</code> on any entry point's root and ewe fills it
 		with the values of the options your manifest declares — the defaults under the user's own,
 		read from <code>ewe.conf</code> <code>[plugins.settings]</code>. It is assigned when the entry
-		point loads and again whenever a value changes (<code>ewe-plugin set</code>, Komble's form), so
-		bind to it and nothing needs a restart. Keys you did not declare never appear.
+		point loads and again whenever a value changes (<code>ewe-plugin set</code>, Komble's Options
+		dialog, your own <code>Shell.setSetting</code>), so bind to it and nothing needs a restart. Keys
+		you did not declare never appear. Never write <code>ewe.conf</code> yourself:
+		<code>Shell.setSetting</code> is the way your own UI changes a value.
 	</p>
 
 	<h2>IPC</h2>
@@ -312,9 +316,9 @@ qs ipc call plugins safeMode       # did this session boot with plugins off`}
 		The shell's own targets — <code>bar</code>, <code>quicksettings</code>, <code>settings</code>,
 		<code>store</code>, <code>plugins</code>, <code>overview</code>, <code>osd</code> and friends —
 		are documented in the manual and are public API too. The old names of the features that became
-		add-ons (<code>cast</code>, <code>launcher</code>, <code>places</code>, <code>player</code>,
-		<code>mail</code>) are their <code>ipcAliases</code>: present while the add-on is installed,
-		reserved to add-ons. With API 3 a manifest keybind's target must be your own id.
+		plugins (<code>cast</code>, <code>launcher</code>, <code>places</code>, <code>player</code>,
+		<code>mail</code>) are their <code>ipcAliases</code>: present while the plugin is installed,
+		reserved to first-party plugins. With API 3 a manifest keybind's target must be your own id.
 	</p>
 </section>
 
@@ -337,7 +341,7 @@ qs ipc call plugins safeMode       # did this session boot with plugins off`}
 		<code>apiVersion</code> it does not know, so an old plugin fails at install, never at login.
 	</p>
 	<dl class="rows">
-		<div class="row"><dt><code>3</code></dt><dd>ewe 0.25: the <code>quick-tile</code>, <code>quick-page</code>, <code>bar-status</code> and <code>dock-item</code> kinds, the injected properties, the <code>Shell</code> singleton, the public components, <code>requires</code>, <code>ipcAliases</code> and the add-ons model. A superset — every API 2 plugin still loads.</dd></div>
+		<div class="row"><dt><code>3</code></dt><dd>ewe 0.25: the <code>quick-tile</code>, <code>quick-page</code>, <code>bar-status</code> and <code>dock-item</code> kinds, the injected properties, the <code>Shell</code> singleton, the public components, <code>requires</code>, <code>ipcAliases</code> and the first-party plugins in the package. A superset — every API 2 plugin still loads. ewe 0.25.1 adds, still within 3 and all optional: <code>Shell.setSetting</code>; <code>defaultShown</code> and <code>toggle</code> on <code>barWidget</code> and <code>barStatus</code>; <code>pinLevel</code>, <code>locked</code> and the <code>overlay</code> layer on <code>desktopWidget</code>; a setting's <code>description</code> and, first-party only, <code>legacy</code>.</dd></div>
 		<div class="row"><dt><code>2</code></dt><dd>The Ewe design system, version 3: <code>Theme</code> speaks the Ewe names above. Still loaded.</dd></div>
 		<div class="row"><dt><code>1</code></dt><dd>The Fluent-era names (<code>bg1</code>, <code>fg1</code>, <code>stroke2</code>, <code>brandBg</code>, <code>fsBody</code> …). They no longer exist; refused at install.</dd></div>
 	</dl>

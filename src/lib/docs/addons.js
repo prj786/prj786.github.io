@@ -1,6 +1,6 @@
-// The thirteen official add-ons — one source for /docs/add-ons/ and the
+// The thirteen first-party plugins — one source for /docs/add-ons/ and the
 // repositories page. Facts come from ewe's plugins/bundle.json and each
-// add-on's manifest.json (names, descriptions, kinds, keybinds); the repo is
+// plugin's manifest.json (names, descriptions, kinds, keybinds); the repo is
 // prj786/ewe-plugin-<name>. Keep the order the catalogue shows: the dock
 // first, then what a desk tends to want, then the three that were bundled
 // plugins before 0.25.
@@ -12,7 +12,7 @@ export const ADDONS = [
 		name: 'Dock',
 		repo: 'ewe-plugin-dock',
 		icon: 'dock',
-		blurb: 'A centred bottom dock on the main screen: the app launcher, Overview, Komble, the Pen, one box per workspace with its windows, and the items other add-ons provide.',
+		blurb: 'A centred bottom dock on the main screen: the app launcher, Overview, Komble, the Pen, one box per workspace with its windows, and the items other plugins provide.',
 		shows: 'the dock',
 		note: 'Upgraders who had the dock keep it; a fresh install has none until you pick it.'
 	},
@@ -22,7 +22,8 @@ export const ADDONS = [
 		repo: 'ewe-plugin-media',
 		icon: 'music',
 		blurb: 'Now playing for any MPRIS player — artwork, controls and a seek bar — above the dock or under the bar.',
-		shows: 'a dock item, or a bar button while something plays'
+		shows: 'a dock item, or a bar button while something plays',
+		note: 'Its own “Where the button lives” setting places it — dock, bar or both — so it has no Show in bar switch.'
 	},
 	{
 		id: 'ewe.places',
@@ -30,7 +31,8 @@ export const ADDONS = [
 		repo: 'ewe-plugin-places',
 		icon: 'folder',
 		blurb: 'A compact file browser: your home, pinned folders, drag any file out into another app.',
-		shows: 'a dock item, or a bar button'
+		shows: 'a dock item, or a bar button',
+		note: 'Its own “Where the button lives” setting places it — dock, bar or both — so it has no Show in bar switch.'
 	},
 	{
 		id: 'ewe.phone',

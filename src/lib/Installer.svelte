@@ -2,14 +2,14 @@
 	// A drawing of the installer's seventh screen — the one that matters, because
 	// it is the last moment before anything is written and the only place the
 	// machine's decisions are all visible at once.
-	const STEPS = ['Welcome', 'Network', 'Time & place', 'Disk', 'Your account', 'Add-ons', 'Summary', 'Install'];
+	const STEPS = ['Welcome', 'Network', 'Time & place', 'Disk', 'Your account', 'Plugins', 'Summary', 'Install'];
 	const DONE = STEPS.indexOf('Summary');
 	const CHOSE = [
 		['Keyboard', 'English (US)'],
 		['Time zone', 'Asia/Tbilisi — detected'],
 		['Language', 'en_US.UTF-8'],
 		['Account', 'scubba · ewe-laptop'],
-		['Add-ons', 'Dock · Music · Clipboard & emoji']
+		['Plugins', 'Dock · Music · Clipboard & emoji']
 	];
 	const DECIDED = [
 		'btrfs · @ + @home · zstd',

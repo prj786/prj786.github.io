@@ -53,8 +53,9 @@
 <section>
 	<h2>Adding an account</h2>
 	<p>
-		Settings → User has a form for this. From a terminal, the password is given on standard input so
-		it never appears in your shell history or in the process list:
+		<a href="/docs/cli/ewe-sync/">ewe-sync</a> → Mail has a form for this. From a terminal, the
+		password is given on standard input so it never appears in your shell history or in the process
+		list:
 	</p>
 	<Code
 		code={`printf '%s\\n' 'the-password' | ewe-mail login imap.example.org you@example.org

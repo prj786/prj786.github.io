@@ -5,8 +5,8 @@ export const SECTIONS = [
 		title: 'Get started',
 		items: [
 			{ href: '/docs/install/', label: 'Install ewe', blurb: 'The ISO, the eight screens, and the headless path.' },
-			{ href: '/docs/first-login/', label: 'First login', blurb: 'The welcome flow, your first add-ons, and the keys worth knowing.' },
-			{ href: '/docs/add-ons/', label: 'Add-ons', blurb: 'The dock, music, mail, phone, Cast and nine more — none installed until you ask.' },
+			{ href: '/docs/first-login/', label: 'First login', blurb: 'The welcome flow, your first plugins, and the keys worth knowing.' },
+			{ href: '/docs/add-ons/', label: 'Plugins from ewe', blurb: 'The dock, music, mail, phone, Cast and nine more — none installed until you ask.' },
 			{ href: '/docs/updating/', label: 'Updating', blurb: 'It rolls: one command for the system and the desktop.' }
 		]
 	},
@@ -31,7 +31,7 @@ export const SECTIONS = [
 	{
 		title: 'Plugins',
 		items: [
-			{ href: '/docs/plugins/', label: 'Plugins', blurb: 'Make your own: tiles, pages, bar glyphs, dock items, widgets, panels and services — the add-ons are the worked examples.' },
+			{ href: '/docs/plugins/', label: 'Plugins', blurb: 'Make your own: tiles, pages, bar glyphs, dock items, widgets, panels and services — the ones ewe ships are the worked examples.' },
 			{ href: '/docs/plugins/writing/', label: 'Writing a plugin', blurb: 'create, the API 3 manifest, one QML file per kind, settings, dev.' },
 			{ href: '/docs/plugins/api/', label: 'What a plugin may use', blurb: 'The Shell singleton, the public components, Theme roles, IPC — API 3.' }
 		]
@@ -41,7 +41,7 @@ export const SECTIONS = [
 		items: [
 			{ href: '/docs/cli/', label: 'Overview', blurb: 'Small tools, one job each, JSON out.' },
 			{ href: '/docs/cli/ewe-conf/', label: 'ewe-conf', blurb: 'The one writer of the one file.' },
-			{ href: '/docs/cli/ewe-plugin/', label: 'ewe-plugin', blurb: 'Add-ons and plugins: install, migrate, add, create, place, set.' },
+			{ href: '/docs/cli/ewe-plugin/', label: 'ewe-plugin', blurb: 'Plugins from ewe or a git URL: install, add, bar, place, set, create, dev.' },
 			{ href: '/docs/cli/ewe-theme/', label: 'ewe-theme', blurb: 'Tokens from an accent or a scheme; import, wallpaper.' },
 			{ href: '/docs/cli/ewe-pass/', label: 'ewe-pass', blurb: 'Logins from your password manager, typed into any app.' },
 			{ href: '/docs/cli/ewe-cloud/', label: 'ewe-cloud', blurb: 'Your Nextcloud account, and its app password.' },
@@ -51,17 +51,17 @@ export const SECTIONS = [
 			{ href: '/docs/cli/ewe-mail/', label: 'ewe-mail', blurb: 'The mail badge, from any IMAP account.' },
 			{ href: '/docs/cli/ewe-auth/', label: 'ewe-auth', blurb: 'Google, with a client you supply.' },
 			{ href: '/docs/cli/ewe-drive/', label: 'ewe-drive', blurb: 'Google Drive as a folder.' },
-			{ href: '/docs/cli/ewe-setup/', label: 'ewe-setup', blurb: 'Deploy the desktop for your user; the add-on migration runs here.' },
+			{ href: '/docs/cli/ewe-setup/', label: 'ewe-setup', blurb: 'Deploy the desktop for your user; the plugin migration runs here.' },
 			{ href: '/docs/cli/ewe-share-picker/', label: 'ewe-share-picker', blurb: 'The screen-share picker the portal calls.' },
 			{ href: '/docs/cli/ewe-install/', label: 'ewe-install', blurb: 'The installer, as a command — with --addons.' },
-			{ href: '/docs/cli/ewe-castd/', label: 'ewe-castd', blurb: 'The casting daemon behind the Cast add-on.' }
+			{ href: '/docs/cli/ewe-castd/', label: 'ewe-castd', blurb: 'The casting daemon behind the Cast plugin.' }
 		]
 	},
 	{
 		title: 'Reference',
 		items: [
-			{ href: '/docs/shortcuts/', label: 'Keyboard shortcuts', blurb: 'The keymap, grouped — and which keys come from an add-on.' },
-			{ href: '/docs/repositories/', label: 'Repositories', blurb: 'Which layer lives where, one repo per add-on.' },
+			{ href: '/docs/shortcuts/', label: 'Keyboard shortcuts', blurb: 'The keymap, grouped — and which keys come from a plugin.' },
+			{ href: '/docs/repositories/', label: 'Repositories', blurb: 'Which layer lives where, one repo per first-party plugin.' },
 			{ href: '/docs/troubleshooting/', label: 'Troubleshooting', blurb: 'Known limitations, where the dock went, and where to get help.' }
 		]
 	}

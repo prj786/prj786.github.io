@@ -97,7 +97,7 @@ export const GROUPS = [
 			['Screensaver', 'A quiet clock or a blank screen when the machine is idle, dimming before it locks.'],
 			['Window', 'How the compositor draws windows: gaps, corners, borders, groups.'],
 			['Window switcher', 'The open windows while Alt+Tab is held.'],
-			['Desktop widgets', 'Plugin cards placed on the wallpaper, below windows or kept above them.'],
+			['Desktop widgets', 'Plugin cards on the wallpaper, below windows or pinned above them; dragged by a hover toolbar, lockable.'],
 			['Share picker', 'Which display, window or region an app may see.'],
 			['Wi-Fi picker', 'Nearby networks, with the password typed right in the list.'],
 			['Bluetooth pairing', 'Confirms codes, asks for PINs and grants access when a device connects.'],

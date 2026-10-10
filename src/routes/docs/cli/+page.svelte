@@ -20,7 +20,7 @@
 <h1>Small tools, one job each.</h1>
 <p class="lede">
 	Every graphical thing in ewe is a front end to one of these. The settings app calls
-	<code>ewe-conf</code>; the sign-in button calls <code>ewe-cloud</code>; Komble's Add-ons page calls
+	<code>ewe-conf</code>; the sign-in button calls <code>ewe-cloud</code>; Komble's Plugins page calls
 	<code>ewe-plugin install</code>. There is no second, hidden path — so anything you can click you
 	can script, and anything that breaks you can debug by running the same command yourself.
 </p>
@@ -83,11 +83,11 @@ ewe-conf sync-status`}
 		<div class="row"><dt>Get at my files</dt><dd><a href="/docs/cli/ewe-files/">ewe-files</a> to mount the account, or folder pairs in <a href="/docs/cli/ewe-sync/">ewe-sync</a>.</dd></div>
 		<div class="row"><dt>Fix the desktop after an update</dt><dd><a href="/docs/cli/ewe-setup/">ewe-setup</a>, then log out and in.</dd></div>
 		<div class="row"><dt>Install on another machine</dt><dd><a href="/docs/cli/ewe-install/">ewe-install</a>.</dd></div>
-		<div class="row"><dt>Get the dock, music, mail, Cast — an add-on</dt><dd><a href="/docs/cli/ewe-plugin/">ewe-plugin</a> <code>install &lt;id&gt;</code>, or Komble → Add-ons; <a href="/docs/add-ons/">the thirteen</a>.</dd></div>
-		<div class="row"><dt>Cast to a television</dt><dd>The Cast add-on in Quick settings — <a href="/docs/cli/ewe-castd/">ewe-castd</a> is what it drives.</dd></div>
+		<div class="row"><dt>Get the dock, music, mail, Cast — a plugin from ewe</dt><dd><a href="/docs/cli/ewe-plugin/">ewe-plugin</a> <code>install &lt;id&gt;</code>, or Komble → Plugins; <a href="/docs/add-ons/">the thirteen</a>.</dd></div>
+		<div class="row"><dt>Cast to a television</dt><dd>The Cast plugin in Quick settings — <a href="/docs/cli/ewe-castd/">ewe-castd</a> is what it drives.</dd></div>
 		<div class="row"><dt>Add a tile, a bar widget, a desktop widget, a panel</dt><dd><a href="/docs/cli/ewe-plugin/">ewe-plugin</a> — a git URL in, or <code>create</code> your own; <a href="/docs/plugins/">the guide</a>.</dd></div>
 		<div class="row"><dt>Change the colors — a scheme, the wallpaper's</dt><dd><a href="/docs/cli/ewe-theme/">ewe-theme</a> <code>scheme import | from-wallpaper | apply</code>, or Settings → Appearance → Colors.</dd></div>
-		<div class="row"><dt>Fill a login into an app</dt><dd><kbd>Super</kbd>+<kbd>P</kbd> with the Passwords add-on; <a href="/docs/cli/ewe-pass/">ewe-pass</a> is what it runs.</dd></div>
+		<div class="row"><dt>Fill a login into an app</dt><dd><kbd>Super</kbd>+<kbd>P</kbd> with the Passwords plugin; <a href="/docs/cli/ewe-pass/">ewe-pass</a> is what it runs.</dd></div>
 	</dl>
 </section>
 

@@ -16,7 +16,7 @@
 		['globe', 'Your place', 'Timezone detected — two providers have to agree — plus language and locale.'],
 		['hard-drive', 'Which disk', "The whole disk is erased, and you're told so twice."],
 		['circle-user', 'Who you are', 'Name, username, password, and a name for the computer.'],
-		['puzzle', 'Which add-ons', 'The dock, music, mail, Cast and more — nothing pre-checked, all of it one click away later.']
+		['puzzle', 'Which plugins', 'The dock, music, mail, Cast and more — nothing pre-checked, all of it one click away later.']
 	];
 
 	// Two accents through the same engine /theming/ runs live, derived at
@@ -31,7 +31,7 @@
 	<title>ewe — a complete Arch-based operating system</title>
 	<meta
 		name="description"
-		content="ewe is an Arch-based operating system that installs from one ISO in about ten minutes. It asks what's personal — keyboard, place, disk, who you are, which add-ons — and decides everything technical for you."
+		content="ewe is an Arch-based operating system that installs from one ISO in about ten minutes. It asks what's personal — keyboard, place, disk, who you are, which plugins — and decides everything technical for you."
 	/>
 </svelte:head>
 
@@ -81,11 +81,11 @@
 				fallback="jpg"
 				w={2560}
 				h={1440}
-				alt="The ewe desktop over a photo of a sheep in a meadow: the bar across the top, the Dock add-on along the bottom, and ewe-settings open on Layout and dock with toggles for the power profile, keyboard layout, system tray, screenshot button and dock autohide, all in an orange accent."
+				alt="The ewe desktop over a photo of a sheep in a meadow: the bar across the top, the Dock plugin along the bottom, and ewe-settings open on Layout and dock with toggles for the power profile, keyboard layout, system tray, screenshot button and dock autohide, all in an orange accent."
 			/>
 		</div>
 		<p class="figcap center">
-			A real session with the Dock add-on, and Settings open on Layout and dock. The toggles, the
+			A real session with the Dock plugin, and Settings open on Layout and dock. The toggles, the
 			selected pane and the active dock item all follow one accent.
 		</p>
 	</div>
@@ -106,8 +106,8 @@
 		<h2>It asks five things.</h2>
 		<p>
 			Everything technical is decided by ewe — and shown to you on one summary screen before a single
-			byte is written. The fifth question is the only one about the desktop itself: which of the
-			thirteen add-ons you want. The honest default is none.
+			byte is written. The fifth question is the only one about the desktop itself: which plugins
+			you want, of the thirteen that ship with ewe. The honest default is none.
 		</p>
 	</div>
 	<ol class="asks">
@@ -129,9 +129,9 @@
 		<h2>A desktop, not a starting point.</h2>
 		<p>
 			Greeter, bar, launcher, Overview, Quick settings, software manager, settings and lock screen —
-			all first-party, all matching. Then the add-ons you choose — the dock, music, mail, Cast and
-			nine more — and plugins for what you would add. Nothing to assemble, nothing you did not ask
-			for.
+			all first-party, all matching. Then the plugins you choose — the dock, music, mail, Cast and
+			nine more that ship with ewe — and plugins from a git URL for what you would add. Nothing to
+			assemble, nothing you did not ask for.
 		</p>
 	</div>
 
@@ -185,7 +185,7 @@
 		</a>
 		<a class="card act tile wide" href="/docs/add-ons/">
 			<span class="ico"><Icon name="cast" size={18} /></span>
-			<h3>Add-ons you choose</h3>
+			<h3>Plugins you choose</h3>
 			<p>
 				Thirteen first-party extras ship inside ewe and install only when you ask: the dock, music,
 				Places, your phone, mail, VPN, SSH, Cast to TV, Insomnia, a system monitor, clipboard
@@ -208,7 +208,7 @@
 				<code>ewe-plugin create</code> scaffolds a repo; a git URL installs one. Quick settings tiles
 				and pages, bar glyphs, dock items, panels, services — and desktop widgets you drag where you
 				like. You draw it; ewe places it, keeps its settings, and gives a crashing plugin three
-				strikes, not your login. The add-ons are built the same way.
+				strikes, not your login. The thirteen that ship with ewe are built the same way.
 			</p>
 			<span class="go">How plugins work <Icon name="arrow-right" size={14} /></span>
 		</a>

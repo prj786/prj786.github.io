@@ -5,10 +5,10 @@
 	const TOC = [
 		['os', 'The OS'],
 		['shell', 'The shell'],
-		['addons', 'Add-ons'],
+		['addons', 'Plugins from ewe'],
 		['look', 'The look'],
 		['apps', 'Apps'],
-		['plugins', 'Plugins'],
+		['plugins', 'Your own plugins'],
 		['cast', 'Cast & phone'],
 		['account', 'Your account'],
 		['system', 'System']
@@ -19,7 +19,7 @@
 	<title>Features — ewe</title>
 	<meta
 		name="description"
-		content="ewe OS in full: the installer and its decisions, rolling updates, the Quickshell desktop, the thirteen add-ons you choose, theming, Komble, plugins, cast to TV, phone link, your Nextcloud account and the system parts."
+		content="ewe OS in full: the installer and its decisions, rolling updates, the Quickshell desktop, the thirteen plugins you choose, theming, Komble, plugins, cast to TV, phone link, your Nextcloud account and the system parts."
 	/>
 </svelte:head>
 
@@ -42,7 +42,7 @@
 			<div class="row">
 				<dt><Icon name="hard-drive" size={16} />A first-party installer</dt>
 				<dd>
-					Eight screens in the desktop's own design. It asks what's personal — and which add-ons
+					Eight screens in the desktop's own design. It asks what's personal — and which plugins
 					you want — and decides the rest: btrfs subvolumes, systemd-boot, GPU drivers,
 					hibernation, <a href="/download/#decided">showing every decision</a> before you commit.
 				</dd>
@@ -69,7 +69,7 @@
 				<dt><Icon name="circle-user" size={16} />A welcome flow, once</dt>
 				<dd>
 					First login connects you, installs what's waiting, offers your Nextcloud and a restore, lets
-					you pick add-ons, and gives a sixty-second tour. Then it never appears again.
+					you pick plugins, and gives a sixty-second tour. Then it never appears again.
 				</dd>
 			</div>
 		</dl>
@@ -85,7 +85,7 @@
 		<div class="grid">
 			<div class="card">
 				<h3><Icon name="layout-panel-top" size={16} />Bar</h3>
-				<p>Workspaces, window title, tray, battery, network, sound. Counts sit in accent badges; sync state is a glyph — and the add-ons add theirs: an envelope, a shield, a phone.</p>
+				<p>Workspaces, window title, tray, battery, network, sound. Counts sit in accent badges; sync state is a glyph — and plugins add theirs: an envelope, a shield, a phone.</p>
 			</div>
 			<div class="card">
 				<h3><Icon name="layers" size={16} />Overview</h3>
@@ -97,7 +97,7 @@
 			</div>
 			<div class="card">
 				<h3><Icon name="sliders-horizontal" size={16} />Quick settings</h3>
-				<p>Wi-Fi, Bluetooth, sound and Do not disturb as tiles; a rail for calendar and notifications. Add-ons add their own tiles and pages — VPN, SSH, Insomnia, CPU and memory, mail, phone, Cast.</p>
+				<p>Wi-Fi, Bluetooth, sound and Do not disturb as tiles; a rail for calendar and notifications. Plugins add their own tiles and pages — VPN, SSH, Insomnia, CPU and memory, mail, phone, Cast.</p>
 			</div>
 			<div class="card">
 				<h3><Icon name="bell" size={16} />Notifications</h3>
@@ -110,12 +110,12 @@
 		</div>
 	</section>
 	<section id="addons">
-		<p class="eyebrow">Add-ons</p>
+		<p class="eyebrow">Plugins from ewe</p>
 		<h2>Lean by default. Yours by choice.</h2>
 		<p>
 			A fresh ewe is the core above plus Settings, Komble and ewe-sync — and nothing else. Thirteen
-			first-party add-ons ship inside ewe, work offline, and install only when you ask: at install,
-			on first login, or one click in Komble → Add-ons, which also fetches any package an add-on
+			first-party plugins ship inside ewe, work offline, and install only when you ask: at install,
+			on first login, or one click in Komble → Plugins, which also fetches any package a plugin
 			needs. Upgraders keep what they had. <a href="/docs/add-ons/">Each one, documented →</a>
 		</p>
 		<ul class="addons">
@@ -184,9 +184,9 @@
 				<dt><Icon name="settings-2" size={16} />ewe-settings</dt>
 				<dd>
 					Eighteen panes, all writing the one config file: Appearance, Accessibility, Animations,
-					Layout and dock, Window rules, Displays, Networking, Bluetooth, Wallpaper, Keyboard and
+					Layout, Window rules, Displays, Networking, Bluetooth, Wallpaper, Keyboard and
 					mouse, Screensaver, Power, Default apps, Startup, Shortcuts, Time and place, User and
-					System. A pane for a feature you have not installed says so and offers the add-on.
+					System. A pane for a feature you have not installed says so and offers the plugin.
 				</dd>
 			</div>
 			<div class="row">
@@ -200,7 +200,7 @@
 	</section>
 
 	<section id="plugins">
-		<p class="eyebrow">Plugins</p>
+		<p class="eyebrow">Your own plugins</p>
 		<h2>Extend it without forking it.</h2>
 		<p>
 			The shell is one Quickshell process, so a plugin is QML it loads beside its own components —
@@ -213,8 +213,8 @@
 				<dd>
 					Quick settings tiles and pages, glyphs in the bar's pill, dock items, bar widgets packed
 					between the built-in indicators, desktop widgets you drag into place, panels and
-					overlays summoned over IPC, headless services that run from login. The thirteen add-ons
-					are made of exactly these.
+					overlays summoned over IPC, headless services that run from login. The thirteen that ship
+					with ewe are made of exactly these.
 				</dd>
 			</div>
 			<div class="row">
@@ -249,8 +249,8 @@
 		<h2>The TV in the room, and the phone in your pocket.</h2>
 		<p>
 			Screen mirroring on Wayland is usually a research project, or a borrowed GTK window bolted onto
-			a desktop that has no GTK. Here it's the Cast add-on in Quick settings, served by ewe's own
-			headless daemon — <strong>no foreign window ever appears</strong>. Both are add-ons: install
+			a desktop that has no GTK. Here it's the Cast plugin in Quick settings, served by ewe's own
+			headless daemon — <strong>no foreign window ever appears</strong>. Both are plugins: install
 			the ones you have a TV or a phone for.
 		</p>
 		<dl class="rows">
@@ -276,9 +276,9 @@
 			<div class="row">
 				<dt><Icon name="smartphone" size={16} />Phone link</dt>
 				<dd>
-					The Phone add-on: pair over Wi-Fi for phone battery in the bar, notifications you can
+					The Phone plugin: pair over Wi-Fi for phone battery in the bar, notifications you can
 					dismiss and reply to, and full SMS. KDE Connect provides the daemon — Komble installs it
-					with the add-on; the interface is ewe's, and pairing keys stay in the daemon.
+					with the plugin; the interface is ewe's, and pairing keys stay in the daemon.
 				</dd>
 			</div>
 		</dl>
@@ -294,7 +294,7 @@
 			password, your two-factor — and ewe receives an app password you can revoke any time.
 		</p>
 		<p>
-			<strong>Mail</strong> — the Mail add-on — is any IMAP account or Gmail, for the unread badge,
+			<strong>Mail</strong> — the Mail plugin — is any IMAP account or Gmail, for the unread badge,
 			an Inbox page and notifications. <strong>Google</strong> is optional and needs your own OAuth
 			client file.
 			<a href="/docs/cli/ewe-sync/"><strong>ewe-sync</strong></a> lives in the tray and is the only
@@ -318,7 +318,7 @@
 			<div class="row">
 				<dt><Icon name="shield-check" size={16} />Survives a crash</dt>
 				<dd>
-					The shell is a restart-on-failure user service, so bar, add-ons and lock come back on their
+					The shell is a restart-on-failure user service, so bar, plugins and lock come back on their
 					own. Outputs stay locked even if the shell dies while locked. A plugin that crashes it
 					three times in a minute is left out of the next start, and named.
 				</dd>
@@ -374,7 +374,7 @@
 	.card h3 :global(.icon) {
 		color: var(--accent-text);
 	}
-	/* the thirteen add-ons: a glyph, the name, one line */
+	/* the thirteen first-party plugins: a glyph, the name, one line */
 	.addons {
 		list-style: none;
 		margin: var(--space-md) 0 0;

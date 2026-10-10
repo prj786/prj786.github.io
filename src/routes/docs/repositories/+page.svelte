@@ -8,7 +8,7 @@
 	<title>Repositories — ewe docs</title>
 	<meta
 		name="description"
-		content="ewe is built as layers, each in its own repository: the distro, the desktop, the package repository, the software manager, settings, the account app, the casting daemon — and one repository per add-on."
+		content="ewe is built as layers, each in its own repository: the distro, the desktop, the package repository, the software manager, settings, the account app, the casting daemon — and one repository per first-party plugin."
 	/>
 </svelte:head>
 
@@ -28,7 +28,7 @@
 		</div>
 		<div class="row">
 			<dt><a href={DE_REPO}>ewe</a></dt>
-			<dd>The desktop environment — the compositor configuration, the Quickshell shell, the command-line tools, the vendored add-ons — and the <code>ewe</code> package that installs it.</dd>
+			<dd>The desktop environment — the compositor configuration, the Quickshell shell, the command-line tools, the vendored first-party plugins — and the <code>ewe</code> package that installs it.</dd>
 		</div>
 		<div class="row">
 			<dt><a href={PKG_REPO}>ewe-repo</a></dt>
@@ -36,7 +36,7 @@
 		</div>
 		<div class="row">
 			<dt><a href="{GITHUB}komble-arch">komble-arch</a></dt>
-			<dd>Komble, the software manager: your repositories, the AUR and AppImages in one window — and the Add-ons page.</dd>
+			<dd>Komble, the software manager: your repositories, the AUR and AppImages in one window — and the Plugins page.</dd>
 		</div>
 		<div class="row">
 			<dt><a href="{GITHUB}ewe-settings">ewe-settings</a></dt>
@@ -48,7 +48,7 @@
 		</div>
 		<div class="row">
 			<dt><a href="{GITHUB}ewe-cast">ewe-cast</a></dt>
-			<dd>The headless casting daemon behind the Cast add-on — Miracast and Chromecast, with no foreign window.</dd>
+			<dd>The headless casting daemon behind the Cast plugin — Miracast and Chromecast, with no foreign window.</dd>
 		</div>
 		<div class="row">
 			<dt><a href={EXAMPLE}>ewe-plugin-example</a></dt>
@@ -62,11 +62,11 @@
 </section>
 
 <section>
-	<h2>One repository per add-on</h2>
+	<h2>One repository per first-party plugin</h2>
 	<p>
-		Every <a href="/docs/add-ons/">add-on</a> is developed and released in its own repository and
-		copied into the ewe package at release time, so a fix lands in the add-on's repo first and
-		reaches you with the next ewe. The thirteen:
+		Every <a href="/docs/add-ons/">plugin that ships with ewe</a> is developed and released in its
+		own repository and copied into the ewe package at release time, so a fix lands in the plugin's
+		repo first and reaches you with the next ewe. The thirteen:
 	</p>
 	<dl class="rows addons">
 		{#each ADDONS as a}
@@ -83,8 +83,8 @@
 	<dl class="rows">
 		<div class="row"><dt>The installer or the ISO</dt><dd><a href={OS_REPO}>ewe-os</a></dd></div>
 		<div class="row"><dt>The bar, the Overview, a keybinding, a tool</dt><dd><a href={DE_REPO}>ewe</a></dd></div>
-		<div class="row"><dt>The dock, music, mail, Cast — an add-on</dt><dd>Its own repository above, <code>ewe-plugin-&lt;name&gt;</code></dd></div>
-		<div class="row"><dt>Installing software, or the Add-ons page</dt><dd><a href="{GITHUB}komble-arch">komble-arch</a></dd></div>
+		<div class="row"><dt>The dock, music, mail, Cast — a plugin from ewe</dt><dd>Its own repository above, <code>ewe-plugin-&lt;name&gt;</code></dd></div>
+		<div class="row"><dt>Installing software, or the Plugins page</dt><dd><a href="{GITHUB}komble-arch">komble-arch</a></dd></div>
 		<div class="row"><dt>Sync, or the account</dt><dd><a href="{GITHUB}ewe-sync">ewe-sync</a></dd></div>
 		<div class="row"><dt>Not sure</dt><dd><a href={OS_REPO}>ewe-os</a> — it gets routed.</dd></div>
 	</dl>

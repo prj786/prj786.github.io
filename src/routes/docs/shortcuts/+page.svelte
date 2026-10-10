@@ -7,7 +7,7 @@
 	<title>Keyboard shortcuts — ewe docs</title>
 	<meta
 		name="description"
-		content="The ewe keymap: launching, the Overview, window management, workspaces — and the keys that arrive with an add-on. Everything is on Super, so nothing collides with what applications use."
+		content="The ewe keymap: launching, the Overview, window management, workspaces — and the keys that arrive with a plugin. Everything is on Super, so nothing collides with what applications use."
 	/>
 </svelte:head>
 
@@ -31,16 +31,16 @@
 			<div><dt><kbd>Super</kbd><kbd>N</kbd></dt><dd>Quick settings</dd></div>
 			<div><dt><kbd>Super</kbd><kbd>C</kbd></dt><dd>Calendar</dd></div>
 			<div><dt><kbd>Super</kbd><kbd>Z</kbd></dt><dd>The Pen — stashed windows</dd></div>
-			<div><dt><kbd>Super</kbd><kbd>Shift</kbd><kbd>W</kbd></dt><dd>Arrange desktop widgets — drag, sticky, hide; Esc</dd></div>
+			<div><dt><kbd>Super</kbd><kbd>Shift</kbd><kbd>W</kbd></dt><dd>Arrange desktop widgets — drag, pin, lock, hide; Esc</dd></div>
 		</dl>
 	</div>
 </section>
 
 <section>
-	<h2>From add-ons</h2>
+	<h2>From plugins</h2>
 	<p>
-		These keys exist only while their <a href="/docs/add-ons/">add-on</a> is installed and on — the
-		add-on's manifest declares them, and ewe generates the bind.
+		These keys exist only while their <a href="/docs/add-ons/">plugin</a> is installed and on — the
+		plugin's manifest declares them, and ewe generates the bind.
 	</p>
 	<div class="keys">
 		<dl>

@@ -115,8 +115,9 @@
 				<div>
 					<h3>Say yes to your apps</h3>
 					<p>
-						Komble reads the package list inside the file and <em>offers</em> what's missing — apps,
-						add-ons and plugins alike. A restored file never silently installs software.
+						Komble reads the package list inside the file and <em>offers</em> what's missing — apps
+						and plugins alike, the ones that ship with ewe and the ones from a git URL. A restored
+						file never silently installs software.
 					</p>
 				</div>
 			</li>

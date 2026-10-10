@@ -10,7 +10,7 @@
 	<title>Install ewe — ewe docs</title>
 	<meta
 		name="description"
-		content="Install ewe OS from the ISO: eight screens, about ten minutes, the add-ons you want, and the disk you choose is erased. Plus the headless path and adding ewe to an existing Arch install."
+		content="Install ewe OS from the ISO: eight screens, about ten minutes, the plugins you want, and the disk you choose is erased. Plus the headless path and adding ewe to an existing Arch install."
 	/>
 </svelte:head>
 
@@ -19,8 +19,8 @@
 <p class="lede">
 	Download the image, verify it, write it to a stick, and boot in UEFI mode with Secure Boot off. The
 	stick runs the real desktop, so you can try everything before you commit; nothing touches your
-	disks until you press Install. One difference from an installed ewe: the live stick has the dock
-	<a href="/docs/add-ons/">add-on</a> so <em>Install ewe</em> has a place to sit — your install starts
+	disks until you press Install. One difference from an installed ewe: the live stick has the Dock
+	<a href="/docs/add-ons/">plugin</a> so <em>Install ewe</em> has a place to sit — your install starts
 	without it unless you pick it.
 </p>
 
@@ -38,9 +38,9 @@
 		<div class="row"><dt>Time and place</dt><dd>Detected from the network and shown to you, never silently trusted, plus a language picker.</dd></div>
 		<div class="row"><dt>Disk</dt><dd>Which disk. <strong>It is erased entirely.</strong></dd></div>
 		<div class="row"><dt>Your account</dt><dd>Name, user name, password, computer name.</dd></div>
-		<div class="row"><dt>Add-ons</dt><dd>The extras that ship with ewe but are not installed until you ask — the dock, clipboard history, screenshots, passwords, music, Places, your phone, mail, Cast to TV, Insomnia, system monitor, SSH, VPN. Nothing is pre-checked; an empty pick is a fine answer, because <strong>Komble → Add-ons</strong> has every one of them later. <a href="/docs/add-ons/">What each one is →</a></dd></div>
-		<div class="row"><dt>Summary</dt><dd>Everything you chose, add-ons included, the decided stack, and the only Install button.</dd></div>
-		<div class="row"><dt>Install</dt><dd>A last connectivity check, streamed progress — the base system, the desktop, an update so the first boot owes none, your add-ons — then reboot. If a step fails it says why and offers to retry. An add-on that could not be installed never fails the install: the Done screen names it.</dd></div>
+		<div class="row"><dt>Plugins</dt><dd>The plugins that ship with ewe but are not installed until you ask — the dock, clipboard history, screenshots, passwords, music, Places, your phone, mail, Cast to TV, Insomnia, system monitor, SSH, VPN. Nothing is pre-checked; an empty pick is a fine answer, because <strong>Komble → Plugins</strong> has every one of them later. <a href="/docs/add-ons/">What each one is →</a></dd></div>
+		<div class="row"><dt>Summary</dt><dd>Everything you chose, plugins included, the decided stack, and the only Install button.</dd></div>
+		<div class="row"><dt>Install</dt><dd>A last connectivity check, streamed progress — the base system, the desktop, an update so the first boot owes none, your plugins — then reboot. If a step fails it says why and offers to retry. A plugin that could not be installed never fails the install: the Done screen names it.</dd></div>
 	</dl>
 	<Callout type="warning" title="Whole-disk installs only">
 		<p>
@@ -58,7 +58,7 @@
 		resuming an interrupted one.
 	</p>
 	<Code code={`ewe-install --help
-ewe-install --addons ewe.dock,ewe.clipboard     # the add-ons decided up front`} />
+ewe-install --addons ewe.dock,ewe.clipboard     # the plugins decided up front`} />
 	<p><a href="/docs/cli/ewe-install/">The ewe-install reference →</a></p>
 </section>
 
@@ -73,7 +73,7 @@ ewe-install --addons ewe.dock,ewe.clipboard     # the add-ons decided up front`}
 		code={`sudo pacman -S ewe                                 # the desktop, its apps and dependencies
 ewe-setup                                          # deploy it for your user
 bash /usr/share/ewe/install.sh --no-packages       # the system side; it asks for sudo where needed
-ewe-plugin install ewe.dock                        # the add-ons you want, one by one`}
+ewe-plugin install ewe.dock                        # the plugins you want, one by one`}
 	/>
 	<p>
 		Or let the installer do the layering, including the greeter and the boot splash, with

@@ -6,7 +6,7 @@
 
 	const fields = [
 		['schemaVersion', '1', 'The manifest format. Only this value is accepted.'],
-		['id', '"acme.weather"', 'namespace.name, lowercase [a-z0-9_-], at least one dot. "ewe." is reserved for the add-ons. The install directory is named after it.'],
+		['id', '"acme.weather"', 'namespace.name, lowercase [a-z0-9_-], at least one dot. "ewe." is reserved for the plugins that ship with ewe. The install directory is named after it.'],
 		['name', '"Weather"', 'What list and the catalogue card show.'],
 		['version', '"0.1.0"', 'Yours to bump; list shows it.'],
 		['apiVersion', '3', '3 or 2 — the shell loads both; any other value is refused at install, never at login. The quick-tile, quick-page, bar-status and dock-item kinds, ipcAliases and the keybind target rule need 3.'],
@@ -19,10 +19,12 @@
 		['requires', '{ "packages": [...], "commands": [...] }', 'Optional. Reported by list --json (missing) and install; never installed by the shell — Komble offers them.'],
 		['icon · category', '"icSun" · "Utilities"', 'The catalogue card. Icons are Theme glyph names, resolved by the host.'],
 		['barWidget.defaultSection', '"right"', 'left, center or right — where a bar widget is packed. Optional.'],
-		['desktopWidget', '{ "x": 48, "y": 64, "layer": "desktop" }', 'Optional, for desktop-widget: the default place. The user’s placement in ewe.conf wins.'],
-		['settings', '[{ "key", "type", "default", "label" }]', 'Optional: bool, int (min/max), string, choice (choices), color. The values reach every entry point as settings and render as a form in Komble.'],
+		['barWidget.defaultShown · barStatus.defaultShown', 'false', 'Optional, default true: whether Show in bar is on before the user has picked. The system monitor’s readout starts off this way.'],
+		['barWidget.toggle · barStatus.toggle', 'false', 'Optional, default true. false means your own settings place the button — as Music and Places do with “Where the button lives” — so ewe shows no Show in bar switch, and ewe-plugin bar <id> off is refused.'],
+		['desktopWidget', '{ "x": 48, "y": 64, "layer": "desktop", "pinLevel": "top", "locked": false }', 'Optional, for desktop-widget: the defaults. layer is desktop (under the windows), top (pinned above them) or overlay (pinned above everything, fullscreen apps too); pinLevel, top or overlay (default top), is where pinning puts it; locked (default false) stops dragging. The user’s placement in ewe.conf wins.'],
+		['settings', '[{ "key", "type", "default", "label", "description" }]', 'Optional: bool, int (min/max), string, choice (choices), color. description is the line Komble shows under the label in your Options dialog. The values reach every entry point as settings. First-party (“ewe.”) only: legacy names a dotted ewe.conf key whose value stands until the user sets the plugin’s own — how the Dock’s settings moved out of Settings without changing anyone’s dock.'],
 		['keybinds', '[{ "combo": "SUPER + W", "ipc": "acme.weather toggle" }]', 'Optional: Hyprland binds generated while the plugin is enabled. With apiVersion 3 the target must be the plugin’s own id.'],
-		['ipcAliases', '["player"]', 'Add-ons only ("ewe." ids): legacy IPC targets the plugin keeps alive after a feature moved out of the shell.'],
+		['ipcAliases', '["player"]', 'First-party only ("ewe." ids): legacy IPC targets the plugin keeps alive after a feature moved out of the shell.'],
 		['description · homepage · author', '', 'Optional; shown by info and the card.']
 	];
 </script>
@@ -40,7 +42,8 @@
 <p class="lede">
 	A plugin is a git repository with a <code>manifest.json</code> at its root and one QML file per
 	kind. Nothing is compiled, nothing is packaged — the shell reads the files where they are. Start
-	from the example, or from an <a href="/docs/add-ons/">add-on</a>; they are the whole shape.
+	from the example, or from a <a href="/docs/add-ons/">plugin that ships with ewe</a>; they are the
+	whole shape.
 </p>
 
 <section>
@@ -90,7 +93,8 @@ cd my-plugin && ls
   "quickPage": { "key": "weather", "label": "Weather", "icon": "icSun", "order": 10 },
   "barStatus": { "order": 10 },
   "requires": { "packages": ["curl"], "commands": ["curl"] },
-  "settings": [{ "key": "city", "type": "string", "default": "", "label": "City" }]
+  "settings": [{ "key": "city", "type": "string", "default": "", "label": "City",
+                 "description": "Where the forecast is for." }]
 }`}
 		copyable={false}
 	/>
@@ -109,7 +113,7 @@ cd my-plugin && ls
 	<p>
 		Every file begins with <code>import qs</code>: that is the shell's own module, and it brings
 		<code>Theme</code>, <code>Shell</code>, <code>Log</code> and the public components exactly as the
-		first-party add-ons see them. What is public is on <a href="/docs/plugins/api/">the next page</a>.
+		first-party plugins see them. What is public is on <a href="/docs/plugins/api/">the next page</a>.
 		The host sets a few properties on your root — <code>pluginId</code>, <code>pluginDir</code>,
 		<code>stateDir</code>, <code>settings</code>, and per kind <code>screen</code>,
 		<code>barWindow</code>, <code>ink</code>, <code>panelOpen</code> — but only when the root declares
@@ -275,7 +279,7 @@ BarModule {
 			Rooting it on <code>BarModule</code> gives you all of that. Widgets append to their section
 			after the built-ins, in id order; the centre yields on an output too narrow to hold it.
 			<code>AnchoredPopup</code> opens under the bar from a top anchor and above the dock from a
-			bottom one, closes on Esc or a click outside, and closes every other add-on popup when it
+			bottom one, closes on Esc or a click outside, and closes every other plugin popup when it
 			opens.
 		</p>
 	</Callout>
@@ -299,10 +303,14 @@ Item {
 }`}
 	/>
 	<p>
-		Give it a size and draw. Where it sits, on which output, whether it is above windows (sticky) or on
-		the desktop, and whether it is shown at all are the <em>user's</em> decisions — arrange mode
-		(<kbd>Super</kbd>+<kbd>Shift</kbd>+<kbd>W</kbd>), Komble, or <code>ewe-plugin place</code> — kept in
-		<code>ewe.conf</code> and applied live.
+		Give it a size and draw. Where it sits, on which output, whether it is <em>pinned</em> — above
+		the windows, or above everything — or on the desktop under them, whether it is locked in place,
+		and whether it is shown at all are the <em>user's</em> decisions, kept in <code>ewe.conf</code>
+		and applied live. The host draws a toolbar in the widget's corner when the pointer is over it:
+		a grip to drag it by, and the pin. A widget can always be dragged — by that grip, or by any part
+		of the card your own controls do not take — until the user turns on <em>Lock position</em>.
+		Arrange mode (<kbd>Super</kbd>+<kbd>Shift</kbd>+<kbd>W</kbd>) gives every widget its name and
+		the Pinned, Lock and Hide chips; Komble's Options and <code>ewe-plugin place</code> do the same.
 	</p>
 
 	<h3>Settings you declare</h3>
@@ -315,10 +323,18 @@ Item {
 	/>
 	<p>
 		Five types — <code>bool</code>, <code>int</code> (with <code>min</code>/<code>max</code>),
-		<code>string</code>, <code>choice</code>, <code>color</code>. Komble renders them as a form on your
-		plugin's card, <code>ewe-plugin set acme.weather unit F</code> does the same from a terminal, and
-		every entry point that declares <code>property var settings</code> receives the values — on load
-		and on every change, without a restart.
+		<code>string</code>, <code>choice</code>, <code>color</code>. Komble renders them in your plugin's
+		Options dialog, a <code>description</code> under each label;
+		<code>ewe-plugin set acme.weather unit F</code> does the same from a terminal, and every entry
+		point that declares <code>property var settings</code> receives the values — on load and on
+		every change, without a restart.
+	</p>
+	<p>
+		Your own UI can change one of them too: <code>Shell.setSetting(pluginId, "unit", "F")</code>
+		applies it to every live instance at once and persists it through <code>ewe-plugin set</code>,
+		which checks it against your manifest — a value that does not fit snaps back. It is for your own
+		declared settings only; the bell on Mail's Inbox page is its <code>notify</code> setting,
+		flipped this way. <a href="/docs/plugins/api/">More on the next page →</a>
 	</p>
 
 	<h2>4. Check it</h2>
@@ -367,7 +383,7 @@ ewe-plugin add https://github.com/acme/ewe-weather.git --enable`}
 	<dl class="rows">
 		<div class="row"><dt>Ask for a role, never a value</dt><dd><code>Theme.surfaceBase</code>, not a hex; <code>Theme.spaceS</code>, not 8; <code>Theme.durBase</code>, not 200. The scheme, the accent and Text size are the user's and change at runtime; a hard-coded value is the one thing that will look foreign. The names are on <a href="/docs/plugins/api/">What a plugin may use</a>, with the table for moving an API 1 plugin.</dd></div>
 		<div class="row"><dt>Use the kit</dt><dd>Root a tile on <code>Tile</code>, a page on <code>QsPageHead</code> and the <code>Qs*</code> rows, a bar widget on <code>BarModule</code>, a popup on <code>AnchoredPopup</code>. They already follow Glass, the look presets and the one-popup rule; a hand-drawn rectangle will not.</dd></div>
-		<div class="row"><dt>Own your state</dt><dd>Keep files under <code>stateDir</code> (<code>~/.local/state/ewe/plugins/&lt;id&gt;</code>, created when first asked for); never write <code>ewe.conf</code> — declare a <code>setting</code> if the user should change it.</dd></div>
+		<div class="row"><dt>Own your state</dt><dd>Keep files under <code>stateDir</code> (<code>~/.local/state/ewe/plugins/&lt;id&gt;</code>, created when first asked for); never write <code>ewe.conf</code> — declare a <code>setting</code> if the user should change it, and change it from your own UI with <code>Shell.setSetting</code>.</dd></div>
 		<div class="row"><dt>Poll only while seen</dt><dd>A tile or page gets <code>panelOpen</code>; sample while it is true and stop when it is not. A bar widget polls for the whole session — the system monitor's bar readout is off by default for exactly that reason.</dd></div>
 		<div class="row"><dt>Stay small</dt><dd>People will read your code before enabling it, because the docs tell them to. One file per kind, no build step, a README that says what it talks to.</dd></div>
 	</dl>

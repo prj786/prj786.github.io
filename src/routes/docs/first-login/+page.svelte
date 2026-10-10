@@ -7,7 +7,7 @@
 	<title>First login — ewe docs</title>
 	<meta
 		name="description"
-		content="What happens the first time you log in to ewe: the welcome flow, connecting, updates, signing in to your Nextcloud, restoring a backup, picking your add-ons — and the keys to start with."
+		content="What happens the first time you log in to ewe: the welcome flow, connecting, updates, signing in to your Nextcloud, restoring a backup, picking your plugins — and the keys to start with."
 	/>
 </svelte:head>
 
@@ -26,7 +26,7 @@
 		<div class="row"><dt>Updates</dt><dd>Any updates that landed since the image was built. A fresh install is already current, so this usually just confirms it.</dd></div>
 		<div class="row"><dt>Sign in</dt><dd>Your Nextcloud, on your server's own page. Optional. <a href="/docs/account/nextcloud/">What this gives you →</a></dd></div>
 		<div class="row"><dt>Restore</dt><dd>Offered only when the account already holds a backup from another machine. <a href="/docs/account/settings-sync/">How restoring works →</a></dd></div>
-		<div class="row"><dt>Add-ons</dt><dd>The extras ewe ships but does not install — the dock, music, Places, your phone, mail, Cast to TV and the rest — as a list with nothing pre-checked. <em>Install selected</em> puts them in when you finish; <em>Browse in Komble</em> opens the full catalogue. If you picked some in the installer they are already there. <a href="/docs/add-ons/">The thirteen →</a></dd></div>
+		<div class="row"><dt>Plugins</dt><dd>The plugins ewe ships but does not install — the dock, music, Places, your phone, mail, Cast to TV and the rest — as a list with nothing pre-checked. <em>Install selected</em> puts them in when you finish; <em>Browse in Komble</em> opens the full catalogue. If you picked some in the installer they are already there. <a href="/docs/add-ons/">The thirteen →</a></dd></div>
 		<div class="row"><dt>Tour</dt><dd>Sixty seconds on where things are.</dd></div>
 	</dl>
 	<Callout>
@@ -41,9 +41,10 @@
 	<h2>No dock?</h2>
 	<p>
 		That is by design, not a fault. A fresh ewe starts with the bar and nothing along the bottom;
-		the dock is an add-on like the others. Komble → Add-ons → Dock puts it there, or
-		<code>ewe-plugin install ewe.dock</code>. Until then the launcher is <kbd>Super</kbd>+<kbd>D</kbd>
-		and a tap of <kbd>Super</kbd> is the Overview — every window on every workspace, with search.
+		the dock is a plugin like the others. Komble → Plugins → Dock puts it there, or
+		<code>ewe-plugin install ewe.dock</code>; its settings — auto-hide, icon size — come with it, in
+		the same card's Options. Until then the launcher is <kbd>Super</kbd>+<kbd>D</kbd> and a tap of
+		<kbd>Super</kbd> is the Overview — every window on every workspace, with search.
 	</p>
 </section>
 
