@@ -19,7 +19,8 @@
 <p class="eyebrow">Docs</p>
 <h1>Everything you need, in order.</h1>
 <p class="lede">
-	Start at the top and you'll have a working machine in about ten minutes. Every graphical thing in
+	Start at the top and you'll have a working machine in about ten minutes — a lean one, with the
+	<a href="/docs/add-ons/">plugins</a> you chose and nothing you did not. Every graphical thing in
 	ewe is a front end to one of the commands documented here, so anything you can click, you can
 	script — and anything that breaks, you can debug by running the same command yourself.
 </p>
@@ -34,8 +35,9 @@
 	<p>
 		The rest are small tools around it: <code>ewe-cloud</code> holds one account, the app
 		<code>ewe-sync</code> moves the file and your folders between machines, Komble installs software
-		and records it in the file, and Settings edits the file. <code>ewe-plugin</code> drops third-party
-		bar widgets and panels into the shell and records which are on. There is no second, hidden path.
+		and records it in the file, and Settings edits the file. <code>ewe-plugin</code> puts a
+		plugin into the shell — <a href="/docs/add-ons/">one that ships with ewe</a> or one from a git
+		URL — and records which are on. There is no second, hidden path.
 	</p>
 	<dl class="rows">
 		<div class="row">

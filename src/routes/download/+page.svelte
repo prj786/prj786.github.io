@@ -10,7 +10,7 @@
 	<title>Download — ewe</title>
 	<meta
 		name="description"
-		content="Download the ewe OS ISO as one file, write it to a USB stick, and install in about ten minutes. Six screens, and everything technical decided for you."
+		content="Download the ewe OS ISO as one file, write it to a USB stick, and install in about ten minutes. Eight screens, the plugins you want, and everything technical decided for you."
 	/>
 </svelte:head>
 
@@ -81,27 +81,32 @@
 		<p>
 			You land on the ewe desktop, running from the stick, with <strong>Install ewe</strong> first in
 			the dock. Everything you see is the real system: open Quick settings with
-			<code>Super+N</code>, try Komble, change the accent. Nothing is written to your disks until you
-			press the red Install button on the Summary screen.
+			<code>Super+N</code>, try Komble, change the accent. One difference from an installed ewe: the
+			stick carries the <a href="/docs/add-ons/">Dock plugin</a> so the installer has somewhere to
+			sit — your install starts without it unless you pick it. Nothing is written to your disks
+			until you press the red Install button on the Summary screen.
 		</p>
 	</section>
 
 	<section>
 		<p class="eyebrow">Step 4</p>
-		<h2>Six screens.</h2>
+		<h2>Eight screens.</h2>
 		<ol class="steps">
 			<li><span class="n">1</span><div><h3>Welcome</h3><p>Your keyboard layout, with a field to test it.</p></div></li>
-			<li><span class="n">2</span><div><h3>Time &amp; place</h3><p>Your timezone, detected — two providers have to agree, and you always see what was picked — plus language and locale.</p></div></li>
-			<li><span class="n">3</span><div><h3>Disk</h3><p>Pick a disk. <strong>The whole disk is erased</strong>; you're warned here and again at the end.</p></div></li>
-			<li><span class="n">4</span><div><h3>Your account</h3><p>Name, username, password, computer name.</p></div></li>
-			<li><span class="n">5</span><div><h3>Summary</h3><p>Everything you chose, everything ewe decided, and the only Install button in the flow.</p></div></li>
-			<li><span class="n">6</span><div><h3>Install</h3><p>Streamed progress, then reboot. Pull the stick when the screen goes dark.</p></div></li>
+			<li><span class="n">2</span><div><h3>Network</h3><p>The install downloads the system, so this screen waits for a connection. A cable just works; Wi-Fi is joined here.</p></div></li>
+			<li><span class="n">3</span><div><h3>Time &amp; place</h3><p>Your timezone, detected — two providers have to agree, and you always see what was picked — plus language and locale.</p></div></li>
+			<li><span class="n">4</span><div><h3>Disk</h3><p>Pick a disk. <strong>The whole disk is erased</strong>; you're warned here and again at the end.</p></div></li>
+			<li><span class="n">5</span><div><h3>Your account</h3><p>Name, username, password, computer name.</p></div></li>
+			<li><span class="n">6</span><div><h3>Plugins</h3><p>The dock, music, mail, Cast to TV and <a href="/docs/add-ons/">nine more</a> — the plugins ewe ships but does not install until you ask. Nothing is pre-checked; Komble has every one of them later.</p></div></li>
+			<li><span class="n">7</span><div><h3>Summary</h3><p>Everything you chose, plugins included, everything ewe decided, and the only Install button in the flow.</p></div></li>
+			<li><span class="n">8</span><div><h3>Install</h3><p>Streamed progress — the system, the desktop, an update, your plugins — then reboot. Pull the stick when the screen goes dark.</p></div></li>
 		</ol>
 		<Installer />
 		<p class="figcap">
-			Screen five: what you chose, what ewe decided, and the only button in the flow that writes
+			Screen seven: what you chose, what ewe decided, and the only button in the flow that writes
 			anything. First login then runs a short welcome flow — network, waiting updates, an optional
-			<a href="/how/">restore from your Nextcloud</a>, and a sixty-second tour.
+			<a href="/how/">restore from your Nextcloud</a>, your plugins if you skipped them here, and a
+			sixty-second tour.
 		</p>
 	</section>
 
@@ -151,7 +156,10 @@
 		<p>
 			That pulls the whole desktop and its dependencies onto your existing system — the DE, the
 			software manager and the settings app, but not the installer's decisions, since your disk
-			layout is already yours.
+			layout is already yours. Then <code>ewe-setup</code> deploys it for your user,
+			<code>bash /usr/share/ewe/install.sh --no-packages</code> — run as your user, not with
+			<code>sudo</code> — sets up the greeter and the splash, and <code>ewe-plugin install</code>
+			adds the <a href="/docs/add-ons/">plugins</a> you want.
 		</p>
 	</section>
 

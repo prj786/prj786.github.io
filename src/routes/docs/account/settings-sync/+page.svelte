@@ -37,7 +37,7 @@ ewe-conf pull && ewe-conf apply  # your account → this machine, made live`}
 	<h2>Where it lives in your account</h2>
 	<dl class="rows">
 		<div class="row"><dt><code>ewe/ewe.conf</code></dt><dd>The document itself.</dd></div>
-		<div class="row"><dt><code>ewe/ewe.conf.meta.json</code></dt><dd>Which machine saved it and when — so the account card can say <em>backup saved by laptop, five minutes ago</em>.</dd></div>
+		<div class="row"><dt><code>ewe/ewe.conf.meta.json</code></dt><dd>Which machine saved it and when — so the account card can say <em>backup saved by laptop, five minutes ago</em>. Besides the hostname it carries <code>machine_id</code>, a salted hash of <code>/etc/machine-id</code> (never the raw id), so two computers with the same hostname are told apart.</dd></div>
 		<div class="row"><dt><code>ewe/machines/&lt;name&gt;.json</code></dt><dd>One record per machine: its ewe version and how many applications it carries.</dd></div>
 	</dl>
 </section>
@@ -55,11 +55,19 @@ ewe-conf pull && ewe-conf apply  # your account → this machine, made live`}
 		already exists it gets <code>remote-exists</code> and is told to restore first. That is what stops
 		a fresh install from erasing the backup it was about to restore.
 	</p>
+	<p>
+		What is not a conflict is your own upload coming back. A push whose file reached the server but
+		whose answer never did — a laptop suspending mid-push — and the Nextcloud desktop client
+		re-uploading the same bytes from <code>~/Nextcloud/ewe</code> both give the file a new identity
+		with nothing new in it. ewe recognises the bytes as its own, adopts that copy and pushes on,
+		instead of claiming another machine saved newer settings.
+	</p>
 	<Callout title="No clocks, no hostnames">
 		<p>
 			Neither takes part in the decision. Two machines with the same name, or a fresh install with a
 			wrong clock, sync correctly. The machine name is recorded only so the interface can name who
-			saved the backup.
+			saved the backup, and the machine id so it can say whether that was this computer —
+			<code>remote_is_this_machine</code> in <a href="/docs/cli/ewe-conf/">ewe-conf sync-status</a>.
 		</p>
 	</Callout>
 </section>

@@ -38,7 +38,7 @@
 	<title>Versions — Ewe design system</title>
 	<meta
 		name="description"
-		content="The Ewe design system's versions: what version 3 changed, how versions are raised, and how ewe 0.22.0-beta implements version 3, including the owner's deliberate differences."
+		content="The Ewe design system's versions: what version 3 changed, how versions are raised, and how ewe implements version 3 from 0.22 to 0.25, including the owner's deliberate differences."
 	/>
 </svelte:head>
 
@@ -159,6 +159,48 @@
 					<code>"apiVersion": 1</code> is refused at install.
 					<a href="/docs/plugins/api/#api-1-to-2">Moving a plugin from API 1 to API 2</a> has the
 					rename table.
+				</p>
+			</div>
+		</li>
+		<li>
+			<span class="ic"><Icon name="dock" size={16} /></span>
+			<div>
+				<h3>ewe 0.25: the Dock and Launcher panel cards are a plugin</h3>
+				<p>
+					The Dock, Launcher panel, Places and media player specs are no longer shell components;
+					they are implemented by the <code>ewe.dock</code>, <code>ewe.places</code> and
+					<code>ewe.media</code> <a href="/docs/add-ons/">plugins that ship with ewe</a>, and a
+					fresh ewe installs none of them. The specs are unchanged — the dock still slides out for the Overview on
+					<code>base</code>, Glass still applies — but the dock now moves itself, from
+					<code>Shell.overviewOpen</code>, and a surface that opens above it reads
+					<code>Shell.bottomInset</code> rather than assuming a dock. Keep awake is called
+					<strong>Insomnia</strong> everywhere a person reads it.
+				</p>
+			</div>
+		</li>
+		<li>
+			<span class="ic"><Icon name="layers" size={16} /></span>
+			<div>
+				<h3>ewe 0.25: the Overview opens in one step</h3>
+				<p>
+					The Overview card said two beats on the way in; the shipped shell opens in one — backdrop
+					at <code>fast</code>, bar, dock and cards at <code>base</code>, from the same frame — and
+					keeps two beats on the way out. <a href="/design/motion/#overview">The timeline</a>. The
+					Overview’s cards left the <code>slow</code> row of the motion table for <code>base</code>.
+				</p>
+			</div>
+		</li>
+		<li>
+			<span class="ic"><Icon name="component" size={16} /></span>
+			<div>
+				<h3>ewe 0.25: plugin API 3</h3>
+				<p>
+					Four kinds a plugin may now be — a Quick settings tile, a Quick settings page, a glyph in
+					the bar’s pill, a dock item — and the components they are rooted on became public:
+					<code>Tile</code>, <code>QsPageHead</code> and the <code>Qs*</code> rows,
+					<code>BarModule</code>, <code>BarStatusGlyph</code>, <code>AnchoredPopup</code>, the
+					<code>Text*</code> styles. API 2 plugins still load. <a href="/docs/plugins/api/">What a
+					plugin may use</a> is the full surface.
 				</p>
 			</div>
 		</li>

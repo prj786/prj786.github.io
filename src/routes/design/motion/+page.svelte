@@ -4,15 +4,15 @@
 
 	const MOTION = [
 		['fast', '150ms', 'ease-out', 'Hover, pressed, focus and other color changes; menus and toasts closing'],
-		['base', '200ms', 'ease-out', 'Panels and toasts opening: a fade plus a 4px slide from their edge — dock panels and the launcher fade only; the dock hiding'],
-		['slow', '250ms', 'ease-in-out', 'Workspace switches, the Overview zoom, Welcome'],
+		['base', '200ms', 'ease-out', 'Panels and toasts opening: a fade plus a 4px slide from their edge — dock panels and the launcher fade only; the dock hiding; the Overview’s cards, search and pager, and the bar and dock sliding away for it'],
+		['slow', '250ms', 'ease-in-out', 'Workspace switches, Welcome'],
 		['dim', '1500ms', 'linear', 'The screen dimming before it locks']
 	];
 
 	const LAYERS = [
 		['background', 'The wallpaper'],
-		['bottom', 'Desktop widgets'],
-		['top', 'The bar and the dock — both slide out of view while the Overview is open; their reserved strips stay'],
+		['bottom', 'Desktop widgets — a pinned one moves up to top, or to overlay when it is pinned above everything'],
+		['top', 'The bar, and the dock when its plugin is installed — both slide out of view while the Overview is open; their reserved strips stay'],
 		['overlay', 'Popups, menus, the launcher, Quick settings, the notification center, notifications, the on-screen display'],
 		['overlay (exclusive)', 'The lock screen and the power menu']
 	];
@@ -85,6 +85,29 @@
 	</p>
 </section>
 
+<section id="overview">
+	<h2>The Overview, in one step</h2>
+	<p>
+		The Overview takes the whole screen, wallpaper first, and since ewe 0.25 it opens in
+		<strong>one step</strong>: on the frame it is asked for, the backdrop fades in at
+		<code>fast</code>, the bar slides up and the dock slides down at <code>base</code>, and the window
+		cards, the search field and the pager fade and zoom in at <code>base</code> with the ease-out
+		curve. The backdrop reads first only because its fade is the shorter one. Trigger to a settled,
+		focused Overview is about 240 ms — it used to be two steps and 500 ms or more.
+	</p>
+	<p>
+		Closing keeps two beats, because leaving should feel lighter than arriving: the cards go at
+		<code>base</code>, then after <code>fast</code> the backdrop fades out and the bar and dock slide
+		back. Under Reduce motion everything cross-fades at <code>fast</code> and nothing slides or zooms.
+	</p>
+	<p class="muted">
+		The dock is a plugin since 0.25, so its half of the slide is its own: it reads
+		<code>Shell.overviewOpen</code> and moves itself, on the same durations and curve. Without the
+		plugin there is nothing along the bottom to move, and the panels that would have opened above
+		it read <code>Shell.bottomInset</code> as zero.
+	</p>
+</section>
+
 <section>
 	<h2>Layers</h2>
 	<p>
@@ -107,9 +130,10 @@
 	<p>
 		People can make the shell translucent, and Ewe treats that as a first-class look rather than an
 		afterthought. The bar opacity setting (0–100, 100 by default) sets the fill of the bar, the dock
-		and the lock-screen card; between 10 and 99 the wallpaper behind them is blurred by about 24px.
-		The Glass preset is <strong>80%</strong> — the lowest value where text still holds 4.5:1 over
-		any wallpaper.
+		and the lock-screen card — only those; between 10 and 99 what is behind them is blurred by about
+		24px. The Glass preset is <strong>80%</strong> — the lowest value where text still holds 4.5:1
+		over any wallpaper. The Overview's chips and the desktop widgets' cards are the Glass material
+		too, but they stay at 80% whatever the slider says.
 	</p>
 	<div class="glassdemo">
 		<div class="pane">
@@ -142,7 +166,8 @@
 		blocked. Where blur is unavailable — some virtual machines and NVIDIA setups — the fill stays
 		translucent but sharp, and 90% or more is suggested. Two more settings are separate from the
 		slider: app blur draws every window at 85%, and window transparency puts unfocused windows at
-		97%.
+		97%. Glass without app blur never blurs behind an app window, even one that is translucent on
+		its own.
 	</p>
 </section>
 

@@ -12,9 +12,9 @@
 		{ cmd: 'unset', args: '<dotted.key>', does: 'Remove a key, then apply the domain it belonged to.', prints: 'nothing on success' },
 		{ cmd: 'import', does: 'Build the document FROM the live machine — the runtime files, the installed packages, your SSH hosts and VPN profiles. For migration and repair.', prints: 'the file path' },
 		{ cmd: 'apply', args: '[--only <domain>] [--no-hooks]', does: 'Regenerate every runtime file from the document, re-theme the toolkits, poke the shell and reload Hyprland.', prints: 'nothing on success' },
-		{ cmd: 'push', args: '[--force] [--quiet]', does: 'Upload the file to the account named in [sync]. Refused when another machine saved since this one last synced.', prints: 'a JSON result' },
+		{ cmd: 'push', args: '[--force] [--quiet]', does: 'Upload the file to the account named in [sync]. Refused when another machine saved since this one last synced — but not when the copy there holds bytes this machine sent itself.', prints: 'a JSON result' },
 		{ cmd: 'pull', args: '[--out <path>]', does: 'Download the account copy, keeping the previous local file as a timestamped backup. Run apply afterwards.', prints: 'a JSON result' },
-		{ cmd: 'sync-status', does: 'The remote copy and this machine’s sync record, side by side.', prints: 'a JSON result' }
+		{ cmd: 'sync-status', does: 'The remote copy and this machine’s sync record, side by side: who saved the backup and whether it was this machine, and what a push would answer right now.', prints: 'a JSON result' }
 	];
 
 	const domains = [
@@ -103,17 +103,33 @@ ewe-conf import`}
  "local_synced_at": "2026-09-03T06:14:24Z"}`}
 		copyable={false}
 	/>
+	<p>
+		A push whose file landed but whose meta stamp the server refused is still a success — the next
+		push rewrites the stamp:
+	</p>
+	<Code
+		code={`{"ok": true, "id": "\\"6f1a…\\"", "bytes": 7929, "provider": "nextcloud", "…": "…",
+ "warning": "stamp-missing"}`}
+		copyable={false}
+	/>
 	<p><code>sync-status</code>, which separates who saved the backup from when this machine last synced:</p>
 	<Code
 		code={`{"ok": true, "error": null, "provider": "nextcloud",
  "server": "https://cloud.example.org", "folder": "ewe", "enabled": true,
  "remote": {"id": "\\"6f1a…\\"", "etag": "\\"6f1a…\\"",
             "modifiedTime": "2026-09-03T06:14:23Z",
-            "appProperties": {"machine": "laptop", "schema": "1"}},
+            "appProperties": {"machine": "laptop", "machine_id": "3f9c0a1e7b2d4c58",
+                              "schema": "1"}},
  "remote_machine": "laptop", "remote_modified": "2026-09-03T06:14:23Z",
- "local_synced_at": "2026-09-03T06:14:24Z", "in_sync": true}`}
+ "remote_is_this_machine": true,
+ "local_synced_at": "2026-09-03T06:14:24Z", "recorded_remote_modified": "2026-09-03T06:14:23Z",
+ "conflict": null, "in_sync": true}`}
 		copyable={false}
 	/>
+	<dl class="rows">
+		<div class="row"><dt><code>conflict</code></dt><dd>What a push would answer right now: <code>"remote-newer"</code>, <code>"remote-exists"</code>, or <code>null</code>. <code>error</code> stays what it was — the transport error only, such as <code>network</code> or <code>unauthorized</code>.</dd></div>
+		<div class="row"><dt><code>remote_is_this_machine</code></dt><dd>Whether the backup on the server was saved by this computer, from its machine id: <code>true</code> or <code>false</code>, or <code>null</code> for a backup stamped before machine ids, when only the hostname is known.</dd></div>
+	</dl>
 </section>
 
 <section>
@@ -123,13 +139,14 @@ ewe-conf import`}
 		loudly, so a user interface can explain what happened.
 	</p>
 	<dl class="rows">
-		<div class="row"><dt><code>remote-newer</code></dt><dd>Another machine saved since this one last synced. Pull theirs, or <code>push --force</code>.</dd></div>
+		<div class="row"><dt><code>remote-newer</code></dt><dd>Another machine saved since this one last synced. Pull theirs, or <code>push --force</code>. Not reported when the copy there holds bytes this machine sent itself: a push whose upload landed but whose reply was lost — a laptop suspending mid-push — or the Nextcloud desktop client re-uploading the same file from <code>~/Nextcloud/ewe</code>. That copy is adopted and the push goes ahead.</dd></div>
 		<div class="row"><dt><code>remote-exists</code></dt><dd>This machine has never synced and a backup already exists. Restore first, or force. This is what stops a fresh install erasing the backup it was about to restore.</dd></div>
 		<div class="row"><dt><code>not-signed-in</code></dt><dd>No account credential. Sign in with <a href="/docs/cli/ewe-cloud/">ewe-cloud</a>.</dd></div>
 		<div class="row"><dt><code>no-provider</code></dt><dd><code>[sync].provider</code> is unset or not one of <code>nextcloud</code>, <code>google</code>.</dd></div>
 		<div class="row"><dt><code>unauthorized</code></dt><dd>The server rejected the credential — usually an app password revoked on the server.</dd></div>
 		<div class="row"><dt><code>no-local-file</code> · <code>nothing-synced</code></dt><dd>Nothing here to push; nothing there to pull.</dd></div>
-		<div class="row"><dt><code>stamp-missing</code> · <code>http-&lt;code&gt;</code> · <code>network</code></dt><dd>The upload did not complete as expected, or the server could not be reached.</dd></div>
+		<div class="row"><dt><code>http-&lt;code&gt;</code> · <code>network</code></dt><dd>The upload did not complete as expected, or the server could not be reached.</dd></div>
+		<div class="row"><dt><code>stamp-missing</code></dt><dd>The file was stored but the note of who saved it was not. On Nextcloud that is a <code>"warning"</code> on a successful push, not an error: the file is there, and the next push rewrites the stamp. With the optional Google provider it is still an error.</dd></div>
 	</dl>
 	<p>
 		<code>get</code> exits <strong>1</strong> for a missing key and names which failure it was on
@@ -144,7 +161,7 @@ ewe-conf import`}
 	<dl class="rows">
 		<div class="row"><dt><code>~/.config/ewe/ewe.conf</code></dt><dd>The document. Written atomically (temporary file, then rename) under a lock, with stable key order so diffs are honest.</dd></div>
 		<div class="row"><dt><code>~/.config/hypr/generated/*</code><br /><code>~/.config/quickshell/*.json</code></dt><dd>Build artifacts. Never edit these: the next apply overwrites them.</dd></div>
-		<div class="row"><dt><code>~/.local/state/ewe/sync.json</code></dt><dd>What this machine last saw on the server: the ETag or file id, who saved it, and when this machine synced. The whole conflict rule.</dd></div>
+		<div class="row"><dt><code>~/.local/state/ewe/sync.json</code></dt><dd>What this machine last saw on the server: the ETag or file id, who saved it, when this machine synced, and the hash of the bytes it last pushed or pulled — plus those of any upload still in flight, so its own upload is never mistaken for another machine's. The whole conflict rule.</dd></div>
 		<div class="row"><dt><code>~/.config/ewe/cloud.json</code></dt><dd>Read for the account identity when signing in from a terminal. Written by <code>ewe-cloud</code>.</dd></div>
 		<div class="row"><dt>Backups</dt><dd><code>pull</code> keeps the file it replaced as <code>ewe.conf.&lt;timestamp&gt;.bak</code>.</dd></div>
 	</dl>

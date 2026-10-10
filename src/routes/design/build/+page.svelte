@@ -185,12 +185,15 @@ ewe-conf set desktop.theme.bar_opacity 80`;
 		</p>
 	</Callout>
 	<p>
-		The whole public surface — <code>Theme</code>, <code>Globals</code>, <code>Log</code>, settings
-		and IPC — is on the <a href="/docs/plugins/api/">plugin API</a> page. Plugins declare
-		<code>"apiVersion": 2</code>; a plugin written for API 1 still uses the old Fluent names
-		(<code>bg1</code>, <code>fg2</code>, <code>brandBg</code> …) and is refused at install.
+		The whole public surface — <code>Theme</code>, the <code>Shell</code> singleton, the public
+		components, <code>Globals</code>, <code>Log</code>, settings and IPC — is on the
+		<a href="/docs/plugins/api/">plugin API</a> page. Plugins declare <code>"apiVersion": 3</code>
+		(the shell still loads <code>2</code>); a plugin written for API 1 still uses the old Fluent
+		names (<code>bg1</code>, <code>fg2</code>, <code>brandBg</code> …) and is refused at install.
 		<a href="/docs/plugins/api/#api-1-to-2">Moving a plugin from API 1 to API 2</a> has the rename
-		table.
+		table. Root a tile on <code>Tile</code>, a bar widget on <code>BarModule</code> and a popup on
+		<code>AnchoredPopup</code>, and Glass, the look presets and the one-popup rule are already
+		yours.
 	</p>
 </section>
 

@@ -72,8 +72,54 @@
 		['rowHeight · controlHeight', 'controlMd']
 	];
 
+	// The Shell singleton — API 3's front door. Rows: [member, meaning]
+	const shellReads = [
+		['apiVersion', '3.'],
+		['overviewOpen · quickSettingsOpen · lowPower · onBattery · locked · dnd', 'Shell state, bindable.'],
+		['bottomInset · bottomReserved · dockPresent', 'The pixels a dock takes from the bottom of the screen (0 without one), whether it reserves that strip, and the shorthand. A panel that opens above the dock keeps bottomInset clear, so nothing leaves a gap when no dock is installed.'],
+		['dockPrefs · pinnedApps · primaryScreenName', 'The pre-plugin [desktop.dock] prefs (enabled, autohide, iconSize), the pinned desktop ids, the primary output. Read-only. Since Dock 1.1.0 the dock’s settings are its own and these are only its fallback; pin and unpin through setPinned.'],
+		['dockItems · activeCount', 'The dock-item registry of every enabled plugin, in order; how many actions report themselves open (an autohide dock stays out while > 0).']
+	];
+	const shellCalls = [
+		['toast(text, kind)', 'A bottom-centre toast; kind is "", "info", "warning" or "danger", or an options object with actionLabel, action, icon, timeout.'],
+		['openQuickSettings(tab) · closeQuickSettings()', 'A built-in key or a plugin page’s quickPage.key — the same route as qs ipc call quicksettings tab <key>.'],
+		['openSettings(page) · openStore(page)', 'ewe-settings and Komble, focused if already open; page is forwarded (ewe-settings --page …, komble --<page>): "addons" opens Komble on Plugins, "options=" + pluginId opens your own Options dialog there (komble --options=<id>).'],
+		['toggleOverview()', 'Open or close the Overview in-shell — what a dock’s Overview button does.'],
+		['launch(desktopId) · focusApp([classes])', 'Run a .desktop id (focusing an existing window first); bring a window of one of these classes forward. false when unknown.'],
+		['registerAction(name, fn) · runAction(name, anchor)', 'A named function a dockItem.action names, and how the dock — or another plugin — runs it.'],
+		['setActive(name, on) · isActive(name)', 'An action’s open state; its dock item lights. AnchoredPopup reports it for you through action.'],
+		['setDockItemShown(id, on) · dockItemShown(id)', 'Hide or show your own dock item at runtime — a player with nothing playing, a “bar only” setting.'],
+		['setSetting(pluginId, key, value)', 'Write one of your own declared settings from your own UI — a bell on your page, a choice in your popup; the value Komble’s Options dialog shows. Live in every instance at once, persisted through ewe-plugin set, which validates it against your manifest (a refused value snaps back). Added in ewe 0.25.1, still API 3: check typeof Shell.setSetting === "function" to run on 0.25.0 too.'],
+		['closePopups(exceptId)', 'The one-popup rule: asks every plugin popup but exceptId’s to close. AnchoredPopup honours it and calls it when it opens; a plugin with its own PanelWindow listens to popupsClosing and calls it on open.'],
+		['setBottomInset(id, px, reserved) · setPinned(desktopId, on)', 'What a dock plugin publishes (0 withdraws it); pin or unpin an app through ewe-conf.'],
+		['anchorFor(item, window)', 'An anchor for a popup — the item’s centre in its window and the edge, "top" or "bottom". Pass barWindow or your own PanelWindow.']
+	];
+	const shellSignals = [
+		['aboutToSleep() · resumed()', 'The system is about to suspend; the wake sequence reached its network step (about three seconds after wake — refresh what you cache then).'],
+		['popupsClosing(exceptId)', 'Another popup is opening: close yours unless exceptId is your plugin id.']
+	];
+
+	const components = [
+		['Tile', 'The Quick settings tile: ic, label, sub, active, opened, hasMenu, busy, disabled; clicked, menu. Root a quick-tile on it.'],
+		['QsPageHead', 'A page’s head: back, title, note, busy, an optional switch; actions as children.'],
+		['QsSwitchRow · QsButton · QsIconButton · QsSegmented', 'The row with a switch; the button (primary, secondary, ghost, danger); the icon button; the segmented control.'],
+		['QsField + QsFieldInput · QsEmpty · QsNote · QsMsgRow', 'A text field and its input; the empty state; a caption under a list; a two-line message row.'],
+		['TextBody · TextStrong · TextCaption · TextMono · Glyph', 'Text in the system’s styles, and one icon-font glyph.'],
+		['BarModule · BarSep · BarStatusGlyph', 'The bar’s module, divider and pill glyph (ink, shown).'],
+		['AnchoredPopup', 'A popup card for a plugin: openAt, toggleAt, close; open, name, owner, action, implicitWidth/Height, content as children. One PanelWindow on the anchor’s screen, above the dock or under the bar, closed by Esc or a click outside, one at a time.'],
+		['Toggle · Slider · Meter · ListWell · ListRow · SectionTitle · Badge · Spinner · Avatar · Elevation', 'The rest of the kit the first-party panels are built from.']
+	];
+
+	const injected = [
+		['pluginId · pluginDir · stateDir', 'Your id; a file:// url to your directory; ~/.local/state/ewe/plugins/<id>, created when first asked for and never synced.'],
+		['settings', 'The declared settings as {key: value}, pushed again live on every change.'],
+		['screen · barWindow', 'The output and the bar window a bar slot sits in (bar-widget, bar-status) — hand barWindow to Shell.anchorFor().'],
+		['ink', 'The pill’s current glyph colour (bar-status): textSecondary, textPrimary while hovered or open.'],
+		['panelOpen', 'This tile or page is on screen (quick-tile, quick-page) — poll only while true.']
+	];
+
 	const reads = [
-		['version', 'The desktop version, e.g. "0.14.0-beta".'],
+		['version', 'The desktop version, e.g. "0.25.0-beta".'],
 		['accentColor', 'The user’s accent. Theme.accent already follows it; read this only to react to a change.'],
 		['dnd', 'Do not disturb is on.'],
 		['onBattery · lowPower', 'Unplugged; and the low-power mode the shell enters on battery.'],
@@ -92,7 +138,7 @@
 	<title>What a plugin may use — ewe docs</title>
 	<meta
 		name="description"
-		content="The public API of the ewe shell for plugins: every Theme role, a named subset of Globals, Log, IPC targets, what is private, and how to move a plugin from API 1 to API 2."
+		content="The public API of the ewe shell for plugins, version 3: the Shell singleton, the public components, the injected properties, every Theme role, the Globals subset, Log, IPC, what is private, and how to move from API 1 or 2."
 	/>
 </svelte:head>
 
@@ -101,8 +147,71 @@
 <p class="lede">
 	<code>import qs</code> gives a plugin the shell's own modules. Of what it sees, this page is what
 	is <strong>public</strong> — it will not change without the plugin <code>apiVersion</code> moving.
-	Everything else is internal and may be renamed without notice.
+	Everything else is internal and may be renamed without notice. The API is <code>3</code>; the
+	shell still loads <code>2</code>.
 </p>
+
+<section>
+	<h2>The <code>Shell</code> singleton</h2>
+	<p>
+		API 3's front door: what the shell knows that a plugin may react to, and the few things a plugin
+		may ask it to do. Every plugin that ships with ewe goes through it; a dock plugin is <em>only</em>
+		a reader of <code>pinnedApps</code>, <code>dockItems</code> and its own <code>settings</code> and a
+		publisher of <code>bottomInset</code>.
+	</p>
+	<p>Read:</p>
+	<dl class="rows">
+		{#each shellReads as [name, meaning]}
+			<div class="row"><dt><code>{name}</code></dt><dd>{meaning}</dd></div>
+		{/each}
+	</dl>
+	<p>Call:</p>
+	<dl class="rows">
+		{#each shellCalls as [name, meaning]}
+			<div class="row"><dt><code>{name}</code></dt><dd>{meaning}</dd></div>
+		{/each}
+	</dl>
+	<p>Signals:</p>
+	<dl class="rows">
+		{#each shellSignals as [name, meaning]}
+			<div class="row"><dt><code>{name}</code></dt><dd>{meaning}</dd></div>
+		{/each}
+	</dl>
+	<Code
+		code={`Shell.toast("Forecast updated")
+Shell.openQuickSettings("weather")                       // your page's key
+Shell.registerAction("acme.weather.toggle", (a) => pop.toggleAt(a))
+Shell.setSetting(pluginId, "unit", "F")                  // one of your own settings
+Connections { target: Shell; function onResumed() { root.fetch() } }`}
+		copyable={false}
+	/>
+</section>
+
+<section>
+	<h2>Public components</h2>
+	<p>
+		The kit the first-party panels are built from. Root your entry points on these and they follow
+		Glass, the look presets, text size and the one-popup rule without a line of yours.
+	</p>
+	<dl class="rows">
+		{#each components as [name, meaning]}
+			<div class="row"><dt><code>{name}</code></dt><dd>{meaning}</dd></div>
+		{/each}
+	</dl>
+</section>
+
+<section>
+	<h2>Injected properties</h2>
+	<p>
+		Set on your entry point's root by the host — but only when the root <em>declares</em> them, so
+		a plugin that does not care is not touched.
+	</p>
+	<dl class="rows">
+		{#each injected as [name, meaning]}
+			<div class="row"><dt><code>{name}</code></dt><dd>{meaning}</dd></div>
+		{/each}
+	</dl>
+</section>
 
 <section>
 	<h2><code>Theme</code> — every role</h2>
@@ -131,7 +240,12 @@ Text { text: Theme.icBell; font.family: Theme.fontIcons; font.pixelSize: Theme.b
 </section>
 
 <section>
-	<h2><code>Globals</code> — a named subset</h2>
+	<h2><code>Globals</code> — the API 2 subset</h2>
+	<p>
+		Unchanged since API 2, and still public. New code should prefer <code>Shell</code>:
+		<code>Shell.launch(desktopId)</code> takes an id where <code>launchEntry</code> wants a
+		Quickshell <code>DesktopEntry</code>.
+	</p>
 	<p>Read:</p>
 	<dl class="rows">
 		{#each reads as [name, meaning]}
@@ -174,8 +288,10 @@ Log.debug("acme.weather", "raw", payload)      // HS_LOG_MODULES=acme.weather to
 		Declare <code>property var settings: ({'{'}{'}'})</code> on any entry point's root and ewe fills it
 		with the values of the options your manifest declares — the defaults under the user's own,
 		read from <code>ewe.conf</code> <code>[plugins.settings]</code>. It is assigned when the entry
-		point loads and again whenever a value changes (<code>ewe-plugin set</code>, Komble's form), so
-		bind to it and nothing needs a restart. Keys you did not declare never appear.
+		point loads and again whenever a value changes (<code>ewe-plugin set</code>, Komble's Options
+		dialog, your own <code>Shell.setSetting</code>), so bind to it and nothing needs a restart. Keys
+		you did not declare never appear. Never write <code>ewe.conf</code> yourself:
+		<code>Shell.setSetting</code> is the way your own UI changes a value.
 	</p>
 
 	<h2>IPC</h2>
@@ -197,9 +313,12 @@ qs ipc call plugins list           # what the host loaded, as JSON
 qs ipc call plugins safeMode       # did this session boot with plugins off`}
 	/>
 	<p>
-		The shell's own targets — <code>bar</code>, <code>settings</code>, <code>store</code>,
-		<code>plugins</code>, <code>launcher</code>, <code>osd</code> and friends — are documented in
-		the manual and are public API too.
+		The shell's own targets — <code>bar</code>, <code>quicksettings</code>, <code>settings</code>,
+		<code>store</code>, <code>plugins</code>, <code>overview</code>, <code>osd</code> and friends —
+		are documented in the manual and are public API too. The old names of the features that became
+		plugins (<code>cast</code>, <code>launcher</code>, <code>places</code>, <code>player</code>,
+		<code>mail</code>) are their <code>ipcAliases</code>: present while the plugin is installed,
+		reserved to first-party plugins. With API 3 a manifest keybind's target must be your own id.
 	</p>
 </section>
 
@@ -217,14 +336,27 @@ qs ipc call plugins safeMode       # did this session boot with plugins off`}
 <section>
 	<h2>Versioning</h2>
 	<p>
-		The plugin API is <code>2</code>. It changes only when something on this page changes in a way
+		The plugin API is <code>3</code>. It changes only when something on this page changes in a way
 		that breaks plugins. <code>ewe-plugin add</code> refuses a manifest whose
-		<code>apiVersion</code> differs, so an old plugin fails at install, never at login.
+		<code>apiVersion</code> it does not know, so an old plugin fails at install, never at login.
 	</p>
 	<dl class="rows">
-		<div class="row"><dt><code>2</code></dt><dd>The Ewe design system, version 3: <code>Theme</code> speaks the Ewe names above.</dd></div>
-		<div class="row"><dt><code>1</code></dt><dd>The Fluent-era names (<code>bg1</code>, <code>fg1</code>, <code>stroke2</code>, <code>brandBg</code>, <code>fsBody</code> …). They no longer exist.</dd></div>
+		<div class="row"><dt><code>3</code></dt><dd>ewe 0.25: the <code>quick-tile</code>, <code>quick-page</code>, <code>bar-status</code> and <code>dock-item</code> kinds, the injected properties, the <code>Shell</code> singleton, the public components, <code>requires</code>, <code>ipcAliases</code> and the first-party plugins in the package. A superset — every API 2 plugin still loads. ewe 0.25.1 adds, still within 3 and all optional: <code>Shell.setSetting</code>; <code>defaultShown</code> and <code>toggle</code> on <code>barWidget</code> and <code>barStatus</code>; <code>pinLevel</code>, <code>locked</code> and the <code>overlay</code> layer on <code>desktopWidget</code>; a setting's <code>description</code> and, first-party only, <code>legacy</code>.</dd></div>
+		<div class="row"><dt><code>2</code></dt><dd>The Ewe design system, version 3: <code>Theme</code> speaks the Ewe names above. Still loaded.</dd></div>
+		<div class="row"><dt><code>1</code></dt><dd>The Fluent-era names (<code>bg1</code>, <code>fg1</code>, <code>stroke2</code>, <code>brandBg</code>, <code>fsBody</code> …). They no longer exist; refused at install.</dd></div>
 	</dl>
+</section>
+
+<section>
+	<h2 id="api-2-to-3">Moving a plugin from API 2 to API 3</h2>
+	<p>
+		Nothing is required: an API 2 manifest loads unchanged. Set <code>"apiVersion": 3</code> when
+		you want one of the new kinds, <code>requires</code>, or a manifest keybind — whose target must
+		then be your own id. Two things are worth doing anyway: root a bar widget on
+		<code>BarModule</code> and a popup on <code>AnchoredPopup</code>, so you inherit the bar's
+		conventions and the one-popup rule; and read <code>Shell.bottomInset</code> instead of assuming a
+		dock, since on a fresh 0.25 there may be none.
+	</p>
 </section>
 
 <section>

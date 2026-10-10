@@ -7,7 +7,7 @@
 	<title>Keyboard shortcuts — ewe docs</title>
 	<meta
 		name="description"
-		content="The ewe keymap: launching, window management and workspaces. Everything is on Super, so nothing collides with what applications use."
+		content="The ewe keymap: launching, the Overview, window management, workspaces — and the keys that arrive with a plugin. Everything is on Super, so nothing collides with what applications use."
 	/>
 </svelte:head>
 
@@ -22,6 +22,7 @@
 	<h2>Launching</h2>
 	<div class="keys">
 		<dl>
+			<div><dt><kbd>Super</kbd></dt><dd>Tap: the Overview — every window, every workspace; type to search</dd></div>
 			<div><dt><kbd>Super</kbd><kbd>Return</kbd></dt><dd>Terminal</dd></div>
 			<div><dt><kbd>Super</kbd><kbd>D</kbd></dt><dd>Launcher — apps and files</dd></div>
 			<div><dt><kbd>Super</kbd><kbd>E</kbd></dt><dd>File manager</dd></div>
@@ -29,11 +30,31 @@
 			<div><dt><kbd>Super</kbd><kbd>,</kbd></dt><dd>Settings</dd></div>
 			<div><dt><kbd>Super</kbd><kbd>N</kbd></dt><dd>Quick settings</dd></div>
 			<div><dt><kbd>Super</kbd><kbd>C</kbd></dt><dd>Calendar</dd></div>
-			<div><dt><kbd>Super</kbd><kbd>Shift</kbd><kbd>C</kbd></dt><dd>Cast to TV</dd></div>
-			<div><dt><kbd>Super</kbd><kbd>P</kbd></dt><dd>Fill a login from your password manager</dd></div>
-			<div><dt><kbd>Super</kbd><kbd>Shift</kbd><kbd>W</kbd></dt><dd>Arrange desktop widgets — drag, sticky, hide; Esc</dd></div>
+			<div><dt><kbd>Super</kbd><kbd>Z</kbd></dt><dd>The Pen — stashed windows</dd></div>
+			<div><dt><kbd>Super</kbd><kbd>Shift</kbd><kbd>W</kbd></dt><dd>Arrange desktop widgets — drag, pin, lock, hide; Esc</dd></div>
 		</dl>
 	</div>
+</section>
+
+<section>
+	<h2>From plugins</h2>
+	<p>
+		These keys exist only while their <a href="/docs/add-ons/">plugin</a> is installed and on — the
+		plugin's manifest declares them, and ewe generates the bind.
+	</p>
+	<div class="keys">
+		<dl>
+			<div><dt><kbd>Super</kbd><kbd>Shift</kbd><kbd>C</kbd></dt><dd>Cast to TV — Cast</dd></div>
+			<div><dt><kbd>Super</kbd><kbd>P</kbd></dt><dd>Fill a login from your password manager — Passwords</dd></div>
+			<div><dt><kbd>Print</kbd></dt><dd>Screenshot of the screen — Screenshot</dd></div>
+			<div><dt><kbd>Shift</kbd><kbd>Print</kbd></dt><dd>Screenshot of a region</dd></div>
+			<div><dt><kbd>Super</kbd><kbd>Print</kbd></dt><dd>Screenshot of the focused window</dd></div>
+		</dl>
+	</div>
+	<p class="muted">
+		Clipboard history has no key of its own; it is the scissors in the bar. The old
+		<kbd>Super</kbd>+<kbd>.</kbd> bind is gone.
+	</p>
 </section>
 
 <section>
@@ -70,7 +91,8 @@
 	<p>
 		Launch bindings live in the one file and follow you to every machine — Settings → Shortcuts
 		writes them, and they are <code>[[desktop.keybinds]]</code> in
-		<a href="/docs/one-file/schema/">the schema</a>.
+		<a href="/docs/one-file/schema/">the schema</a>. The Overview is a Hyprland global shortcut
+		named <code>ewe:overview</code>, so you can bind it to anything in <code>user.lua</code>.
 	</p>
 	<p>
 		<a href="{DE_REPO}/blob/main/dotfiles/hypr/SHORTCUTS.md">The complete keymap →</a>

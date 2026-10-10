@@ -305,7 +305,8 @@
 			combine with any scheme and any preset. Try the four rows in the panel above.
 		</p>
 		<p>
-			The bar has one setting of its own, <code>icon_size</code>: small, normal or large. It has no
+			The bar has one setting of its own, <code>icon_size</code>: small, normal or large — Bar icons,
+			in Settings → Layout → Top bar. It has no
 			height setting. The bar is its icons plus padding, so it’s 44, 48 or 56px tall, and text size
 			130% makes the icons one size larger.
 		</p>
@@ -323,9 +324,12 @@
 		<h2>Translucent, but still readable.</h2>
 		<p>
 			The bar opacity setting makes the bar, the dock and the lock-screen card translucent and
-			blurs the wallpaper behind them. The Glass preset is 80% — the lowest value where text still
+			blurs what is behind them — those three only; the Overview and desktop widgets keep the Glass
+			material at 80% whatever it says. The Glass preset is 80% — the lowest value where text still
 			holds 4.5:1 over any wallpaper, in both schemes. Only fills turn translucent: text, glyphs,
-			badges and accent fills stay solid, and panels, menus and dialogs never go glass at all.
+			badges and accent fills stay solid, and panels, menus and dialogs never go glass at all. App
+			windows are blurred only when you turn on App blur as well. In Settings it is all under
+			Appearance → Glass and transparency.
 		</p>
 		<Command value="ewe-conf set desktop.theme.bar_opacity 80" />
 	</section>

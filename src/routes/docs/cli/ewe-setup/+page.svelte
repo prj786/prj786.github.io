@@ -39,6 +39,24 @@
 </section>
 
 <section>
+	<h2>Plugins at deploy time</h2>
+	<p>
+		Every deploy ends with two <a href="/docs/cli/ewe-plugin/">ewe-plugin</a> steps. First
+		<code>seed</code>: the first-party plugins the package marks <code>default</code> go in (none today)
+		and every one you already have is refreshed when its version changed. Then <code>migrate</code> —
+		once per plugin, and the answer depends on the account:
+	</p>
+	<dl class="rows">
+		<div class="row"><dt>A fresh account</dt><dd><code>migrate --fresh</code>: every first-party plugin is recorded as considered and <strong>none is installed</strong>. You pick yours in the installer, the Welcome screen or Komble → Plugins.</dd></div>
+		<div class="row"><dt>An upgrade</dt><dd><code>migrate</code>: the plugins that replace features you had built in are installed and enabled — the dock only if it was on, never one you removed. The marker is <code>~/.local/state/ewe/addons-migrated</code>, local to this machine.</dd></div>
+	</dl>
+	<p>
+		A previous ewe is detected from an older payload copy or a deployed configuration, so the
+		decision is made before anything is overwritten. <a href="/docs/add-ons/">What an upgrade keeps →</a>
+	</p>
+</section>
+
+<section>
 	<h2>Synopsis</h2>
 	<Code code={'ewe-setup [--sync-if-newer]'} copyable={false} />
 </section>
@@ -54,11 +72,16 @@
 		<div class="row"><dt><code>/usr/share/ewe</code></dt><dd>The read-only payload from the package. Override with <code>EWE_PAYLOAD</code>.</dd></div>
 		<div class="row"><dt><code>~/.local/share/ewe</code></dt><dd>Your writable copy, with all runtime state inside it. Override with <code>EWE_HOME</code>.</dd></div>
 		<div class="row"><dt><code>~/.config/*</code></dt><dd>Symlinks into that tree, created by the deploy.</dd></div>
+		<div class="row"><dt><code>~/.config/ewe/plugins/</code></dt><dd>Your plugins — never removed by a deploy; the ones that ship with ewe are refreshed when their version changed.</dd></div>
+		<div class="row"><dt><code>~/.local/state/ewe/addons-migrated</code></dt><dd>The first-party plugin ids this machine has already considered. Never synced.</dd></div>
 	</dl>
 	<Callout type="warning" title="Never as root">
 		<p>
 			Everything it does is per-user, and it refuses to run as root. System-level setup — the
-			greeter, the boot splash, hibernation — is a separate step performed by the installer.
+			greeter, the boot splash, hibernation — is a separate step performed by the installer; on a
+			machine you layered by hand it is <code>bash /usr/share/ewe/install.sh --no-packages</code>,
+			run as <em>your user</em>, never with <code>sudo</code> (it escalates where it must, and exits
+			2 if you did).
 		</p>
 	</Callout>
 </section>

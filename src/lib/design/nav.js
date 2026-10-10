@@ -58,7 +58,7 @@ export const PAGES = [
 		href: '/design/changelog/',
 		label: 'Versions',
 		group: 'Documentation',
-		blurb: 'What version 3 changed, and where ewe 0.22 differs from the documents.'
+		blurb: 'What version 3 changed, and where ewe 0.22 to 0.25 differs from the documents.'
 	}
 ];
 

@@ -120,7 +120,9 @@ ewe-theme scheme show                           # the roles, and what was adjust
 		<code>[desktop.theme]</code>, and <code>reduce_motion</code>,
 		<code>reduce_transparency</code>, <code>increase_contrast</code> and <code>text_scale</code> in
 		<code>[desktop.accessibility]</code>. Bar opacity below 100 switches the bar, the dock and the
-		lock card to the glass roles and turns the compositor's blur on. <code>[desktop.bar]
+		lock card to the glass roles and turns the compositor's blur on for them — and only for them:
+		the Glass material the Overview and desktop widgets use stays at 80%, and app windows are not
+		blurred unless App blur is on too. <code>[desktop.bar]
 		icon_size</code> (small, normal, large) sets the bar’s modules and glyphs, and the bar’s height
 		follows: 44, 48 or 56px.
 	</p>
