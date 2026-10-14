@@ -330,8 +330,9 @@ removed = ["ewe.clipboard"]
 <section>
 	<h2><code>[desktop.browser]</code></h2>
 	<p>
-		<code>layout</code> chooses the browser's tab layout — vertical, ewe's default, or horizontal. The
-		browser's own colors always follow <code>[desktop.theme]</code>.
+		Only for Helium, the browser ewe shipped before ewe browser, on machines that still have it:
+		<code>layout</code> chooses its tab layout — vertical or horizontal. ewe browser has no key here;
+		it follows <code>[desktop.theme]</code>, the fonts and the motion settings by itself.
 	</p>
 </section>
 
