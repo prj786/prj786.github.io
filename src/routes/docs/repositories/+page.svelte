@@ -51,6 +51,10 @@
 			<dd>The headless casting daemon behind the Cast plugin — Miracast and Chromecast, with no foreign window.</dd>
 		</div>
 		<div class="row">
+			<dt><a href="{GITHUB}ewe-browser">ewe-browser</a></dt>
+			<dd>ewe browser, the desktop's browser: the web, your files, PDFs and your music in one window, themed by ewe.</dd>
+		</div>
+		<div class="row">
 			<dt><a href={EXAMPLE}>ewe-plugin-example</a></dt>
 			<dd>The reference shell plugin — a service, a panel with its own IPC target, a bar widget. Clone it to start yours.</dd>
 		</div>
@@ -86,6 +90,7 @@
 		<div class="row"><dt>The dock, music, mail, Cast — a plugin from ewe</dt><dd>Its own repository above, <code>ewe-plugin-&lt;name&gt;</code></dd></div>
 		<div class="row"><dt>Installing software, or the Plugins page</dt><dd><a href="{GITHUB}komble-arch">komble-arch</a></dd></div>
 		<div class="row"><dt>Sync, or the account</dt><dd><a href="{GITHUB}ewe-sync">ewe-sync</a></dd></div>
+		<div class="row"><dt>The browser, its home page, files or music</dt><dd><a href="{GITHUB}ewe-browser">ewe-browser</a></dd></div>
 		<div class="row"><dt>Not sure</dt><dd><a href={OS_REPO}>ewe-os</a> — it gets routed.</dd></div>
 	</dl>
 </section>
