@@ -82,6 +82,7 @@
 			<div><dt><kbd>Super</kbd> + scroll</dt><dd>Cycle</dd></div>
 			<div><dt>Three-finger swipe</dt><dd>Switch</dd></div>
 			<div><dt><kbd>Super</kbd><kbd>Ctrl</kbd><kbd>R</kbd></dt><dd>Reload the compositor configuration</dd></div>
+			<div><dt><kbd>Super</kbd><kbd>Shift</kbd><kbd>R</kbd></dt><dd>Display recovery — every screen back on, even from a black screen</dd></div>
 		</dl>
 	</div>
 </section>
@@ -89,10 +90,13 @@
 <section>
 	<h2>Your own bindings</h2>
 	<p>
-		Launch bindings live in the one file and follow you to every machine — Settings → Shortcuts
-		writes them, and they are <code>[[desktop.keybinds]]</code> in
-		<a href="/docs/one-file/schema/">the schema</a>. The Overview is a Hyprland global shortcut
-		named <code>ewe:overview</code>, so you can bind it to anything in <code>user.lua</code>.
+		Launch bindings live in the one file and follow you to every machine: they are
+		<code>[[desktop.keybinds]]</code> in <a href="/docs/one-file/schema/">the schema</a>, and you add
+		them from a terminal, for example
+		<code>ewe-conf set desktop.keybinds '[&#123;"combo": "SUPER + T", "exec": "kitty"&#125;]'</code>
+		(the list replaces the old one). Settings → Shortcuts lists every key but does not change them
+		yet. The Overview is a Hyprland global shortcut named <code>ewe:overview</code>, so you can bind
+		it to anything in <code>user.lua</code>.
 	</p>
 	<p>
 		<a href="{DE_REPO}/blob/main/dotfiles/hypr/SHORTCUTS.md">The complete keymap →</a>
