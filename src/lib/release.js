@@ -11,7 +11,7 @@
 // had to `cat` back together. archive.org hosts freely-licensed images whole,
 // for free and permanently, so the button below is one click and one file.
 // The split parts stay on the GitHub release as a mirror.
-export const VERSION = '0.12.4-beta';
+export const VERSION = '0.14.0-beta';
 
 /**
  * Whether the whole-image download on the Internet Archive exists yet.
@@ -34,7 +34,7 @@ export const ISO_URL = `https://archive.org/download/${IA_ITEM}/${ISO_FILE}`;
 export const SUMS_URL = `https://archive.org/download/${IA_ITEM}/SHA256SUMS`;
 
 /** Rounded, for the button. Exact bytes are in SHA256SUMS beside the image. */
-export const ISO_SIZE = '3.0 GB';
+export const ISO_SIZE = '3.2 GB';
 
 /** The GitHub release for this tag — split parts, notes, source. */
 export const RELEASE_URL = `https://github.com/prj786/ewe-os/releases/tag/v${VERSION}`;
