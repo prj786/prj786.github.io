@@ -30,7 +30,7 @@
 			<div><dt><kbd>Super</kbd><kbd>,</kbd></dt><dd>Settings</dd></div>
 			<div><dt><kbd>Super</kbd><kbd>N</kbd></dt><dd>Quick settings</dd></div>
 			<div><dt><kbd>Super</kbd><kbd>C</kbd></dt><dd>Calendar</dd></div>
-			<div><dt><kbd>Super</kbd><kbd>Z</kbd></dt><dd>Minimize — it waits in the dock's Minimized box</dd></div>
+			<div><dt><kbd>Super</kbd><kbd>Z</kbd></dt><dd>Minimize — the window waits in the dock as its picture; click it to bring it back</dd></div>
 			<div><dt><kbd>Super</kbd><kbd>Shift</kbd><kbd>Z</kbd></dt><dd>Bring back the window minimized last</dd></div>
 			<div><dt><kbd>Super</kbd><kbd>Shift</kbd><kbd>W</kbd></dt><dd>Arrange desktop widgets — drag, pin, lock, hide; Esc</dd></div>
 		</dl>
