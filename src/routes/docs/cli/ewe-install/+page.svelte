@@ -56,7 +56,7 @@
 		<div class="row"><dt>The repository</dt><dd>Adds the <code>[ewe]</code> repository to the target.</dd></div>
 		<div class="row"><dt>The package</dt><dd>Installs <code>ewe</code>, which pulls the desktop and the first-party applications.</dd></div>
 		<div class="row"><dt>The greeter</dt><dd>Configures the login stack so the installed machine boots to a graphical greeter.</dd></div>
-		<div class="row"><dt>Every account</dt><dd>Runs the per-user deploy for each human account created during the install. A fresh account gets none of the <a href="/docs/add-ons/">plugins that ship with ewe</a>; the deploy records them as considered.</dd></div>
+		<div class="row"><dt>Every account</dt><dd>Runs the per-user deploy for each human account created during the install. A fresh account gets none of the <a href="/docs/plugins/built-in/">plugins that ship with ewe</a>; the deploy records them as considered.</dd></div>
 		<div class="row"><dt>Updates</dt><dd>Brings the target fully up to date before first boot, so a fresh install owes no updates.</dd></div>
 		<div class="row"><dt>Your plugins</dt><dd>Each id you picked is installed for the new user inside the target — <code>ewe-plugin install</code>, one at a time, best-effort. A package a plugin needs is installed with it. A plugin that fails is reported and never fails the install; Komble → Plugins has it later.</dd></div>
 	</dl>
@@ -86,7 +86,7 @@ ewe-install --addons-only ewe.phone                         # the layer is done;
 	<h2>See also</h2>
 	<ul>
 		<li><a href="/docs/install/">Install ewe</a> — the graphical path, screen by screen.</li>
-		<li><a href="/docs/add-ons/">Plugins from ewe</a> — what the ids mean.</li>
+		<li><a href="/docs/plugins/built-in/">Plugins from ewe</a> — what the ids mean.</li>
 		<li><a href="{OS_REPO}/blob/main/docs/INSTALL.md">The full install guide</a> in the distro repository.</li>
 		<li><a href="/docs/cli/ewe-setup/">ewe-setup</a> — the per-user half of the deploy.</li>
 	</ul>

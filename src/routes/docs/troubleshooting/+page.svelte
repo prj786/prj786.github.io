@@ -1,6 +1,5 @@
 <script>
 	import Code from '$lib/docs/Code.svelte';
-	import Callout from '$lib/docs/Callout.svelte';
 	import PageNav from '$lib/docs/PageNav.svelte';
 	import { OS_REPO, DE_REPO, ISSUES } from '$lib/nav.js';
 	const TROUBLE = OS_REPO + '/blob/main/docs/TROUBLESHOOTING.md';
@@ -11,113 +10,70 @@
 	<title>Troubleshooting — ewe docs</title>
 	<meta
 		name="description"
-		content="Known limitations of ewe OS, where the dock went on a fresh install, the first things to check when the desktop, a plugin, the keyring or sync misbehaves, and where to report what you find."
+		content="What ewe can't do yet, the first things to check when the desktop, a plugin, the keyring or sync misbehaves, and where to report what you find."
 	/>
 </svelte:head>
 
 <p class="eyebrow">Reference</p>
 <h1>When something is wrong.</h1>
 <p class="lede">
-	ewe is beta software and says so. This page is the honest list of what does not work yet, and the
-	first checks for the things that do.
+	ewe is in beta. Most things just work now; this page lists what still doesn't, and the first
+	things to check when something goes wrong.
 </p>
 
 <section>
 	<h2>Known limitations</h2>
 	<ul>
-		<li>
-			<strong>It is a beta.</strong> The install is verified end to end in a virtual machine and on
-			real hardware, but coverage is thin. Install on a machine you can afford to reinstall.
-		</li>
-		<li><strong>Whole-disk installs only</strong> — no dual-boot and no manual partitioning yet.</li>
-		<li><strong>x86_64 and unsigned</strong> — no ARM image, and Secure Boot must be off.</li>
-		<li>
-			<strong>The screen never powers off on idle</strong> — it locks instead. A deliberate
-			workaround for a graphics driver bug on some Intel hardware; re-enable it on hardware without
-			that bug.
-		</li>
-		<li>On battery, the machine locks at five minutes and suspends at fifteen. Both are one edit away.</li>
-		<li>The session lock works, but it is the youngest security-relevant component here.</li>
-		<li>Multi-monitor hotplug is lightly tested.</li>
-		<li>
-			<strong>X11 apps have one scale for every screen.</strong> ewe picks the smallest scale of
-			the monitors connected at login — soft on a high-density laptop panel, the right size on
-			the external. Docking after login needs a re-login to change it.
-		</li>
-		<li>No input method yet — CJK and complex-script input is not wired up.</li>
-		<li>Chromecast mirroring carries a few seconds of latency; Miracast is the real-time path.</li>
+		<li><strong>Whole disk only.</strong> The installer erases the disk you pick — no dual-boot yet.</li>
+		<li><strong>64-bit PCs with UEFI.</strong> No ARM image, and Secure Boot has to be off.</li>
+		<li><strong>The screen locks but doesn't switch off</strong> when you're away — a workaround for a graphics bug on some Intel laptops.</li>
+		<li><strong>No input method yet</strong> for Chinese, Japanese, Korean and similar scripts.</li>
+		<li><strong>Older X11 apps</strong> get one scale for all screens, chosen when you log in.</li>
+		<li><strong>Chromecast</strong> runs a few seconds behind; Miracast is the real-time way to cast.</li>
 	</ul>
-</section>
-
-<section>
-	<h2>Where did my dock go?</h2>
-	<p>
-		On a fresh 0.25 install it was never there: the dock is a
-		<a href="/docs/add-ons/">plugin that ships with ewe</a>, and a fresh ewe installs none of them.
-		The same goes for the clipboard scissors, the Cast tile, music, Places, mail, phone, VPN, SSH,
-		Insomnia and the system monitor. Komble → Plugins, or:
-	</p>
-	<Code
-		code={`ewe-plugin list --json | jq '.available[] | "\\(.id)  installed=\\(.installed)"'
-ewe-plugin install ewe.dock`}
-	/>
-	<p>
-		After an <em>upgrade</em> the features you had are brought back once by
-		<code>ewe-plugin migrate</code>; the dock is skipped only if you had turned it off, and anything
-		you had removed stays out. Settings → Layout says "The dock is a plugin" with a button instead
-		of showing controls for a dock that is not there.
-	</p>
-	<p>
-		Turning the dock off is turning the Dock plugin off in Komble → Plugins. Its settings —
-		Intelligent auto-hide and Icon size — are the plugin's own, in Komble → Plugins → Dock →
-		Options; Settings → Layout only has a <em>Dock options</em> button that opens that dialog. A
-		dock you set up before keeps its <code>[desktop.dock]</code> values until you change them there.
-		<a href="/docs/add-ons/#dock-settings">Where the dock's settings live →</a>
-	</p>
+	<p>Found something else? <a href={ISSUES}>Tell us</a> — reports from real machines help most.</p>
 </section>
 
 <section>
 	<h2>First checks</h2>
 	<dl class="rows">
 		<div class="row">
+			<dt>No dock, or a plugin's button is missing</dt>
+			<dd>A fresh ewe has no plugins until you pick them. Komble → Plugins, or <code>ewe-plugin list</code> to see what's on. A plugin's <em>Show in bar</em> switch can also hide its button. <a href="/docs/plugins/built-in/">Built-in plugins →</a></dd>
+		</div>
+		<div class="row">
 			<dt>The desktop looks stale after an update</dt>
-			<dd>Run <code>ewe-setup</code>, then log out and back in. It refreshes the shipped files and never touches your own state. The system side — greeter, splash — is <code>bash /usr/share/ewe/install.sh --no-packages</code>, as your user, never under <code>sudo</code>.</dd>
+			<dd>Log out and back in. Still stale? Run <code>ewe-setup</code>, then log in again — it never touches your own settings.</dd>
 		</div>
 		<div class="row">
-			<dt>A tile, a bar glyph or an old keybind is missing</dt>
-			<dd><code>ewe-plugin list</code> — is the plugin installed and on? <code>qs ipc call cast toggle</code>, <code>quicksettings tab mail</code> and <kbd>Super</kbd>+<kbd>Shift</kbd>+<kbd>C</kbd> all exist only while their plugin does. A bar button or glyph can also be hidden by the plugin's <em>Show in bar</em> switch — <code>ewe-plugin bar &lt;id&gt;</code> prints it.</dd>
+			<dt>A black screen</dt>
+			<dd><kbd>Super</kbd>+<kbd>Shift</kbd>+<kbd>R</kbd> turns every display back on.</dd>
 		</div>
 		<div class="row">
-			<dt>Opening the lid blinks, or the machine sleeps again right after waking</dt>
-			<dd>Fixed in 0.25: lid-open now touches only a display that is off, and every sleep decision re-reads the lid. If you still see it, <code>journalctl --user -u ewe.service | grep 'lid:'</code> names the reason, and a report with it is welcome.</dd>
+			<dt>Asked for a keyring password at every start</dt>
+			<dd>With Safe: Safe → Settings → Keyring → <em>Fix the keyring password prompt</em>. Without it: <code>ewe-auth keyring-reset</code>, then log in again.</dd>
+		</div>
+		<div class="row">
+			<dt>Sync won't upload</dt>
+			<dd><code>ewe-conf sync-status</code> says which machine saved last and what to do. <a href="/docs/account/settings-sync/">More →</a></dd>
+		</div>
+		<div class="row">
+			<dt>A setting won't stick</dt>
+			<dd>Change it in Settings or with <code>ewe-conf set</code>, never in a generated file. <a href="/docs/one-file/editing/">More →</a></dd>
 		</div>
 		<div class="row">
 			<dt>Casting finds no TV</dt>
-			<dd>Run the Cast plugin's own check: <code>~/.config/ewe/plugins/ewe.cast/cast-check.sh</code>. It tests the Wi-Fi Direct and mDNS prerequisites and prints the fix for each.</dd>
+			<dd>Run <code>~/.config/ewe/plugins/ewe.cast/cast-check.sh</code> — it checks what casting needs and prints the fix.</dd>
 		</div>
 		<div class="row">
-			<dt>A setting will not stick</dt>
-			<dd>Check you are editing the source, not a generated file: <code>ewe-conf get &lt;key&gt;</code>, then <code>ewe-conf apply</code>. <a href="/docs/one-file/editing/">More →</a></dd>
-		</div>
-		<div class="row">
-			<dt>Sign-in cannot reach the keyring</dt>
-			<dd>Ask the tools: <code>ewe-cloud status</code> reports the keyring state. A keyring created with a password other than your login one can never be unlocked automatically — <code>ewe-auth keyring-reset</code> moves it aside so your next login recreates it.</dd>
-		</div>
-		<div class="row">
-			<dt>Sync refuses to upload</dt>
-			<dd><code>ewe-conf sync-status</code> names which machine saved the backup and when, whether that was this one (<code>remote_is_this_machine</code>), and what a push would answer right now (<code>conflict</code>). <code>remote-newer</code> means pull first; <code>remote-exists</code> means restore first. A push cut off by a suspend, or the Nextcloud desktop client re-uploading the same file, no longer reads as another machine's save. <a href="/docs/account/settings-sync/">More →</a></dd>
-		</div>
-		<div class="row">
-			<dt>The mail badge is empty</dt>
-			<dd>The badge is the Mail plugin — <code>ewe-plugin list</code> first. Then <code>ewe-mail status</code> and <code>ewe-mail unseen</code>; an <code>auth-failed</code> usually means the provider wants an application-specific password.</dd>
+			<dt>The mail count is empty</dt>
+			<dd><code>ewe-mail status</code>. An <code>auth-failed</code> usually means your provider wants an app password.</dd>
 		</div>
 	</dl>
 	<Code
-		code={`ewe-cloud status      # account and keyring
-ewe-conf sync-status  # the backup, and this machine
-ewe-plugin list       # every plugin: installed, on, safe mode
-ewe-mail status       # the mail account
-ewe-auth status       # the optional Google client`}
+		code={`ewe-plugin list       # your plugins: on, off, safe mode
+ewe-cloud status      # your account and the keyring
+ewe-conf sync-status  # the backup, and this machine`}
 	/>
 </section>
 

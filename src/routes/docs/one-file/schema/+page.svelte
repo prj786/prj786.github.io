@@ -101,7 +101,7 @@ base00 = "#282828"
 		<code>autohide</code> and <code>icon_size</code> live in <code>[plugins.settings]."ewe.dock"</code>,
 		and until you set one there, the value here stands. <code>enabled</code> no longer hides the
 		dock — turning the <code>ewe.dock</code> plugin off does; it only told the 0.25 migration whether
-		to bring the dock back. <a href="/docs/add-ons/#dock-settings">The dock's settings →</a>
+		to bring the dock back. <a href="/docs/plugins/built-in/#dock-settings">The dock's settings →</a>
 	</p>
 </section>
 

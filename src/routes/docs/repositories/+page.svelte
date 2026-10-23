@@ -55,6 +55,14 @@
 			<dd>ewe browser, the desktop's browser: the web, your files, PDFs and your music in one window, themed by ewe.</dd>
 		</div>
 		<div class="row">
+			<dt><a href="{GITHUB}ewe-safe">ewe-safe</a></dt>
+			<dd>Safe, ewe's password manager: the app, the <code>ewe-safe</code> command and the SSH agent. The Safe plugin brings it.</dd>
+		</div>
+		<div class="row">
+			<dt><a href="{GITHUB}ewe-companion">ewe-companion</a></dt>
+			<dd>Shaun, the desktop companion behind the notch. The Shaun plugin brings it.</dd>
+		</div>
+		<div class="row">
 			<dt><a href={EXAMPLE}>ewe-plugin-example</a></dt>
 			<dd>The reference shell plugin — a service, a panel with its own IPC target, a bar widget. Clone it to start yours.</dd>
 		</div>
@@ -68,9 +76,9 @@
 <section>
 	<h2>One repository per first-party plugin</h2>
 	<p>
-		Every <a href="/docs/add-ons/">plugin that ships with ewe</a> is developed and released in its
+		Every <a href="/docs/plugins/built-in/">plugin that ships with ewe</a> is developed and released in its
 		own repository and copied into the ewe package at release time, so a fix lands in the plugin's
-		repo first and reaches you with the next ewe. The thirteen:
+		repo first and reaches you with the next ewe. The sixteen:
 	</p>
 	<dl class="rows addons">
 		{#each ADDONS as a}
@@ -91,6 +99,8 @@
 		<div class="row"><dt>Installing software, or the Plugins page</dt><dd><a href="{GITHUB}komble-arch">komble-arch</a></dd></div>
 		<div class="row"><dt>Sync, or the account</dt><dd><a href="{GITHUB}ewe-sync">ewe-sync</a></dd></div>
 		<div class="row"><dt>The browser, its home page, files or music</dt><dd><a href="{GITHUB}ewe-browser">ewe-browser</a></dd></div>
+		<div class="row"><dt>Safe, its window or the command</dt><dd><a href="{GITHUB}ewe-safe">ewe-safe</a></dd></div>
+		<div class="row"><dt>Shaun's answers or its agents</dt><dd><a href="{GITHUB}ewe-companion">ewe-companion</a></dd></div>
 		<div class="row"><dt>Not sure</dt><dd><a href={OS_REPO}>ewe-os</a> — it gets routed.</dd></div>
 	</dl>
 </section>

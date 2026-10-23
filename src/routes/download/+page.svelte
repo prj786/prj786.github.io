@@ -82,7 +82,7 @@
 			You land on the ewe desktop, running from the stick, with <strong>Install ewe</strong> first in
 			the dock. Everything you see is the real system: open Quick settings with
 			<code>Super+N</code>, try Komble, change the accent. One difference from an installed ewe: the
-			stick carries the <a href="/docs/add-ons/">Dock plugin</a> so the installer has somewhere to
+			stick carries the <a href="/docs/plugins/built-in/">Dock plugin</a> so the installer has somewhere to
 			sit — your install starts without it unless you pick it. Nothing is written to your disks
 			until you press the red Install button on the Summary screen.
 		</p>
@@ -97,7 +97,7 @@
 			<li><span class="n">3</span><div><h3>Time &amp; place</h3><p>Your timezone, detected — two providers have to agree, and you always see what was picked — plus language and locale.</p></div></li>
 			<li><span class="n">4</span><div><h3>Disk</h3><p>Pick a disk. <strong>The whole disk is erased</strong>; you're warned here and again at the end.</p></div></li>
 			<li><span class="n">5</span><div><h3>Your account</h3><p>Name, username, password, computer name.</p></div></li>
-			<li><span class="n">6</span><div><h3>Plugins</h3><p>The dock, music, mail, Cast to TV and <a href="/docs/add-ons/">nine more</a> — the plugins ewe ships but does not install until you ask. Nothing is pre-checked; Komble has every one of them later.</p></div></li>
+			<li><span class="n">6</span><div><h3>Plugins</h3><p>The dock, Safe, Shaun, music, mail and <a href="/docs/plugins/built-in/">eleven more</a> — the plugins ewe ships but does not install until you ask. Nothing is pre-checked; Komble has every one of them later.</p></div></li>
 			<li><span class="n">7</span><div><h3>Summary</h3><p>Everything you chose, plugins included, everything ewe decided, and the only Install button in the flow.</p></div></li>
 			<li><span class="n">8</span><div><h3>Install</h3><p>Streamed progress — the system, the desktop, an update, your plugins — then reboot. Pull the stick when the screen goes dark.</p></div></li>
 		</ol>
@@ -139,9 +139,8 @@
 			<li>A network connection during install, to fetch packages.</li>
 		</ul>
 		<p class="note">
-			It's a beta. The installer is verified end to end in a VM; real-hardware coverage is thin, so
-			install on something you can afford to reinstall, and please
-			<a href="/docs/troubleshooting/">report what happens</a>.
+			It's a beta: install on a machine you can reinstall, and please
+			<a href="/docs/troubleshooting/">tell us what breaks</a>.
 		</p>
 	</section>
 
@@ -159,7 +158,7 @@
 			layout is already yours. Then <code>ewe-setup</code> deploys it for your user,
 			<code>bash /usr/share/ewe/install.sh --no-packages</code> — run as your user, not with
 			<code>sudo</code> — sets up the greeter and the splash, and <code>ewe-plugin install</code>
-			adds the <a href="/docs/add-ons/">plugins</a> you want.
+			adds the <a href="/docs/plugins/built-in/">plugins</a> you want.
 		</p>
 	</section>
 

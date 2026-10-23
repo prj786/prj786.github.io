@@ -53,24 +53,11 @@
 </section>
 
 <section>
-	<h2>Updating to 0.25: the plugins that ship with ewe</h2>
+	<h2>Your plugins</h2>
 	<p>
-		0.25 moved ten features out of the shell into <a href="/docs/add-ons/">plugins</a> — the dock,
-		music, Places, phone, mail, VPN, SSH, Cast to TV, Insomnia and the system monitor — beside the
-		three that already were plugins (clipboard, screenshot, passwords). Your first login after the update
-		runs a one-time migration that installs and enables the ones that replace what you had built
-		in: the dock only if it was on, and never a plugin you had removed. The marker is local to
-		the machine, so every machine you own migrates once, on its own.
-	</p>
-	<Code
-		code={`ewe-plugin list                 # what came back, and what did not
-ewe-plugin migrate              # the same step again — safe, it skips what it already considered
-ewe-plugin install ewe.dock     # anything you want that the migration left out`}
-	/>
-	<p>
-		Everything else is unchanged: old keybinds and scripts that call <code>cast</code>,
-		<code>player</code>, <code>places</code> or <code>mail</code> still work once the plugin is in,
-		and the greeter's files are refreshed by the package itself.
+		Updates keep the <a href="/docs/plugins/built-in/">plugins</a> you have and refresh them when a
+		newer version ships. A plugin you removed stays removed, and one you added from a git URL is
+		never touched — <code>ewe-plugin update</code> updates those when you ask.
 	</p>
 </section>
 
@@ -78,10 +65,8 @@ ewe-plugin install ewe.dock     # anything you want that the migration left out`
 	<h2>Your settings are not part of the update</h2>
 	<p>
 		Package updates replace shipped files. Your configuration lives in
-		<a href="/docs/one-file/">the one file</a> and is regenerated, never overwritten — which is also
-		why restoring a machine is a separate, deliberate act. Your plugins live outside the payload
-		too: an update refreshes the copy of one that ships with ewe when its version changed, and never
-		touches a plugin you installed from a git URL.
+		<a href="/docs/one-file/">the one file</a> and is never overwritten — which is also why restoring
+		a machine is a separate, deliberate act.
 	</p>
 </section>
 

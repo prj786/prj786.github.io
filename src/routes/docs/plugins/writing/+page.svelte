@@ -42,7 +42,7 @@
 <p class="lede">
 	A plugin is a git repository with a <code>manifest.json</code> at its root and one QML file per
 	kind. Nothing is compiled, nothing is packaged — the shell reads the files where they are. Start
-	from the example, or from a <a href="/docs/add-ons/">plugin that ships with ewe</a>; they are the
+	from the example, or from a <a href="/docs/plugins/built-in/">plugin that ships with ewe</a>; they are the
 	whole shape.
 </p>
 

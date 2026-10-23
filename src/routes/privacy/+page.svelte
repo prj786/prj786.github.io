@@ -1,6 +1,6 @@
 <script>
 	import { ISSUES } from '$lib/nav.js';
-	const UPDATED = '2 September 2026';
+	const UPDATED = '23 October 2026';
 </script>
 
 <svelte:head>
@@ -62,7 +62,7 @@
 			choose the server — one you run, or a hosted provider — and ewe uses Nextcloud's own browser
 			login: your server's page authenticates you, and ewe receives an <em>app password</em> scoped
 			to your account. ewe never sees or stores your real password. With that account ewe does
-			exactly three things:
+			these three things, plus what Safe and ewe browser store there if you ask them to (below):
 		</p>
 		<dl class="rows">
 			<div class="row">
@@ -94,6 +94,38 @@
 			flows <strong>directly between your computer and your server</strong>. It is never sent to,
 			stored by, proxied through, or visible to the ewe project.
 		</p>
+	</section>
+
+	<section>
+		<h2>Safe, ewe browser and Shaun (optional)</h2>
+		<dl class="rows">
+			<div class="row">
+				<dt>Safe</dt>
+				<dd>
+					Your safe is encrypted on your computer with your master password before it is stored —
+					in your Nextcloud if you choose it, so your server only ever holds a locked file. Nobody
+					else, the ewe project included, can open it.
+				</dd>
+			</div>
+			<div class="row">
+				<dt>ewe browser</dt>
+				<dd>
+					If you turn on <em>Sync with Nextcloud</em>, your bookmarks, history, open tabs and browser
+					settings are kept in your account. Otherwise they stay on your computer.
+				</dd>
+			</div>
+			<div class="row">
+				<dt>Shaun</dt>
+				<dd>
+					Shaun works on your computer. Only if you pick an AI to answer your questions does it send
+					that AI your question and a short note about your computer — the ewe version, battery,
+					volume — never a password or a key. You choose the provider: your own Claude Code, Codex
+					or OpenCode login, an API key, a model on your own machine, or your own server. That
+					provider's privacy policy then applies.
+				</dd>
+			</div>
+		</dl>
+		<p>None of this is sent to, stored by, or visible to the ewe project.</p>
 	</section>
 
 	<section>

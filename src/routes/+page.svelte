@@ -16,7 +16,7 @@
 		['globe', 'Your place', 'Timezone detected — two providers have to agree — plus language and locale.'],
 		['hard-drive', 'Which disk', "The whole disk is erased, and you're told so twice."],
 		['circle-user', 'Who you are', 'Name, username, password, and a name for the computer.'],
-		['puzzle', 'Which plugins', 'The dock, music, mail, Cast and more — nothing pre-checked, all of it one click away later.']
+		['puzzle', 'Which plugins', 'The dock, Safe, Shaun, music and more — nothing ticked, all of it one click away later.']
 	];
 
 	// Two accents through the same engine /theming/ runs live, derived at
@@ -57,7 +57,7 @@
 		<h1 class="hero-title">A whole desktop, already <mark>decided</mark>.</h1>
 		<p class="lede">
 			ewe is a complete, Arch-based operating system. One ISO, about ten minutes, and a finished
-			desktop — installer to lock screen, themed end to end.
+			desktop — with its own browser, password manager and companion.
 		</p>
 		<div class="btns center">
 			<a class="btn primary lg" href="/download/">
@@ -105,9 +105,9 @@
 		<p class="eyebrow">The installer</p>
 		<h2>It asks five things.</h2>
 		<p>
-			Everything technical is decided by ewe — and shown to you on one summary screen before a single
-			byte is written. The fifth question is the only one about the desktop itself: which plugins
-			you want, of the thirteen that ship with ewe. The honest default is none.
+			Everything technical is decided by ewe, and shown to you on one summary screen before anything
+			is written. The last question is which of the sixteen built-in plugins you want — none is ticked
+			for you.
 		</p>
 	</div>
 	<ol class="asks">
@@ -128,23 +128,21 @@
 		<p class="eyebrow">What you get</p>
 		<h2>A desktop, not a starting point.</h2>
 		<p>
-			Greeter, bar, launcher, Overview, Quick settings, software manager, settings and lock screen —
-			all first-party, all matching. Then the plugins you choose — the dock, music, mail, Cast and
-			nine more that ship with ewe — and plugins from a git URL for what you would add. Nothing to
-			assemble, nothing you did not ask for.
+			The desktop, a browser, a password manager, a software store and settings — all made by ewe,
+			all matching. Then the plugins you choose. Nothing to assemble.
 		</p>
 	</div>
 
 	<div class="bento">
-		<div class="card tile wide pic">
+		<a class="card act tile wide pic" href="/docs/desktop/">
 			<div class="txt">
 				<span class="ico"><Icon name="layout-panel-top" size={18} /></span>
-				<h3>A shell written once</h3>
+				<h3>The desktop</h3>
 				<p>
-					Hyprland and a first-party Quickshell shell — bar, fuzzy launcher, Overview, notifications,
-					Quick settings, lock and OSD. A tap of <code>Super</code> shows every window at once, in
-					one step; <code>Super+D</code> finds apps, files and folders.
+					Tap <code>Super</code> and every window spreads out. <code>Super+D</code> finds apps and
+					files, <code>Super+Z</code> tucks a window away, and every display gets its own workspaces.
 				</p>
+				<span class="go">Find your way around <Icon name="arrow-right" size={14} /></span>
 			</div>
 			<picture>
 				<source srcset="/img/launcher.webp" type="image/webp" />
@@ -157,16 +155,29 @@
 					decoding="async"
 				/>
 			</picture>
-		</div>
-		<div class="card tile">
+		</a>
+		<a class="card act tile" href="/docs/apps/komble/">
 			<span class="ico"><Icon name="package" size={18} /></span>
 			<h3>Komble</h3>
-			<p>The software manager: official repos, the AUR and AppImages behind one search field.</p>
-		</div>
+			<p>Apps from the Arch repos, the AUR and AppImages behind one search field — and updates in one click.</p>
+			<span class="go">Komble <Icon name="arrow-right" size={14} /></span>
+		</a>
+		<a class="card act tile" href="/docs/apps/browser/">
+			<span class="ico"><Icon name="compass" size={18} /></span>
+			<h3>ewe browser</h3>
+			<p>The web, your files and your music in one window, with workspaces and your passwords built in.</p>
+			<span class="go">The browser <Icon name="arrow-right" size={14} /></span>
+		</a>
+		<a class="card act tile" href="/docs/apps/safe/">
+			<span class="ico"><Icon name="vault" size={18} /></span>
+			<h3>Safe</h3>
+			<p>A password manager of your own: logins, cards, passkeys and SSH keys, encrypted, in your Nextcloud.</p>
+			<span class="go">Safe <Icon name="arrow-right" size={14} /></span>
+		</a>
 		<a class="card act tile" href="/theming/">
 			<span class="ico"><Icon name="palette" size={18} /></span>
 			<h3>Your colors, everywhere</h3>
-			<p>One accent, an imported scheme, or the wallpaper's own palette — the shell, GTK, Qt, icons, cursor and window borders follow, live.</p>
+			<p>Dark or light, any accent, or your wallpaper's colors — the whole desktop follows, live.</p>
 			{#each RAMPS as r}
 				<div class="ramp" title="The accent ramp {r.who}">
 					{#each RAMP_STEPS as s}<span style="background:{r.ramp[s]}"></span>{/each}
@@ -174,54 +185,51 @@
 			{/each}
 			<span class="go">How theming works <Icon name="arrow-right" size={14} /></span>
 		</a>
+		<a class="card act tile wide" href="/docs/apps/shaun/">
+			<span class="ico"><Icon name="message-circle" size={18} /></span>
+			<h3>Shaun, your companion</h3>
+			<p>
+				A small notch under the bar that shows what your AI agents are doing and lets you answer them,
+				with quick switches and a chat for questions and commands. Nothing runs without your click.
+			</p>
+			<span class="go">Meet Shaun <Icon name="arrow-right" size={14} /></span>
+		</a>
+		<div class="card tile">
+			<span class="ico"><Icon name="refresh-cw" size={18} /></span>
+			<h3>Always up to date</h3>
+			<p>It's Arch underneath: one update moves the system and the desktop forward together.</p>
+		</div>
 		<a class="card act tile wide" href="/how/">
 			<span class="ico"><Icon name="cloud" size={18} /></span>
 			<h3>Your setup follows you</h3>
 			<p>
-				One config file, kept in your own Nextcloud — never ours. A fresh install offers your desktop
-				and your apps back at first sign-in.
+				Your settings live in your own Nextcloud — never ours. On a new machine, sign in and get your
+				desktop, your apps and your plugins back.
 			</p>
 			<span class="go">How it works <Icon name="arrow-right" size={14} /></span>
 		</a>
-		<a class="card act tile wide" href="/docs/add-ons/">
-			<span class="ico"><Icon name="cast" size={18} /></span>
-			<h3>Plugins you choose</h3>
-			<p>
-				Thirteen first-party extras ship inside ewe and install only when you ask: the dock, music,
-				Places, your phone, mail, VPN, SSH, Cast to TV, Insomnia, a system monitor, clipboard
-				history, screenshots, password fill. One click in Komble, or at install.
-			</p>
-			<span class="go">The thirteen <Icon name="arrow-right" size={14} /></span>
-		</a>
-		<div class="card tile">
-			<span class="ico"><Icon name="refresh-cw" size={18} /></span>
-			<h3>Rolling, from one repo</h3>
-			<p>
-				It's Arch underneath. <code>[ewe]</code> is preconfigured, so <code>pacman -Syu</code> rolls
-				the system and the desktop forward together.
-			</p>
-		</div>
-		<a class="card act tile wide" href="/docs/plugins/">
-			<span class="ico"><Icon name="puzzle" size={18} /></span>
-			<h3>Plugins</h3>
-			<p>
-				<code>ewe-plugin create</code> scaffolds a repo; a git URL installs one. Quick settings tiles
-				and pages, bar glyphs, dock items, panels, services — and desktop widgets you drag where you
-				like. You draw it; ewe places it, keeps its settings, and gives a crashing plugin three
-				strikes, not your login. The thirteen that ship with ewe are built the same way.
-			</p>
-			<span class="go">How plugins work <Icon name="arrow-right" size={14} /></span>
-		</a>
 		<div class="card tile">
 			<span class="ico"><Icon name="shield-check" size={18} /></span>
-			<h3>The unglamorous parts</h3>
-			<p>
-				Silent boot to a themed greeter, a shell that restarts itself if it crashes, and power
-				behavior that protects unsaved work.
-			</p>
+			<h3>The quiet parts</h3>
+			<p>A silent boot, a desktop that restarts itself if it crashes, and sleep that protects your work.</p>
 		</div>
+		<a class="card act tile wide" href="/docs/plugins/built-in/">
+			<span class="ico"><Icon name="puzzle" size={18} /></span>
+			<h3>Sixteen plugins, your pick</h3>
+			<p>
+				The dock, Safe, Shaun, music, Places, clipboard, screenshots, mail, Slack, your phone, Cast to
+				TV, VPN, SSH and more ship with ewe — and install only when you ask.
+			</p>
+			<span class="go">See all sixteen <Icon name="arrow-right" size={14} /></span>
+		</a>
+		<a class="card act tile" href="/docs/plugins/">
+			<span class="ico"><Icon name="git-branch" size={18} /></span>
+			<h3>Make your own</h3>
+			<p>A plugin is a little QML. <code>ewe-plugin create</code> gives you a working one to start from.</p>
+			<span class="go">How plugins work <Icon name="arrow-right" size={14} /></span>
+		</a>
 	</div>
-	<p class="more center"><a href="/features/">All features in detail →</a></p>
+	<p class="more center"><a href="/features/">All features →</a></p>
 </section>
 
 <!-- ── decided ──────────────────────────────────────────────────────────── -->
@@ -282,9 +290,9 @@
 		<p class="eyebrow">Honestly</p>
 		<h2>It's a beta.</h2>
 		<p>
-			The install is verified end to end in QEMU — eight screens to a booted desktop — and casting has
-			been proven against a real television. <strong>Real-hardware installs are still thin</strong>,
-			and that's the next gate. If you try it on metal, a report is the most useful thing you can send.
+			ewe runs every day on real laptops and desktops, and most rough edges are gone. Install it on a
+			machine you can reinstall, and if something breaks, tell us — a report is the most useful thing
+			you can send.
 		</p>
 		<div class="btns center">
 			<a class="btn primary lg" href="/download/"><Icon name="download" size={17} /> Get the ISO</a>

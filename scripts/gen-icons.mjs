@@ -23,7 +23,8 @@ const NAMES = [
 	'refresh-cw', 'rotate-ccw', 'ruler', 'scissors', 'search', 'settings-2', 'shield', 'shield-check',
 	'shuffle', 'sliders-horizontal', 'smartphone', 'sparkles',
 	'square-round-corner', 'square-terminal', 'sun', 'swatch-book', 'terminal',
-	'triangle-alert', 'type', 'usb', 'wand-sparkles', 'wifi', 'zap'
+	'triangle-alert', 'type', 'usb', 'wand-sparkles', 'wifi', 'zap',
+	'app-window', 'compass', 'message-circle', 'messages-square', 'minimize-2', 'vault'
 ];
 
 const version = JSON.parse(

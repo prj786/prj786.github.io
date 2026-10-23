@@ -42,7 +42,7 @@
 		<a href="/docs/cli/ewe-sync/">ewe-sync</a> → Mail — or with
 		<a href="/docs/cli/ewe-mail/"><code>ewe-mail login</code></a> if you would rather type.
 		The badge — the envelope with the unread count, and the newest unseen messages behind it on the
-		Inbox page — is the <a href="/docs/add-ons/">Mail plugin</a>. Notifications for new mail are its
+		Inbox page — is the <a href="/docs/plugins/built-in/">Mail plugin</a>. Notifications for new mail are its
 		own <code>notify</code> setting: Komble → Plugins → Mail → Options, the bell on the Inbox page,
 		or <code>ewe-plugin set ewe.mail notify false</code>.
 	</p>
