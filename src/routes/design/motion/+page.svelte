@@ -4,8 +4,8 @@
 
 	const MOTION = [
 		['fast', '150ms', 'ease-out', 'Hover, pressed, focus and other color changes; menus and toasts closing'],
-		['base', '200ms', 'ease-out', 'Panels and toasts opening: a fade plus a 4px slide from their edge — dock panels and the launcher fade only; the dock hiding; the Overview’s cards, search and pager, and the bar and dock sliding away for it'],
-		['slow', '250ms', 'ease-in-out', 'Workspace switches, Welcome'],
+		['base', '200ms', 'ease-out', 'Panels and toasts opening: a fade plus a 4px slide from their edge — dock panels and the launcher fade only; the dock hiding; the Overview’s windows flying home, its workspace thumbnails sliding down, and the bar and dock sliding away for it'],
+		['slow', '250ms', 'ease-in-out', 'Workspace switches, Welcome, the Overview’s windows flying out'],
 		['dim', '1500ms', 'linear', 'The screen dimming before it locks']
 	];
 
@@ -86,23 +86,25 @@
 </section>
 
 <section id="overview">
-	<h2>The Overview, in one step</h2>
+	<h2>The Overview, flying</h2>
 	<p>
-		The Overview takes the whole screen, wallpaper first, and since ewe 0.25 it opens in
-		<strong>one step</strong>: on the frame it is asked for, the backdrop fades in at
-		<code>fast</code>, the bar slides up and the dock slides down at <code>base</code>, and the window
-		cards, the search field and the pager fade and zoom in at <code>base</code> with the ease-out
-		curve. The backdrop reads first only because its fade is the shorter one. Trigger to a settled,
-		focused Overview is about 240 ms — it used to be two steps and 500 ms or more.
+		Since ewe 0.34 the Overview works like Mission Control. When you tap <kbd>Super</kbd> the shell
+		takes one frame of each window, then every card starts <strong>exactly over its window</strong>,
+		so the first frame looks like the desktop itself. They fly to their places in the spread at
+		<code>slow</code> with the ease-out curve. The wallpaper and its dim come in with them, the bar
+		slides up and the dock slides down on the same frame, and the workspaces come down from the
+		top as labels.
 	</p>
 	<p>
-		Closing keeps two beats, because leaving should feel lighter than arriving: the cards go at
-		<code>base</code>, then after <code>fast</code> the backdrop fades out and the bar and dock slide
-		back. Under Reduce motion everything cross-fades at <code>fast</code> and nothing slides or zooms.
+		Closing is the same flight backwards at <code>base</code>: every card lands back on its window,
+		the bar and dock return meanwhile, and the Overview is gone under the cards. After you pick
+		another workspace it fades out instead, since its cards have nowhere to fly to. One number
+		drives all of it, so the motion costs one animation however many windows you have. Under
+		Reduce motion nothing flies; everything cross-fades at <code>fast</code>.
 	</p>
 	<p class="muted">
 		The dock is a plugin since 0.25, so its half of the slide is its own: it reads
-		<code>Shell.overviewOpen</code> and moves itself, on the same durations and curve. Without the
+		<code>Shell.overviewCover</code> and moves itself, on the same durations and curve. Without the
 		plugin there is nothing along the bottom to move, and the panels that would have opened above
 		it read <code>Shell.bottomInset</code> as zero.
 	</p>

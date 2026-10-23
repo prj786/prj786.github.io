@@ -22,7 +22,7 @@
 	<h2>Launching</h2>
 	<div class="keys">
 		<dl>
-			<div><dt><kbd>Super</kbd></dt><dd>Tap: the Overview — every window, every workspace; type to search</dd></div>
+			<div><dt><kbd>Super</kbd></dt><dd>Tap: the Overview — every window spread out, your workspaces along the top</dd></div>
 			<div><dt><kbd>Super</kbd><kbd>Return</kbd></dt><dd>Terminal</dd></div>
 			<div><dt><kbd>Super</kbd><kbd>D</kbd></dt><dd>Launcher — apps and files</dd></div>
 			<div><dt><kbd>Super</kbd><kbd>E</kbd></dt><dd>File manager</dd></div>
@@ -30,7 +30,8 @@
 			<div><dt><kbd>Super</kbd><kbd>,</kbd></dt><dd>Settings</dd></div>
 			<div><dt><kbd>Super</kbd><kbd>N</kbd></dt><dd>Quick settings</dd></div>
 			<div><dt><kbd>Super</kbd><kbd>C</kbd></dt><dd>Calendar</dd></div>
-			<div><dt><kbd>Super</kbd><kbd>Z</kbd></dt><dd>The Pen — stashed windows</dd></div>
+			<div><dt><kbd>Super</kbd><kbd>Z</kbd></dt><dd>Minimize — it waits in the dock's Minimized box</dd></div>
+			<div><dt><kbd>Super</kbd><kbd>Shift</kbd><kbd>Z</kbd></dt><dd>Bring back the window minimized last</dd></div>
 			<div><dt><kbd>Super</kbd><kbd>Shift</kbd><kbd>W</kbd></dt><dd>Arrange desktop widgets — drag, pin, lock, hide; Esc</dd></div>
 		</dl>
 	</div>

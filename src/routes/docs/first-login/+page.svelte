@@ -44,14 +44,14 @@
 		the dock is a plugin like the others. Komble → Plugins → Dock puts it there, or
 		<code>ewe-plugin install ewe.dock</code>; its settings — auto-hide, icon size — come with it, in
 		the same card's Options. Until then the launcher is <kbd>Super</kbd>+<kbd>D</kbd> and a tap of
-		<kbd>Super</kbd> is the Overview — every window on every workspace, with search.
+		<kbd>Super</kbd> is the Overview — every window spread out, your workspaces along the top.
 	</p>
 </section>
 
 <section>
 	<h2>Four keys to start with</h2>
 	<dl class="rows">
-		<div class="row"><dt><kbd>Super</kbd></dt><dd>Tap it: the Overview. Type and you are searching.</dd></div>
+		<div class="row"><dt><kbd>Super</kbd></dt><dd>Tap it: the Overview. Click a window to go to it; drag it onto a workspace up top to move it.</dd></div>
 		<div class="row"><dt><kbd>Super</kbd> <kbd>Return</kbd></dt><dd>A terminal.</dd></div>
 		<div class="row"><dt><kbd>Super</kbd> <kbd>D</kbd></dt><dd>The launcher — applications and files.</dd></div>
 		<div class="row"><dt><kbd>Super</kbd> <kbd>,</kbd></dt><dd>Settings.</dd></div>

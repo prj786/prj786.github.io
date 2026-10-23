@@ -85,7 +85,7 @@ export const GROUPS = [
 			['Dock', 'Floats at the bottom with the launchers and one group per workspace.'],
 			['Launcher panel', 'Opens above the dock: pinned apps and a quick search.'],
 			['Launcher', 'Apps, settings pages, files and commands from the keyboard.'],
-			['Overview', 'Every window at once, a search across apps, windows and files, and a pager.'],
+			['Overview', 'Every window spread out, flying from where it sits; your workspaces along the top.'],
 			['Places', 'A small file browser above the dock: pinned places, then the current folder.'],
 			['Quick settings', 'The panel behind the status module: account, toggles, sliders, media, battery.'],
 			['Quick settings tile', 'One feature toggled, its state shown, with a way into its details.'],

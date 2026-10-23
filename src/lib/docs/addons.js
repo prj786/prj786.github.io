@@ -12,7 +12,7 @@ export const ADDONS = [
 		name: 'Dock',
 		repo: 'ewe-plugin-dock',
 		icon: 'dock',
-		blurb: 'A centred bottom dock on the main screen: the app launcher, Overview, Komble, the Pen, one box per workspace with its windows, and the items other plugins provide.',
+		blurb: 'A centred bottom dock on the main screen: the app launcher, Overview, Komble, one box per workspace with its windows, your minimized windows, downloads from the ewe browser, and the items other plugins provide.',
 		shows: 'the dock',
 		note: 'Upgraders who had the dock keep it; a fresh install has none until you pick it.'
 	},
