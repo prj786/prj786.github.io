@@ -52,7 +52,7 @@
 	</dl>
 	<p>
 		A previous ewe is detected from an older payload copy or a deployed configuration, so the
-		decision is made before anything is overwritten. <a href="/docs/add-ons/">What an upgrade keeps →</a>
+		decision is made before anything is overwritten. <a href="/docs/plugins/built-in/">What an upgrade keeps →</a>
 	</p>
 </section>
 

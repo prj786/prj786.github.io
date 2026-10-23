@@ -26,7 +26,7 @@
 		<div class="row"><dt>Updates</dt><dd>Any updates that landed since the image was built. A fresh install is already current, so this usually just confirms it.</dd></div>
 		<div class="row"><dt>Sign in</dt><dd>Your Nextcloud, on your server's own page. Optional. <a href="/docs/account/nextcloud/">What this gives you →</a></dd></div>
 		<div class="row"><dt>Restore</dt><dd>Offered only when the account already holds a backup from another machine. <a href="/docs/account/settings-sync/">How restoring works →</a></dd></div>
-		<div class="row"><dt>Plugins</dt><dd>The plugins ewe ships but does not install — the dock, music, Places, your phone, mail, Cast to TV and the rest — as a list with nothing pre-checked. <em>Install selected</em> puts them in when you finish; <em>Browse in Komble</em> opens the full catalogue. If you picked some in the installer they are already there. <a href="/docs/add-ons/">The thirteen →</a></dd></div>
+		<div class="row"><dt>Plugins</dt><dd>The plugins ewe ships but does not install — the dock, Safe, Shaun, music, mail and the rest — with nothing ticked. Pick what you want; the ones you chose in the installer are already there. <a href="/docs/plugins/built-in/">All sixteen →</a></dd></div>
 		<div class="row"><dt>Tour</dt><dd>Sixty seconds on where things are.</dd></div>
 	</dl>
 	<Callout>

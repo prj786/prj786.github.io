@@ -40,13 +40,15 @@
 <section>
 	<h2>From plugins</h2>
 	<p>
-		These keys exist only while their <a href="/docs/add-ons/">plugin</a> is installed and on — the
+		These keys exist only while their <a href="/docs/plugins/built-in/">plugin</a> is installed and on — the
 		plugin's manifest declares them, and ewe generates the bind.
 	</p>
 	<div class="keys">
 		<dl>
 			<div><dt><kbd>Super</kbd><kbd>Shift</kbd><kbd>C</kbd></dt><dd>Cast to TV — Cast</dd></div>
 			<div><dt><kbd>Super</kbd><kbd>P</kbd></dt><dd>Fill a login from your password manager — Passwords</dd></div>
+			<div><dt><kbd>Super</kbd><kbd>Shift</kbd><kbd>P</kbd></dt><dd>Quick Access to everything in your safe — Safe</dd></div>
+			<div><dt><kbd>Super</kbd><kbd>A</kbd></dt><dd>Open Shaun, the companion — Shaun</dd></div>
 			<div><dt><kbd>Print</kbd></dt><dd>Screenshot of the screen — Screenshot</dd></div>
 			<div><dt><kbd>Shift</kbd><kbd>Print</kbd></dt><dd>Screenshot of a region</dd></div>
 			<div><dt><kbd>Super</kbd><kbd>Print</kbd></dt><dd>Screenshot of the focused window</dd></div>

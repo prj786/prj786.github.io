@@ -169,7 +169,7 @@
 				<p>
 					The Dock, Launcher panel, Places and media player specs are no longer shell components;
 					they are implemented by the <code>ewe.dock</code>, <code>ewe.places</code> and
-					<code>ewe.media</code> <a href="/docs/add-ons/">plugins that ship with ewe</a>, and a
+					<code>ewe.media</code> <a href="/docs/plugins/built-in/">plugins that ship with ewe</a>, and a
 					fresh ewe installs none of them. The specs are unchanged — the dock still slides out for the Overview on
 					<code>base</code>, Glass still applies — but the dock now moves itself, from
 					<code>Shell.overviewOpen</code>, and a surface that opens above it reads

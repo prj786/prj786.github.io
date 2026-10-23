@@ -19,10 +19,9 @@
 <p class="eyebrow">Docs</p>
 <h1>Everything you need, in order.</h1>
 <p class="lede">
-	Start at the top and you'll have a working machine in about ten minutes — a lean one, with the
-	<a href="/docs/add-ons/">plugins</a> you chose and nothing you did not. Every graphical thing in
-	ewe is a front end to one of the commands documented here, so anything you can click, you can
-	script — and anything that breaks, you can debug by running the same command yourself.
+	Start at the top and you'll have a working machine in about ten minutes. Then learn your way
+	around the desktop and the apps, pick your <a href="/docs/plugins/built-in/">plugins</a>, and —
+	if you like a terminal — find every command here too.
 </p>
 
 <section>
@@ -33,11 +32,10 @@
 		<code>ewe-conf</code> is the only thing that writes it. Save that file, restore the machine.
 	</p>
 	<p>
-		The rest are small tools around it: <code>ewe-cloud</code> holds one account, the app
-		<code>ewe-sync</code> moves the file and your folders between machines, Komble installs software
-		and records it in the file, and Settings edits the file. <code>ewe-plugin</code> puts a
-		plugin into the shell — <a href="/docs/add-ons/">one that ships with ewe</a> or one from a git
-		URL — and records which are on. There is no second, hidden path.
+		The rest are small tools around it: Settings edits the file, Komble installs software and
+		notes it there, <code>ewe-sync</code> carries it between your machines, and
+		<code>ewe-plugin</code> adds plugins and records which are on. Anything you can click, you can
+		also run from a terminal.
 	</p>
 	<dl class="rows">
 		<div class="row">
@@ -89,9 +87,8 @@ ewe-conf pull && ewe-conf apply     # become that machine again`}
 	</p>
 	<Callout>
 		<p>
-			ewe is beta software. The install is verified end to end in a virtual machine and on real
-			hardware, but coverage is still thin — install on a machine you can afford to reinstall.
-			<a href="/docs/troubleshooting/">The known limitations →</a>
+			ewe is in beta. Install it on a machine you can reinstall, and tell us what breaks.
+			<a href="/docs/troubleshooting/">What it can't do yet →</a>
 		</p>
 	</Callout>
 </section>

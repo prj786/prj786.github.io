@@ -6,8 +6,18 @@ export const SECTIONS = [
 		items: [
 			{ href: '/docs/install/', label: 'Install ewe', blurb: 'The ISO, the eight screens, and the headless path.' },
 			{ href: '/docs/first-login/', label: 'First login', blurb: 'The welcome flow, your first plugins, and the keys worth knowing.' },
-			{ href: '/docs/add-ons/', label: 'Plugins from ewe', blurb: 'The dock, music, mail, phone, Cast and nine more — none installed until you ask.' },
+			{ href: '/docs/desktop/', label: 'The desktop', blurb: 'The bar, the Overview, minimize, workspaces on every display, light and dark.' },
 			{ href: '/docs/updating/', label: 'Updating', blurb: 'It rolls: one command for the system and the desktop.' }
+		]
+	},
+	{
+		title: 'Apps',
+		items: [
+			{ href: '/docs/apps/browser/', label: 'ewe browser', blurb: 'The web, your files and your music in one window — with Safe built in.' },
+			{ href: '/docs/apps/safe/', label: 'Safe', blurb: 'Your passwords, cards and keys, encrypted, in your own Nextcloud.' },
+			{ href: '/docs/apps/shaun/', label: 'Shaun', blurb: 'The companion in the notch: your AI agents, quick actions, a chat.' },
+			{ href: '/docs/apps/komble/', label: 'Komble', blurb: 'Apps, updates and plugins, from one search field.' },
+			{ href: '/docs/apps/settings/', label: 'Settings', blurb: 'Every setting of the machine, in one window.' }
 		]
 	},
 	{
@@ -31,7 +41,8 @@ export const SECTIONS = [
 	{
 		title: 'Plugins',
 		items: [
-			{ href: '/docs/plugins/', label: 'Plugins', blurb: 'Make your own: tiles, pages, bar glyphs, dock items, widgets, panels and services — the ones ewe ships are the worked examples.' },
+			{ href: '/docs/plugins/', label: 'Plugins', blurb: 'What a plugin is, where it shows up, and how to add, set up or remove one.' },
+			{ href: '/docs/plugins/built-in/', label: 'Built-in plugins', blurb: 'The sixteen that ship with ewe — the dock, Shaun, Safe, mail, Cast and more.' },
 			{ href: '/docs/plugins/writing/', label: 'Writing a plugin', blurb: 'create, the API 3 manifest, one QML file per kind, settings, dev.' },
 			{ href: '/docs/plugins/api/', label: 'What a plugin may use', blurb: 'The Shell singleton, the public components, Theme roles, IPC — API 3.' }
 		]

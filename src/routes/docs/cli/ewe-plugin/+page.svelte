@@ -51,7 +51,7 @@
 	</p>
 	<p>
 		Since 0.25 it is also how the desktop's own extras arrive. Every
-		<a href="/docs/add-ons/">first-party plugin</a> ships inside the ewe package but is not
+		<a href="/docs/plugins/built-in/">first-party plugin</a> ships inside the ewe package but is not
 		installed on a fresh machine; <code>install &lt;id&gt;</code> is what Komble → Plugins and the
 		Welcome screen run, and <code>migrate</code> is the one-time step that keeps an upgrader's
 		features.
@@ -207,7 +207,7 @@ ewe-plugin restore --yes`}
 <section>
 	<h2>See also</h2>
 	<ul>
-		<li><a href="/docs/add-ons/">Plugins from ewe</a> — the thirteen ewe ships, their Options, and what an upgrade keeps.</li>
+		<li><a href="/docs/plugins/built-in/">Built-in plugins</a> — the sixteen ewe ships, their Options, and what an upgrade keeps.</li>
 		<li><a href="/docs/plugins/">Plugins</a> — what they are, trust, safe mode.</li>
 		<li><a href="/docs/plugins/writing/">Writing a plugin</a> — the manifest and the entry points.</li>
 		<li><a href="/docs/one-file/schema/">Schema reference</a> — the <code>[plugins]</code> table.</li>
