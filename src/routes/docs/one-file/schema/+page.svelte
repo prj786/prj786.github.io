@@ -21,7 +21,7 @@
 	<title>ewe.conf schema — ewe docs</title>
 	<meta
 		name="description"
-		content="Every section of ewe.conf: theme, bar, dock, animations, power, displays, window rules, wallpapers, input, layout, keybinds, apps, system, sync and network."
+		content="Every section of ewe.conf: theme, bar, dock, animations, power, displays, workspaces, window rules, wallpapers, input, layout, keybinds, apps, system, sync and network."
 	/>
 </svelte:head>
 
@@ -151,10 +151,26 @@ icon_size = "large"   # 56px`}
 </section>
 
 <section>
+	<h2><code>[desktop.workspaces]</code></h2>
+	<p>
+		<code>mode</code>: <code>"separate"</code>, the default, gives every display its own workspaces
+		1, 2, 3 …, as on macOS; <code>"shared"</code> makes them one set across all displays, so switching
+		one switches every display. Switching modes moves no window. Settings → Displays → Workspaces,
+		shown with two or more displays.
+	</p>
+	<Code
+		code={`[desktop.workspaces]
+mode = "shared"`}
+		copyable={false}
+	/>
+</section>
+
+<section>
 	<h2><code>[[desktop.window_rules]]</code></h2>
 	<p>
 		One block per application: <code>name</code>, <code>class</code> (matched without regard to
-		case), <code>workspace</code> where zero means any, and <code>mode</code> — float, or empty.
+		case), <code>workspace</code> — the first display's workspace of that number, zero means any —
+		and <code>mode</code>: float, or empty.
 	</p>
 </section>
 

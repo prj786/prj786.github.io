@@ -86,6 +86,12 @@
 			<div><dt><kbd>Super</kbd><kbd>Shift</kbd><kbd>R</kbd></dt><dd>Display recovery — every screen back on, even from a black screen</dd></div>
 		</dl>
 	</div>
+	<p>
+		With two or more displays, every display has its own workspaces 1, 2, 3 …, as on macOS, and
+		these keys act on the display you are on. Settings → Displays → Workspaces → <em>Shared</em>
+		makes it one set across all displays instead: switching one switches every display
+		(<code>[desktop.workspaces] mode</code>).
+	</p>
 </section>
 
 <section>
