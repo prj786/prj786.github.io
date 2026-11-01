@@ -33,7 +33,7 @@
 	</p>
 	<p>
 		The rest are small tools around it: ewe Settings edits the file, Komble installs software and
-		notes it there, ewe Sync carries it between your machines, and
+		notes it there, ewe Sync carries it between your computers, and
 		<code>ewe-plugin</code> adds plugins and records which are on. Anything you can click, you can
 		also run from a terminal.
 	</p>

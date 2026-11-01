@@ -95,7 +95,7 @@
 <section>
 	<h2>See also</h2>
 	<ul>
-		<li><a href="/docs/account/settings-sync/">Settings sync</a> — the one file between machines.</li>
+		<li><a href="/docs/account/settings-sync/">Settings sync</a> — the one file between computers.</li>
 		<li><a href="/docs/account/folder-sync/">Folder sync</a> — pairs, triggers and conflicts.</li>
 		<li><a href="/docs/cli/ewe-files/">ewe-files</a> — the simpler alternative: the whole account as one mounted folder.</li>
 	</ul>
