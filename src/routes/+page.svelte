@@ -148,7 +148,7 @@
 				<source srcset="/img/launcher.webp" type="image/webp" />
 				<img
 					src="/img/launcher.jpg"
-					alt="The launcher open over the desktop: a search field for apps, files and folders above a list of apps, the first highlighted in the accent."
+					alt="The launcher open over the desktop: a search field for apps, settings and files above a list of apps (ewe Browser, ewe Safe, ewe Settings, ewe Sync, Files, kitty, Komble, mpv Media Player), the first one selected, and the keys to move, open and close along the bottom."
 					width="1320"
 					height="1030"
 					loading="lazy"
