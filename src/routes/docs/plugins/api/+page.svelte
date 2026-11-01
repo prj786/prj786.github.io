@@ -83,13 +83,13 @@
 	const shellCalls = [
 		['toast(text, kind)', 'A bottom-centre toast; kind is "", "info", "warning" or "danger", or an options object with actionLabel, action, icon, timeout.'],
 		['openQuickSettings(tab) · closeQuickSettings()', 'A built-in key or a plugin page’s quickPage.key — the same route as qs ipc call quicksettings tab <key>.'],
-		['openSettings(page) · openStore(page)', 'ewe-settings and Komble, focused if already open; page is forwarded (ewe-settings --page …, komble --<page>): "addons" opens Komble on Plugins, "options=" + pluginId opens your own Options dialog there (komble --options=<id>).'],
+		['openSettings(page) · openStore(page)', 'ewe Settings and Komble, focused if already open; page is forwarded (ewe-settings --page …, komble --<page>): "addons" opens Komble on Plugins, "options=" + pluginId opens your plugin’s sheet there (komble --options=<id>).'],
 		['toggleOverview()', 'Open or close the Overview in-shell — what a dock’s Overview button does.'],
 		['launch(desktopId) · focusApp([classes])', 'Run a .desktop id (focusing an existing window first); bring a window of one of these classes forward. false when unknown.'],
 		['registerAction(name, fn) · runAction(name, anchor)', 'A named function a dockItem.action names, and how the dock — or another plugin — runs it.'],
 		['setActive(name, on) · isActive(name)', 'An action’s open state; its dock item lights. AnchoredPopup reports it for you through action.'],
 		['setDockItemShown(id, on) · dockItemShown(id)', 'Hide or show your own dock item at runtime — a player with nothing playing, a “bar only” setting.'],
-		['setSetting(pluginId, key, value)', 'Write one of your own declared settings from your own UI — a bell on your page, a choice in your popup; the value Komble’s Options dialog shows. Live in every instance at once, persisted through ewe-plugin set, which validates it against your manifest (a refused value snaps back). Added in ewe 0.25.1, still API 3: check typeof Shell.setSetting === "function" to run on 0.25.0 too.'],
+		['setSetting(pluginId, key, value)', 'Write one of your own declared settings from your own UI — a bell on your page, a choice in your popup; the value Komble’s plugin sheet shows. Live in every instance at once, persisted through ewe-plugin set, which validates it against your manifest (a refused value snaps back). Added in ewe 0.25.1, still API 3: check typeof Shell.setSetting === "function" to run on 0.25.0 too.'],
 		['closePopups(exceptId)', 'The one-popup rule: asks every plugin popup but exceptId’s to close. AnchoredPopup honours it and calls it when it opens; a plugin with its own PanelWindow listens to popupsClosing and calls it on open.'],
 		['setBottomInset(id, px, reserved) · setPinned(desktopId, on)', 'What a dock plugin publishes (0 withdraws it); pin or unpin an app through ewe-conf.'],
 		['anchorFor(item, window)', 'An anchor for a popup — the item’s centre in its window and the edge, "top" or "bottom". Pass barWindow or your own PanelWindow.']
@@ -101,7 +101,7 @@
 
 	const components = [
 		['Tile', 'The Quick settings tile: ic, label, sub, active, opened, hasMenu, busy, disabled; clicked, menu. Root a quick-tile on it.'],
-		['QsPageHead', 'A page’s head: back, title, note, busy, an optional switch; actions as children.'],
+		['QsPageHead', 'A page’s head: back, the title over its note (the status line), busy, an optional switch; actions as children.'],
 		['QsSwitchRow · QsButton · QsIconButton · QsSegmented', 'The row with a switch; the button (primary, secondary, ghost, danger); the icon button; the segmented control.'],
 		['QsField + QsFieldInput · QsEmpty · QsNote · QsMsgRow', 'A text field and its input; the empty state; a caption under a list; a two-line message row.'],
 		['TextBody · TextStrong · TextCaption · TextMono · Glyph', 'Text in the system’s styles, and one icon-font glyph.'],
@@ -288,8 +288,8 @@ Log.debug("acme.weather", "raw", payload)      // HS_LOG_MODULES=acme.weather to
 		Declare <code>property var settings: ({'{'}{'}'})</code> on any entry point's root and ewe fills it
 		with the values of the options your manifest declares — the defaults under the user's own,
 		read from <code>ewe.conf</code> <code>[plugins.settings]</code>. It is assigned when the entry
-		point loads and again whenever a value changes (<code>ewe-plugin set</code>, Komble's Options
-		dialog, your own <code>Shell.setSetting</code>), so bind to it and nothing needs a restart. Keys
+		point loads and again whenever a value changes (<code>ewe-plugin set</code>, Komble's plugin
+		sheet, your own <code>Shell.setSetting</code>), so bind to it and nothing needs a restart. Keys
 		you did not declare never appear. Never write <code>ewe.conf</code> yourself:
 		<code>Shell.setSetting</code> is the way your own UI changes a value.
 	</p>
