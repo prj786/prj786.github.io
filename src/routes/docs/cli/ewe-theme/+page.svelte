@@ -124,7 +124,7 @@ ewe-theme scheme show                           # the roles, and what was adjust
 		the Glass material the Overview and desktop widgets use stays at 80%, and app windows are not
 		blurred unless App blur is on too. <code>[desktop.bar]
 		icon_size</code> (small, normal, large) sets the bar’s modules and glyphs, and the bar’s height
-		follows: 44, 48 or 56px.
+		follows: 36, 40 or 48px.
 	</p>
 </section>
 
