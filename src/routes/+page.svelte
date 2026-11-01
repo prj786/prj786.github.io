@@ -81,12 +81,12 @@
 				fallback="jpg"
 				w={2560}
 				h={1440}
-				alt="The ewe desktop over a photo of a sheep in a meadow: the bar across the top, the Dock plugin along the bottom, and ewe Settings open on Layout and dock with toggles for the power profile, keyboard layout, system tray, screenshot button and dock autohide, all in an orange accent."
+				alt="The ewe desktop over a photo of a meadow: the bar across the top, the Dock plugin along the bottom, and ewe Settings in the middle. Its sidebar has a search field and four groups: Look, Desktop, Devices and System. The Appearance page is open, with Ewe Dark chosen as the scheme, gold chosen as the accent, and settings for corners, density, outlines, Glass and windows."
 			/>
 		</div>
 		<p class="figcap center">
-			A real session with the Dock plugin, and ewe Settings open on Layout and dock. The toggles, the
-			selected pane and the active dock item all follow one accent.
+			A real session with the Dock plugin, and ewe Settings open on Appearance. Everything is in Ewe
+			Dark and the gold accent ewe starts with.
 		</p>
 	</div>
 </section>
