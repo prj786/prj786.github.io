@@ -20,10 +20,10 @@
 	];
 
 	// Two accents through the same engine /theming/ runs live, derived at
-	// build time: the gold ewe ships with, and the orange in the screenshots.
+	// build time: the gold ewe ships with, and the orange preset.
 	const RAMPS = [
 		[EWELLOW, 'ewe ships with'],
-		['#ff9f0a', 'the screenshots wear']
+		['#ff9f0a', 'of the orange preset']
 	].map(([hex, who]) => ({ who, ramp: accentRamp(hex) }));
 </script>
 
