@@ -177,8 +177,9 @@ export const ADDONS = [
 		repo: 'ewe-plugin-sysmon',
 		icon: 'cpu',
 		group: 'system',
-		blurb: 'How busy your processor and memory are.',
-		use: 'A meter in Quick settings, and a small readout in the bar if you want one.'
+		blurb: 'CPU, memory and internet speed in the bar, and on your desktop if you want them there.',
+		use: 'A small readout in the bar, on from the start. Click it for a card with CPU, memory and your download and upload speed. Show on desktop puts the same card on your desktop.',
+		settings: 'In the bar: all three, CPU + memory, or the speed. Speed in MB/s or Mbit/s.'
 	}
 ];
 

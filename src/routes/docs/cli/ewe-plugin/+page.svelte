@@ -103,7 +103,7 @@ ewe-plugin list
 ewe-plugin update --yes
 
 # what ewe decides: the bar, the desktop, the settings
-ewe-plugin bar ewe.sysmon on                    # its readout in the bar
+ewe-plugin bar ewe.sysmon off                   # its readout out of the bar
 ewe-plugin place acme.clock --pinned on --pin-level overlay --locked on
 ewe-plugin set ewe.dock icon_size small
 
@@ -151,7 +151,7 @@ ewe-plugin restore --yes`}
 	/>
 	<p><code>bar</code> and <code>place</code> — the state after the change:</p>
 	<Code
-		code={`{"ok": true, "id": "ewe.sysmon", "bar": {"shown": true, "toggle": true}}
+		code={`{"ok": true, "id": "ewe.sysmon", "bar": {"shown": false, "toggle": true}}
 {"ok": true, "id": "acme.clock",
  "widget": {"x": 420, "y": 300, "output": "", "layer": "overlay", "visible": true,
             "pinned": true, "pin_level": "overlay", "locked": true}}`}
