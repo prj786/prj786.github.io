@@ -25,7 +25,7 @@
 <section>
 	<h2>Where they show up</h2>
 	<dl class="rows">
-		<div class="row"><dt><Icon name="layout-grid" size={16} />Quick settings</dt><dd>A tile you tap, or a page of its own — VPN, Mail, Cast.</dd></div>
+		<div class="row"><dt><Icon name="layout-grid" size={16} />Quick settings</dt><dd>A tile you tap, or a small shortcut that opens a page of its own — VPN, Mail, Cast.</dd></div>
 		<div class="row"><dt><Icon name="layout-panel-top" size={16} />The bar</dt><dd>A button, or a small sign that appears only when there is news — an unread count, a shield while a VPN is on.</dd></div>
 		<div class="row"><dt><Icon name="dock" size={16} />The dock</dt><dd>An icon next to your apps — Music, Places.</dd></div>
 		<div class="row"><dt><Icon name="app-window" size={16} />The desktop</dt><dd>A card you can drag anywhere and pin above your windows — Slack's unread messages.</dd></div>

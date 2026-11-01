@@ -78,7 +78,7 @@
 			</div>
 			<div class="card">
 				<h3><Icon name="sliders-horizontal" size={16} />Quick settings</h3>
-				<p>Wi-Fi, Bluetooth, sound, Do not disturb, your calendar and notifications in one panel.</p>
+				<p>Wi-Fi, Bluetooth, sound, Do not disturb, your calendar, your notifications and the battery in one panel.</p>
 			</div>
 			<div class="card">
 				<h3><Icon name="app-window" size={16} />Desktop widgets</h3>
