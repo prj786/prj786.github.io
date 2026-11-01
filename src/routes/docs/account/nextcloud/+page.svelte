@@ -36,7 +36,7 @@
 <section>
 	<h2>Signing in</h2>
 	<p>
-		The welcome flow and Settings → Account both ask for the server address and open the browser.
+		The welcome flow and ewe Sync → Account both ask for the server address and open the browser.
 		That is Nextcloud's own login flow: you sign in on your server's page — with your password, your
 		second factor, your single sign-on, whatever your server uses — and it asks whether to grant
 		access to <em>ewe</em> with your computer's name. It hands back an

@@ -204,7 +204,7 @@
 	<dl class="rows">
 		<div class="row">
 			<dt><Icon name="palette" size={16} />Pick a built-in</dt>
-			<dd>Settings → Appearance shows Ewe Dark and Ewe Light as scheme cards.</dd>
+			<dd>ewe Settings → Appearance shows Ewe Dark and Ewe Light as scheme cards.</dd>
 		</div>
 		<div class="row">
 			<dt><Icon name="blend" size={16} />Pick an accent</dt>
@@ -293,7 +293,7 @@
 		</li>
 	</ul>
 	<p>
-		Every move is recorded. The scheme card in Settings names the roles that were adjusted and why,
+		Every move is recorded. The scheme card in ewe Settings names the roles that were adjusted and why,
 		and <code>ewe-theme scheme show</code> lists them.
 	</p>
 </section>

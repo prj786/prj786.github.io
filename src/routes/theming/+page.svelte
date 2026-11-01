@@ -108,7 +108,7 @@
 			<div class="mock">
 				<div class="mockbar">
 					<span class="ws">1</span>
-					<span class="app">Settings</span>
+					<span class="app">ewe Settings</span>
 					<span class="grow"></span>
 					<Icon name="wifi" size={16} />
 					<Icon name="package" size={16} />
@@ -241,7 +241,7 @@
 		<dl class="rows">
 			<div class="row">
 				<dt><Icon name="palette" size={16} />Pick a scheme</dt>
-				<dd>Settings → Appearance shows both built-in schemes, then anything you added.</dd>
+				<dd>ewe Settings → Appearance shows both built-in schemes, then anything you added.</dd>
 			</div>
 			<div class="row">
 				<dt><Icon name="blend" size={16} />Pick an accent</dt>
@@ -306,7 +306,7 @@
 		</p>
 		<p>
 			The bar has one setting of its own, <code>icon_size</code>: small, normal or large — Bar icons,
-			in Settings → Layout → Top bar. It has no
+			in ewe Settings → Layout → Top bar. It has no
 			height setting. The bar is its icons plus padding, so it’s 44, 48 or 56px tall, and text size
 			130% makes the icons one size larger.
 		</p>
@@ -328,7 +328,7 @@
 			material at 80% whatever it says. The Glass preset is 80% — the lowest value where text still
 			holds 4.5:1 over any wallpaper, in both schemes. Only fills turn translucent: text, glyphs,
 			badges and accent fills stay solid, and panels, menus and dialogs never go glass at all. App
-			windows are blurred only when you turn on App blur as well. In Settings it is all under
+			windows are blurred only when you turn on App blur as well. In ewe Settings it is all under
 			Appearance → Glass and transparency.
 		</p>
 		<Command value="ewe-conf set desktop.theme.bar_opacity 80" />
@@ -366,8 +366,8 @@
 				<div>
 					<h3>Everything reads it</h3>
 					<p>
-						The Quickshell desktop through one <code>Theme</code> singleton; Settings, Komble and
-						ewe-sync through the CSS; GTK, Qt, the icon theme, kitty and the Hyprland window border
+						The Quickshell desktop through one <code>Theme</code> singleton; ewe Settings, Komble and
+						ewe Sync through the CSS; GTK, Qt, the icon theme, kitty and the Hyprland window border
 						through generated config. This website too — it is wearing the same file.
 					</p>
 				</div>

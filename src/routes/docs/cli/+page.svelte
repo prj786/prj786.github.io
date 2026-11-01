@@ -77,19 +77,19 @@ ewe-conf sync-status`}
 <section>
 	<h2>Which one do I want?</h2>
 	<dl class="rows">
-		<div class="row"><dt>Change a setting</dt><dd><a href="/docs/cli/ewe-conf/">ewe-conf</a> — or the settings app, which calls it.</dd></div>
+		<div class="row"><dt>Change a setting</dt><dd><a href="/docs/cli/ewe-conf/">ewe-conf</a> — or ewe Settings, which calls it.</dd></div>
 		<div class="row"><dt>Sign in, or check who I am</dt><dd><a href="/docs/cli/ewe-cloud/">ewe-cloud</a> for your account; <a href="/docs/cli/ewe-auth/">ewe-auth</a> for optional Google.</dd></div>
-		<div class="row"><dt>Back this machine up, or restore it</dt><dd><a href="/docs/cli/ewe-conf/">ewe-conf</a> <code>push</code> and <code>pull</code>, or the <a href="/docs/cli/ewe-sync/">ewe-sync</a> app.</dd></div>
-		<div class="row"><dt>Get at my files</dt><dd><a href="/docs/cli/ewe-files/">ewe-files</a> to mount the account, or folder pairs in <a href="/docs/cli/ewe-sync/">ewe-sync</a>.</dd></div>
+		<div class="row"><dt>Back this machine up, or restore it</dt><dd><a href="/docs/cli/ewe-conf/">ewe-conf</a> <code>push</code> and <code>pull</code>, or the <a href="/docs/cli/ewe-sync/">ewe Sync</a> app.</dd></div>
+		<div class="row"><dt>Get at my files</dt><dd><a href="/docs/cli/ewe-files/">ewe-files</a> to mount the account, or folder pairs in <a href="/docs/cli/ewe-sync/">ewe Sync</a>.</dd></div>
 		<div class="row"><dt>Fix the desktop after an update</dt><dd><a href="/docs/cli/ewe-setup/">ewe-setup</a>, then log out and in.</dd></div>
 		<div class="row"><dt>Install on another machine</dt><dd><a href="/docs/cli/ewe-install/">ewe-install</a>.</dd></div>
 		<div class="row"><dt>Get the dock, music, mail, Cast — a plugin from ewe</dt><dd><a href="/docs/cli/ewe-plugin/">ewe-plugin</a> <code>install &lt;id&gt;</code>, or Komble → Plugins; <a href="/docs/plugins/built-in/">the sixteen</a>.</dd></div>
-		<div class="row"><dt>Cast to a television</dt><dd>The Cast plugin in Quick settings — <a href="/docs/cli/ewe-castd/">ewe-castd</a> is what it drives.</dd></div>
+		<div class="row"><dt>Cast to a television</dt><dd>The Cast to TV plugin in Quick settings — <a href="/docs/cli/ewe-castd/">ewe-castd</a>, ewe Cast’s daemon, is what it drives.</dd></div>
 		<div class="row"><dt>Add a tile, a bar widget, a desktop widget, a panel</dt><dd><a href="/docs/cli/ewe-plugin/">ewe-plugin</a> — a git URL in, or <code>create</code> your own; <a href="/docs/plugins/">the guide</a>.</dd></div>
-		<div class="row"><dt>Change the colors — a scheme, the wallpaper's</dt><dd><a href="/docs/cli/ewe-theme/">ewe-theme</a> <code>scheme import | from-wallpaper | apply</code>, or Settings → Appearance → Colors.</dd></div>
+		<div class="row"><dt>Change the colors — a scheme, the wallpaper's</dt><dd><a href="/docs/cli/ewe-theme/">ewe-theme</a> <code>scheme import | from-wallpaper | apply</code>, or ewe Settings → Appearance → Colors.</dd></div>
 		<div class="row"><dt>Fill a login into an app</dt><dd><kbd>Super</kbd>+<kbd>P</kbd> with the Passwords plugin; <a href="/docs/cli/ewe-pass/">ewe-pass</a> is what it runs.</dd></div>
-		<div class="row"><dt>A password or a secret in a script</dt><dd><code>ewe-safe read</code> and <code>ewe-safe run</code> — <a href="/docs/apps/safe/">Safe</a>.</dd></div>
-		<div class="row"><dt>Open a page, a folder or a search in the browser</dt><dd><code>ewe-browser open</code> — <a href="/docs/apps/browser/">ewe browser</a>; <code>ewe-browser help</code> lists the rest.</dd></div>
+		<div class="row"><dt>A password or a secret in a script</dt><dd><code>ewe-safe read</code> and <code>ewe-safe run</code> — <a href="/docs/apps/safe/">ewe Safe</a>.</dd></div>
+		<div class="row"><dt>Open a page, a folder or a search in the browser</dt><dd><code>ewe-browser open</code> — <a href="/docs/apps/browser/">ewe Browser</a>; <code>ewe-browser help</code> lists the rest.</dd></div>
 	</dl>
 </section>
 

@@ -11,7 +11,7 @@
 		['Show what is happening', 'Every press answers inside 100 ms. A wait over 300 ms gets a spinner, a known length gets a progress bar, and the bar always carries network, sound, battery and pending updates.'],
 		['Speak plainly', 'Wi-Fi, Restart, Updates — the words people use, app names before package names, sizes in GB and waits in minutes.'],
 		['Leave a way out', 'Esc closes anything. Dialogs have Cancel or Later, clicking the scrim throws nothing away, and reversible things offer Undo in a toast instead of asking first.'],
-		['One component per job', 'The volume slider in the bar popup is the slider in Settings. Super opens the launcher, the primary action sits on the right, labels are sentence case.'],
+		['One component per job', 'The volume slider in the bar popup is the slider in ewe Settings. Super opens the launcher, the primary action sits on the right, labels are sentence case.'],
 		['Prevent the error', 'Limits are stated before people type, a primary button stays disabled until its input is valid, and anything irreversible is confirmed by a dialog that names what will be lost.'],
 		['Show, do not ask people to remember', 'Current values sit in select triggers and settings rows, shortcuts sit in tooltips and menus, and the launcher lists recent apps before anyone types.'],
 		['Reward the keyboard', 'Everything works without a pointer. Shortcuts are always shown and never required, and roomier sizes exist for people who want them.'],
@@ -57,7 +57,7 @@
 <p class="eyebrow">Design system · version 3</p>
 <h1>How ewe looks, written down.</h1>
 <p class="lede">
-	Ewe is a desktop with one look: the bar, the panels, the launcher, Settings, Komble and the
+	Ewe is a desktop with one look: the bar, the panels, the launcher, ewe Settings, Komble and the
 	installer are drawn from the same tokens and the same component specs. This section is that
 	system — the decisions, the values behind them, and the vocabulary a plugin or an app can reach
 	for. The website you are reading wears it too, so every swatch below is live.
@@ -160,7 +160,7 @@
 	<p>
 		The tokens are not a document that code copies. <code>ewe-theme</code> derives them from the
 		active scheme and accent and writes two files: the JSON the shell reads through its
-		<code>Theme</code> singleton, and the CSS that Settings, Komble and ewe-sync read. From there the
+		<code>Theme</code> singleton, and the CSS that ewe Settings, Komble and ewe Sync read. From there the
 		same values reach GTK, Qt, the icon theme, kitty and the Hyprland window border — and this site,
 		whose <code>tokens.css</code> is built by that generator too. There is one place a color is
 		decided, and it is never a component.

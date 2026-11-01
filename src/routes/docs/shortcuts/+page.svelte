@@ -27,7 +27,7 @@
 			<div><dt><kbd>Super</kbd><kbd>D</kbd></dt><dd>Launcher — apps and files</dd></div>
 			<div><dt><kbd>Super</kbd><kbd>E</kbd></dt><dd>File manager</dd></div>
 			<div><dt><kbd>Super</kbd><kbd>B</kbd></dt><dd>Browser</dd></div>
-			<div><dt><kbd>Super</kbd><kbd>,</kbd></dt><dd>Settings</dd></div>
+			<div><dt><kbd>Super</kbd><kbd>,</kbd></dt><dd>ewe Settings</dd></div>
 			<div><dt><kbd>Super</kbd><kbd>N</kbd></dt><dd>Quick settings</dd></div>
 			<div><dt><kbd>Super</kbd><kbd>C</kbd></dt><dd>Calendar</dd></div>
 			<div><dt><kbd>Super</kbd><kbd>Z</kbd></dt><dd>Minimize — the window waits in the dock as its picture; click it to bring it back</dd></div>
@@ -45,9 +45,9 @@
 	</p>
 	<div class="keys">
 		<dl>
-			<div><dt><kbd>Super</kbd><kbd>Shift</kbd><kbd>C</kbd></dt><dd>Cast to TV — Cast</dd></div>
+			<div><dt><kbd>Super</kbd><kbd>Shift</kbd><kbd>C</kbd></dt><dd>Show your screen on a TV — Cast to TV</dd></div>
 			<div><dt><kbd>Super</kbd><kbd>P</kbd></dt><dd>Fill a login from your password manager — Passwords</dd></div>
-			<div><dt><kbd>Super</kbd><kbd>Shift</kbd><kbd>P</kbd></dt><dd>Quick Access to everything in your safe — Safe</dd></div>
+			<div><dt><kbd>Super</kbd><kbd>Shift</kbd><kbd>P</kbd></dt><dd>Quick Access to everything in your safe — ewe Safe</dd></div>
 			<div><dt><kbd>Super</kbd><kbd>A</kbd></dt><dd>Open Shaun, the companion — Shaun</dd></div>
 			<div><dt><kbd>Print</kbd></dt><dd>Screenshot of the screen — Screenshot</dd></div>
 			<div><dt><kbd>Shift</kbd><kbd>Print</kbd></dt><dd>Screenshot of a region</dd></div>
@@ -90,7 +90,7 @@
 	</div>
 	<p>
 		With two or more displays, every display has its own workspaces 1, 2, 3 …, as on macOS, and
-		these keys act on the display you are on. Settings → Displays → Workspaces → <em>Shared</em>
+		these keys act on the display you are on. ewe Settings → Displays → Workspaces → <em>Shared</em>
 		makes it one set across all displays instead: switching one switches every display
 		(<code>[desktop.workspaces] mode</code>).
 	</p>
@@ -103,7 +103,7 @@
 		<code>[[desktop.keybinds]]</code> in <a href="/docs/one-file/schema/">the schema</a>, and you add
 		them from a terminal, for example
 		<code>ewe-conf set desktop.keybinds '[&#123;"combo": "SUPER + T", "exec": "kitty"&#125;]'</code>
-		(the list replaces the old one). Settings → Shortcuts lists every key but does not change them
+		(the list replaces the old one). ewe Settings → Shortcuts lists every key but does not change them
 		yet. The Overview is a Hyprland global shortcut named <code>ewe:overview</code>, so you can bind
 		it to anything in <code>user.lua</code>.
 	</p>

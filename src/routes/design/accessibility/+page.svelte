@@ -96,7 +96,7 @@
 		{/each}
 	</dl>
 	<p class="muted">
-		They live in Settings → Accessibility, and in <code>ewe.conf</code> under
+		They live in ewe Settings → Accessibility, and in <code>ewe.conf</code> under
 		<code>[desktop.accessibility]</code>, so they sync with everything else.
 	</p>
 	<p class="note">

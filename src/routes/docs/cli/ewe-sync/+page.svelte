@@ -6,14 +6,16 @@
 
 	const flags = [
 		{ cmd: 'ewe-sync', does: 'Open the window. A second launch focuses the running instance rather than starting another.' },
-		{ cmd: '--hidden', does: 'Start in the tray only, with no window until you ask for one. This is what the autostart unit passes.' },
+		{ cmd: '--hidden', does: 'Start in the background, with no window until you ask for one. This is what the autostart unit passes.' },
 		{ cmd: '--check', does: 'Print a self-check as JSON and exit — which ewe tools were found, and whether an account is signed in. For diagnosing an installation.' }
 	];
 	const panes = [
+		{ cmd: 'Overview', does: 'How your account is doing at a glance, and anything that needs you.' },
+		{ cmd: 'Folders', does: 'Which folders sync where — two-way, upload only or download only; on change, on a timer, or at login — and any conflicts, resolved in place.' },
+		{ cmd: 'Settings & apps', does: 'The one file: which computer saved the backup and when, when this one last synced, the auto-sync switch, and Sync now / Back up / Restore.' },
+		{ cmd: 'Computers', does: 'Every computer that has backed up to the account, with its ewe version and how many apps it records.' },
 		{ cmd: 'Account', does: 'Sign in to your Nextcloud through the server’s own page; who you are, storage used, sign out. Links to providers where you can create an account.' },
-		{ cmd: 'This machine', does: 'The one file: which machine saved the backup and when, when this machine last synced, the auto-sync switch, and Sync now / Back up / Restore.' },
-		{ cmd: 'Machines', does: 'Every machine that has backed up to the account, with its ewe version and how many apps it records.' },
-		{ cmd: 'Folders', does: 'Which folders sync where — two-way, upload only or download only; on change, on a timer, or at login — and any conflicts, resolved in place.' }
+		{ cmd: 'Mail · Google', does: 'A mail account for the bar’s mail badge, and Google if you brought your own client.' }
 	];
 </script>
 
@@ -21,26 +23,26 @@
 	<title>ewe-sync — ewe docs</title>
 	<meta
 		name="description"
-		content="ewe-sync is the account app of ewe OS: your Nextcloud account, the one file, the machines that share it, and folder sync — with a tray icon showing the state."
+		content="ewe-sync starts ewe Sync, the account app of ewe OS: your Nextcloud account, the one file, the computers that share it, and folder sync — with its state shown in the bar."
 	/>
 </svelte:head>
 
 <p class="eyebrow">CLI reference</p>
 <h1><code class="title">ewe-sync</code></h1>
-<p class="lede">The account app: your machines, the one file, your folders.</p>
+<p class="lede">ewe Sync, the account app: your computers, the one file, your folders.</p>
 
 <section>
 	<h2>Why it exists</h2>
 	<p>
 		Sync used to be a button in several places at once, which meant no single program could say what
-		the state of your account was. ewe-sync takes that job whole: it is the only thing in ewe with a
-		sync button. Komble installs software and records it in the one file; Settings edits the one
-		file; <strong>ewe-sync moves the one file and your folders between your machines</strong>.
+		the state of your account was. ewe Sync takes that job whole: it is the only thing in ewe with a
+		sync button. Komble installs software and records it in the one file; ewe Settings edits the one
+		file; <strong>ewe Sync moves the one file and your folders between your computers</strong>.
 	</p>
 	<p>
 		It is a graphical application, not a shell tool — a thin interface over the commands documented
-		here, run directly rather than through a shell. It lives in the tray, where the icon shows
-		whether you are idle, syncing, offline, signed out, or holding a conflict.
+		here, run directly rather than through a shell. It runs in the background, and the bar shows
+		whether you are idle, syncing, offline, signed out, or holding a conflict; a click there opens it.
 	</p>
 </section>
 
@@ -55,11 +57,11 @@
 </section>
 
 <section>
-	<h2>The four panes</h2>
-	<CommandTable rows={panes} head="Pane" second="What it shows" />
+	<h2>Its sections</h2>
+	<CommandTable rows={panes} head="Section" second="What it shows" />
 	<p>
-		The tray menu carries <em>Sync now</em>, <em>Pause auto-sync</em>, <em>Open ewe-sync</em> and
-		<em>Quit</em>. Left-clicking the icon opens the window.
+		<em>Sync now</em> and <em>Pause auto-sync</em> live in the window. Your name at the top of Quick
+		settings opens it too.
 	</p>
 </section>
 
@@ -84,7 +86,7 @@
 	<Callout title="It cannot create accounts">
 		<p>
 			Nextcloud's user-creation interface needs administrator credentials, and a provider's signup
-			form is theirs. ewe-sync links to signup pages; you create the account in the browser and sign
+			form is theirs. ewe Sync links to signup pages; you create the account in the browser and sign
 			in here.
 		</p>
 	</Callout>

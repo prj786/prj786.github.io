@@ -28,8 +28,8 @@
 		<p>
 			This policy applies to <strong>ewe</strong>, a free and open-source, Arch-based operating system,
 			and to everything shipped with it: the installer, the ewe desktop and its shell, the
-			<strong>Komble</strong> software manager, the <strong>ewe-settings</strong> app, the casting
-			daemon, the <a href="/docs/cli/ewe-conf/"><code>ewe-conf</code></a> configuration tool and the <a href="/docs/cli/ewe-auth/"><code>ewe-auth</code></a> sign-in
+			<strong>Komble</strong> software manager, the <strong>ewe Settings</strong> app, <strong>ewe Cast</strong> (the casting
+			daemon), the <a href="/docs/cli/ewe-conf/"><code>ewe-conf</code></a> configuration tool and the <a href="/docs/cli/ewe-auth/"><code>ewe-auth</code></a> sign-in
 			broker. It also covers this website, <strong>prj786.github.io</strong>.
 		</p>
 		<p>
@@ -62,7 +62,7 @@
 			choose the server — one you run, or a hosted provider — and ewe uses Nextcloud's own browser
 			login: your server's page authenticates you, and ewe receives an <em>app password</em> scoped
 			to your account. ewe never sees or stores your real password. With that account ewe does
-			these three things, plus what Safe and ewe browser store there if you ask them to (below):
+			these three things, plus what ewe Safe and ewe Browser store there if you ask them to (below):
 		</p>
 		<dl class="rows">
 			<div class="row">
@@ -76,7 +76,7 @@
 			<div class="row">
 				<dt>Calendar</dt>
 				<dd>
-					Your upcoming events are read over CalDAV and shown in your own Quick Settings, with local
+					Your upcoming events are read over CalDAV and shown in your own Quick settings, with local
 					reminder notifications. Read-only.
 				</dd>
 			</div>
@@ -97,10 +97,10 @@
 	</section>
 
 	<section>
-		<h2>Safe, ewe browser and Shaun (optional)</h2>
+		<h2>ewe Safe, ewe Browser and Shaun (optional)</h2>
 		<dl class="rows">
 			<div class="row">
-				<dt>Safe</dt>
+				<dt>ewe Safe</dt>
 				<dd>
 					Your safe is encrypted on your computer with your master password before it is stored —
 					in your Nextcloud if you choose it, so your server only ever holds a locked file. Nobody
@@ -108,7 +108,7 @@
 				</dd>
 			</div>
 			<div class="row">
-				<dt>ewe browser</dt>
+				<dt>ewe Browser</dt>
 				<dd>
 					If you turn on <em>Sync with Nextcloud</em>, your bookmarks, history, open tabs and browser
 					settings are kept in your account. Otherwise they stay on your computer.
@@ -140,7 +140,7 @@
 			<div class="row">
 				<dt><code>openid email profile</code></dt>
 				<dd>
-					Your name, email address and profile picture — shown in your own Settings so you can see
+					Your name, email address and profile picture — shown in ewe Sync on your computer so you can see
 					which account is connected.
 				</dd>
 			</div>
@@ -221,7 +221,7 @@
 		<h2>Revoking access and deleting your data</h2>
 		<ul>
 			<li>
-				<strong>Sign out</strong> in Settings → Account. This revokes the app password on your
+				<strong>Sign out</strong> in ewe Sync → Account. This revokes the app password on your
 				Nextcloud server and clears the keyring entry and every local cache. You can also revoke
 				“ewe (your computer)” from your account's <em>Security</em> page at any time.
 			</li>

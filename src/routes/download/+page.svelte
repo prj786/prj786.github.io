@@ -97,7 +97,7 @@
 			<li><span class="n">3</span><div><h3>Time &amp; place</h3><p>Your timezone, detected — two providers have to agree, and you always see what was picked — plus language and locale.</p></div></li>
 			<li><span class="n">4</span><div><h3>Disk</h3><p>Pick a disk. <strong>The whole disk is erased</strong>; you're warned here and again at the end.</p></div></li>
 			<li><span class="n">5</span><div><h3>Your account</h3><p>Name, username, password, computer name.</p></div></li>
-			<li><span class="n">6</span><div><h3>Plugins</h3><p>The dock, Safe, Shaun, music, mail and <a href="/docs/plugins/built-in/">eleven more</a> — the plugins ewe ships but does not install until you ask. Nothing is pre-checked; Komble has every one of them later.</p></div></li>
+			<li><span class="n">6</span><div><h3>Plugins</h3><p>The dock, ewe Safe, Shaun, music, mail and <a href="/docs/plugins/built-in/">eleven more</a> — the plugins ewe ships but does not install until you ask. Nothing is pre-checked; Komble has every one of them later.</p></div></li>
 			<li><span class="n">7</span><div><h3>Summary</h3><p>Everything you chose, plugins included, everything ewe decided, and the only Install button in the flow.</p></div></li>
 			<li><span class="n">8</span><div><h3>Install</h3><p>Streamed progress — the system, the desktop, an update, your plugins — then reboot. Pull the stick when the screen goes dark.</p></div></li>
 		</ol>

@@ -38,7 +38,7 @@
 		<div class="row"><dt>Time and place</dt><dd>Detected from the network and shown to you, never silently trusted, plus a language picker.</dd></div>
 		<div class="row"><dt>Disk</dt><dd>Which disk. <strong>It is erased entirely.</strong></dd></div>
 		<div class="row"><dt>Your account</dt><dd>Name, user name, password, computer name.</dd></div>
-		<div class="row"><dt>Plugins</dt><dd>The sixteen plugins that ship with ewe — the dock, Safe, Shaun, music, mail, Cast to TV and more. Nothing is ticked; pick what you want, or nothing — <strong>Komble → Plugins</strong> has all of them later. <a href="/docs/plugins/built-in/">What each one is →</a></dd></div>
+		<div class="row"><dt>Plugins</dt><dd>The sixteen plugins that ship with ewe — the dock, ewe Safe, Shaun, music, mail, Cast to TV and more. Nothing is ticked; pick what you want, or nothing — <strong>Komble → Plugins</strong> has all of them later. <a href="/docs/plugins/built-in/">What each one is →</a></dd></div>
 		<div class="row"><dt>Summary</dt><dd>Everything you chose, plugins included, the decided stack, and the only Install button.</dd></div>
 		<div class="row"><dt>Install</dt><dd>A last connectivity check, streamed progress — the base system, the desktop, an update so the first boot owes none, your plugins — then reboot. If a step fails it says why and offers to retry. A plugin that could not be installed never fails the install: the Done screen names it.</dd></div>
 	</dl>

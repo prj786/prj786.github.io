@@ -109,7 +109,7 @@ base00 = "#282828"
 	<h2><code>[desktop.bar]</code></h2>
 	<p>
 		<code>enabled</code>, <code>show</code> for each indicator, and <code>icon_size</code>: small,
-		normal or large, default normal — Settings → Layout → Top bar. A plugin's bar button and pill
+		normal or large, default normal — ewe Settings → Layout → Top bar. A plugin's bar button and pill
 		glyph are <code>show."plugin:&lt;id&gt;"</code>, its <em>Show in bar</em> switch, written by
 		<code>ewe-plugin bar</code> and Komble's Options. There is no height setting. The bar is its icons plus padding,
 		44, 48 or 56px, and text size 130% moves the icons one size up. The older <code>size</code> key
@@ -155,7 +155,7 @@ icon_size = "large"   # 56px`}
 	<p>
 		<code>mode</code>: <code>"separate"</code>, the default, gives every display its own workspaces
 		1, 2, 3 …, as on macOS; <code>"shared"</code> makes them one set across all displays, so switching
-		one switches every display. Switching modes moves no window. Settings → Displays → Workspaces,
+		one switches every display. Switching modes moves no window. ewe Settings → Displays → Workspaces,
 		shown with two or more displays.
 	</p>
 	<Code
@@ -346,8 +346,8 @@ removed = ["ewe.clipboard"]
 <section>
 	<h2><code>[desktop.browser]</code></h2>
 	<p>
-		Only for Helium, the browser ewe shipped before ewe browser, on machines that still have it:
-		<code>layout</code> chooses its tab layout — vertical or horizontal. ewe browser has no key here;
+		Only for Helium, the browser ewe shipped before ewe Browser, on machines that still have it:
+		<code>layout</code> chooses its tab layout — vertical or horizontal. ewe Browser has no key here;
 		it follows <code>[desktop.theme]</code>, the fonts and the motion settings by itself.
 	</p>
 </section>

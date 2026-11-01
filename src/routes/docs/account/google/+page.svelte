@@ -8,7 +8,7 @@
 	<title>Google (optional) — ewe docs</title>
 	<meta
 		name="description"
-		content="ewe ships no Google client. Supply your own OAuth client and a Google card appears in Settings, adding Gmail notifications and a Drive folder — never settings sync."
+		content="ewe ships no Google client. Supply your own OAuth client and a Google page appears in ewe Sync, adding Gmail notifications and a Drive folder — never settings sync."
 	/>
 </svelte:head>
 
@@ -44,7 +44,7 @@
 	<p>
 		Create an OAuth client of the desktop kind in your own Google Cloud project, then place the file
 		it gives you at <code>~/.config/ewe/oauth-client.json</code>. The Google pane in
-		<a href="/docs/cli/ewe-sync/">ewe-sync</a> says whether the file parses, and connects it.
+		<a href="/docs/cli/ewe-sync/">ewe Sync</a> says whether the file parses, and connects it.
 	</p>
 	<Code
 		code={`cp ~/Downloads/client_secret_*.json ~/.config/ewe/oauth-client.json

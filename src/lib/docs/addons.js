@@ -22,7 +22,7 @@ export const ADDONS = [
 		icon: 'dock',
 		group: 'desk',
 		blurb: 'A dock along the bottom of the screen: your apps, your workspaces, minimized windows and downloads.',
-		use: 'Click an app to open it. A minimized window (Super+Z) waits here as a small picture — click it to bring it back. The ring at the end shows ewe browser downloads.',
+		use: 'Click an app to open it. A minimized window (Super+Z) waits here as a small picture — click it to bring it back. The ring at the end shows ewe Browser downloads.',
 		settings: 'Auto-hide, icon size.'
 	},
 	{
@@ -81,11 +81,11 @@ export const ADDONS = [
 	},
 	{
 		id: 'ewe.safe',
-		name: 'Safe',
+		name: 'ewe Safe',
 		repo: 'ewe-plugin-safe',
 		icon: 'vault',
 		group: 'safety',
-		blurb: 'Safe, ewe’s password manager, on your desktop: a lock in the bar and Quick Access to every item.',
+		blurb: 'ewe Safe, the password manager, on your desktop: a lock in the bar, a Quick settings tile and Quick Access to every item.',
 		use: 'Press the key, search, and copy a password, a username or a one-time code. Lock and unlock from the bar.',
 		keys: 'Super+Shift+P',
 		needs: 'ewe-safe',
@@ -97,7 +97,7 @@ export const ADDONS = [
 		repo: 'ewe-plugin-passwords',
 		icon: 'lock',
 		group: 'safety',
-		blurb: 'Fill a login into any app from your password manager — Safe, 1Password, Bitwarden or pass.',
+		blurb: 'Fill a login into any app from your password manager — ewe Safe, 1Password, Bitwarden or pass.',
 		use: 'In a login form, press the key, pick the login, and it is typed in for you.',
 		settings: 'Which password manager, press Enter after.',
 		keys: 'Super+P'

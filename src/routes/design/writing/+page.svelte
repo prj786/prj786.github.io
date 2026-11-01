@@ -71,7 +71,12 @@
 			Sentence case everywhere — titles, buttons, menu items, tabs, settings. “Reduce transparency”,
 			not “Reduce Transparency”.
 		</li>
-		<li>App and place names keep their capitals: Komble, ewe-sync, Places, Overview, Quick settings, Welcome.</li>
+		<li>
+			ewe’s own apps are “ewe + Word”: a lowercase ewe, one space, a capital word — ewe Settings, ewe
+			Sync, ewe Browser, ewe Safe, ewe Cast. Commands keep their spelling (<code>ewe-sync</code>), and
+			Komble and Shaun are names of their own.
+		</li>
+		<li>Place names keep their capitals: Places, Overview, Quick settings, Welcome.</li>
 		<li>
 			No period after a title, a button, a label or a single-line list item. Descriptions and
 			helper text are sentences and end with one.

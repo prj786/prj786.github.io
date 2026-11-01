@@ -16,7 +16,7 @@
 	<title>ewe-castd — ewe docs</title>
 	<meta
 		name="description"
-		content="ewe-castd is the headless casting daemon behind the Cast card: it captures through the desktop portal and speaks Miracast and Chromecast itself, so no foreign window ever opens."
+		content="ewe-castd is ewe Cast, the headless casting daemon behind the Cast to TV plugin: it captures through the desktop portal and speaks Miracast and Chromecast itself, so no foreign window ever opens."
 	/>
 </svelte:head>
 
@@ -29,7 +29,7 @@
 	<p>
 		Casting on Linux usually means launching somebody else's application — a window in a toolkit this
 		desktop does not use, controlled by killing the process. ewe does the protocols itself instead:
-		this daemon captures through the desktop portal and speaks to the television directly, so the
+		this daemon, ewe Cast, captures through the desktop portal and speaks to the television directly, so the
 		whole flow stays in Quick settings and no foreign window ever appears.
 	</p>
 	<p>
@@ -42,7 +42,7 @@
 	<h2>Synopsis</h2>
 	<Code code={'ewe-castd'} copyable={false} />
 	<p>
-		Started on demand by the Cast card, never enabled at boot — no televisions, no daemon. It listens
+		Started on demand by the Cast to TV plugin, never enabled at boot — no televisions, no daemon. It listens
 		on a Unix socket at <code>$XDG_RUNTIME_DIR/ewe-cast.sock</code> and takes one JSON command per
 		line, broadcasting a status object to every connected client whenever the state changes.
 	</p>
@@ -54,7 +54,7 @@
 	<Callout>
 		<p>
 			Quick settings sends exactly these. There is no separate command-line client — the socket
-			is the interface, which is why the Cast card and any script see the same state.
+			is the interface, which is why the Cast page in Quick settings and any script see the same state.
 		</p>
 	</Callout>
 </section>

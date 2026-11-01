@@ -5,15 +5,15 @@
 </script>
 
 <svelte:head>
-	<title>ewe browser — ewe docs</title>
+	<title>ewe Browser — ewe docs</title>
 	<meta
 		name="description"
-		content="ewe browser, ewe's own web browser: tabs and workspaces, passwords from Safe, gestures, privacy settings, history and sync, downloads, and your files and music in the same window."
+		content="ewe Browser, ewe's own web browser: tabs and workspaces, passwords from ewe Safe, gestures, privacy settings, history and sync, downloads, and your files and music in the same window."
 	/>
 </svelte:head>
 
 <p class="eyebrow">Apps</p>
-<h1>ewe browser.</h1>
+<h1>ewe Browser.</h1>
 <p class="lede">
 	ewe's own web browser. The web, your files, your PDFs and your music in one window, in your
 	desktop's colors and fonts. <kbd>Super</kbd>+<kbd>B</kbd> opens it. New installs open links in it;
@@ -33,17 +33,17 @@
 </section>
 
 <section>
-	<h2>Passwords with Safe</h2>
+	<h2>Passwords with ewe Safe</h2>
 	<dl class="rows">
-		<div class="row"><dt>Sign in</dt><dd>Click a login field and Safe lists the logins it has for the site. Pick one and it fills. <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>L</kbd> opens the same list.</dd></div>
-		<div class="row"><dt>Save</dt><dd>When you sign in or sign up with a new password, the browser asks to save it to Safe, or to update the old one. If Safe is locked, <em>Unlock and save</em> does both.</dd></div>
-		<div class="row"><dt>Passkeys</dt><dd>Sites that offer passkeys can save one in Safe and sign you in with it.</dd></div>
-		<div class="row"><dt>Cards and addresses</dt><dd>Fill from Safe the same way. Cards fill only on secure pages, and Safe may ask for your password first.</dd></div>
+		<div class="row"><dt>Sign in</dt><dd>Click a login field and ewe Safe lists the logins it has for the site. Pick one and it fills. <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>L</kbd> opens the same list.</dd></div>
+		<div class="row"><dt>Save</dt><dd>When you sign in or sign up with a new password, the browser asks to save it to ewe Safe, or to update the old one. If ewe Safe is locked, <em>Unlock and save</em> does both.</dd></div>
+		<div class="row"><dt>Passkeys</dt><dd>Sites that offer passkeys can save one in ewe Safe and sign you in with it.</dd></div>
+		<div class="row"><dt>Cards and addresses</dt><dd>Fill from ewe Safe the same way. Cards fill only on secure pages, and ewe Safe may ask for your password first.</dd></div>
 	</dl>
 	<Callout>
 		<p>
-			Safe is the only password manager the browser uses. Known password-manager extensions are
-			turned off, so your passwords live in one place. <a href="/docs/apps/safe/">About Safe →</a>
+			ewe Safe is the only password manager the browser uses. Known password-manager extensions are
+			turned off, so your passwords live in one place. <a href="/docs/apps/safe/">About ewe Safe →</a>
 		</p>
 	</Callout>
 </section>
@@ -89,7 +89,7 @@
 		<div class="row"><dt>Files</dt><dd><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>E</kbd>, or Files in the bottom bar. A file manager with your places, your Nextcloud and your drives: copy, move, trash, compress and extract. Settings → Files can make it open your folders, too.</dd></div>
 		<div class="row"><dt>Pictures, video and PDFs</dt><dd>Open right in the window, and you can step through the rest of the folder.</dd></div>
 		<div class="row"><dt>Music</dt><dd><kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>M</kbd>. Your Music folder by album, artist and song, with a queue, shuffle and repeat. The desktop's media controls and media keys work with it.</dd></div>
-		<div class="row"><dt>Extensions</dt><dd>From the Chrome Web Store: open one and press <em>Add to ewe browser</em> under the address field.</dd></div>
+		<div class="row"><dt>Extensions</dt><dd>From the Chrome Web Store: open one and press <em>Add to ewe Browser</em> under the address field.</dd></div>
 	</dl>
 	<p>
 		The browser also has a command line, for scripts. Every command answers in JSON;

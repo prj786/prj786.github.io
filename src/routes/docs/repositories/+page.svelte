@@ -40,23 +40,23 @@
 		</div>
 		<div class="row">
 			<dt><a href="{GITHUB}ewe-settings">ewe-settings</a></dt>
-			<dd>The settings application — the one that edits the one file.</dd>
+			<dd>ewe Settings, the settings application — the one that edits the one file.</dd>
 		</div>
 		<div class="row">
 			<dt><a href="{GITHUB}ewe-sync">ewe-sync</a></dt>
-			<dd>The account application: your machines, settings sync, folder sync, and the tray icon.</dd>
+			<dd>ewe Sync, the account application: your computers, settings sync and folder sync.</dd>
 		</div>
 		<div class="row">
 			<dt><a href="{GITHUB}ewe-cast">ewe-cast</a></dt>
-			<dd>The headless casting daemon behind the Cast plugin — Miracast and Chromecast, with no foreign window.</dd>
+			<dd>ewe Cast, the headless casting daemon behind the Cast to TV plugin — Miracast and Chromecast, with no foreign window.</dd>
 		</div>
 		<div class="row">
 			<dt><a href="{GITHUB}ewe-browser">ewe-browser</a></dt>
-			<dd>ewe browser, the desktop's browser: the web, your files, PDFs and your music in one window, themed by ewe.</dd>
+			<dd>ewe Browser, the desktop's browser: the web, your files, PDFs and your music in one window, themed by ewe.</dd>
 		</div>
 		<div class="row">
 			<dt><a href="{GITHUB}ewe-safe">ewe-safe</a></dt>
-			<dd>Safe, ewe's password manager: the app, the <code>ewe-safe</code> command and the SSH agent. The Safe plugin brings it.</dd>
+			<dd>ewe Safe, ewe's password manager: the app, the <code>ewe-safe</code> command and the SSH agent. The ewe Safe plugin brings it.</dd>
 		</div>
 		<div class="row">
 			<dt><a href="{GITHUB}ewe-companion">ewe-companion</a></dt>
@@ -95,11 +95,11 @@
 	<dl class="rows">
 		<div class="row"><dt>The installer or the ISO</dt><dd><a href={OS_REPO}>ewe-os</a></dd></div>
 		<div class="row"><dt>The bar, the Overview, a keybinding, a tool</dt><dd><a href={DE_REPO}>ewe</a></dd></div>
-		<div class="row"><dt>The dock, music, mail, Cast — a plugin from ewe</dt><dd>Its own repository above, <code>ewe-plugin-&lt;name&gt;</code></dd></div>
+		<div class="row"><dt>The dock, music, mail, Cast to TV — a plugin from ewe</dt><dd>Its own repository above, <code>ewe-plugin-&lt;name&gt;</code></dd></div>
 		<div class="row"><dt>Installing software, or the Plugins page</dt><dd><a href="{GITHUB}komble-arch">komble-arch</a></dd></div>
-		<div class="row"><dt>Sync, or the account</dt><dd><a href="{GITHUB}ewe-sync">ewe-sync</a></dd></div>
-		<div class="row"><dt>The browser, its home page, files or music</dt><dd><a href="{GITHUB}ewe-browser">ewe-browser</a></dd></div>
-		<div class="row"><dt>Safe, its window or the command</dt><dd><a href="{GITHUB}ewe-safe">ewe-safe</a></dd></div>
+		<div class="row"><dt>ewe Sync, or the account</dt><dd><a href="{GITHUB}ewe-sync">ewe-sync</a></dd></div>
+		<div class="row"><dt>ewe Browser, its home page, files or music</dt><dd><a href="{GITHUB}ewe-browser">ewe-browser</a></dd></div>
+		<div class="row"><dt>ewe Safe, its window or the command</dt><dd><a href="{GITHUB}ewe-safe">ewe-safe</a></dd></div>
 		<div class="row"><dt>Shaun's answers or its agents</dt><dd><a href="{GITHUB}ewe-companion">ewe-companion</a></dd></div>
 		<div class="row"><dt>Not sure</dt><dd><a href={OS_REPO}>ewe-os</a> — it gets routed.</dd></div>
 	</dl>

@@ -27,8 +27,8 @@
 ewe-conf pull && ewe-conf apply  # your account → this machine, made live`}
 	/>
 	<p>
-		The <a href="/docs/cli/ewe-sync/">ewe-sync</a> app does both from a window and a tray icon, and
-		Settings → Account has the same buttons. <code>[sync].enabled</code> is the auto-sync switch:
+		The <a href="/docs/cli/ewe-sync/">ewe Sync</a> app does both from its window, and
+		the bar shows how the last sync went. <code>[sync].enabled</code> is the auto-sync switch:
 		with it on, every change schedules a debounced upload.
 	</p>
 </section>
@@ -97,7 +97,7 @@ ewe-conf pull && ewe-conf apply  # your account → this machine, made live`}
 	<h2>See also</h2>
 	<ul>
 		<li><a href="/docs/cli/ewe-conf/">ewe-conf</a> — the verbs, the results and every error code.</li>
-		<li><a href="/docs/cli/ewe-sync/">ewe-sync</a> — the app that runs them.</li>
+		<li><a href="/docs/cli/ewe-sync/">ewe Sync</a> — the app that runs them.</li>
 		<li><a href="/docs/one-file/">The one file</a> — what is being synced.</li>
 	</ul>
 </section>

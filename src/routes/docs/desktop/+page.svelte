@@ -56,7 +56,7 @@
 	</p>
 	<p>
 		With more than one display, each display has its own workspaces, like on a Mac, and the keys act
-		on the display you're using. Prefer one set for all displays? Settings → Displays → Workspaces →
+		on the display you're using. Prefer one set for all displays? ewe Settings → Displays → Workspaces →
 		<strong>Shared</strong>.
 	</p>
 </section>
@@ -73,7 +73,7 @@
 <section>
 	<h2>Light, dark and your colors</h2>
 	<p>
-		ewe is dark by default and has a light mode. Settings → Appearance switches between them, picks
+		ewe is dark by default and has a light mode. ewe Settings → Appearance switches between them, picks
 		your accent color, or takes the colors from your wallpaper. The bar, your apps and the window
 		borders all change at once. <a href="/theming/">How theming works →</a>
 	</p>
@@ -84,7 +84,7 @@
 	<p>
 		The screen locks after five minutes on its own, or at once from Quick settings. On battery, the
 		computer sleeps after fifteen minutes, and when the battery is almost empty it sleeps to keep your
-		work safe. Settings → Screensaver sets when it locks; Settings → Power has the lid and the
+		work safe. In ewe Settings, Screensaver sets when it locks and Power has the lid and the
 		battery.
 	</p>
 	<Callout>

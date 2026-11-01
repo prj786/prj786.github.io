@@ -47,7 +47,7 @@
 		<div class="row"><dt>Agents</dt><dd>What each of your AI agents is doing now. Click one to jump to its terminal.</dd></div>
 		<div class="row"><dt>Needs you</dt><dd>A disk that is almost full, updates waiting, a low battery.</dd></div>
 		<div class="row"><dt>Playing</dt><dd>What music or video is on.</dd></div>
-		<div class="row"><dt>Quick actions</dt><dd>Do not disturb, game mode, a screenshot, Settings, Komble and lock, one click each.</dd></div>
+		<div class="row"><dt>Quick actions</dt><dd>Do not disturb, game mode, a screenshot, ewe Settings, Komble and lock, one click each.</dd></div>
 		<div class="row"><dt>Chat</dt><dd>A line to type a question or a command.</dd></div>
 	</dl>
 </section>
@@ -77,8 +77,8 @@
 		<div class="row"><dt>The desktop</dt><dd>“volume 60”, “brightness up”, “wifi off”, “connect my airpods”. Wi-Fi and Bluetooth switches come with Undo.</dd></div>
 		<div class="row"><dt>Apps and folders</dt><dd>“open nemo”, “open kitty in documents”.</dd></div>
 		<div class="row"><dt>Files</dt><dd>“find my resume” lists what it finds by name, with Open, Show in folder and Copy path.</dd></div>
-		<div class="row"><dt>Safe</dt><dd>“copy my GitHub password”. Safe copies it and clears it later; Shaun never sees it. <a href="/docs/apps/safe/">About Safe →</a></dd></div>
-		<div class="row"><dt>ewe browser</dt><dd>“open github.com”, “search men's shoes on zara”, “show my tabs”, “bookmark this page”. <a href="/docs/apps/browser/">About the browser →</a></dd></div>
+		<div class="row"><dt>ewe Safe</dt><dd>“copy my GitHub password”. ewe Safe copies it and clears it later; Shaun never sees it. <a href="/docs/apps/safe/">About ewe Safe →</a></dd></div>
+		<div class="row"><dt>ewe Browser</dt><dd>“open github.com”, “search men's shoes on zara”, “show my tabs”, “bookmark this page”. <a href="/docs/apps/browser/">About ewe Browser →</a></dd></div>
 		<div class="row"><dt>Timers and sums</dt><dd>“remind me in 10 minutes to call mum” arrives as a notification. “what is 15% of 80” is worked out on the spot.</dd></div>
 		<div class="row"><dt>Help with ewe</dt><dd>“how do I change my wallpaper?” gets an answer and a button that opens the right place.</dd></div>
 	</dl>
@@ -106,7 +106,7 @@
 	<p>
 		With no AI picked, nothing leaves your computer. With one, it gets your question and a short
 		note about this computer — your ewe version, battery, volume — but never a password or a key.
-		Shaun never sees your passwords at all: Safe copies them itself.
+		Shaun never sees your passwords at all: ewe Safe copies them itself.
 	</p>
 </section>
 

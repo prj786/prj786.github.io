@@ -164,7 +164,7 @@
 		{/each}
 	</dl>
 	<p class="note">
-		Below 80% Settings warns that text can be hard to read on bright wallpapers, but nothing is
+		Below 80% ewe Settings warns that text can be hard to read on bright wallpapers, but nothing is
 		blocked. Where blur is unavailable — some virtual machines and NVIDIA setups — the fill stays
 		translucent but sharp, and 90% or more is suggested. Two more settings are separate from the
 		slider: app blur draws every window at 85%, and window transparency puts unfocused windows at
