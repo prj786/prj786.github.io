@@ -112,7 +112,7 @@ base00 = "#282828"
 		normal or large, default normal — ewe Settings → Layout → Top bar. A plugin's bar button and pill
 		glyph are <code>show."plugin:&lt;id&gt;"</code>, its <em>Show in the bar</em> switch, written by
 		<code>ewe-plugin bar</code> and Komble's plugin sheet. There is no height setting. The bar is its icons plus padding,
-		44, 48 or 56px, and text size 130% moves the icons one size up. The older <code>size</code> key
+		36, 40 or 48px, and text size 130% moves the icons one size up. The older <code>size</code> key
 		is gone; a <code>size = "large"</code> left in an older file still reads as large icons.
 	</p>
 	<Code

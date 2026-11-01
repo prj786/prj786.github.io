@@ -27,11 +27,11 @@
 		['control-2xl', 48, 'A large field in the installer']
 	];
 
-	// The bar is its icons plus space-s above and below.
+	// The bar is its icons plus space-xs above and below.
 	const BAR = [
-		['small', '44px', 'control-md · 28px', 'icon-md · 16px'],
-		['normal (default)', '48px · bar-height', 'control-lg · 32px', 'icon-lg · 20px'],
-		['large', '56px · bar-height-lg', 'control-xl · 40px', 'icon-xl · 24px']
+		['small', '36px', 'control-md · 28px', 'icon-md · 16px'],
+		['normal (default)', '40px · bar-height', 'control-lg · 32px', 'icon-lg · 20px'],
+		['large', '48px · bar-height-lg', 'control-xl · 40px', 'icon-xl · 24px']
 	];
 
 	const ICONS = [

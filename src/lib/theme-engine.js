@@ -197,15 +197,15 @@ const FOCUS_WIDTH = 1;
 const FIELD_BORDER_WIDTH = 1;
 
 // The top bar: its size follows its icons. icon_size small | normal | large
-// picks the module and the glyph; the bar is that module plus space-s above
-// and below, so 44 / 48 / 56.
-const SPACE_S = 8;
+// picks the module and the glyph; the bar is that module plus space-xs above
+// and below, so 36 / 40 / 48 (ewe-theme's BAR_PAD).
+const SPACE_XS = 4;
 export const BAR = {
 	small: { module: DENSITY.comfortable[0], icon: 16 },
 	normal: { module: DENSITY.comfortable[1], icon: 20 },
 	large: { module: 40, icon: 24 }
 };
-for (const b of Object.values(BAR)) b.height = b.module + 2 * SPACE_S;
+for (const b of Object.values(BAR)) b.height = b.module + 2 * SPACE_XS;
 const BAR_STEPS = ['small', 'normal', 'large'];
 export const TEXT_SCALES = [100, 115, 130];
 
@@ -566,9 +566,12 @@ export function derive({
 			'glass-hover': tint,
 			'glass-pressed': tint
 		});
+		// glass-base / glass-raised are the Glass MATERIAL at opacity-glass (the
+		// Overview's chips, desktop widgets); the bar opacity slider moves only
+		// the bar, the dock and the lock card (glass.alpha below), as in ewe-theme.
 		Object.assign(alpha, {
-			'glass-base': glassAlpha,
-			'glass-raised': glassAlpha,
+			'glass-base': OPACITY_GLASS,
+			'glass-raised': OPACITY_GLASS,
 			'glass-border': ga.border,
 			'glass-hover': ga.hover,
 			'glass-pressed': ga.pressed
@@ -653,12 +656,12 @@ export function derive({
 		alpha,
 		shape,
 		size,
-		bar: { iconSize: barStep, ...bar, padding: SPACE_S },
+		bar: { iconSize: barStep, ...bar, padding: SPACE_XS },
 		shadow,
 		gradient: gradients(color),
 		adjusted,
 		brand: Object.fromEntries(RAMP_STEPS.map((s) => [s, color['ewellow-' + s]])),
-		glass: { alpha: glassAlpha, solid: glassSolid, blurred: !glassSolid && op >= 10 && op < 100 }
+		glass: { alpha: op < 100 ? glassAlpha : 1.0, solid: glassSolid, blurred: !glassSolid && op >= 10 && op < 100 }
 	};
 }
 
