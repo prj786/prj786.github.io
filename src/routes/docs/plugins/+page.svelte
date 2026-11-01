@@ -37,9 +37,9 @@
 <section>
 	<h2>Add, set up, remove</h2>
 	<p>
-		Everything is on one page: <strong>Komble → Plugins</strong>. Install, turn on and off, and
-		<em>Options</em> for each plugin's settings and its <em>Show in bar</em> switch. The terminal does
-		the same.
+		Everything is on one page: <strong>Komble → Plugins</strong>. Install, and turn on and off with a
+		switch. Click a plugin to open its sheet, with its settings and its <em>Show in the bar</em>
+		switch. <em>Add plugin…</em> takes a git URL. The terminal does the same.
 	</p>
 	<Code
 		code={`ewe-plugin list                          # what you have, on or off

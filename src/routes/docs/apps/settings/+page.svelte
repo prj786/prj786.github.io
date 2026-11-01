@@ -42,7 +42,7 @@
 	<h2>Where the rest lives</h2>
 	<dl class="rows">
 		<div class="row"><dt>Your account and sync</dt><dd>The ewe Sync app — open it from the launcher, or click your name in Quick settings. <a href="/docs/account/nextcloud/">Your account →</a></dd></div>
-		<div class="row"><dt>Plugins</dt><dd>Komble → Plugins, each with its own Options. <a href="/docs/plugins/">Plugins →</a></dd></div>
+		<div class="row"><dt>Plugins</dt><dd>Komble → Plugins — click one for its options. <a href="/docs/plugins/">Plugins →</a></dd></div>
 		<div class="row"><dt>Quick changes</dt><dd>Wi-Fi, sound and Do not disturb are one click away in Quick settings, <kbd>Super</kbd>+<kbd>N</kbd>.</dd></div>
 	</dl>
 	<Callout>

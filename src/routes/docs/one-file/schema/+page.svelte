@@ -110,8 +110,8 @@ base00 = "#282828"
 	<p>
 		<code>enabled</code>, <code>show</code> for each indicator, and <code>icon_size</code>: small,
 		normal or large, default normal — ewe Settings → Layout → Top bar. A plugin's bar button and pill
-		glyph are <code>show."plugin:&lt;id&gt;"</code>, its <em>Show in bar</em> switch, written by
-		<code>ewe-plugin bar</code> and Komble's Options. There is no height setting. The bar is its icons plus padding,
+		glyph are <code>show."plugin:&lt;id&gt;"</code>, its <em>Show in the bar</em> switch, written by
+		<code>ewe-plugin bar</code> and Komble's plugin sheet. There is no height setting. The bar is its icons plus padding,
 		44, 48 or 56px, and text size 130% moves the icons one size up. The older <code>size</code> key
 		is gone; a <code>size = "large"</code> left in an older file still reads as large icons.
 	</p>
@@ -262,9 +262,9 @@ removed = ["ewe.clipboard"]
 		<code>top</code> pinned above them, <code>overlay</code> pinned above everything, fullscreen apps
 		too — <code>visible</code>, <code>pin_level</code> (<code>top</code> or <code>overlay</code>:
 		where pinning puts it, remembered while it is unpinned) and <code>locked</code>, which stops
-		dragging. Dragging a widget, its hover toolbar, arrange mode, Komble's Options and
+		dragging. Dragging a widget, its hover toolbar, arrange mode, Komble's plugin sheet and
 		<code>ewe-plugin place</code> write it. <code>settings</code> holds the values of the options a
-		plugin declared, typed by its manifest; Komble's Options dialog, <code>ewe-plugin set</code> and
+		plugin declared, typed by its manifest; Komble's plugin sheet, <code>ewe-plugin set</code> and
 		the plugin's own <code>Shell.setSetting</code> write it. Both apply live. Ids carry a dot, so they
 		are quoted.
 	</p>

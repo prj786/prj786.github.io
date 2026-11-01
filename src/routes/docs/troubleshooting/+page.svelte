@@ -39,7 +39,7 @@
 	<dl class="rows">
 		<div class="row">
 			<dt>No dock, or a plugin's button is missing</dt>
-			<dd>A fresh ewe has no plugins until you pick them. Komble → Plugins, or <code>ewe-plugin list</code> to see what's on. A plugin's <em>Show in bar</em> switch can also hide its button. <a href="/docs/plugins/built-in/">Built-in plugins →</a></dd>
+			<dd>A fresh ewe has no plugins until you pick them. Komble → Plugins, or <code>ewe-plugin list</code> to see what's on. A plugin's <em>Show in the bar</em> switch, on its sheet, can also hide its button. <a href="/docs/plugins/built-in/">Built-in plugins →</a></dd>
 		</div>
 		<div class="row">
 			<dt>The desktop looks stale after an update</dt>

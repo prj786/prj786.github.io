@@ -42,8 +42,8 @@
 	<p>
 		That is by design, not a fault. A fresh ewe starts with the bar and nothing along the bottom;
 		the dock is a plugin like the others. Komble → Plugins → Dock puts it there, or
-		<code>ewe-plugin install ewe.dock</code>; its settings — auto-hide, icon size — come with it, in
-		the same card's Options. Until then the launcher is <kbd>Super</kbd>+<kbd>D</kbd> and a tap of
+		<code>ewe-plugin install ewe.dock</code>; its settings — auto-hide, icon size — come with it, on
+		its sheet in Komble. Until then the launcher is <kbd>Super</kbd>+<kbd>D</kbd> and a tap of
 		<kbd>Super</kbd> is the Overview — every window spread out, your workspaces along the top.
 	</p>
 </section>

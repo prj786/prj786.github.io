@@ -91,7 +91,7 @@
 
 <section>
 	<h2>Who answers questions</h2>
-	<p>For anything beyond plain commands, pick who answers in Komble → Plugins → Shaun → Options.</p>
+	<p>For anything beyond plain commands, pick who answers in Komble → Plugins → Shaun.</p>
 	<dl class="rows">
 		<div class="row"><dt>None</dt><dd>The default. Commands still work, and so do many how-to questions about ewe.</dd></div>
 		<div class="row"><dt>Your own app</dt><dd>Claude Code, Codex or OpenCode, with the login you already have there.</dd></div>

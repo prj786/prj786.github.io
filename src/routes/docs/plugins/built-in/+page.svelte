@@ -69,13 +69,13 @@ ewe-plugin remove ewe.dock      # take it away — updates leave it out`}
 <section id="dock-settings">
 	<h2>Settings</h2>
 	<p>
-		In Komble → Plugins, every plugin has an <strong>Options</strong> button. Changes apply at once;
-		there is no Save. Plugins that put something in the bar also get a <strong>Show in bar</strong>
-		switch there. The dock's auto-hide and icon size live here too — ewe Settings → Layout has a button
+		In Komble → Plugins, click a plugin and its sheet opens with its <strong>Options</strong>. Changes
+		apply at once; there is no Save. Plugins that put something in the bar also get a
+		<strong>Show in the bar</strong> switch there. The dock's auto-hide and icon size live here too — ewe Settings → Layout has a button
 		that opens them.
 	</p>
 	<Code
-		code={`komble --options=ewe.dock           # the Dock's Options
+		code={`komble --options=ewe.dock           # the Dock's sheet
 ewe-plugin set ewe.dock autohide true`}
 	/>
 	<Callout title="No dock?">
