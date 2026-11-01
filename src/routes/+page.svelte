@@ -20,10 +20,10 @@
 	];
 
 	// Two accents through the same engine /theming/ runs live, derived at
-	// build time: the gold ewe ships with, and the orange in the screenshots.
+	// build time: the gold ewe ships with, and the orange preset.
 	const RAMPS = [
 		[EWELLOW, 'ewe ships with'],
-		['#ff9f0a', 'the screenshots wear']
+		['#ff9f0a', 'of the orange preset']
 	].map(([hex, who]) => ({ who, ramp: accentRamp(hex) }));
 </script>
 
@@ -81,12 +81,12 @@
 				fallback="jpg"
 				w={2560}
 				h={1440}
-				alt="The ewe desktop over a photo of a sheep in a meadow: the bar across the top, the Dock plugin along the bottom, and ewe Settings open on Layout and dock with toggles for the power profile, keyboard layout, system tray, screenshot button and dock autohide, all in an orange accent."
+				alt="The ewe desktop over a photo of a meadow: the bar across the top, the Dock plugin along the bottom, and ewe Settings in the middle. Its sidebar has a search field and four groups: Look, Desktop, Devices and System. The Appearance page is open, with Ewe Dark chosen as the scheme, gold chosen as the accent, and settings for corners, density, outlines, Glass and windows."
 			/>
 		</div>
 		<p class="figcap center">
-			A real session with the Dock plugin, and ewe Settings open on Layout and dock. The toggles, the
-			selected pane and the active dock item all follow one accent.
+			A real session with the Dock plugin, and ewe Settings open on Appearance. Everything is in Ewe
+			Dark and the gold accent ewe starts with.
 		</p>
 	</div>
 </section>
@@ -148,7 +148,7 @@
 				<source srcset="/img/launcher.webp" type="image/webp" />
 				<img
 					src="/img/launcher.jpg"
-					alt="The launcher open over the desktop: a search field for apps, files and folders above a list of apps, the first highlighted in the accent."
+					alt="The launcher open over the desktop: a search field for apps, settings and files above a list of apps (ewe Browser, ewe Safe, ewe Settings, ewe Sync, Files, kitty, Komble, mpv Media Player), the first one selected, and the keys to move, open and close along the bottom."
 					width="1320"
 					height="1030"
 					loading="lazy"
