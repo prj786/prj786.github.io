@@ -4,7 +4,7 @@
 </script>
 
 <svelte:head>
-	<title>Settings — ewe docs</title>
+	<title>ewe Settings — ewe docs</title>
 	<meta
 		name="description"
 		content="ewe Settings: appearance, displays, networks, Bluetooth, keyboard and mouse, power, default apps and the rest of the machine in one window — every change saved to your one settings file."
@@ -12,7 +12,7 @@
 </svelte:head>
 
 <p class="eyebrow">Apps</p>
-<h1>Settings.</h1>
+<h1>ewe Settings.</h1>
 <p class="lede">
 	One window for the whole machine. <kbd>Super</kbd>+<kbd>,</kbd> opens it. Every change applies at
 	once and is saved to <a href="/docs/one-file/">one settings file</a> — so it can follow you to your
@@ -41,8 +41,8 @@
 <section>
 	<h2>Where the rest lives</h2>
 	<dl class="rows">
-		<div class="row"><dt>Your account and sync</dt><dd>The ewe-sync app in the tray. <a href="/docs/account/nextcloud/">Your account →</a></dd></div>
-		<div class="row"><dt>Plugins</dt><dd>Komble → Plugins, each with its own Options. <a href="/docs/plugins/">Plugins →</a></dd></div>
+		<div class="row"><dt>Your account and sync</dt><dd>The ewe Sync app — open it from the launcher, or click your name in Quick settings. <a href="/docs/account/nextcloud/">Your account →</a></dd></div>
+		<div class="row"><dt>Plugins</dt><dd>Komble → Plugins — click one for its options. <a href="/docs/plugins/">Plugins →</a></dd></div>
 		<div class="row"><dt>Quick changes</dt><dd>Wi-Fi, sound and Do not disturb are one click away in Quick settings, <kbd>Super</kbd>+<kbd>N</kbd>.</dd></div>
 	</dl>
 	<Callout>

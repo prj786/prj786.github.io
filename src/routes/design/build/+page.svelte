@@ -202,7 +202,7 @@ ewe-conf set desktop.theme.bar_opacity 80`;
 	<p>
 		Two files, in this order: <code>tokens.css</code>, every token as a custom property, and
 		<code>components.css</code>, the <code>ewe-*</code> classes built only from them. ewe ships both
-		in <code>design/</code>, and Settings, Komble and ewe-sync carry byte-for-byte copies —
+		in <code>design/</code>, and ewe Settings, Komble and ewe Sync carry byte-for-byte copies —
 		<code>design/check-tokens.sh</code> fails when one drifts.
 	</p>
 	<Downloads
@@ -234,7 +234,7 @@ ewe-conf set desktop.theme.bar_opacity 80`;
 		<code>ewe-theme show</code> for this machine’s token map and sets every value inline on
 		<code>&lt;html&gt;</code>, which beats the compiled file. It does that at start and whenever the
 		window gets focus. The app never knows which scheme is active: the generator did the derivation,
-		the app only carries the result. This is Settings’ own pattern:
+		the app only carries the result. This is ewe Settings’ own pattern:
 	</p>
 	<Code code={LIVE} />
 	<p>
@@ -262,8 +262,8 @@ ewe-conf set desktop.theme.bar_opacity 80`;
 	<Code code={CHECK} />
 	<p class="muted">
 		Put them back with <code>ewe-theme scheme apply ewe-dark</code>, <code>text_scale 100</code>,
-		<code>increase_contrast false</code> and <code>bar_opacity 100</code>, or from Settings →
-		Appearance and Settings → Accessibility.
+		<code>increase_contrast false</code> and <code>bar_opacity 100</code>, or from Appearance and
+		Accessibility in ewe Settings.
 	</p>
 </section>
 

@@ -17,7 +17,7 @@
 	<title>Features — ewe</title>
 	<meta
 		name="description"
-		content="Everything ewe OS does, in short: the installer, the desktop, ewe browser, Safe, Shaun, Komble, Settings, sixteen plugins you choose, theming, your Nextcloud account and the quiet system parts."
+		content="Everything ewe OS does, in short: the installer, the desktop, ewe Browser, ewe Safe, Shaun, Komble, ewe Settings, ewe Sync, sixteen plugins you choose, theming, your Nextcloud account and the quiet system parts."
 	/>
 </svelte:head>
 
@@ -78,7 +78,7 @@
 			</div>
 			<div class="card">
 				<h3><Icon name="sliders-horizontal" size={16} />Quick settings</h3>
-				<p>Wi-Fi, Bluetooth, sound, Do not disturb, your calendar and notifications in one panel.</p>
+				<p>Wi-Fi, Bluetooth, sound, Do not disturb, your calendar, your notifications and the battery in one panel.</p>
 			</div>
 			<div class="card">
 				<h3><Icon name="app-window" size={16} />Desktop widgets</h3>
@@ -93,11 +93,11 @@
 		<h2>Made by ewe, where it matters.</h2>
 		<dl class="rows">
 			<div class="row">
-				<dt><Icon name="compass" size={16} />ewe browser</dt>
-				<dd>The web, your files, PDFs and music in one window. Workspaces, site search, and Safe built in. <a href="/docs/apps/browser/">More →</a></dd>
+				<dt><Icon name="compass" size={16} />ewe Browser</dt>
+				<dd>The web, your files, PDFs and music in one window. Workspaces, site search, and ewe Safe built in. <a href="/docs/apps/browser/">More →</a></dd>
 			</div>
 			<div class="row">
-				<dt><Icon name="vault" size={16} />Safe</dt>
+				<dt><Icon name="vault" size={16} />ewe Safe</dt>
 				<dd>Your own password manager: logins, cards, passkeys and SSH keys, encrypted, synced through your Nextcloud. <a href="/docs/apps/safe/">More →</a></dd>
 			</div>
 			<div class="row">
@@ -109,12 +109,12 @@
 				<dd>Apps from the Arch repos, the AUR and AppImages, updates in one click, and every plugin. <a href="/docs/apps/komble/">More →</a></dd>
 			</div>
 			<div class="row">
-				<dt><Icon name="settings-2" size={16} />Settings</dt>
+				<dt><Icon name="settings-2" size={16} />ewe Settings</dt>
 				<dd>The whole machine in one window. <a href="/docs/apps/settings/">More →</a></dd>
 			</div>
 			<div class="row">
-				<dt><Icon name="folder-sync" size={16} />ewe-sync</dt>
-				<dd>Your account, your machines and your synced folders, in the tray. <a href="/docs/account/nextcloud/">More →</a></dd>
+				<dt><Icon name="folder-sync" size={16} />ewe Sync</dt>
+				<dd>Your account, your computers and your synced folders. <a href="/docs/account/nextcloud/">More →</a></dd>
 			</div>
 		</dl>
 	</section>
@@ -164,8 +164,8 @@
 		<p class="eyebrow">Your account</p>
 		<h2>Your Nextcloud, not ours.</h2>
 		<p>
-			Sign in to <strong>any Nextcloud</strong> and your settings, calendar and files follow you. Safe
-			and ewe browser can sync through it too. You sign in on your own server's page; ewe never sees
+			Sign in to <strong>any Nextcloud</strong> and your settings, calendar and files follow you. ewe Safe
+			and ewe Browser can sync through it too. You sign in on your own server's page; ewe never sees
 			your password.
 		</p>
 		<p class="note">

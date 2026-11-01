@@ -82,7 +82,7 @@ ewe-conf apply                     # rebuild every runtime file`}
 	<ul>
 		<li><a href="/docs/one-file/schema/">Schema reference</a> — every section and key.</li>
 		<li><a href="/docs/one-file/editing/">Editing by hand</a> — supported, with caveats.</li>
-		<li><a href="/docs/account/settings-sync/">Settings sync</a> — the file on your other machines.</li>
+		<li><a href="/docs/account/settings-sync/">Settings sync</a> — the file on your other computers.</li>
 	</ul>
 </section>
 

@@ -22,7 +22,7 @@ export const ADDONS = [
 		icon: 'dock',
 		group: 'desk',
 		blurb: 'A dock along the bottom of the screen: your apps, your workspaces, minimized windows and downloads.',
-		use: 'Click an app to open it. A minimized window (Super+Z) waits here as a small picture — click it to bring it back. The ring at the end shows ewe browser downloads.',
+		use: 'Click an app to open it. A minimized window (Super+Z) waits here as a small picture — click it to bring it back. The ring at the end shows ewe Browser downloads.',
 		settings: 'Auto-hide, icon size.'
 	},
 	{
@@ -81,11 +81,11 @@ export const ADDONS = [
 	},
 	{
 		id: 'ewe.safe',
-		name: 'Safe',
+		name: 'ewe Safe',
 		repo: 'ewe-plugin-safe',
 		icon: 'vault',
 		group: 'safety',
-		blurb: 'Safe, ewe’s password manager, on your desktop: a lock in the bar and Quick Access to every item.',
+		blurb: 'ewe Safe, the password manager, on your desktop: a lock in the bar, a Quick settings tile and Quick Access to every item.',
 		use: 'Press the key, search, and copy a password, a username or a one-time code. Lock and unlock from the bar.',
 		keys: 'Super+Shift+P',
 		needs: 'ewe-safe',
@@ -97,7 +97,7 @@ export const ADDONS = [
 		repo: 'ewe-plugin-passwords',
 		icon: 'lock',
 		group: 'safety',
-		blurb: 'Fill a login into any app from your password manager — Safe, 1Password, Bitwarden or pass.',
+		blurb: 'Fill a login into any app from your password manager — ewe Safe, 1Password, Bitwarden or pass.',
 		use: 'In a login form, press the key, pick the login, and it is typed in for you.',
 		settings: 'Which password manager, press Enter after.',
 		keys: 'Super+P'
@@ -109,7 +109,7 @@ export const ADDONS = [
 		icon: 'mail',
 		group: 'talk',
 		blurb: 'Unread mail from any IMAP account or Gmail: a count in the bar and a note when new mail arrives.',
-		use: 'Click the envelope to see your inbox in Quick settings.',
+		use: 'Click the envelope in the bar, or Mail in the shortcut row of Quick settings, to see your inbox.',
 		settings: 'Notifications for new mail.'
 	},
 	{
@@ -129,7 +129,7 @@ export const ADDONS = [
 		icon: 'smartphone',
 		group: 'talk',
 		blurb: 'Your phone on your desktop: its battery, its notifications and your text messages.',
-		use: 'Pair your phone with the KDE Connect app, then open the Mobile page in Quick settings.',
+		use: 'Pair your phone with the KDE Connect app, then open its page from the shortcut row in Quick settings.',
 		needs: 'kdeconnect'
 	},
 	{
@@ -139,7 +139,7 @@ export const ADDONS = [
 		icon: 'cast',
 		group: 'connect',
 		blurb: 'Show your screen on a TV — Miracast or Chromecast.',
-		use: 'Open Cast in Quick settings, or press the key, and pick your TV.',
+		use: 'Tap Cast in Quick settings, or press the key, and pick your TV.',
 		keys: 'Super+Shift+C',
 		needs: 'ewe-cast'
 	},
@@ -150,7 +150,7 @@ export const ADDONS = [
 		icon: 'shield',
 		group: 'connect',
 		blurb: 'Your VPN connections in Quick settings, and a shield in the bar while one is on.',
-		use: 'Tap the tile to connect; the VPN page lists every connection.'
+		use: 'Tap the tile in Quick settings to connect; its arrow lists every connection.'
 	},
 	{
 		id: 'ewe.ssh',
@@ -159,7 +159,7 @@ export const ADDONS = [
 		icon: 'square-terminal',
 		group: 'connect',
 		blurb: 'The servers from your SSH config, one click from a terminal.',
-		use: 'Open the SSH page in Quick settings and pick a host.'
+		use: 'In Quick settings, the arrow on the SSH tile lists your hosts. Pick one.'
 	},
 	{
 		id: 'ewe.insomnia',
@@ -177,8 +177,9 @@ export const ADDONS = [
 		repo: 'ewe-plugin-sysmon',
 		icon: 'cpu',
 		group: 'system',
-		blurb: 'How busy your processor and memory are.',
-		use: 'A meter in Quick settings, and a small readout in the bar if you want one.'
+		blurb: 'CPU, memory and internet speed in the bar, and on your desktop if you want them there.',
+		use: 'A small readout in the bar, on from the start. Click it for a card with CPU, memory and your download and upload speed. Show on desktop puts the same card on your desktop.',
+		settings: 'In the bar: all three, CPU + memory, or the speed. Speed in MB/s or Mbit/s.'
 	}
 ];
 

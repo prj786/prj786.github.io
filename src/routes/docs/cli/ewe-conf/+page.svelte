@@ -180,7 +180,7 @@ ewe-conf import`}
 		<li><a href="/docs/one-file/">The one file</a> — what the document is, and the three rules.</li>
 		<li><a href="/docs/one-file/schema/">Schema reference</a> — every section and key.</li>
 		<li><a href="/docs/cli/ewe-cloud/">ewe-cloud</a> — the account credential push and pull use.</li>
-		<li><a href="/docs/cli/ewe-sync/">ewe-sync</a> — the app that runs these verbs for you.</li>
+		<li><a href="/docs/cli/ewe-sync/">ewe Sync</a> — the app that runs these verbs for you.</li>
 	</ul>
 </section>
 

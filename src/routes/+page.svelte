@@ -16,7 +16,7 @@
 		['globe', 'Your place', 'Timezone detected — two providers have to agree — plus language and locale.'],
 		['hard-drive', 'Which disk', "The whole disk is erased, and you're told so twice."],
 		['circle-user', 'Who you are', 'Name, username, password, and a name for the computer.'],
-		['puzzle', 'Which plugins', 'The dock, Safe, Shaun, music and more — nothing ticked, all of it one click away later.']
+		['puzzle', 'Which plugins', 'The dock, ewe Safe, Shaun, music and more — nothing ticked, all of it one click away later.']
 	];
 
 	// Two accents through the same engine /theming/ runs live, derived at
@@ -81,11 +81,11 @@
 				fallback="jpg"
 				w={2560}
 				h={1440}
-				alt="The ewe desktop over a photo of a sheep in a meadow: the bar across the top, the Dock plugin along the bottom, and ewe-settings open on Layout and dock with toggles for the power profile, keyboard layout, system tray, screenshot button and dock autohide, all in an orange accent."
+				alt="The ewe desktop over a photo of a sheep in a meadow: the bar across the top, the Dock plugin along the bottom, and ewe Settings open on Layout and dock with toggles for the power profile, keyboard layout, system tray, screenshot button and dock autohide, all in an orange accent."
 			/>
 		</div>
 		<p class="figcap center">
-			A real session with the Dock plugin, and Settings open on Layout and dock. The toggles, the
+			A real session with the Dock plugin, and ewe Settings open on Layout and dock. The toggles, the
 			selected pane and the active dock item all follow one accent.
 		</p>
 	</div>
@@ -164,15 +164,15 @@
 		</a>
 		<a class="card act tile" href="/docs/apps/browser/">
 			<span class="ico"><Icon name="compass" size={18} /></span>
-			<h3>ewe browser</h3>
+			<h3>ewe Browser</h3>
 			<p>The web, your files and your music in one window, with workspaces and your passwords built in.</p>
-			<span class="go">The browser <Icon name="arrow-right" size={14} /></span>
+			<span class="go">ewe Browser <Icon name="arrow-right" size={14} /></span>
 		</a>
 		<a class="card act tile" href="/docs/apps/safe/">
 			<span class="ico"><Icon name="vault" size={18} /></span>
-			<h3>Safe</h3>
+			<h3>ewe Safe</h3>
 			<p>A password manager of your own: logins, cards, passkeys and SSH keys, encrypted, in your Nextcloud.</p>
-			<span class="go">Safe <Icon name="arrow-right" size={14} /></span>
+			<span class="go">ewe Safe <Icon name="arrow-right" size={14} /></span>
 		</a>
 		<a class="card act tile" href="/theming/">
 			<span class="ico"><Icon name="palette" size={18} /></span>
@@ -217,7 +217,7 @@
 			<span class="ico"><Icon name="puzzle" size={18} /></span>
 			<h3>Sixteen plugins, your pick</h3>
 			<p>
-				The dock, Safe, Shaun, music, Places, clipboard, screenshots, mail, Slack, your phone, Cast to
+				The dock, ewe Safe, Shaun, music, Places, clipboard, screenshots, mail, Slack, your phone, Cast to
 				TV, VPN, SSH and more ship with ewe — and install only when you ask.
 			</p>
 			<span class="go">See all sixteen <Icon name="arrow-right" size={14} /></span>

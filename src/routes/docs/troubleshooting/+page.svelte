@@ -39,7 +39,7 @@
 	<dl class="rows">
 		<div class="row">
 			<dt>No dock, or a plugin's button is missing</dt>
-			<dd>A fresh ewe has no plugins until you pick them. Komble → Plugins, or <code>ewe-plugin list</code> to see what's on. A plugin's <em>Show in bar</em> switch can also hide its button. <a href="/docs/plugins/built-in/">Built-in plugins →</a></dd>
+			<dd>A fresh ewe has no plugins until you pick them. Komble → Plugins, or <code>ewe-plugin list</code> to see what's on. A plugin's <em>Show in the bar</em> switch, on its sheet, can also hide its button. <a href="/docs/plugins/built-in/">Built-in plugins →</a></dd>
 		</div>
 		<div class="row">
 			<dt>The desktop looks stale after an update</dt>
@@ -51,7 +51,7 @@
 		</div>
 		<div class="row">
 			<dt>Asked for a keyring password at every start</dt>
-			<dd>With Safe: Safe → Settings → Keyring → <em>Fix the keyring password prompt</em>. Without it: <code>ewe-auth keyring-reset</code>, then log in again.</dd>
+			<dd>With ewe Safe: ewe Safe → Settings → Keyring → <em>Fix the keyring password prompt</em>. Without it: <code>ewe-auth keyring-reset</code>, then log in again.</dd>
 		</div>
 		<div class="row">
 			<dt>Sync won't upload</dt>
@@ -59,7 +59,7 @@
 		</div>
 		<div class="row">
 			<dt>A setting won't stick</dt>
-			<dd>Change it in Settings or with <code>ewe-conf set</code>, never in a generated file. <a href="/docs/one-file/editing/">More →</a></dd>
+			<dd>Change it in ewe Settings or with <code>ewe-conf set</code>, never in a generated file. <a href="/docs/one-file/editing/">More →</a></dd>
 		</div>
 		<div class="row">
 			<dt>Casting finds no TV</dt>

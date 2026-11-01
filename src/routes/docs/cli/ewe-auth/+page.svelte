@@ -30,8 +30,8 @@
 	<h2>Why it exists</h2>
 	<p>
 		ewe ships <strong>no Google client</strong>. Nothing here talks to Google until you place your own
-		OAuth client at <code>~/.config/ewe/oauth-client.json</code>; until then the Google card in
-		Settings simply reports that it is not configured. That keeps the project out of a verification
+		OAuth client at <code>~/.config/ewe/oauth-client.json</code>; until then the Google page in
+		ewe Sync simply reports that it is not configured. That keeps the project out of a verification
 		process, and keeps your desktop's identity in your hands.
 	</p>
 	<p>

@@ -13,16 +13,16 @@
 		['kinds', '["quick-tile", "quick-page"]', 'One or more of service, panel, overlay, menu, bar-widget, desktop-widget, quick-tile, quick-page, bar-status, dock-item.'],
 		['entryPoints', '{ "quick-tile": "Tile.qml", … }', 'One .qml file per kind (none for dock-item), relative, inside the plugin. A symlink that resolves outside it is rejected.'],
 		['quickTile', '{ "span": 1, "order": 10 }', 'Optional: half a row (1) or the whole row (2) of the Quick settings home grid. Whole-row cards come after every half-row tile, then by order.'],
-		['quickPage', '{ "key", "label", "icon", "order" }', 'Required with quick-page. key is lowercase, unique, and not one the shell keeps (home wifi bt audio cal notifs); it is what quicksettings tab <key> and Shell.openQuickSettings(key) route to.'],
+		['quickPage', '{ "key", "label", "icon", "order" }', 'Required with quick-page. key is lowercase, unique, and not one the shell keeps (home wifi bt audio cal notifs, and the newer remote and power — a page with either is never shown); it is what quicksettings tab <key> and Shell.openQuickSettings(key) route to. icon and label are the page’s shortcut tile and its tooltip.'],
 		['barStatus', '{ "order": 10 }', 'Optional: where the glyph sits in the pill after the shell’s own.'],
 		['dockItem', '{ "icon", "label", "action", "order" }', 'Required with dock-item. Static — the dock draws the button and runs action (a Shell.registerAction name), or qs ipc call <id> toggle when none is registered.'],
 		['requires', '{ "packages": [...], "commands": [...] }', 'Optional. Reported by list --json (missing) and install; never installed by the shell — Komble offers them.'],
 		['icon · category', '"icSun" · "Utilities"', 'The catalogue card. Icons are Theme glyph names, resolved by the host.'],
 		['barWidget.defaultSection', '"right"', 'left, center or right — where a bar widget is packed. Optional.'],
-		['barWidget.defaultShown · barStatus.defaultShown', 'false', 'Optional, default true: whether Show in bar is on before the user has picked. The system monitor’s readout starts off this way.'],
-		['barWidget.toggle · barStatus.toggle', 'false', 'Optional, default true. false means your own settings place the button — as Music and Places do with “Where the button lives” — so ewe shows no Show in bar switch, and ewe-plugin bar <id> off is refused.'],
+		['barWidget.defaultShown · barStatus.defaultShown', 'false', 'Optional, default true: whether Show in the bar is on before the user has picked. false keeps it out of the bar until they turn it on.'],
+		['barWidget.toggle · barStatus.toggle', 'false', 'Optional, default true. false means your own settings place the button — as Music and Places do with “Where the button lives” — so ewe shows no Show in the bar switch, and ewe-plugin bar <id> off is refused.'],
 		['desktopWidget', '{ "x": 48, "y": 64, "layer": "desktop", "pinLevel": "top", "locked": false }', 'Optional, for desktop-widget: the defaults. layer is desktop (under the windows), top (pinned above them) or overlay (pinned above everything, fullscreen apps too); pinLevel, top or overlay (default top), is where pinning puts it; locked (default false) stops dragging. The user’s placement in ewe.conf wins.'],
-		['settings', '[{ "key", "type", "default", "label", "description" }]', 'Optional: bool, int (min/max), string, choice (choices), color. description is the line Komble shows under the label in your Options dialog. The values reach every entry point as settings. First-party (“ewe.”) only: legacy names a dotted ewe.conf key whose value stands until the user sets the plugin’s own — how the Dock’s settings moved out of Settings without changing anyone’s dock.'],
+		['settings', '[{ "key", "type", "default", "label", "description" }]', 'Optional: bool, int (min/max), string, choice (choices), color. description is the line Komble shows under the label on your plugin’s sheet. The values reach every entry point as settings. First-party (“ewe.”) only: legacy names a dotted ewe.conf key whose value stands until the user sets the plugin’s own — how the Dock’s settings moved out of Settings without changing anyone’s dock.'],
 		['keybinds', '[{ "combo": "SUPER + W", "ipc": "acme.weather toggle" }]', 'Optional: Hyprland binds generated while the plugin is enabled. With apiVersion 3 the target must be the plugin’s own id.'],
 		['ipcAliases', '["player"]', 'First-party only ("ewe." ids): legacy IPC targets the plugin keeps alive after a feature moved out of the shell.'],
 		['description · homepage · author', '', 'Optional; shown by info and the card.']
@@ -131,14 +131,16 @@ Tile {
     ic: Theme.icSun
     label: "Weather"
     sub: panelOpen ? "21°, partly cloudy" : ""
-    onClicked: Shell.openQuickSettings("weather")
+    hasMenu: true                        // an arrow that opens your page
+    onMenu: Shell.openQuickSettings("weather")
 }`}
 		copyable={false}
 	/>
 	<p>
 		Root it on <code>Tile</code> and the host sizes it — <code>span</code> in the manifest — and
-		places it after the built-ins. A whole-row card (<code>span: 2</code>) is what the system
-		monitor uses.
+		places it after the built-ins. A whole-row card (<code>span: 2</code>) suits a tile with more to
+		show. With <code>hasMenu</code> the tile gets an arrow; when it opens your own page, that arrow
+		is the way in and home shows no separate shortcut for the page.
 	</p>
 
 	<h3>A Quick settings page</h3>
@@ -155,9 +157,14 @@ Column {
 		copyable={false}
 	/>
 	<p>
-		A <code>Column</code> the width of the panel, shown while its <code>quickPage.key</code> is the
-		tab; start it with a <code>QsPageHead</code>. <code>qs ipc call quicksettings tab weather</code>
-		opens it from anywhere.
+		A <code>Column</code> the width of the panel, shown in place of home while its
+		<code>quickPage.key</code> is the tab; start it with a <code>QsPageHead</code> — back, the name
+		over a status line, an optional switch. <kbd>Esc</kbd> goes back too. Quick settings has no icon
+		rail: home reaches your page from a small shortcut tile in the row under the tiles, drawn with
+		<code>quickPage.icon</code> and named by its <code>label</code> — unless your own tile is on home
+		and opens the page from its arrow, so the page is never offered twice.
+		<code>qs ipc call quicksettings tab weather</code> opens it from anywhere. The manifest is the
+		same as before.
 	</p>
 
 	<h3>A bar status glyph</h3>
@@ -310,7 +317,7 @@ Item {
 		a grip to drag it by, and the pin. A widget can always be dragged — by that grip, or by any part
 		of the card your own controls do not take — until the user turns on <em>Lock position</em>.
 		Arrange mode (<kbd>Super</kbd>+<kbd>Shift</kbd>+<kbd>W</kbd>) gives every widget its name and
-		the Pinned, Lock and Hide chips; Komble's Options and <code>ewe-plugin place</code> do the same.
+		the Pinned, Lock and Hide chips; Komble's plugin sheet and <code>ewe-plugin place</code> do the same.
 	</p>
 
 	<h3>Settings you declare</h3>
@@ -323,8 +330,8 @@ Item {
 	/>
 	<p>
 		Five types — <code>bool</code>, <code>int</code> (with <code>min</code>/<code>max</code>),
-		<code>string</code>, <code>choice</code>, <code>color</code>. Komble renders them in your plugin's
-		Options dialog, a <code>description</code> under each label;
+		<code>string</code>, <code>choice</code>, <code>color</code>. Komble renders them on your plugin's
+		sheet, a <code>description</code> under each label;
 		<code>ewe-plugin set acme.weather unit F</code> does the same from a terminal, and every entry
 		point that declares <code>property var settings</code> receives the values — on load and on
 		every change, without a restart.
@@ -384,7 +391,7 @@ ewe-plugin add https://github.com/acme/ewe-weather.git --enable`}
 		<div class="row"><dt>Ask for a role, never a value</dt><dd><code>Theme.surfaceBase</code>, not a hex; <code>Theme.spaceS</code>, not 8; <code>Theme.durBase</code>, not 200. The scheme, the accent and Text size are the user's and change at runtime; a hard-coded value is the one thing that will look foreign. The names are on <a href="/docs/plugins/api/">What a plugin may use</a>, with the table for moving an API 1 plugin.</dd></div>
 		<div class="row"><dt>Use the kit</dt><dd>Root a tile on <code>Tile</code>, a page on <code>QsPageHead</code> and the <code>Qs*</code> rows, a bar widget on <code>BarModule</code>, a popup on <code>AnchoredPopup</code>. They already follow Glass, the look presets and the one-popup rule; a hand-drawn rectangle will not.</dd></div>
 		<div class="row"><dt>Own your state</dt><dd>Keep files under <code>stateDir</code> (<code>~/.local/state/ewe/plugins/&lt;id&gt;</code>, created when first asked for); never write <code>ewe.conf</code> — declare a <code>setting</code> if the user should change it, and change it from your own UI with <code>Shell.setSetting</code>.</dd></div>
-		<div class="row"><dt>Poll only while seen</dt><dd>A tile or page gets <code>panelOpen</code>; sample while it is true and stop when it is not. A bar widget polls for the whole session — the system monitor's bar readout is off by default for exactly that reason.</dd></div>
+		<div class="row"><dt>Poll only while seen</dt><dd>A tile or page gets <code>panelOpen</code>; sample while it is true and stop when it is not. A bar widget is seen for the whole session, so keep its sampling light — the system monitor reads a few small files every 1.5 seconds, and every 3 on battery.</dd></div>
 		<div class="row"><dt>Stay small</dt><dd>People will read your code before enabling it, because the docs tell them to. One file per kind, no build step, a README that says what it talks to.</dd></div>
 	</dl>
 </section>

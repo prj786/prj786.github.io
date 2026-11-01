@@ -19,7 +19,7 @@
 	// [key, required, what it takes, default, meaning]
 	const KEYS = [
 		['system', 'no', '"base24" or "base16"', '—', 'The file format. ewe reads both; export writes base24.'],
-		['name', 'no', 'text', '"Untitled"', 'What the scheme card in Settings shows.'],
+		['name', 'no', 'text', '"Untitled"', 'What the scheme card in ewe Settings shows.'],
 		['slug', 'no', 'lowercase, digits and dashes', 'the name, lowercased', 'How ewe.conf stores the scheme and how commands name it. Importing a slug that exists replaces that scheme. ewe-dark and ewe-light are taken.'],
 		['author', 'no', 'text', '—', 'Credit. Kept with the scheme.'],
 		['variant', 'no', 'dark or light', 'dark (guessed from base00 on import)', 'Which way the surfaces run. It also picks the GTK and Qt theme and the icon theme variant.'],
@@ -81,7 +81,7 @@
 
 	const REACH = [
 		['layout-panel-top', 'The shell', 'The bar, the dock, every panel, the lock screen — through theme-tokens.json and Theme.'],
-		['sliders-horizontal', 'Settings, Komble and ewe-sync', 'Each app asks ewe-theme for the live tokens and sets them over its compiled tokens.css.'],
+		['sliders-horizontal', 'ewe Settings, Komble and ewe Sync', 'Each app asks ewe-theme for the live tokens and sets them over its compiled tokens.css.'],
 		['layers', 'Hyprland', 'The active window’s border takes the accent; the others take border-subtle.'],
 		['monitor', 'GTK and Qt apps', 'adw-gtk3 in the scheme’s variant with the accent, and a matching qt6ct and qt5ct palette.'],
 		['palette', 'The icon theme', 'The Reversal variant whose color is nearest the accent’s hue.'],
@@ -278,7 +278,7 @@ ewe-theme scheme set overrides.border-subtle none`} />
 	<p>
 		<code>from-wallpaper</code> reads the current wallpaper’s dominant colors: a low-chroma ground in
 		its hue and the most saturated color with real presence as the accent. The scheme is always
-		called Wallpaper, slug <code>wallpaper</code>, and making another one replaces it. In Settings
+		called Wallpaper, slug <code>wallpaper</code>, and making another one replaces it. In ewe Settings
 		it’s the From wallpaper button, and the Wallpaper card’s menu has Make a light version.
 	</p>
 	<Code code={`ewe-theme scheme from-wallpaper --apply
@@ -303,8 +303,8 @@ ewe-theme scheme from-wallpaper --light --apply`} />
 ewe-theme scheme import ~/.config/omarchy/themes/nord/colors.toml
 ewe-theme scheme import ~/dl/dracula.yml --name "Dracula"`} />
 
-	<h3 id="settings">In Settings</h3>
-	<p>Settings → Appearance → Scheme does the same without a terminal.</p>
+	<h3 id="settings">In ewe Settings</h3>
+	<p>ewe Settings → Appearance → Scheme does the same without a terminal.</p>
 	<dl class="rows">
 		<div class="row">
 			<dt><Icon name="palette" size={16} />Scheme cards</dt>

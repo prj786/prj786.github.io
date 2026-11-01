@@ -27,8 +27,8 @@
 ewe-conf pull && ewe-conf apply  # your account → this machine, made live`}
 	/>
 	<p>
-		The <a href="/docs/cli/ewe-sync/">ewe-sync</a> app does both from a window and a tray icon, and
-		Settings → Account has the same buttons. <code>[sync].enabled</code> is the auto-sync switch:
+		The <a href="/docs/cli/ewe-sync/">ewe Sync</a> app does both from its window, and
+		the bar shows how the last sync went. <code>[sync].enabled</code> is the auto-sync switch:
 		with it on, every change schedules a debounced upload.
 	</p>
 </section>
@@ -48,7 +48,7 @@ ewe-conf pull && ewe-conf apply  # your account → this machine, made live`}
 		Every upload carries the identity of the copy this machine last saw. If another machine has saved
 		since, the <strong>server itself</strong> refuses the write and ewe reports
 		<code>remote-newer</code>: pull theirs, or push with <code>--force</code>. There is no window in
-		which two machines can both think they won.
+		which two computers can both think they won.
 	</p>
 	<p>
 		A machine that has <em>never</em> synced may only upload into an empty account. If a backup
@@ -64,7 +64,7 @@ ewe-conf pull && ewe-conf apply  # your account → this machine, made live`}
 	</p>
 	<Callout title="No clocks, no hostnames">
 		<p>
-			Neither takes part in the decision. Two machines with the same name, or a fresh install with a
+			Neither takes part in the decision. Two computers with the same name, or a fresh install with a
 			wrong clock, sync correctly. The machine name is recorded only so the interface can name who
 			saved the backup, and the machine id so it can say whether that was this computer —
 			<code>remote_is_this_machine</code> in <a href="/docs/cli/ewe-conf/">ewe-conf sync-status</a>.
@@ -97,7 +97,7 @@ ewe-conf pull && ewe-conf apply  # your account → this machine, made live`}
 	<h2>See also</h2>
 	<ul>
 		<li><a href="/docs/cli/ewe-conf/">ewe-conf</a> — the verbs, the results and every error code.</li>
-		<li><a href="/docs/cli/ewe-sync/">ewe-sync</a> — the app that runs them.</li>
+		<li><a href="/docs/cli/ewe-sync/">ewe Sync</a> — the app that runs them.</li>
 		<li><a href="/docs/one-file/">The one file</a> — what is being synced.</li>
 	</ul>
 </section>

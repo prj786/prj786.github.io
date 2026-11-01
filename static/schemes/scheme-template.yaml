@@ -2,7 +2,7 @@
 #
 # Start from this file, change the values, then bring it in:
 #     ewe-theme scheme import scheme-template.yaml --apply
-# or Settings -> Appearance -> Import scheme.
+# or ewe Settings -> Appearance -> Import scheme.
 #
 # Only `palette` is required. Every other key has a default.
 # Quote every color: "#rrggbb". A # without quotes starts a comment.
@@ -10,7 +10,7 @@
 # Guide: https://prj786.github.io/design/schemes/
 
 system: "base24"          # the file format; ewe reads Base16 and Base24
-name: "My scheme"         # shown on the scheme card in Settings
+name: "My scheme"         # shown on the scheme card in ewe Settings
 slug: "my-scheme"         # how ewe.conf stores it; defaults to the name, lowercased
 author: "you"             # credit, shown nowhere else
 variant: "dark"           # dark | light: which way the surfaces run; also picks GTK, Qt and icons

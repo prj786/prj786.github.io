@@ -27,7 +27,7 @@ export const GROUPS = [
 		items: [
 			['Text field', 'One line of text: a device name, a username, a URL.'],
 			['Textarea', 'Several lines: a description, a note, a bug report.'],
-			['Search field', 'Filters or finds — apps in the launcher, pages in Settings, packages in Komble.'],
+			['Search field', 'Filters or finds — apps in the launcher, pages in ewe Settings, packages in Komble.'],
 			['Select', 'One value from a list: a language, a layout, a resolution. The trigger shows the current one.'],
 			['Combobox', 'A field that suggests matches as people type, such as time zones or apps to pin.'],
 			['Number stepper', 'An exact number in small steps: a gap, a count, a timeout.'],
@@ -87,7 +87,7 @@ export const GROUPS = [
 			['Launcher', 'Apps, settings pages, files and commands from the keyboard.'],
 			['Overview', 'Every window spread out, flying from where it sits; your workspaces along the top.'],
 			['Places', 'A small file browser above the dock: pinned places, then the current folder.'],
-			['Quick settings', 'The panel behind the status module: account, toggles, sliders, media, battery.'],
+			['Quick settings', 'The panel behind the status module: you, tiles, shortcuts, sliders, the latest notifications, battery and power mode. Pages open in place.'],
 			['Quick settings tile', 'One feature toggled, its state shown, with a way into its details.'],
 			['Agenda', 'The month and what is coming, inside Quick settings, with reminders before events.'],
 			['Media player', 'Controls whatever is playing, from any app that speaks MPRIS.'],
@@ -104,7 +104,7 @@ export const GROUPS = [
 			['Authentication prompt', 'Asks for the password when something needs administrator rights, and names who is asking.'],
 			['Welcome', 'The first run: connect, update, sign in, restore a backup, take a short tour.'],
 			['Glass', 'How the bar, the dock and the lock card turn translucent without losing contrast.'],
-			['App shell', 'The window layout Settings, Komble and ewe-sync share: a rail and a content pane.'],
+			['App shell', 'The window layout ewe Settings, ewe Sync, ewe Safe and Komble share: a rail and a content pane.'],
 			['App card', 'How Komble presents apps — grid cards, a featured banner, list rows.'],
 			['Settings page', 'Related options with their current values, applied as they change.'],
 			['Install wizard', 'The multi-step flow the installer runs on.']

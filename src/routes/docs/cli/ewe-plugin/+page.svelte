@@ -21,7 +21,7 @@
 		{ cmd: 'dev', args: '[dir] [--no-follow]', does: 'Link a working copy into the plugins dir, enable it, restart the shell and follow its log lines. remove on a link only unlinks.' },
 		{ cmd: 'bar', args: '<id> [on|off]', does: 'Show in bar: the plugin’s bar widget and its glyph in the bar’s Quick settings pill. on or off writes ewe.conf desktop.bar.show."plugin:<id>" and applies live — no restart; with neither, it prints the state. A plugin whose manifest says "toggle": false (Music and Places, which their own “Where the button lives” setting places) has no switch, and bar <id> off is refused; so is a plugin with nothing in the bar.', prints: 'one JSON object: ok, id, bar {shown, toggle}' },
 		{ cmd: 'place', args: '<id> [--x N] [--y N] [--output NAME] [--pinned on|off] [--pin-level top|overlay] [--locked on|off] [--layer desktop|top|overlay] [--visible on|off] [--reset]', does: 'Where a desktop widget sits and how — written to [plugins.widgets], applied live. --layer desktop is under the windows (unpinned), top above them, overlay above everything, fullscreen apps too. --pinned on moves the widget to its pin level, off back to the desktop. --pin-level moves a pinned widget at once; on an unpinned one it only remembers where pinning will put it. --locked on stops dragging. --reset starts again from the manifest’s defaults.', prints: 'the effective placement as JSON' },
-		{ cmd: 'set', args: '<id> <key> <value>', does: 'A setting the plugin declared, typed by its manifest — a value that does not fit is refused. Live. What Komble’s Options dialog and a plugin’s own Shell.setSetting run.', prints: 'the effective settings as JSON' },
+		{ cmd: 'set', args: '<id> <key> <value>', does: 'A setting the plugin declared, typed by its manifest — a value that does not fit is refused. Live. What Komble’s plugin sheet and a plugin’s own Shell.setSetting run.', prints: 'the effective settings as JSON' },
 		{ cmd: 'get', args: '<id> [key]', does: 'The effective settings (defaults under the user’s values — for a first-party setting with a legacy key, that key’s value until you set one), the schema and the placement.', prints: 'one JSON object, or the one value' },
 		{ cmd: 'path', does: 'The plugins directory.', prints: '~/.config/ewe/plugins' },
 		{ cmd: 'boot-ok', does: 'Internal — the shell reports a start that stayed up for a minute, which clears the crash counter.' }
@@ -58,7 +58,7 @@
 	</p>
 	<p>
 		And it keeps what ewe decides for a plugin, as opposed to what the plugin draws:
-		<code>bar</code>, <code>place</code> and <code>set</code> are what Komble's Options dialog
+		<code>bar</code>, <code>place</code> and <code>set</code> are what Komble's plugin sheet
 		runs — whether its button shows in the bar, where its desktop widget sits and whether it is
 		pinned, and the values of the settings it declares.
 	</p>
@@ -103,7 +103,7 @@ ewe-plugin list
 ewe-plugin update --yes
 
 # what ewe decides: the bar, the desktop, the settings
-ewe-plugin bar ewe.sysmon on                    # its readout in the bar
+ewe-plugin bar ewe.sysmon off                   # its readout out of the bar
 ewe-plugin place acme.clock --pinned on --pin-level overlay --locked on
 ewe-plugin set ewe.dock icon_size small
 
@@ -151,7 +151,7 @@ ewe-plugin restore --yes`}
 	/>
 	<p><code>bar</code> and <code>place</code> — the state after the change:</p>
 	<Code
-		code={`{"ok": true, "id": "ewe.sysmon", "bar": {"shown": true, "toggle": true}}
+		code={`{"ok": true, "id": "ewe.sysmon", "bar": {"shown": false, "toggle": true}}
 {"ok": true, "id": "acme.clock",
  "widget": {"x": 420, "y": 300, "output": "", "layer": "overlay", "visible": true,
             "pinned": true, "pin_level": "overlay", "locked": true}}`}
@@ -207,7 +207,7 @@ ewe-plugin restore --yes`}
 <section>
 	<h2>See also</h2>
 	<ul>
-		<li><a href="/docs/plugins/built-in/">Built-in plugins</a> — the sixteen ewe ships, their Options, and what an upgrade keeps.</li>
+		<li><a href="/docs/plugins/built-in/">Built-in plugins</a> — the sixteen ewe ships, their options, and what an upgrade keeps.</li>
 		<li><a href="/docs/plugins/">Plugins</a> — what they are, trust, safe mode.</li>
 		<li><a href="/docs/plugins/writing/">Writing a plugin</a> — the manifest and the entry points.</li>
 		<li><a href="/docs/one-file/schema/">Schema reference</a> — the <code>[plugins]</code> table.</li>

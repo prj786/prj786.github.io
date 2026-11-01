@@ -13,11 +13,11 @@ export const SECTIONS = [
 	{
 		title: 'Apps',
 		items: [
-			{ href: '/docs/apps/browser/', label: 'ewe browser', blurb: 'The web, your files and your music in one window — with Safe built in.' },
-			{ href: '/docs/apps/safe/', label: 'Safe', blurb: 'Your passwords, cards and keys, encrypted, in your own Nextcloud.' },
+			{ href: '/docs/apps/browser/', label: 'ewe Browser', blurb: 'The web, your files and your music in one window — with ewe Safe built in.' },
+			{ href: '/docs/apps/safe/', label: 'ewe Safe', blurb: 'Your passwords, cards and keys, encrypted, in your own Nextcloud.' },
 			{ href: '/docs/apps/shaun/', label: 'Shaun', blurb: 'The companion in the notch: your AI agents, quick actions, a chat.' },
 			{ href: '/docs/apps/komble/', label: 'Komble', blurb: 'Apps, updates and plugins, from one search field.' },
-			{ href: '/docs/apps/settings/', label: 'Settings', blurb: 'Every setting of the machine, in one window.' }
+			{ href: '/docs/apps/settings/', label: 'ewe Settings', blurb: 'Every setting of the machine, in one window.' }
 		]
 	},
 	{
@@ -42,7 +42,7 @@ export const SECTIONS = [
 		title: 'Plugins',
 		items: [
 			{ href: '/docs/plugins/', label: 'Plugins', blurb: 'What a plugin is, where it shows up, and how to add, set up or remove one.' },
-			{ href: '/docs/plugins/built-in/', label: 'Built-in plugins', blurb: 'The sixteen that ship with ewe — the dock, Shaun, Safe, mail, Cast and more.' },
+			{ href: '/docs/plugins/built-in/', label: 'Built-in plugins', blurb: 'The sixteen that ship with ewe — the dock, Shaun, ewe Safe, mail, Cast to TV and more.' },
 			{ href: '/docs/plugins/writing/', label: 'Writing a plugin', blurb: 'create, the API 3 manifest, one QML file per kind, settings, dev.' },
 			{ href: '/docs/plugins/api/', label: 'What a plugin may use', blurb: 'The Shell singleton, the public components, Theme roles, IPC — API 3.' }
 		]
@@ -56,7 +56,7 @@ export const SECTIONS = [
 			{ href: '/docs/cli/ewe-theme/', label: 'ewe-theme', blurb: 'Tokens from an accent or a scheme; import, wallpaper.' },
 			{ href: '/docs/cli/ewe-pass/', label: 'ewe-pass', blurb: 'Logins from your password manager, typed into any app.' },
 			{ href: '/docs/cli/ewe-cloud/', label: 'ewe-cloud', blurb: 'Your Nextcloud account, and its app password.' },
-			{ href: '/docs/cli/ewe-sync/', label: 'ewe-sync', blurb: 'The account app: machines, sync, folders.' },
+			{ href: '/docs/cli/ewe-sync/', label: 'ewe-sync', blurb: 'ewe Sync, the account app: your computers, sync, folders.' },
 			{ href: '/docs/cli/ewe-files/', label: 'ewe-files', blurb: 'The account, mounted as a folder.' },
 			{ href: '/docs/cli/ewe-caldav/', label: 'ewe-caldav', blurb: 'The calendar of the account, over CalDAV.' },
 			{ href: '/docs/cli/ewe-mail/', label: 'ewe-mail', blurb: 'The mail badge, from any IMAP account.' },
@@ -65,7 +65,7 @@ export const SECTIONS = [
 			{ href: '/docs/cli/ewe-setup/', label: 'ewe-setup', blurb: 'Deploy the desktop for your user; the plugin migration runs here.' },
 			{ href: '/docs/cli/ewe-share-picker/', label: 'ewe-share-picker', blurb: 'The screen-share picker the portal calls.' },
 			{ href: '/docs/cli/ewe-install/', label: 'ewe-install', blurb: 'The installer, as a command — with --addons.' },
-			{ href: '/docs/cli/ewe-castd/', label: 'ewe-castd', blurb: 'The casting daemon behind the Cast plugin.' }
+			{ href: '/docs/cli/ewe-castd/', label: 'ewe-castd', blurb: 'ewe Cast’s casting daemon, behind the Cast to TV plugin.' }
 		]
 	},
 	{

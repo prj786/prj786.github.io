@@ -46,7 +46,8 @@
 	<h2>Plugins</h2>
 	<p>
 		<strong>Plugins</strong> lists the ones that ship with ewe and the ones you added. Install one with a
-		click, turn it on or off, and open its <em>Options</em>. Add one from a git URL on the same page.
+		click and turn it on or off with its switch. Click a plugin to open its sheet: what it adds, what it
+		needs, and its options. <em>Add plugin…</em> takes a git URL.
 		<a href="/docs/plugins/">About plugins →</a>
 	</p>
 	<Callout>

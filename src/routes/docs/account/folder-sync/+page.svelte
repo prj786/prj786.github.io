@@ -8,7 +8,7 @@
 	<title>Folder sync — ewe docs</title>
 	<meta
 		name="description"
-		content="Folder pairs in ewe-sync: which local folder maps to which folder in your account, two-way or one-way, on change or on a timer, and how conflicts are resolved."
+		content="Folder pairs in ewe Sync: which local folder maps to which folder in your account, two-way or one-way, on change or on a timer, and how conflicts are resolved."
 	/>
 </svelte:head>
 
@@ -89,7 +89,7 @@ exclude = [".git", "node_modules"]`}
 <section>
 	<h2>See also</h2>
 	<ul>
-		<li><a href="/docs/cli/ewe-sync/">ewe-sync</a> — the app that owns folder sync.</li>
+		<li><a href="/docs/cli/ewe-sync/">ewe Sync</a> — the app that owns folder sync.</li>
 		<li><a href="/docs/cli/ewe-files/">ewe-files</a> — the mount, if you would rather not keep files.</li>
 	</ul>
 </section>

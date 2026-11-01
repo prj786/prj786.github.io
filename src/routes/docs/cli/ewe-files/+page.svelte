@@ -36,7 +36,7 @@
 	<p>
 		A mount shows the whole account and stores nothing locally. If you want particular folders kept
 		on disk and synced both ways, that is <a href="/docs/account/folder-sync/">folder sync</a> in
-		ewe-sync instead.
+		ewe Sync instead.
 	</p>
 </section>
 

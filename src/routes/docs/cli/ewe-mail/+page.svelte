@@ -53,7 +53,7 @@
 <section>
 	<h2>Adding an account</h2>
 	<p>
-		<a href="/docs/cli/ewe-sync/">ewe-sync</a> → Mail has a form for this. From a terminal, the
+		<a href="/docs/cli/ewe-sync/">ewe Sync</a> → Mail has a form for this. From a terminal, the
 		password is given on standard input so it never appears in your shell history or in the process
 		list:
 	</p>

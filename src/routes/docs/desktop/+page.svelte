@@ -23,10 +23,30 @@
 	<dl class="rows">
 		<div class="row"><dt>The bar</dt><dd>Along the top: your workspaces, the window you're in, the clock, and the status of Wi-Fi, sound and battery. Click the status for Quick settings.</dd></div>
 		<div class="row"><dt>The launcher</dt><dd><kbd>Super</kbd>+<kbd>D</kbd>. Type to find an app, a file or a folder. Press the key again to close it.</dd></div>
-		<div class="row"><dt>Quick settings</dt><dd><kbd>Super</kbd>+<kbd>N</kbd>. Wi-Fi, Bluetooth, sound, Do not disturb, your calendar, your notifications, and lock, log out or shut down.</dd></div>
+		<div class="row"><dt>Quick settings</dt><dd><kbd>Super</kbd>+<kbd>N</kbd>. Wi-Fi, Bluetooth, sound, Do not disturb, your calendar, your notifications, the battery, and lock, sign out or shut down. <a href="#quick-settings">More below →</a></dd></div>
 		<div class="row"><dt>Notifications</dt><dd>They pop up in the corner, with buttons and a reply field when the app offers them, and wait in Quick settings until you clear them.</dd></div>
 		<div class="row"><dt>The dock</dt><dd>Optional — it's a plugin. <a href="/docs/plugins/built-in/#dock">Get the dock →</a></dd></div>
 	</dl>
+</section>
+
+<section>
+	<h2 id="quick-settings">Quick settings</h2>
+	<p>
+		<kbd>Super</kbd>+<kbd>N</kbd>, or click the status in the bar. It is one panel, from top to
+		bottom:
+	</p>
+	<dl class="rows">
+		<div class="row"><dt>The top</dt><dd>You and today's date — click your name to open ewe Sync. Then Screenshot, ewe Settings, Lock and Power.</dd></div>
+		<div class="row"><dt>Tiles</dt><dd>Wi-Fi, Bluetooth, Do not disturb, Sharing, and the tiles your plugins add. Click a tile to turn it on or off. If it has an arrow, the arrow opens its page.</dd></div>
+		<div class="row"><dt>Shortcuts</dt><dd>A row of small tiles under them: Calendar, and pages your plugins bring that have no tile of their own — your phone, Mail. Click one to open it.</dd></div>
+		<div class="row"><dt>Sound and brightness</dt><dd>Two sliders. The arrow beside the volume picks where the sound plays.</dd></div>
+		<div class="row"><dt>Notifications</dt><dd>The latest ones, right there. <em>Show all</em> opens the full list, <em>Clear all</em> empties it.</dd></div>
+		<div class="row"><dt>Battery</dt><dd>At the bottom on a laptop: the charge, and the power mode — power saver, balanced or performance.</dd></div>
+	</dl>
+	<p>
+		A page opens in place of the rest and fits its content. <kbd>Esc</kbd> goes back one page, then
+		closes the panel.
+	</p>
 </section>
 
 <section>
@@ -56,7 +76,7 @@
 	</p>
 	<p>
 		With more than one display, each display has its own workspaces, like on a Mac, and the keys act
-		on the display you're using. Prefer one set for all displays? Settings → Displays → Workspaces →
+		on the display you're using. Prefer one set for all displays? ewe Settings → Displays → Workspaces →
 		<strong>Shared</strong>.
 	</p>
 </section>
@@ -73,7 +93,7 @@
 <section>
 	<h2>Light, dark and your colors</h2>
 	<p>
-		ewe is dark by default and has a light mode. Settings → Appearance switches between them, picks
+		ewe is dark by default and has a light mode. ewe Settings → Appearance switches between them, picks
 		your accent color, or takes the colors from your wallpaper. The bar, your apps and the window
 		borders all change at once. <a href="/theming/">How theming works →</a>
 	</p>
@@ -84,7 +104,7 @@
 	<p>
 		The screen locks after five minutes on its own, or at once from Quick settings. On battery, the
 		computer sleeps after fifteen minutes, and when the battery is almost empty it sleeps to keep your
-		work safe. Settings → Screensaver sets when it locks; Settings → Power has the lid and the
+		work safe. In ewe Settings, Screensaver sets when it locks and Power has the lid and the
 		battery.
 	</p>
 	<Callout>
