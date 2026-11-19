@@ -23,10 +23,10 @@
 	<div class="keys">
 		<dl>
 			<div><dt><kbd>Super</kbd></dt><dd>Tap: the Overview — every window spread out, your workspaces along the top</dd></div>
-			<div><dt><kbd>Super</kbd><kbd>Return</kbd></dt><dd>Terminal</dd></div>
+			<div><dt><kbd>Super</kbd><kbd>Return</kbd></dt><dd>Terminal — or <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>T</kbd></dd></div>
 			<div><dt><kbd>Super</kbd><kbd>D</kbd></dt><dd>Launcher — apps and files</dd></div>
 			<div><dt><kbd>Super</kbd><kbd>E</kbd></dt><dd>File manager</dd></div>
-			<div><dt><kbd>Super</kbd><kbd>B</kbd></dt><dd>Browser</dd></div>
+			<div><dt><kbd>Super</kbd><kbd>B</kbd></dt><dd>Browser — the one you have open comes to you</dd></div>
 			<div><dt><kbd>Super</kbd><kbd>,</kbd></dt><dd>ewe Settings</dd></div>
 			<div><dt><kbd>Super</kbd><kbd>N</kbd></dt><dd>Quick settings</dd></div>
 			<div><dt><kbd>Super</kbd><kbd>C</kbd></dt><dd>Calendar</dd></div>
@@ -69,7 +69,7 @@
 			<div><dt><kbd>Super</kbd><kbd>Ctrl</kbd><kbd>H J K L</kbd></dt><dd>Resize</dd></div>
 			<div><dt><kbd>Super</kbd><kbd>G</kbd></dt><dd>Group or ungroup — tabs</dd></div>
 			<div><dt><kbd>Super</kbd><kbd>[</kbd><kbd>]</kbd></dt><dd>Previous, next tab</dd></div>
-			<div><dt><kbd>Super</kbd><kbd>Q</kbd></dt><dd>Close</dd></div>
+			<div><dt><kbd>Super</kbd><kbd>Q</kbd></dt><dd>Close — or <kbd>Alt</kbd>+<kbd>F4</kbd></dd></div>
 			<div><dt><kbd>Super</kbd><kbd>F</kbd></dt><dd>Fullscreen</dd></div>
 			<div><dt><kbd>Super</kbd><kbd>V</kbd></dt><dd>Float</dd></div>
 		</dl>
@@ -85,6 +85,7 @@
 			<div><dt><kbd>Super</kbd> + scroll</dt><dd>Cycle</dd></div>
 			<div><dt>Three-finger swipe</dt><dd>Switch</dd></div>
 			<div><dt><kbd>Super</kbd><kbd>Ctrl</kbd><kbd>R</kbd></dt><dd>Reload the compositor configuration</dd></div>
+			<div><dt><kbd>Super</kbd><kbd>Ctrl</kbd><kbd>Q</kbd></dt><dd>Sign out — asks first; <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>Delete</kbd> too</dd></div>
 			<div><dt><kbd>Super</kbd><kbd>Shift</kbd><kbd>R</kbd></dt><dd>Display recovery — every screen back on, even from a black screen</dd></div>
 		</dl>
 	</div>
