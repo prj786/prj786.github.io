@@ -85,7 +85,7 @@
 		['layers', 'Hyprland', 'The active window’s border takes the accent; the others take border-subtle.'],
 		['monitor', 'GTK and Qt apps', 'adw-gtk3 in the scheme’s variant with the accent, and a matching qt6ct and qt5ct palette.'],
 		['palette', 'The icon theme', 'The Reversal variant whose color is nearest the accent’s hue.'],
-		['terminal', 'kitty, Zed and zathura', 'Their surfaces and accent follow the scheme; kitty’s sixteen colors come straight from the palette.']
+		['terminal', 'kitty and Zed', 'Their surfaces and accent follow the scheme; kitty’s sixteen colors come straight from the palette.']
 	];
 
 	const T = DATA.tokyo;
