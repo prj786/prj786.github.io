@@ -14,6 +14,7 @@ export const SECTIONS = [
 		title: 'Apps',
 		items: [
 			{ href: '/docs/apps/browser/', label: 'ewe Browser', blurb: 'The web, your files and your music in one window — with ewe Safe built in.' },
+			{ href: '/docs/apps/files-player-viewer/', label: 'Files, Player, Viewer', blurb: 'Folders, video and music, documents and pictures — ewe’s own apps.' },
 			{ href: '/docs/apps/safe/', label: 'ewe Safe', blurb: 'Your passwords, cards and keys, encrypted, in your own Nextcloud.' },
 			{ href: '/docs/apps/shaun/', label: 'Shaun', blurb: 'The companion in the notch: your AI agents, quick actions, a chat.' },
 			{ href: '/docs/apps/komble/', label: 'Komble', blurb: 'Apps, updates and plugins, from one search field.' },
