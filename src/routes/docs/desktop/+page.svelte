@@ -21,7 +21,7 @@
 <section>
 	<h2>Around the screen</h2>
 	<dl class="rows">
-		<div class="row"><dt>The bar</dt><dd>Along the top: your workspaces, the window you're in, the clock, and the status of Wi-Fi, sound and battery. Click the status for Quick settings.</dd></div>
+		<div class="row"><dt>The bar</dt><dd>Along the top: your workspaces, the window you're in, the clock, and the status of Wi-Fi, sound and battery. Click the status for Quick settings. Too many icons? ewe Settings → Layout → <strong>Fold the extras</strong> tucks the tray and the plugin buttons behind an arrow — click it to show them.</dd></div>
 		<div class="row"><dt>The launcher</dt><dd><kbd>Super</kbd>+<kbd>D</kbd>. Type to find an app, a file or a folder. Press the key again to close it.</dd></div>
 		<div class="row"><dt>Quick settings</dt><dd><kbd>Super</kbd>+<kbd>N</kbd>. Wi-Fi, Bluetooth, sound, Do not disturb, your calendar, your notifications, the battery, and lock, sign out or shut down. <a href="#quick-settings">More below →</a></dd></div>
 		<div class="row"><dt>Notifications</dt><dd>They pop up in the corner, with buttons and a reply field when the app offers them, and wait in Quick settings until you clear them.</dd></div>
@@ -36,7 +36,7 @@
 		bottom:
 	</p>
 	<dl class="rows">
-		<div class="row"><dt>The top</dt><dd>You and today's date — click your name to open ewe Sync. Then Screenshot, ewe Settings, Lock and Power.</dd></div>
+		<div class="row"><dt>The top</dt><dd>You and today's date — click your name to open ewe Sync. Then ewe Settings, Lock and Power. (Screenshots: the camera in the bar, or the <kbd>Print</kbd> key.)</dd></div>
 		<div class="row"><dt>Tiles</dt><dd>Wi-Fi, Bluetooth, Do not disturb, Sharing, and the tiles your plugins add. Click a tile to turn it on or off. If it has an arrow, the arrow opens its page.</dd></div>
 		<div class="row"><dt>Shortcuts</dt><dd>A row of small tiles under them: Calendar, and pages your plugins bring that have no tile of their own — your phone, Mail. Click one to open it.</dd></div>
 		<div class="row"><dt>Sound and brightness</dt><dd>Two sliders. The arrow beside the volume picks where the sound plays.</dd></div>

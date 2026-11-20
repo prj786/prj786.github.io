@@ -14,7 +14,7 @@ import { readFileSync, writeFileSync } from 'node:fs';
 
 const NAMES = [
 	'accessibility', 'arrow-right', 'move-horizontal', 'bell', 'blend', 'blocks', 'book-open',
-	'box', 'calendar', 'camera', 'cast', 'check', 'chevron-right', 'circle-check',
+	'box', 'calendar', 'camera', 'cast', 'check', 'chevron-right', 'circle-check', 'clipboard',
 	'circle-user', 'cloud', 'cloud-off', 'component', 'contrast', 'copy', 'cpu',
 	'dock', 'download', 'external-link', 'eye', 'file-text', 'folder', 'folder-sync', 'gauge',
 	'git-branch', 'globe', 'hard-drive', 'image', 'info', 'key', 'keyboard',

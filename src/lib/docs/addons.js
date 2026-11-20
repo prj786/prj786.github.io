@@ -23,7 +23,7 @@ export const ADDONS = [
 		group: 'desk',
 		blurb: 'A dock along the bottom of the screen: your apps, your workspaces, minimized windows and downloads.',
 		use: 'Click an app to open it. A minimized window (Super+Z) waits here as a small picture — click it to bring it back. The ring at the end shows ewe Browser downloads.',
-		settings: 'Auto-hide, icon size.'
+		settings: 'Auto-hide, icon size, and which screens show it: the main one (the default), all of them — the others get a small dock with just their own workspaces and minimized windows — or none.'
 	},
 	{
 		id: 'ewe.companion',
@@ -62,10 +62,10 @@ export const ADDONS = [
 		id: 'ewe.clipboard',
 		name: 'Clipboard & emoji',
 		repo: 'ewe-plugin-clipboard',
-		icon: 'scissors',
+		icon: 'clipboard',
 		group: 'desk',
 		blurb: 'Everything you copied, and an emoji picker. Passwords are never kept.',
-		use: 'Click the scissors in the bar and pick what to paste.',
+		use: 'Click the clipboard in the bar and pick what to paste — or start typing to search.',
 		settings: 'Show the emoji tab.'
 	},
 	{
