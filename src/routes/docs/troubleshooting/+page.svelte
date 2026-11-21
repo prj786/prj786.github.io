@@ -27,7 +27,7 @@
 		<li><strong>Whole disk only.</strong> The installer erases the disk you pick — no dual-boot yet.</li>
 		<li><strong>64-bit PCs with UEFI.</strong> No ARM image, and Secure Boot has to be off.</li>
 		<li><strong>The screen locks but doesn't switch off</strong> when you're away — a workaround for a graphics bug on some Intel laptops.</li>
-		<li><strong>No input method yet</strong> for Chinese, Japanese, Korean and similar scripts.</li>
+		<li><strong>ewe Browser doesn't check spelling in a few languages yet</strong>, Georgian among them. ewe Settings → Language says which.</li>
 		<li><strong>Older X11 apps</strong> get one scale for all screens, chosen when you log in.</li>
 		<li><strong>Chromecast</strong> runs a few seconds behind; Miracast is the real-time way to cast.</li>
 	</ul>
@@ -60,6 +60,14 @@
 		<div class="row">
 			<dt>A setting won't stick</dt>
 			<dd>Change it in ewe Settings or with <code>ewe-conf set</code>, never in a generated file. <a href="/docs/one-file/editing/">More →</a></dd>
+		</div>
+		<div class="row">
+			<dt>A video link won't play</dt>
+			<dd>ewe Player says why. A site it can't stream offers <em>Open in ewe Browser</em> instead; sites that need a login or protect their videos only play in the browser.</dd>
+		</div>
+		<div class="row">
+			<dt>Stremio doesn't play</dt>
+			<dd>Install <em>Stremio</em> from Komble → Popular → Media — it brings its own streaming server. Using Stremio Enhanced? Its page in Komble has <em>Get the streaming server</em>; click it, then restart the app. <a href="/docs/apps/komble/#stremio">More →</a></dd>
 		</div>
 		<div class="row">
 			<dt>Casting finds no TV</dt>

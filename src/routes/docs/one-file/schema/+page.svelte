@@ -21,7 +21,7 @@
 	<title>ewe.conf schema — ewe docs</title>
 	<meta
 		name="description"
-		content="Every section of ewe.conf: theme, bar, dock, animations, power, displays, workspaces, window rules, wallpapers, input, layout, keybinds, apps, system, sync and network."
+		content="Every section of ewe.conf: theme, bar, dock, animations, power, displays, workspaces, window rules, wallpapers, input, typing in other languages, spelling, layout, keybinds, apps, system, sync and network."
 	/>
 </svelte:head>
 
@@ -189,6 +189,37 @@ mode = "shared"`}
 		Keyboard and pointer, whole: layouts and variants as parallel lists, options, repeat rate and
 		delay, numlock, sensitivity, acceleration profile, natural scroll, scroll factors, the touchpad
 		switches, and a <code>devices</code> table of per-device overrides keyed by device name.
+	</p>
+</section>
+
+<section>
+	<h2><code>[desktop.ime]</code></h2>
+	<p>
+		Typing in other languages: <code>enabled</code> (true or false) and <code>engines</code>, the
+		languages in order — <code>"pinyin"</code>, <code>"mozc"</code>, <code>"hangul"</code> …
+		(<code>ewe-ime catalog</code> lists them). ewe Settings → Keyboard and mouse writes it. It syncs:
+		on a computer that doesn't have those languages installed, nothing changes, and ewe Settings offers
+		to install them.
+	</p>
+	<Code
+		code={`[desktop.ime]
+enabled = true
+engines = ["pinyin", "mozc"]`}
+		copyable={false}
+	/>
+</section>
+
+<section>
+	<h2><code>[desktop.language]</code></h2>
+	<p>
+		Spelling: <code>spellcheck</code> is the list of dictionaries, such as
+		<code>["en_US", "ka_GE"]</code> — unset means your display language's and US English — and
+		<code>check_spelling</code> turns checking as you type on or off, default true. ewe Settings →
+		Language writes it. A dictionary this computer doesn't have is skipped here.
+	</p>
+	<p class="muted">
+		The display language and the formats of dates and numbers belong to the computer, not to this
+		file: ewe Settings → Language and Time and place set them for this machine only.
 	</p>
 </section>
 

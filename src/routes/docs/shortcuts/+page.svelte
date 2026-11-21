@@ -98,6 +98,20 @@
 </section>
 
 <section>
+	<h2>Typing</h2>
+	<div class="keys">
+		<dl>
+			<div><dt><kbd>Super</kbd><kbd>Space</kbd></dt><dd>Next keyboard layout, when you have more than one</dd></div>
+			<div><dt><kbd>Ctrl</kbd><kbd>Space</kbd></dt><dd>Switch to the language you type in and back — with Typing in other languages on; hold Ctrl and tap Space again to step through several</dd></div>
+		</dl>
+	</div>
+	<p>
+		Typing in other languages is in ewe Settings → Keyboard and mouse.
+		<a href="/docs/apps/settings/#languages">Languages →</a>
+	</p>
+</section>
+
+<section>
 	<h2>Your own bindings</h2>
 	<p>
 		Launch bindings live in the one file and follow you to every machine: they are
