@@ -118,8 +118,9 @@
 				<dt>Shaun</dt>
 				<dd>
 					Shaun works on your computer. Only if you pick an AI to answer your questions does it send
-					that AI your question and a short note about your computer — the ewe version, battery,
-					volume — never a password or a key. You choose the provider: your own Claude Code, Codex
+					that AI your question, a short note about your computer — the ewe version, battery,
+					volume — what you asked Shaun to remember and any of your own notes that fit the question;
+					never a password or a key. You choose the provider: your own Claude Code, Codex
 					or OpenCode login, an API key, a model on your own machine, or your own server. That
 					provider's privacy policy then applies.
 				</dd>
