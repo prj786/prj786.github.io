@@ -8,7 +8,7 @@
 	<title>ewe Browser — ewe docs</title>
 	<meta
 		name="description"
-		content="ewe Browser, ewe's own web browser: tabs and workspaces, passwords from ewe Safe, gestures, privacy settings, history and sync, downloads, and your files and music in the same window."
+		content="ewe Browser, ewe's own web browser: tabs and workspaces, passwords from ewe Safe, gestures, privacy settings, history and sync, downloads, spell checking, and your files and music in the same window."
 	/>
 </svelte:head>
 
@@ -54,7 +54,8 @@
 		<div class="row"><dt>Two fingers</dt><dd>Swipe sideways on the touchpad to go back or forward.</dd></div>
 		<div class="row"><dt>Four fingers</dt><dd>While the browser is in front, swipe sideways for the next or previous workspace.</dd></div>
 		<div class="row"><dt>Mouse buttons</dt><dd>The side buttons go back and forward.</dd></div>
-		<div class="row"><dt>Right-click</dt><dd>Links, images, selected text and the page each have their own menu.</dd></div>
+		<div class="row"><dt>Right-click</dt><dd>Links, images, selected text and the page each have their own menu. On a video link, a video or a video page — YouTube, Twitch and many more — <em>Play in ewe Player</em> plays it in its own window.</dd></div>
+		<div class="row"><dt>Spell checking</dt><dd>In the languages you chose in ewe Settings → Language. Right-click a word for suggestions, <em>Add to dictionary</em> or <em>Ignore</em>. Settings → Browsing → Spelling turns it off. A few languages, Georgian among them, aren't checked here yet; the page says which.</dd></div>
 		<div class="row"><dt>Find in page</dt><dd><kbd>Ctrl</kbd>+<kbd>F</kbd> shows how many matches there are; <kbd>Ctrl</kbd>+<kbd>G</kbd> goes to the next one.</dd></div>
 		<div class="row"><dt>Shortcuts</dt><dd>The usual ones work: <kbd>Ctrl</kbd>+<kbd>T</kbd> a new tab, <kbd>Ctrl</kbd>+<kbd>W</kbd> closes it, <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>T</kbd> brings it back, <kbd>Ctrl</kbd>+<kbd>L</kbd> the address. Every shortcut can be changed in Settings → Keyboard shortcuts.</dd></div>
 	</dl>

@@ -30,6 +30,19 @@
 </section>
 
 <section>
+	<h2 id="stremio">Stremio</h2>
+	<p>
+		Install <strong>Stremio</strong> from Popular → Media. It is Stremio's own app, and its streaming
+		server comes with it, so films and series from your add-ons play.
+	</p>
+	<p>
+		<strong>Stremio Enhanced</strong> needs Stremio's streaming server too, and doesn't find it on ewe by
+		itself. Its page in Komble, and its row under Installed, show <em>Get the streaming server</em>:
+		click it, then restart Stremio Enhanced.
+	</p>
+</section>
+
+<section>
 	<h2>Updates</h2>
 	<p>
 		A sign in the top bar tells you when updates are waiting. Komble's <strong>Updates</strong> page has

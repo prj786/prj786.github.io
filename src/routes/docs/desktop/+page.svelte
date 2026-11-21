@@ -7,7 +7,7 @@
 	<title>The desktop — ewe docs</title>
 	<meta
 		name="description"
-		content="Find your way around the ewe desktop: the bar, the launcher, the Overview, Quick settings, minimizing windows, workspaces on one or more displays, desktop widgets, light and dark, and the lock screen."
+		content="Find your way around the ewe desktop: the bar, the launcher, the Overview, Quick settings, minimizing windows, workspaces on one or more displays, desktop widgets, typing in other languages, light and dark, and the lock screen."
 	/>
 </svelte:head>
 
@@ -87,6 +87,17 @@
 		Some plugins put a card on the desktop — Slack's unread messages, for one. Drag it where you want
 		it. Point at it for a small toolbar: pin it above your windows, lock it in place, or hide it.
 		<kbd>Super</kbd>+<kbd>Shift</kbd>+<kbd>W</kbd> shows every widget at once to arrange them.
+	</p>
+</section>
+
+<section>
+	<h2>Your languages</h2>
+	<p>
+		With more than one keyboard layout, <kbd>Super</kbd>+<kbd>Space</kbd> switches between them. To type Chinese, Japanese, Korean,
+		Hindi and other scripts, add the language in ewe Settings → Keyboard and mouse →
+		<strong>Typing in other languages</strong>; then <kbd>Ctrl</kbd>+<kbd>Space</kbd> switches to it and
+		back, and the bar shows its mark. Spell checking, the display language and how dates and numbers
+		are written are in ewe Settings too. <a href="/docs/apps/settings/#languages">Languages →</a>
 	</p>
 </section>
 

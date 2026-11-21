@@ -87,6 +87,7 @@ ewe-conf sync-status`}
 		<div class="row"><dt>Cast to a television</dt><dd>The Cast to TV plugin in Quick settings — <a href="/docs/cli/ewe-castd/">ewe-castd</a>, ewe Cast’s daemon, is what it drives.</dd></div>
 		<div class="row"><dt>Add a tile, a bar widget, a desktop widget, a panel</dt><dd><a href="/docs/cli/ewe-plugin/">ewe-plugin</a> — a git URL in, or <code>create</code> your own; <a href="/docs/plugins/">the guide</a>.</dd></div>
 		<div class="row"><dt>Change the colors — a scheme, the wallpaper's</dt><dd><a href="/docs/cli/ewe-theme/">ewe-theme</a> <code>scheme import | from-wallpaper | apply</code>, or ewe Settings → Appearance → Colors.</dd></div>
+		<div class="row"><dt>Type in another language</dt><dd>ewe Settings → Keyboard and mouse → Typing in other languages; <code>ewe-ime status</code> shows what is on.</dd></div>
 		<div class="row"><dt>Fill a login into an app</dt><dd><kbd>Super</kbd>+<kbd>P</kbd> with the Passwords plugin; <a href="/docs/cli/ewe-pass/">ewe-pass</a> is what it runs.</dd></div>
 		<div class="row"><dt>A password or a secret in a script</dt><dd><code>ewe-safe read</code> and <code>ewe-safe run</code> — <a href="/docs/apps/safe/">ewe Safe</a>.</dd></div>
 		<div class="row"><dt>Open a page, a folder or a search in the browser</dt><dd><code>ewe-browser open</code> — <a href="/docs/apps/browser/">ewe Browser</a>; <code>ewe-browser help</code> lists the rest.</dd></div>
