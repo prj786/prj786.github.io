@@ -4,7 +4,7 @@ export const SECTIONS = [
 	{
 		title: 'Get started',
 		items: [
-			{ href: '/docs/install/', label: 'Install ewe', blurb: 'The ISO, the eight screens, and the headless path.' },
+			{ href: '/docs/install/', label: 'Install ewe', blurb: 'The ISO, the eleven screens, and the headless path.' },
 			{ href: '/docs/first-login/', label: 'First login', blurb: 'The welcome flow, your first plugins, and the keys worth knowing.' },
 			{ href: '/docs/desktop/', label: 'The desktop', blurb: 'The bar, the Overview, minimize, workspaces on every display, light and dark.' },
 			{ href: '/docs/updating/', label: 'Updating', blurb: 'It rolls: one command for the system and the desktop.' }

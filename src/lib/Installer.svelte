@@ -1,15 +1,19 @@
 <script>
-	// A drawing of the installer's seventh screen — the one that matters, because
+	// A drawing of the installer's Summary screen — the one that matters, because
 	// it is the last moment before anything is written and the only place the
 	// machine's decisions are all visible at once.
-	const STEPS = ['Welcome', 'Network', 'Time & place', 'Disk', 'Your account', 'Plugins', 'Summary', 'Install'];
+	const STEPS = [
+		'Language', 'Keyboard', 'Network', 'Time & place', 'Disk', 'Your login',
+		'Your ewe account', 'Plugins', 'Apps', 'Summary', 'Install'
+	];
 	const DONE = STEPS.indexOf('Summary');
 	const CHOSE = [
-		['Keyboard', 'English (US)'],
+		['Language', 'ქართული — Georgian'],
+		['Keyboards', 'English (US), Georgian'],
 		['Time zone', 'Asia/Tbilisi — detected'],
-		['Language', 'en_US.UTF-8'],
-		['Account', 'scubba · ewe-laptop'],
-		['Plugins', 'Dock · Music · Clipboard & emoji']
+		['Login', 'you · ewe-laptop'],
+		['Plugins', 'Dock · Music · Clipboard & emoji'],
+		['Apps', 'VLC · Spotify (in Komble)']
 	];
 	const DECIDED = [
 		'btrfs · @ + @home · zstd',

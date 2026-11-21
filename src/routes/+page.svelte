@@ -10,13 +10,14 @@
 		'NetworkManager', 'greetd', 'Nextcloud', 'KDE Connect', 'Lucide', 'Geist'
 	];
 
-	// the installer's five questions, in the order it asks them
+	// the installer's six questions, in the order it asks them
 	const ASKS = [
-		['keyboard', 'Your keyboard', 'The layout, with a field to test it before you move on.'],
-		['globe', 'Your place', 'Timezone detected — two providers have to agree — plus language and locale.'],
+		['type', 'Your language', 'Every language, named in its own words. Your keyboard, spelling and typing follow from it.'],
+		['keyboard', 'Your keyboard', 'Suggested from your language, with a field to try it. Several? Super+Space switches.'],
+		['globe', 'Your place', 'Timezone detected — two providers have to agree — and how dates and numbers look.'],
 		['hard-drive', 'Which disk', "The whole disk is erased, and you're told so twice."],
-		['circle-user', 'Who you are', 'Name, username, password, and a name for the computer.'],
-		['puzzle', 'Which plugins', 'The dock, ewe Safe, Shaun, music and more — nothing ticked, all of it one click away later.']
+		['circle-user', 'Who you are', 'Name, password, a name for the computer — and your ewe account, if you have one.'],
+		['puzzle', 'Plugins and apps', 'The dock, ewe Safe, Shaun, and apps for day one — nothing ticked, all of it there later.']
 	];
 
 	// Two accents through the same engine /theming/ runs live, derived at
@@ -99,15 +100,15 @@
 	</ul>
 </section>
 
-<!-- ── the four questions ───────────────────────────────────────────────── -->
+<!-- ── the six questions ────────────────────────────────────────────────── -->
 <section class="wrap wide block">
 	<div class="head">
 		<p class="eyebrow">The installer</p>
-		<h2>It asks five things.</h2>
+		<h2>It asks six things.</h2>
 		<p>
 			Everything technical is decided by ewe, and shown to you on one summary screen before anything
-			is written. The last question is which of the sixteen built-in plugins you want — none is ticked
-			for you.
+			is written. The last questions are which of the sixteen built-in plugins and which apps you
+			want — none is ticked for you.
 		</p>
 	</div>
 	<ol class="asks">
@@ -501,10 +502,10 @@
 		font-size: var(--font-size-md);
 	}
 
-	/* the five questions */
+	/* the six questions */
 	.asks {
 		display: grid;
-		grid-template-columns: repeat(5, minmax(0, 1fr));
+		grid-template-columns: repeat(3, minmax(0, 1fr));
 		gap: var(--space-s);
 		margin: 0;
 		padding: 0;

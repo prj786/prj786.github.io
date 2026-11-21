@@ -90,20 +90,23 @@
 
 	<section>
 		<p class="eyebrow">Step 4</p>
-		<h2>Eight screens.</h2>
+		<h2>Eleven screens, most of them one click.</h2>
 		<ol class="steps">
-			<li><span class="n">1</span><div><h3>Welcome</h3><p>Your keyboard layout, with a field to test it.</p></div></li>
-			<li><span class="n">2</span><div><h3>Network</h3><p>The install downloads the system, so this screen waits for a connection. A cable just works; Wi-Fi is joined here.</p></div></li>
-			<li><span class="n">3</span><div><h3>Time &amp; place</h3><p>Your timezone, detected — two providers have to agree, and you always see what was picked — plus language and locale.</p></div></li>
-			<li><span class="n">4</span><div><h3>Disk</h3><p>Pick a disk. <strong>The whole disk is erased</strong>; you're warned here and again at the end.</p></div></li>
-			<li><span class="n">5</span><div><h3>Your account</h3><p>Name, username, password, computer name.</p></div></li>
-			<li><span class="n">6</span><div><h3>Plugins</h3><p>The dock, ewe Safe, Shaun, music, mail and <a href="/docs/plugins/built-in/">eleven more</a> — the plugins ewe ships but does not install until you ask. Nothing is pre-checked; Komble has every one of them later.</p></div></li>
-			<li><span class="n">7</span><div><h3>Summary</h3><p>Everything you chose, plugins included, everything ewe decided, and the only Install button in the flow.</p></div></li>
-			<li><span class="n">8</span><div><h3>Install</h3><p>Streamed progress — the system, the desktop, an update, your plugins — then reboot. Pull the stick when the screen goes dark.</p></div></li>
+			<li><span class="n">1</span><div><h3>Language</h3><p>Every language, named in its own words, with a search. It suggests everything after it: keyboard, region, date formats, spell checking, and typing for Chinese, Japanese, Korean and more.</p></div></li>
+			<li><span class="n">2</span><div><h3>Keyboard</h3><p>The layouts your language uses, with a field to test them. A language that doesn't type a–z gets English (US) first, so your password types the same everywhere; Super+Space switches.</p></div></li>
+			<li><span class="n">3</span><div><h3>Network</h3><p>The install downloads the system, so this screen waits for a connection. A cable just works; Wi-Fi is joined here.</p></div></li>
+			<li><span class="n">4</span><div><h3>Time &amp; place</h3><p>Your timezone, detected — two providers have to agree, and you always see what was picked — and how dates, times and numbers look, with an example.</p></div></li>
+			<li><span class="n">5</span><div><h3>Disk</h3><p>Pick a disk. <strong>The whole disk is erased</strong>; you're warned here and again at the end.</p></div></li>
+			<li><span class="n">6</span><div><h3>Your login</h3><p>Name, username, password, computer name.</p></div></li>
+			<li><span class="n">7</span><div><h3>Your ewe account</h3><p>Optional. Sign in to your Nextcloud and your settings, folders and apps come back with you — or skip it.</p></div></li>
+			<li><span class="n">8</span><div><h3>Plugins</h3><p>The dock, ewe Safe, Shaun, music, mail and <a href="/docs/plugins/built-in/">eleven more</a> — the plugins ewe ships but does not install until you ask. Nothing is pre-checked; Komble has every one of them later.</p></div></li>
+			<li><span class="n">9</span><div><h3>Apps</h3><p>Optional. Popular apps for day one. The ones from Arch's repositories install with the system; the rest wait in Komble after you sign in, so nothing is built from the AUR without you looking.</p></div></li>
+			<li><span class="n">10</span><div><h3>Summary</h3><p>Everything you chose, plugins and apps included, everything ewe decided, and the only Install button in the flow.</p></div></li>
+			<li><span class="n">11</span><div><h3>Install</h3><p>Streamed progress — the system, the desktop, an update, your language, plugins and apps — then reboot. Pull the stick when the screen goes dark.</p></div></li>
 		</ol>
 		<Installer />
 		<p class="figcap">
-			Screen seven: what you chose, what ewe decided, and the only button in the flow that writes
+			The Summary screen: what you chose, what ewe decided, and the only button in the flow that writes
 			anything. First login then runs a short welcome flow — network, waiting updates, an optional
 			<a href="/how/">restore from your Nextcloud</a>, your plugins if you skipped them here, and a
 			sixty-second tour.

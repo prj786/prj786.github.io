@@ -10,7 +10,7 @@
 	<title>Install ewe — ewe docs</title>
 	<meta
 		name="description"
-		content="Install ewe OS from the ISO: eight screens, about ten minutes, the plugins you want, and the disk you choose is erased. Plus the headless path and adding ewe to an existing Arch install."
+		content="Install ewe OS from the ISO: your language first, about ten minutes, the plugins and apps you want, and the disk you choose is erased. Plus the headless path and adding ewe to an existing Arch install."
 	/>
 </svelte:head>
 
@@ -33,14 +33,17 @@
 		summary shows you what was decided before anything is written.
 	</p>
 	<dl class="rows">
-		<div class="row"><dt>Welcome</dt><dd>Your keyboard layout, with a field to try it.</dd></div>
+		<div class="row"><dt>Language</dt><dd>Every language, named in its own words, with a search. Picking one suggests the rest: region, keyboard, date formats, spell checking, and typing for Chinese, Japanese, Korean, Vietnamese and Indian languages. If Arch has no dictionary for your language, it says so and checks English.</dd></div>
+		<div class="row"><dt>Keyboard</dt><dd>The layouts your language uses, in order, with a field to try them; the stick switches as you choose. A language that doesn't type a–z gets English (US) first, so your user name and password type the same on the login screen and the console. Super+Space switches.</dd></div>
 		<div class="row"><dt>Network</dt><dd>The install downloads the system, so this screen waits for a connection. A cable just works; Wi-Fi is joined here.</dd></div>
-		<div class="row"><dt>Time and place</dt><dd>Detected from the network and shown to you, never silently trusted, plus a language picker.</dd></div>
+		<div class="row"><dt>Time and place</dt><dd>Detected from the network and shown to you, never silently trusted, plus <strong>Formats</strong>: how dates, times, numbers and money look, with an example.</dd></div>
 		<div class="row"><dt>Disk</dt><dd>Which disk. <strong>It is erased entirely.</strong></dd></div>
-		<div class="row"><dt>Your account</dt><dd>Name, user name, password, computer name.</dd></div>
+		<div class="row"><dt>Your login</dt><dd>Name, user name, password, computer name.</dd></div>
+		<div class="row"><dt>Your ewe account</dt><dd>Optional: sign in to your Nextcloud, and the settings, folders and apps of your other ewe computer come back. Skip it and sign in later from ewe Sync.</dd></div>
 		<div class="row"><dt>Plugins</dt><dd>The sixteen plugins that ship with ewe — the dock, ewe Safe, Shaun, music, mail, Cast to TV and more. Nothing is ticked; pick what you want, or nothing — <strong>Komble → Plugins</strong> has all of them later. <a href="/docs/plugins/built-in/">What each one is →</a></dd></div>
-		<div class="row"><dt>Summary</dt><dd>Everything you chose, plugins included, the decided stack, and the only Install button.</dd></div>
-		<div class="row"><dt>Install</dt><dd>A last connectivity check, streamed progress — the base system, the desktop, an update so the first boot owes none, your plugins — then reboot. If a step fails it says why and offers to retry. A plugin that could not be installed never fails the install: the Done screen names it.</dd></div>
+		<div class="row"><dt>Apps</dt><dd>Optional: popular apps for day one, from Komble's list. Apps from Arch's repositories install with the system (Steam also turns on 32-bit support). Apps from the AUR or AppImages wait in <strong>Komble → For you</strong> after you sign in: the installer never builds them, so you review each one first.</dd></div>
+		<div class="row"><dt>Summary</dt><dd>Everything you chose, plugins and apps included, the decided stack, and the only Install button.</dd></div>
+		<div class="row"><dt>Install</dt><dd>A last connectivity check, streamed progress — the base system, the desktop, an update so the first boot owes none, your language's typing and spelling, your plugins and apps — then reboot. If a step fails it says why and offers to retry. A plugin or app that could not be installed never fails the install: the Done screen names it and says where to get it.</dd></div>
 	</dl>
 	<Callout type="warning" title="Whole-disk installs only">
 		<p>
