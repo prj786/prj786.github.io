@@ -1,0 +1,104 @@
+{
+	"apps": [
+		{
+			"card": "cards/Calculator.eep",
+			"description": "Application that solves mathematical equations and is suitable as a default application in a Desktop environment",
+			"disk": 1036038448,
+			"download": 361395480,
+			"homepage": "https://apps.gnome.org/Calculator/",
+			"icon": "icons/calculator.svg",
+			"id": "calculator",
+			"kind": "gui",
+			"name": "Calculator",
+			"version": "51.1"
+		},
+		{
+			"card": "cards/Firefox.eep",
+			"description": "Web browser built from Firefox source tree",
+			"disk": 1599532304,
+			"download": 470707561,
+			"homepage": "http://www.mozilla.com/en-US/firefox/",
+			"icon": "icons/firefox.png",
+			"id": "firefox",
+			"kind": "gui",
+			"name": "Firefox",
+			"version": "160.0.1"
+		},
+		{
+			"card": "cards/GIMP.eep",
+			"description": "GNU Image Manipulation Program",
+			"disk": 1981848848,
+			"download": 619118833,
+			"homepage": "https://www.gimp.org/",
+			"icon": "icons/gimp.svg",
+			"id": "gimp",
+			"kind": "gui",
+			"name": "GIMP",
+			"version": "3.2.8"
+		},
+		{
+			"card": "cards/LibreOffice.eep",
+			"description": "Comprehensive, professional-quality productivity suite, a variant of openoffice.org",
+			"disk": 2838497864,
+			"download": 727184529,
+			"homepage": "https://libreoffice.org/",
+			"icon": "icons/libreoffice.svg",
+			"id": "libreoffice",
+			"kind": "gui",
+			"name": "LibreOffice",
+			"version": "26.8.3.1"
+		},
+		{
+			"card": "cards/ripgrep.eep",
+			"description": "Utility that combines the usability of The Silver Searcher with the raw speed of grep",
+			"disk": 58410560,
+			"download": 17689528,
+			"homepage": "https://github.com/BurntSushi/ripgrep",
+			"icon": null,
+			"id": "ripgrep",
+			"kind": "cli",
+			"name": "ripgrep",
+			"version": "15.2.0"
+		},
+		{
+			"card": "cards/Telegram.eep",
+			"description": "Telegram Desktop messaging app",
+			"disk": 2074552408,
+			"download": 580395574,
+			"homepage": "https://desktop.telegram.org/",
+			"icon": "icons/telegram.png",
+			"id": "telegram",
+			"kind": "gui",
+			"name": "Telegram",
+			"version": "7.4.4"
+		},
+		{
+			"card": "cards/VLC.eep",
+			"description": "Cross-platform media player and streaming server",
+			"disk": 1123775824,
+			"download": 354219110,
+			"homepage": "https://www.videolan.org/vlc/",
+			"icon": "icons/vlc.png",
+			"id": "vlc",
+			"kind": "gui",
+			"name": "VLC",
+			"version": "3.0.24"
+		},
+		{
+			"card": "cards/VSCodium.eep",
+			"description": "Open source source code editor developed by Microsoft for Windows,\nLinux and macOS (VS Code without MS branding/telemetry/licensing)\n",
+			"disk": 1746089728,
+			"download": 565890662,
+			"homepage": "https://github.com/VSCodium/vscodium",
+			"icon": "icons/vscodium.png",
+			"id": "vscodium",
+			"kind": "gui",
+			"name": "VSCodium",
+			"version": "1.143.17232"
+		}
+	],
+	"channel": "nixos-unstable",
+	"eep_catalog": 0,
+	"release": "nixos-26.11pre1125864.2786a2a72088",
+	"released": "2026-11-21T15:12:40Z"
+}

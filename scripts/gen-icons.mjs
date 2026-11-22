@@ -24,7 +24,8 @@ const NAMES = [
 	'shuffle', 'sliders-horizontal', 'smartphone', 'sparkles',
 	'square-round-corner', 'square-terminal', 'sun', 'swatch-book', 'terminal',
 	'triangle-alert', 'type', 'usb', 'wand-sparkles', 'wifi', 'zap',
-	'app-window', 'compass', 'message-circle', 'messages-square', 'minimize-2', 'vault'
+	'app-window', 'compass', 'message-circle', 'messages-square', 'minimize-2', 'vault',
+	'trash-2', 'undo-2', 'mouse-pointer-click'
 ];
 
 const version = JSON.parse(

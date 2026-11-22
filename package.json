@@ -9,7 +9,8 @@
 		"preview": "vite preview",
 		"icons": "node scripts/gen-icons.mjs",
 		"tokens": "bash scripts/sync-tokens.sh",
-		"design": "bash scripts/sync-design.sh"
+		"design": "bash scripts/sync-design.sh",
+		"apps": "bash scripts/sync-apps.sh"
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-static": "^3.0.8",
