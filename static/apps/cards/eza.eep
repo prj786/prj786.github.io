@@ -1,0 +1,11 @@
+eep = 0
+id = "eza"
+name = "eza"
+kind = "cli"
+channel = "nixos-unstable"
+release = "nixos-26.11pre1125864.2786a2a72088"
+version = "0.23.5"
+out = "/nix/store/ch08kx5samb5pj90334bi8xni48ljz7m-eza-0.23.5"
+exec = "bin/eza"
+bin = ["eza"]
+installed = 2026-11-21T15:12:40Z

@@ -28,14 +28,21 @@
 		its file in your Applications folder. Move that file to the Trash and the app is gone.
 	</p>
 
-	<Callout title="First, get eep (once)">
+	<Callout title="eep comes with ewe">
 		<p>
-			These apps come with <strong>eep</strong>, ewe's new app manager. Get it once: open
-			<a href="/docs/apps/komble/">Komble</a>, search for <strong>eep</strong> and press Install
-			(or run <code>sudo pacman -S eep</code>), then sign out and back in. After that, every app here
-			installs with a double-click — or straight from Komble. eep is new, so it's a beta.
+			These apps come with <strong>eep</strong>, ewe's app manager. It's part of ewe from 0.49 on:
+			update ewe (Komble's Updates, or <code>sudo pacman -Syu</code>), then sign out and back in.
+			After that, every app here installs with a double-click — or straight from Komble. eep is new,
+			so it's a beta.
 		</p>
 	</Callout>
+
+	<p>
+		<strong>Your other apps have a file too.</strong> The apps you already have — ewe's own, the
+		ones from Komble, your games — each get a file in Applications. Move one to the Trash and that
+		app leaves the launcher; restore it and it's back. Nothing is uninstalled that way: Komble still
+		does that.
+	</p>
 
 	<!-- ── the apps ─────────────────────────────────────────────────────── -->
 	<section id="get">
@@ -163,6 +170,7 @@
 				<Code
 					code={`eep install firefox     # get an app
 eep remove firefox      # remove it
+eep list --all          # every app with a file, the ones you already had too
 eep list                # the apps you have
 eep update              # install waiting updates
 eep rollback firefox    # back to the version before (kept for a week)
