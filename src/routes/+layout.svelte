@@ -54,6 +54,7 @@
 				<p class="h">Get it</p>
 				<a href="/download/">Download</a>
 				<a href="/features/">Features</a>
+				<a href="/apps/">Apps</a>
 				<a href="/theming/">Theming</a>
 				<a href="/design/">Design system</a>
 				<a href="/how/">How it works</a>

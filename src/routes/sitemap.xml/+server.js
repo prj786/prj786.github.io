@@ -14,6 +14,7 @@ const PAGES = [
 	['/', 1.0],
 	['/download/', 0.9],
 	['/features/', 0.8],
+	['/apps/', 0.8],
 	['/theming/', 0.8],
 	['/how/', 0.8],
 	['/docs/', 0.8],

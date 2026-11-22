@@ -1,0 +1,11 @@
+eep = 0
+id = "ripgrep"
+name = "ripgrep"
+kind = "cli"
+channel = "nixos-unstable"
+release = "nixos-26.11pre1125864.2786a2a72088"
+version = "15.2.0"
+out = "/nix/store/whbrk657qmih065xal60m4khwf6cb9pj-ripgrep-15.2.0"
+exec = "bin/rg"
+bin = ["rg"]
+installed = 2026-11-21T15:12:40Z
