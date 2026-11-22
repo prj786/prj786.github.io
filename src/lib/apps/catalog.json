@@ -1,6 +1,78 @@
 {
 	"apps": [
 		{
+			"card": "cards/Audacity.eep",
+			"description": "Sound editor with graphical UI",
+			"disk": 1278541368,
+			"download": 377458066,
+			"homepage": "https://www.audacityteam.org",
+			"icon": "icons/audacity.png",
+			"id": "audacity",
+			"kind": "gui",
+			"name": "Audacity",
+			"version": "4.0.0"
+		},
+		{
+			"card": "cards/bat.eep",
+			"description": "Cat(1) clone with syntax highlighting and Git integration",
+			"disk": 76063464,
+			"download": 24893327,
+			"homepage": "https://github.com/sharkdp/bat",
+			"icon": null,
+			"id": "bat",
+			"kind": "cli",
+			"name": "bat",
+			"version": "0.26.1"
+		},
+		{
+			"card": "cards/Blender.eep",
+			"description": "3D Creation/Animation/Publishing System",
+			"disk": 5180824768,
+			"download": 1424512703,
+			"homepage": "https://www.blender.org",
+			"icon": "icons/blender.svg",
+			"id": "blender",
+			"kind": "gui",
+			"name": "Blender",
+			"version": "5.2.3"
+		},
+		{
+			"card": "cards/Bottles.eep",
+			"description": "Easy-to-use wineprefix manager",
+			"disk": 3343729064,
+			"download": 1044209512,
+			"homepage": "https://usebottles.com/",
+			"icon": "icons/bottles.svg",
+			"id": "bottles",
+			"kind": "gui",
+			"name": "Bottles",
+			"version": "67.7"
+		},
+		{
+			"card": "cards/Brave.eep",
+			"description": "Privacy-oriented browser for Desktop and Laptop computers",
+			"disk": 1782122816,
+			"download": 599281829,
+			"homepage": "https://brave.com/",
+			"icon": "icons/brave.png",
+			"id": "brave",
+			"kind": "gui",
+			"name": "Brave",
+			"version": "1.100.58"
+		},
+		{
+			"card": "cards/btop.eep",
+			"description": "Monitor of resources",
+			"disk": 51691952,
+			"download": 15730955,
+			"homepage": "https://github.com/aristocratos/btop",
+			"icon": null,
+			"id": "btop",
+			"kind": "cli",
+			"name": "btop",
+			"version": "1.4.8"
+		},
+		{
 			"card": "cards/Calculator.eep",
 			"description": "Application that solves mathematical equations and is suitable as a default application in a Desktop environment",
 			"disk": 1036038448,
@@ -11,6 +83,78 @@
 			"kind": "gui",
 			"name": "Calculator",
 			"version": "51.1"
+		},
+		{
+			"card": "cards/Celluloid.eep",
+			"description": "Simple GTK frontend for the mpv video player",
+			"disk": 1274602376,
+			"download": 437767744,
+			"homepage": "https://github.com/celluloid-player/celluloid",
+			"icon": "icons/celluloid.svg",
+			"id": "celluloid",
+			"kind": "gui",
+			"name": "Celluloid",
+			"version": "0.30"
+		},
+		{
+			"card": "cards/Chromium.eep",
+			"description": "Open source web browser from Google",
+			"disk": 1848645912,
+			"download": 543877007,
+			"homepage": "https://www.chromium.org/",
+			"icon": "icons/chromium.png",
+			"id": "chromium",
+			"kind": "gui",
+			"name": "Chromium",
+			"version": "158.0.8127.36"
+		},
+		{
+			"card": "cards/darktable.eep",
+			"description": "Virtual lighttable and darkroom for photographers",
+			"disk": 1423929328,
+			"download": 488087750,
+			"homepage": "https://www.darktable.org",
+			"icon": "icons/darktable.svg",
+			"id": "darktable",
+			"kind": "gui",
+			"name": "darktable",
+			"version": "5.6.2"
+		},
+		{
+			"card": "cards/Element.eep",
+			"description": "Matrix client for desktop",
+			"disk": 1728482040,
+			"download": 550122321,
+			"homepage": "https://element.io/",
+			"icon": "icons/element.png",
+			"id": "element",
+			"kind": "gui",
+			"name": "Element",
+			"version": "1.12.33"
+		},
+		{
+			"card": "cards/eza.eep",
+			"description": "Modern, maintained replacement for ls",
+			"disk": 65368832,
+			"download": 21030334,
+			"homepage": "https://github.com/eza-community/eza",
+			"icon": null,
+			"id": "eza",
+			"kind": "cli",
+			"name": "eza",
+			"version": "0.23.5"
+		},
+		{
+			"card": "cards/fd.eep",
+			"description": "Simple, fast and user-friendly alternative to find",
+			"disk": 56430296,
+			"download": 17523584,
+			"homepage": "https://github.com/sharkdp/fd",
+			"icon": null,
+			"id": "fd",
+			"kind": "cli",
+			"name": "fd",
+			"version": "10.5.2"
 		},
 		{
 			"card": "cards/Firefox.eep",
@@ -25,6 +169,30 @@
 			"version": "160.0.1"
 		},
 		{
+			"card": "cards/Foliate.eep",
+			"description": "Simple and modern GTK eBook reader",
+			"disk": 1299031216,
+			"download": 447276207,
+			"homepage": "https://johnfactotum.github.io/foliate",
+			"icon": "icons/foliate.svg",
+			"id": "foliate",
+			"kind": "gui",
+			"name": "Foliate",
+			"version": "3.3.0"
+		},
+		{
+			"card": "cards/Galculator.eep",
+			"description": "GTK algebraic and RPN calculator",
+			"disk": 308206584,
+			"download": 91914468,
+			"homepage": "https://galculator.sourceforge.net/",
+			"icon": "icons/galculator.svg",
+			"id": "galculator",
+			"kind": "gui",
+			"name": "Galculator",
+			"version": "2.1.4"
+		},
+		{
 			"card": "cards/GIMP.eep",
 			"description": "GNU Image Manipulation Program",
 			"disk": 1981848848,
@@ -35,6 +203,90 @@
 			"kind": "gui",
 			"name": "GIMP",
 			"version": "3.2.8"
+		},
+		{
+			"card": "cards/guvcview.eep",
+			"description": "Simple interface for devices supported by the linux UVC driver",
+			"disk": 1030779248,
+			"download": 365522928,
+			"homepage": "https://guvcview.sourceforge.net",
+			"icon": "icons/guvcview.png",
+			"id": "guvcview",
+			"kind": "gui",
+			"name": "guvcview",
+			"version": "2.2.2"
+		},
+		{
+			"card": "cards/HandBrake.eep",
+			"description": "Tool for converting video files and ripping DVDs",
+			"disk": 1662076840,
+			"download": 543440802,
+			"homepage": "https://handbrake.fr/",
+			"icon": "icons/handbrake.svg",
+			"id": "handbrake",
+			"kind": "gui",
+			"name": "HandBrake",
+			"version": "1.11.2"
+		},
+		{
+			"card": "cards/Heroic Games Launcher.eep",
+			"description": "Native GOG, Epic, and Amazon Games Launcher for Linux, Windows and Mac",
+			"disk": 2315887160,
+			"download": 705784200,
+			"homepage": "https://heroicgameslauncher.com/",
+			"icon": "icons/heroic.svg",
+			"id": "heroic",
+			"kind": "gui",
+			"name": "Heroic Games Launcher",
+			"version": "2.22.4"
+		},
+		{
+			"card": "cards/Inkscape.eep",
+			"description": "Vector graphics editor",
+			"disk": 1378933112,
+			"download": 375316865,
+			"homepage": "https://www.inkscape.org",
+			"icon": "icons/inkscape.svg",
+			"id": "inkscape",
+			"kind": "gui",
+			"name": "Inkscape",
+			"version": "1.4.4"
+		},
+		{
+			"card": "cards/Kdenlive.eep",
+			"description": "Free and open source video editor, based on MLT Framework and KDE Frameworks",
+			"disk": 3081795336,
+			"download": 884366850,
+			"homepage": "https://invent.kde.org/multimedia/kdenlive",
+			"icon": "icons/kdenlive.svg",
+			"id": "kdenlive",
+			"kind": "gui",
+			"name": "Kdenlive",
+			"version": "26.08.3"
+		},
+		{
+			"card": "cards/KeePassXC.eep",
+			"description": "Offline password manager with many features",
+			"disk": 824615744,
+			"download": 223531788,
+			"homepage": "https://keepassxc.org/",
+			"icon": "icons/keepassxc.svg",
+			"id": "keepassxc",
+			"kind": "gui",
+			"name": "KeePassXC",
+			"version": "2.8.0"
+		},
+		{
+			"card": "cards/Krita.eep",
+			"description": "Free and open source painting application",
+			"disk": 2896052688,
+			"download": 880530305,
+			"homepage": "https://krita.org/",
+			"icon": "icons/krita.png",
+			"id": "krita",
+			"kind": "gui",
+			"name": "Krita",
+			"version": "6.0.4.1"
 		},
 		{
 			"card": "cards/LibreOffice.eep",
@@ -49,6 +301,54 @@
 			"version": "26.8.3.1"
 		},
 		{
+			"card": "cards/mpv.eep",
+			"description": "General-purpose media player, fork of MPlayer and mplayer2",
+			"disk": 1042626784,
+			"download": 338736738,
+			"homepage": "https://mpv.io",
+			"icon": "icons/mpv.svg",
+			"id": "mpv",
+			"kind": "gui",
+			"name": "mpv",
+			"version": "0.42.0"
+		},
+		{
+			"card": "cards/Nextcloud.eep",
+			"description": "Desktop sync client for Nextcloud",
+			"disk": 1334124320,
+			"download": 358463318,
+			"homepage": "https://nextcloud.com",
+			"icon": "icons/nextcloud.png",
+			"id": "nextcloud",
+			"kind": "gui",
+			"name": "Nextcloud",
+			"version": "35.0.3"
+		},
+		{
+			"card": "cards/OBS Studio.eep",
+			"description": "Free and open source software for video recording and live streaming",
+			"disk": 2216795336,
+			"download": 670957890,
+			"homepage": "https://obsproject.com",
+			"icon": "icons/obs-studio.svg",
+			"id": "obs-studio",
+			"kind": "gui",
+			"name": "OBS Studio",
+			"version": "32.2.2"
+		},
+		{
+			"card": "cards/qBittorrent.eep",
+			"description": "Featureful free software BitTorrent client",
+			"disk": 966822576,
+			"download": 285830412,
+			"homepage": "https://www.qbittorrent.org",
+			"icon": "icons/qbittorrent.svg",
+			"id": "qbittorrent",
+			"kind": "gui",
+			"name": "qBittorrent",
+			"version": "5.3.0"
+		},
+		{
 			"card": "cards/ripgrep.eep",
 			"description": "Utility that combines the usability of The Silver Searcher with the raw speed of grep",
 			"disk": 58410560,
@@ -59,6 +359,30 @@
 			"kind": "cli",
 			"name": "ripgrep",
 			"version": "15.2.0"
+		},
+		{
+			"card": "cards/Shotcut.eep",
+			"description": "Free, open source, cross-platform video editor",
+			"disk": 1855562976,
+			"download": 607457807,
+			"homepage": "https://shotcut.org",
+			"icon": "icons/shotcut.png",
+			"id": "shotcut",
+			"kind": "gui",
+			"name": "Shotcut",
+			"version": "26.10.30"
+		},
+		{
+			"card": "cards/Signal.eep",
+			"description": "Private, simple, and secure messenger",
+			"disk": 1512566736,
+			"download": 512796846,
+			"homepage": "https://signal.org/",
+			"icon": "icons/signal.png",
+			"id": "signal",
+			"kind": "gui",
+			"name": "Signal",
+			"version": "8.35.0"
 		},
 		{
 			"card": "cards/Telegram.eep",
@@ -73,6 +397,18 @@
 			"version": "7.4.4"
 		},
 		{
+			"card": "cards/Text Editor.eep",
+			"description": "Text Editor for GNOME",
+			"disk": 995830144,
+			"download": 346660683,
+			"homepage": "https://gitlab.gnome.org/GNOME/gnome-text-editor",
+			"icon": "icons/text-editor.svg",
+			"id": "text-editor",
+			"kind": "gui",
+			"name": "Text Editor",
+			"version": "51.0"
+		},
+		{
 			"card": "cards/VLC.eep",
 			"description": "Cross-platform media player and streaming server",
 			"disk": 1123775824,
@@ -85,6 +421,18 @@
 			"version": "3.0.24"
 		},
 		{
+			"card": "cards/Volume Control.eep",
+			"description": "PulseAudio Volume Control",
+			"disk": 982682608,
+			"download": 344839356,
+			"homepage": "http://freedesktop.org/software/pulseaudio/pavucontrol/",
+			"icon": "icons/pavucontrol.svg",
+			"id": "pavucontrol",
+			"kind": "gui",
+			"name": "Volume Control",
+			"version": "6.2"
+		},
+		{
 			"card": "cards/VSCodium.eep",
 			"description": "Open source source code editor developed by Microsoft for Windows,\nLinux and macOS (VS Code without MS branding/telemetry/licensing)\n",
 			"disk": 1746089728,
@@ -95,6 +443,42 @@
 			"kind": "gui",
 			"name": "VSCodium",
 			"version": "1.143.17232"
+		},
+		{
+			"card": "cards/yt-dlp.eep",
+			"description": "Feature-rich command-line audio/video downloader",
+			"disk": 727491352,
+			"download": 238437577,
+			"homepage": "https://github.com/yt-dlp/yt-dlp/",
+			"icon": null,
+			"id": "yt-dlp",
+			"kind": "cli",
+			"name": "yt-dlp",
+			"version": "2026.10.26"
+		},
+		{
+			"card": "cards/Zathura.eep",
+			"description": "Core component for zathura PDF viewer",
+			"disk": 1062015456,
+			"download": 402890400,
+			"homepage": "https://pwmt.org/projects/zathura",
+			"icon": "icons/zathura.svg",
+			"id": "zathura",
+			"kind": "gui",
+			"name": "Zathura",
+			"version": "2026.10.23"
+		},
+		{
+			"card": "cards/Zed.eep",
+			"description": "High-performance, multiplayer code editor from the creators of Atom and Tree-sitter",
+			"disk": 1525549840,
+			"download": 423831996,
+			"homepage": "https://zed.dev",
+			"icon": "icons/zed.png",
+			"id": "zed",
+			"kind": "gui",
+			"name": "Zed",
+			"version": "1.29.3"
 		}
 	],
 	"channel": "nixos-unstable",

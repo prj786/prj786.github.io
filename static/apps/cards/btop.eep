@@ -1,0 +1,11 @@
+eep = 0
+id = "btop"
+name = "btop"
+kind = "cli"
+channel = "nixos-unstable"
+release = "nixos-26.11pre1125864.2786a2a72088"
+version = "1.4.8"
+out = "/nix/store/yvml0qbd0gbg2pw22l82lgwfzz2jchq6-btop-1.4.8"
+exec = "bin/btop"
+bin = ["btop"]
+installed = 2026-11-21T15:12:40Z
