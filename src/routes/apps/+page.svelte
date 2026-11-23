@@ -16,7 +16,7 @@
 	<title>Apps — ewe</title>
 	<meta
 		name="description"
-		content="Apps for ewe, one small file each: double-click the file and the app installs, move it to the Trash and the app is gone, restore it and it's back. With eep, ewe's new app manager."
+		content="Apps for ewe, one small file each: double-click the file and press Install, move it to the Trash and the app is gone, restore it and it's back. With eep, ewe's new app manager."
 	/>
 </svelte:head>
 
@@ -24,8 +24,9 @@
 	<p class="eyebrow">Apps <span class="badge warning">Beta</span></p>
 	<h1>One app, one file.</h1>
 	<p class="lede">
-		Press <strong>Get</strong> and you have a small file. Double-click it and the app installs, keeping
-		its file in your Applications folder. Move that file to the Trash and the app is gone.
+		Press <strong>Get</strong> and you have a small file. Double-click it, press
+		<strong>Install</strong>, and the app arrives, keeping its file in your Applications folder. Move
+		that file to the Trash and the app is gone.
 	</p>
 
 	<Callout title="eep comes with ewe">
@@ -98,9 +99,10 @@
 				<div>
 					<h3>Open it</h3>
 					<p>
-						Double-click the file: the app installs and opens. Or drag it into your
-						<strong>Applications</strong> folder: the app installs and shows up in the launcher.
-						Either way, the app's file ends up in Applications — that file is the app.
+						Double-click the file and press <strong>Install</strong>: you see how far the download
+						is, then <strong>Open</strong> starts the app. Or drag the file into your
+						<strong>Applications</strong> folder: it shows its progress there and then appears in
+						the launcher. Either way, the app's file ends up in Applications — that file is the app.
 					</p>
 				</div>
 			</li>
