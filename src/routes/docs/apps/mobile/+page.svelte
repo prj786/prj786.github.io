@@ -117,7 +117,7 @@
 ewe-mobile --page messages    # open it on a page
 ewe-mobile --status           # is it installed, running, which phones`}
 	/>
-	<p>Each command prints its answer as JSON.</p>
+	<p><code>--status</code> answers in JSON and never starts the phone link by itself.</p>
 </section>
 
 <PageNav />
