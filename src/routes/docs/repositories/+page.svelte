@@ -47,6 +47,10 @@
 			<dd>ewe Sync, the account application: your computers, settings sync and folder sync.</dd>
 		</div>
 		<div class="row">
+			<dt><a href="{GITHUB}ewe-mail">ewe-mail</a></dt>
+			<dd>ewe Mail, the mail app: Gmail and any other mailbox in one inbox. The Mail plugin reads from it.</dd>
+		</div>
+		<div class="row">
 			<dt><a href="{GITHUB}ewe-cast">ewe-cast</a></dt>
 			<dd>ewe Cast, the headless casting daemon behind the Cast to TV plugin — Miracast and Chromecast, with no foreign window.</dd>
 		</div>
@@ -110,6 +114,7 @@
 		<div class="row"><dt>The dock, music, mail, Cast to TV — a plugin from ewe</dt><dd>Its own repository above, <code>ewe-plugin-&lt;name&gt;</code></dd></div>
 		<div class="row"><dt>Installing software, or the Plugins page</dt><dd><a href="{GITHUB}komble-arch">komble-arch</a></dd></div>
 		<div class="row"><dt>ewe Sync, or the account</dt><dd><a href="{GITHUB}ewe-sync">ewe-sync</a></dd></div>
+		<div class="row"><dt>ewe Mail, reading, sending, accounts in the window</dt><dd><a href="{GITHUB}ewe-mail">ewe-mail</a></dd></div>
 		<div class="row"><dt>ewe Browser, its home page, files or music</dt><dd><a href="{GITHUB}ewe-browser">ewe-browser</a></dd></div>
 		<div class="row"><dt>ewe Safe, its window or the command</dt><dd><a href="{GITHUB}ewe-safe">ewe-safe</a></dd></div>
 		<div class="row"><dt>Shaun's answers or its agents</dt><dd><a href="{GITHUB}ewe-companion">ewe-companion</a></dd></div>

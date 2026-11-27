@@ -15,7 +15,7 @@
 		{ cmd: 'Settings & apps', does: 'The one file: which computer saved the backup and when, when this one last synced, the auto-sync switch, and Sync now / Back up / Restore.' },
 		{ cmd: 'Computers', does: 'Every computer that has backed up to the account, with its ewe version and how many apps it records.' },
 		{ cmd: 'Account', does: 'Sign in to your Nextcloud through the server’s own page; who you are, storage used, sign out. Links to providers where you can create an account.' },
-		{ cmd: 'Mail · Google', does: 'A mail account for the bar’s mail badge, and Google if you brought your own client.' }
+		{ cmd: 'Mail · Google', does: 'Your mail accounts for ewe Mail: any mailbox by address and password, as many as you like, and Google for Gmail if you brought your own client. If Gmail can only read, Google says so and offers Reconnect.' }
 	];
 </script>
 

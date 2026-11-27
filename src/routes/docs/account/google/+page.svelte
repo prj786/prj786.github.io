@@ -8,7 +8,7 @@
 	<title>Google (optional) — ewe docs</title>
 	<meta
 		name="description"
-		content="ewe ships no Google client. Supply your own OAuth client and a Google page appears in ewe Sync, adding Gmail notifications and a Drive folder — never settings sync."
+		content="ewe ships no Google client. Supply your own OAuth client and a Google page appears in ewe Sync, adding Gmail to ewe Mail and a Drive folder — never settings sync."
 	/>
 </svelte:head>
 
@@ -34,7 +34,7 @@
 		<p>
 			Settings sync, your calendar and your files come from
 			<a href="/docs/account/nextcloud/">your Nextcloud</a>. The Google client adds Gmail
-			notifications and a Drive folder on top, and nothing else.
+			in ewe Mail and a Drive folder on top, and nothing else.
 		</p>
 	</Callout>
 </section>
@@ -57,7 +57,8 @@ ewe-drive setup          # optional: Drive at ~/Google Drive`}
 <section>
 	<h2>What it adds</h2>
 	<dl class="rows">
-		<div class="row"><dt>Gmail notifications</dt><dd>The mail badge, when you have not configured an IMAP account instead.</dd></div>
+		<div class="row"><dt>Gmail in ewe Mail</dt><dd>Read, reply, write, archive, delete, star and search, next to your other mailboxes. <a href="/docs/apps/mail/">ewe Mail →</a></dd></div>
+		<div class="row"><dt>Gmail in the bar</dt><dd>The envelope, the Inbox page and the notes are the Mail plugin, which reads them from ewe Mail.</dd></div>
 		<div class="row"><dt>Drive as a folder</dt><dd>Mounted at <code>~/Google Drive</code>. <a href="/docs/cli/ewe-drive/">More →</a></dd></div>
 	</dl>
 	<p>
@@ -67,8 +68,23 @@ ewe-drive setup          # optional: Drive at ~/Google Drive`}
 </section>
 
 <section>
+	<h2>Coming from ewe 0.50</h2>
+	<p>
+		ewe Mail comes with ewe 0.51 and needs the <code>gmail.modify</code> permission. It lets ewe read,
+		label, archive, delete and send your Gmail, and nothing more. Version 0.50 asked only to read, so
+		an account connected then stays read-only: ewe Mail shows your mail, and the Mail plugin offers
+		<em>Reconnect Google</em>, but you cannot send.
+	</p>
+	<p>
+		To fix it once: open ewe Sync, choose <em>Google</em>, then <em>Disconnect</em> and <em>Connect</em>.
+		The consent screen asks again, this time with the new permission.
+	</p>
+</section>
+
+<section>
 	<h2>See also</h2>
 	<ul>
+		<li><a href="/docs/apps/mail/">ewe Mail</a> — your Gmail, and any other mailbox.</li>
 		<li><a href="/docs/cli/ewe-auth/">ewe-auth</a> — every verb and error.</li>
 		<li><a href="/docs/cli/ewe-drive/">ewe-drive</a> — the Drive folder.</li>
 		<li><a href="/privacy/">Privacy</a> — what is sent, and to whom.</li>

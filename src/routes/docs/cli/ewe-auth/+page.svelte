@@ -5,8 +5,8 @@
 	import PageNav from '$lib/docs/PageNav.svelte';
 
 	const verbs = [
-		{ cmd: 'status', does: 'Whether a client is configured, the keyring is reachable, and who is signed in.', prints: 'configured, client, keyring, signed_in, profile' },
-		{ cmd: 'login', args: '[--with-mail] [--with-drive]', does: 'One browser consent. The extra flags request the Gmail and Drive scopes alongside the base ones.', prints: 'the result, with the profile' },
+		{ cmd: 'status', does: 'Whether a client is configured, the keyring is reachable, and who is signed in. Also whether Gmail may only be read or may also be changed and sent.', prints: 'configured, client, keyring, signed_in, profile, scopes, mail' },
+		{ cmd: 'login', args: '[--with-mail] [--with-drive]', does: 'One browser consent. The extra flags request the Gmail and Drive scopes alongside the base ones. With your own client, Gmail is asked for with the permission to organise and send, which ewe Mail needs.', prints: 'the result, with the profile' },
 		{ cmd: 'token', args: '[--json]', does: 'A valid access token, refreshed under a lock when it has expired. A bare line unless --json.', prints: 'the access token' },
 		{ cmd: 'refresh', does: 'Like token, but always JSON and never trusting the runtime cache without checking expiry.', prints: 'the token and its expiry' },
 		{ cmd: 'logout', does: 'Revoke at Google, then clear the keyring entry and every cache.', prints: 'ok' },
@@ -36,13 +36,13 @@
 	</p>
 	<p>
 		When you do supply one, this is the broker for it: one consent screen and one sign-out for the
-		whole desktop. The mail badge and the Drive folder ask it for a short-lived access token instead
+		whole desktop. ewe Mail and the Drive folder ask it for a short-lived access token instead
 		of each performing their own OAuth.
 	</p>
 	<Callout type="warning">
 		<p>
 			Google is an extra, never the account. Settings sync, your calendar and your files come from
-			<a href="/docs/account/nextcloud/">your Nextcloud</a>; this adds Gmail notifications and a
+			<a href="/docs/account/nextcloud/">your Nextcloud</a>; this adds Gmail in ewe Mail and a
 			Drive folder on top.
 		</p>
 	</Callout>

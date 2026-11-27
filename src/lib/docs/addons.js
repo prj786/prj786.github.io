@@ -119,8 +119,8 @@ export const ADDONS = [
 		repo: 'ewe-plugin-mail',
 		icon: 'mail',
 		group: 'talk',
-		blurb: 'Unread mail from any IMAP account or Gmail: a count in the bar and a note when new mail arrives.',
-		use: 'Click the envelope in the bar, or Mail in the shortcut row of Quick settings, to see your inbox.',
+		blurb: 'Your new mail at a glance: an envelope and a count in the bar, an Inbox page, and a note when mail arrives. It reads from ewe Mail.',
+		use: 'Click the envelope in the bar, or Mail in the shortcut row of Quick settings, to see your inbox. Click a note to open that message in ewe Mail. If Gmail can only read, it offers Reconnect Google.',
 		settings: 'Notifications for new mail.'
 	},
 	{

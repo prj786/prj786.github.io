@@ -89,8 +89,10 @@
 			</div>
 		</dl>
 		<p>
-			<strong>Mail</strong>, if you configure an account, is read over IMAP — unread count and message
-			subjects for the desktop badge and notifications, never bodies, never sending. All of this data
+			<strong>Mail</strong>, if you add an account, is handled by ewe Mail on your computer. It talks
+			over IMAP and SMTP to your own mail server, to read your messages and to send the ones you
+			write. Pictures from the web in a message are blocked until you allow them. The Mail plugin
+			shows the count and the notes from what ewe Mail already has. All of this data
 			flows <strong>directly between your computer and your server</strong>. It is never sent to,
 			stored by, proxied through, or visible to the ewe project.
 		</p>
@@ -146,11 +148,12 @@
 				</dd>
 			</div>
 			<div class="row">
-				<dt><code>gmail.readonly</code></dt>
+				<dt><code>gmail.modify</code></dt>
 				<dd>
-					Your unread count and message subjects — shown on your own desktop as a bar indicator, new
-					mail notifications and a list that deep-links into Gmail. Read-only: ewe cannot send,
-					modify or delete mail. Message bodies are not fetched.
+					Your Gmail, in ewe Mail on your own computer: reading, replying, writing, archiving,
+					starring and deleting, and the count and notes in the bar. It lets ewe read, label, archive,
+					send and move mail to the Trash. It does not let ewe delete mail for good. Before ewe 0.51
+					this was <code>gmail.readonly</code>; reconnect Google once in ewe Sync to change it.
 				</dd>
 			</div>
 			<div class="row">
@@ -204,7 +207,7 @@
 			<div class="row">
 				<dt>Local caches</dt>
 				<dd>
-					Calendar events and mail headers are cached on your machine so the desktop works offline.
+					Calendar events and your mail are cached on your machine (mail in <code>~/.cache/ewe-mail/mail.sqlite</code>) so the desktop works offline.
 					Signing out deletes them.
 				</dd>
 			</div>
