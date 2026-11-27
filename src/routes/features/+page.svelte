@@ -101,6 +101,10 @@
 				<dd>Your own password manager: logins, cards, passkeys and SSH keys, encrypted, synced through your Nextcloud. <a href="/docs/apps/safe/">More →</a></dd>
 			</div>
 			<div class="row">
+				<dt><Icon name="smartphone" size={16} />ewe Mobile</dt>
+				<dd>Your phone in one window: messages, notifications, files, its screen and its apps, over KDE Connect. <a href="/docs/apps/mobile/">More →</a></dd>
+			</div>
+			<div class="row">
 				<dt><Icon name="message-circle" size={16} />Shaun</dt>
 				<dd>A companion in a notch under the bar: your AI agents at a glance, quick switches, and a chat. <a href="/docs/apps/shaun/">More →</a></dd>
 			</div>
