@@ -333,9 +333,22 @@ removed = ["ewe.clipboard"]
 <section>
 	<h2><code>[accounts.mail]</code></h2>
 	<p>
-		<code>host</code>, <code>user</code> and <code>port</code> for the mail badge. The password is in
-		the keyring, never here.
+		A mailbox you added in ewe Sync → Mail: its address, the incoming and outgoing servers, and the
+		user names. There is one section for each account. The password is in the keyring, never here.
+		ewe Mail and the Mail plugin read these.
 	</p>
+</section>
+
+<section>
+	<h2><code>[mail]</code></h2>
+	<p>
+		The settings of <a href="/docs/apps/mail/">ewe Mail</a>, from ewe 0.51. Nothing secret.
+	</p>
+	<dl class="rows">
+		<div class="row"><dt><code>remote_images</code></dt><dd><code>ask</code> (the default) blocks pictures from the web until you allow them; <code>always</code> shows them.</dd></div>
+		<div class="row"><dt><code>mark_read</code></dt><dd><code>open</code> (the default) marks a message as read when you open it; <code>manual</code> leaves that to you.</dd></div>
+		<div class="row"><dt><code>signatures</code></dt><dd>One signature for each address, added once to a new message.</dd></div>
+	</dl>
 </section>
 
 <section>

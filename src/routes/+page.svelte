@@ -175,6 +175,12 @@
 			<p>A password manager of your own: logins, cards, passkeys and SSH keys, encrypted, in your Nextcloud.</p>
 			<span class="go">ewe Safe <Icon name="arrow-right" size={14} /></span>
 		</a>
+		<a class="card act tile" href="/docs/apps/mail/">
+			<span class="ico"><Icon name="mail" size={18} /></span>
+			<h3>ewe Mail</h3>
+			<p>Gmail and any other mailbox in one inbox. Read, reply, write and search, with an Undo for every send.</p>
+			<span class="go">ewe Mail <Icon name="arrow-right" size={14} /></span>
+		</a>
 		<a class="card act tile" href="/theming/">
 			<span class="ico"><Icon name="palette" size={18} /></span>
 			<h3>Your colors, everywhere</h3>
@@ -200,6 +206,17 @@
 			<h3>Always up to date</h3>
 			<p>It's Arch underneath: one update moves the system and the desktop forward together.</p>
 		</div>
+		<div class="card tile">
+			<span class="ico"><Icon name="shield-check" size={18} /></span>
+			<h3>The quiet parts</h3>
+			<p>A silent boot, a desktop that restarts itself if it crashes, and sleep that protects your work.</p>
+		</div>
+		<a class="card act tile" href="/docs/plugins/">
+			<span class="ico"><Icon name="git-branch" size={18} /></span>
+			<h3>Make your own</h3>
+			<p>A plugin is a little QML. <code>ewe-plugin create</code> gives you a working one to start from.</p>
+			<span class="go">How plugins work <Icon name="arrow-right" size={14} /></span>
+		</a>
 		<a class="card act tile wide" href="/how/">
 			<span class="ico"><Icon name="cloud" size={18} /></span>
 			<h3>Your setup follows you</h3>
@@ -209,12 +226,7 @@
 			</p>
 			<span class="go">How it works <Icon name="arrow-right" size={14} /></span>
 		</a>
-		<div class="card tile">
-			<span class="ico"><Icon name="shield-check" size={18} /></span>
-			<h3>The quiet parts</h3>
-			<p>A silent boot, a desktop that restarts itself if it crashes, and sleep that protects your work.</p>
-		</div>
-		<a class="card act tile wide" href="/docs/plugins/built-in/">
+		<a class="card act tile" href="/docs/plugins/built-in/">
 			<span class="ico"><Icon name="puzzle" size={18} /></span>
 			<h3>Seventeen plugins, your pick</h3>
 			<p>
@@ -222,12 +234,6 @@
 				TV, VPN, SSH and more ship with ewe — and install only when you ask.
 			</p>
 			<span class="go">See all seventeen <Icon name="arrow-right" size={14} /></span>
-		</a>
-		<a class="card act tile" href="/docs/plugins/">
-			<span class="ico"><Icon name="git-branch" size={18} /></span>
-			<h3>Make your own</h3>
-			<p>A plugin is a little QML. <code>ewe-plugin create</code> gives you a working one to start from.</p>
-			<span class="go">How plugins work <Icon name="arrow-right" size={14} /></span>
 		</a>
 	</div>
 	<p class="more center"><a href="/features/">All features →</a></p>

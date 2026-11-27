@@ -28,8 +28,8 @@
 		<div class="row"><dt>Your calendar</dt><dd>Read over CalDAV for the calendar widget. <a href="/docs/account/mail-calendar/">More →</a></dd></div>
 	</dl>
 	<p>
-		Mail is deliberately separate: any IMAP account drives the mail badge, including the mailbox your
-		provider gives you with the Nextcloud account.
+		Mail is deliberately separate: <a href="/docs/apps/mail/">ewe Mail</a> shows Gmail and any other
+		mailbox, including the one your provider gives you with the Nextcloud account.
 	</p>
 </section>
 

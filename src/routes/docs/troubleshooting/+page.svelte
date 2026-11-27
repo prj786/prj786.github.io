@@ -75,7 +75,11 @@
 		</div>
 		<div class="row">
 			<dt>The mail count is empty</dt>
-			<dd><code>ewe-mail status</code>. An <code>auth-failed</code> usually means your provider wants an app password.</dd>
+			<dd>Open ewe Mail, which the count comes from, and look at the banner over the account. Or run <code>ewe-mail status</code>. An <code>auth-failed</code> usually means your provider wants an app password.</dd>
+		</div>
+		<div class="row">
+			<dt>Gmail will not send, or says it is read-only</dt>
+			<dd>You connected Google before ewe 0.51. Open ewe Sync, choose <em>Google</em>, then <em>Disconnect</em> and <em>Connect</em> once. <a href="/docs/account/google/">More →</a></dd>
 		</div>
 	</dl>
 	<Code

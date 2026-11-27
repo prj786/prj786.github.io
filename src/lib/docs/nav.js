@@ -16,6 +16,7 @@ export const SECTIONS = [
 			{ href: '/docs/apps/browser/', label: 'ewe Browser', blurb: 'The web, your files and your music in one window — with ewe Safe built in.' },
 			{ href: '/docs/apps/files-player-viewer/', label: 'Files, Player, Viewer', blurb: 'Folders, video and music, documents and pictures — ewe’s own apps.' },
 			{ href: '/docs/apps/mobile/', label: 'ewe Mobile', blurb: 'Your phone in one window: messages, notifications, files, its screen and its apps.' },
+			{ href: '/docs/apps/mail/', label: 'ewe Mail', blurb: 'Gmail and any other mailbox in one inbox: read, reply, write, search.' },
 			{ href: '/docs/apps/safe/', label: 'ewe Safe', blurb: 'Your passwords, cards and keys, encrypted, in your own Nextcloud.' },
 			{ href: '/docs/apps/shaun/', label: 'Shaun', blurb: 'The companion in the notch: your AI agents, quick actions, a chat.' },
 			{ href: '/docs/apps/komble/', label: 'Komble', blurb: 'Apps, updates and plugins, from one search field.' },
@@ -28,8 +29,8 @@ export const SECTIONS = [
 			{ href: '/docs/account/nextcloud/', label: 'Nextcloud account', blurb: 'One sign-in to a server you choose.' },
 			{ href: '/docs/account/settings-sync/', label: 'Settings sync', blurb: 'The one file, on every machine you own.' },
 			{ href: '/docs/account/folder-sync/', label: 'Folder sync', blurb: 'Which folders sync where, and conflicts.' },
-			{ href: '/docs/account/mail-calendar/', label: 'Mail & calendar', blurb: 'Any IMAP inbox; CalDAV from the account.' },
-			{ href: '/docs/account/google/', label: 'Google (optional)', blurb: 'Gmail and Drive, with your own OAuth client.' }
+			{ href: '/docs/account/mail-calendar/', label: 'Mail & calendar', blurb: 'Your mailboxes in ewe Mail; CalDAV from the account.' },
+			{ href: '/docs/account/google/', label: 'Google (optional)', blurb: 'Gmail in ewe Mail and Drive, with your own OAuth client.' }
 		]
 	},
 	{
@@ -61,7 +62,7 @@ export const SECTIONS = [
 			{ href: '/docs/cli/ewe-sync/', label: 'ewe-sync', blurb: 'ewe Sync, the account app: your computers, sync, folders.' },
 			{ href: '/docs/cli/ewe-files/', label: 'ewe-files', blurb: 'The account, mounted as a folder.' },
 			{ href: '/docs/cli/ewe-caldav/', label: 'ewe-caldav', blurb: 'The calendar of the account, over CalDAV.' },
-			{ href: '/docs/cli/ewe-mail/', label: 'ewe-mail', blurb: 'The mail badge, from any IMAP account.' },
+			{ href: '/docs/cli/ewe-mail/', label: 'ewe-mail', blurb: 'The command behind your mail accounts, and the badge.' },
 			{ href: '/docs/cli/ewe-auth/', label: 'ewe-auth', blurb: 'Google, with a client you supply.' },
 			{ href: '/docs/cli/ewe-drive/', label: 'ewe-drive', blurb: 'Google Drive as a folder.' },
 			{ href: '/docs/cli/ewe-setup/', label: 'ewe-setup', blurb: 'Deploy the desktop for your user; the plugin migration runs here.' },

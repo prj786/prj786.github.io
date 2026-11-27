@@ -17,7 +17,7 @@
 	<title>Features — ewe</title>
 	<meta
 		name="description"
-		content="Everything ewe OS does, in short: the installer, the desktop, ewe Browser, ewe Safe, Shaun, Komble, ewe Settings, ewe Sync, seventeen plugins you choose, theming, your Nextcloud account and the quiet system parts."
+		content="Everything ewe OS does, in short: the installer, the desktop, ewe Browser, ewe Safe, ewe Mail, Shaun, Komble, ewe Settings, ewe Sync, seventeen plugins you choose, theming, your Nextcloud account and the quiet system parts."
 	/>
 </svelte:head>
 
@@ -107,6 +107,10 @@
 			<div class="row">
 				<dt><Icon name="message-circle" size={16} />Shaun</dt>
 				<dd>A companion in a notch under the bar: your AI agents at a glance, quick switches, and a chat. <a href="/docs/apps/shaun/">More →</a></dd>
+			</div>
+			<div class="row">
+				<dt><Icon name="mail" size={16} />ewe Mail</dt>
+				<dd>Gmail and any other mailbox in one inbox: read, reply, write, search. <a href="/docs/apps/mail/">More →</a></dd>
 			</div>
 			<div class="row">
 				<dt><Icon name="package" size={16} />Komble</dt>
