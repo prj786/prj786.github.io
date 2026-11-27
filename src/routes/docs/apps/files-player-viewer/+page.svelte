@@ -25,7 +25,7 @@
 		<div class="row"><dt>Tabs and split view</dt><dd>Ctrl+T opens a tab, F3 shows two folders side by side, Ctrl+N a new window.</dd></div>
 		<div class="row"><dt>Copy and move</dt><dd>Big copies show their progress, speed and time left; pause or cancel them. When a name is taken, you choose: replace, skip or keep both. Ctrl+Z undoes a move, a rename or Move to Trash.</dd></div>
 		<div class="row"><dt>Trash</dt><dd>Restore what you deleted, delete it for good, or empty the Trash.</dd></div>
-		<div class="row"><dt>Drives and phones</dt><dd>USB drives, SD cards and phones show up in the sidebar; eject them from there. <em>Connect to server…</em> opens SMB, SFTP, FTP and WebDAV shares.</dd></div>
+		<div class="row"><dt>Drives and phones</dt><dd>USB drives and SD cards show up in the sidebar; eject them from there. A paired phone is a row under <em>Devices</em> too: press <em>Connect</em> while it is in reach, browse its storage, eject it when you are done. <a href="/docs/apps/mobile/">ewe Mobile →</a> <em>Connect to server…</em> opens SMB, SFTP, FTP and WebDAV shares.</dd></div>
 		<div class="row"><dt>Archives</dt><dd>Open a zip, tar or RAR to see what's inside, extract it here or somewhere else, or compress a selection to zip, tar.gz, tar.zst or 7z.</dd></div>
 		<div class="row"><dt>Find and preview</dt><dd>Search inside the folder as you type, or everywhere. Space shows a quick look; F9 keeps a preview pane open. Text files read right in any language, whatever their encoding, and iPhone photos (HEIC) get thumbnails.</dd></div>
 		<div class="row"><dt>Open with</dt><dd>Pick another app for a file, and make it the default for that kind of file.</dd></div>

@@ -59,6 +59,18 @@
 			<dd>ewe Safe, ewe's password manager: the app, the <code>ewe-safe</code> command and the SSH agent. The ewe Safe plugin brings it.</dd>
 		</div>
 		<div class="row">
+			<dt><a href="{GITHUB}ewe-mobile">ewe-mobile</a></dt>
+			<dd>ewe Mobile, your phone in one window, over KDE Connect. The Phone plugin opens it.</dd>
+		</div>
+		<div class="row">
+			<dt><a href="{GITHUB}ewe-apps">ewe-apps</a></dt>
+			<dd>ewe Files, ewe Player and ewe Viewer: folders, video and music, documents and pictures.</dd>
+		</div>
+		<div class="row">
+			<dt><a href="{GITHUB}eep">eep</a></dt>
+			<dd>eep, the app manager: one card per app in <code>~/Applications</code>, apps prebuilt from the Nix binary cache.</dd>
+		</div>
+		<div class="row">
 			<dt><a href="{GITHUB}ewe-companion">ewe-companion</a></dt>
 			<dd>Shaun, the desktop companion behind the notch. The Shaun plugin brings it.</dd>
 		</div>

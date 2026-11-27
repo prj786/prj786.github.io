@@ -142,7 +142,7 @@ ewe-plugin restore --yes`}
 	/>
 	<p><code>install</code> and <code>migrate</code> — one JSON object each:</p>
 	<Code
-		code={`{"ok": true, "id": "ewe.phone", "version": "1.0.0", "dir": "…/plugins/ewe.phone",
+		code={`{"ok": true, "id": "ewe.phone", "version": "1.2.0", "dir": "…/plugins/ewe.phone",
  "installed": true, "enabled": true, "refreshed": false, "missing": ["kdeconnect"], "restarted": true}
 {"ok": true, "migrated": ["ewe.media", "ewe.places"], "fresh": false, "restarted": true,
  "skipped": [{"id": "ewe.dock", "why": "desktop.dock.enabled is false"},
