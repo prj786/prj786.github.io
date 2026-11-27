@@ -36,12 +36,14 @@ Actions** on the repository.
 src/routes/
   +layout.svelte     bar + footer, sitewide chrome
   +page.svelte       home — what ewe OS is
-  download/          get the ISO, verify, write, boot, the six screens
-  features/          the OS, shell, look, apps, cast, phone, system
+  download/          get the ISO, verify, write, boot, the eleven screens
+  features/          the OS, the desktop, apps, plugins, the look, your account, system
   apps/              apps as eep cards: Get, how install/remove works (beta)
   theming/           one accent in, a whole system out — with a LIVE derivation
   how/               the one file, sync, and why decisions are a feature
-  docs/              install, shortcuts, updates, ewe-conf, limits, repos
+  docs/              install, the desktop, apps (ewe Mobile among them), account, the one file,
+                     plugins, the CLI reference, shortcuts, updates, repositories, troubleshooting
+  design/            the design system: tokens, color, type, motion, components, writing
   privacy/           privacy policy (Google OAuth verification)
   sitemap.xml/       generated from the docs nav, so it cannot drift
   philosophy/        308 → /how/   (merged; the URL is kept)

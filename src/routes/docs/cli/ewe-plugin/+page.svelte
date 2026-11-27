@@ -142,7 +142,7 @@ ewe-plugin restore --yes`}
 	/>
 	<p><code>install</code> and <code>migrate</code> — one JSON object each:</p>
 	<Code
-		code={`{"ok": true, "id": "ewe.phone", "version": "1.0.0", "dir": "…/plugins/ewe.phone",
+		code={`{"ok": true, "id": "ewe.phone", "version": "1.2.0", "dir": "…/plugins/ewe.phone",
  "installed": true, "enabled": true, "refreshed": false, "missing": ["kdeconnect"], "restarted": true}
 {"ok": true, "migrated": ["ewe.media", "ewe.places"], "fresh": false, "restarted": true,
  "skipped": [{"id": "ewe.dock", "why": "desktop.dock.enabled is false"},
@@ -207,7 +207,7 @@ ewe-plugin restore --yes`}
 <section>
 	<h2>See also</h2>
 	<ul>
-		<li><a href="/docs/plugins/built-in/">Built-in plugins</a> — the sixteen ewe ships, their options, and what an upgrade keeps.</li>
+		<li><a href="/docs/plugins/built-in/">Built-in plugins</a> — the seventeen ewe ships, their options, and what an upgrade keeps.</li>
 		<li><a href="/docs/plugins/">Plugins</a> — what they are, trust, safe mode.</li>
 		<li><a href="/docs/plugins/writing/">Writing a plugin</a> — the manifest and the entry points.</li>
 		<li><a href="/docs/one-file/schema/">Schema reference</a> — the <code>[plugins]</code> table.</li>

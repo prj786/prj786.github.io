@@ -15,6 +15,7 @@ export const SECTIONS = [
 		items: [
 			{ href: '/docs/apps/browser/', label: 'ewe Browser', blurb: 'The web, your files and your music in one window — with ewe Safe built in.' },
 			{ href: '/docs/apps/files-player-viewer/', label: 'Files, Player, Viewer', blurb: 'Folders, video and music, documents and pictures — ewe’s own apps.' },
+			{ href: '/docs/apps/mobile/', label: 'ewe Mobile', blurb: 'Your phone in one window: messages, notifications, files, its screen and its apps.' },
 			{ href: '/docs/apps/safe/', label: 'ewe Safe', blurb: 'Your passwords, cards and keys, encrypted, in your own Nextcloud.' },
 			{ href: '/docs/apps/shaun/', label: 'Shaun', blurb: 'The companion in the notch: your AI agents, quick actions, a chat.' },
 			{ href: '/docs/apps/komble/', label: 'Komble', blurb: 'Apps, updates and plugins, from one search field.' },
@@ -43,7 +44,7 @@ export const SECTIONS = [
 		title: 'Plugins',
 		items: [
 			{ href: '/docs/plugins/', label: 'Plugins', blurb: 'What a plugin is, where it shows up, and how to add, set up or remove one.' },
-			{ href: '/docs/plugins/built-in/', label: 'Built-in plugins', blurb: 'The sixteen that ship with ewe — the dock, Shaun, ewe Safe, mail, Cast to TV and more.' },
+			{ href: '/docs/plugins/built-in/', label: 'Built-in plugins', blurb: 'The seventeen that ship with ewe — the dock, Shaun, ewe Safe, mail, Cast to TV and more.' },
 			{ href: '/docs/plugins/writing/', label: 'Writing a plugin', blurb: 'create, the API 3 manifest, one QML file per kind, settings, dev.' },
 			{ href: '/docs/plugins/api/', label: 'What a plugin may use', blurb: 'The Shell singleton, the public components, Theme roles, IPC — API 3.' }
 		]

@@ -10,7 +10,7 @@
 	<title>Download — ewe</title>
 	<meta
 		name="description"
-		content="Download the ewe OS ISO as one file, write it to a USB stick, and install in about ten minutes. Eight screens, the plugins you want, and everything technical decided for you."
+		content="Download the ewe OS ISO as one file, write it to a USB stick, and install in about ten minutes. Eleven screens, the plugins you want, and everything technical decided for you."
 	/>
 </svelte:head>
 
@@ -99,8 +99,8 @@
 			<li><span class="n">5</span><div><h3>Disk</h3><p>Pick a disk. <strong>The whole disk is erased</strong>; you're warned here and again at the end.</p></div></li>
 			<li><span class="n">6</span><div><h3>Your login</h3><p>Name, username, password, computer name.</p></div></li>
 			<li><span class="n">7</span><div><h3>Your ewe account</h3><p>Optional. Sign in to your Nextcloud and your settings, folders and apps come back with you — or skip it.</p></div></li>
-			<li><span class="n">8</span><div><h3>Plugins</h3><p>The dock, ewe Safe, Shaun, music, mail and <a href="/docs/plugins/built-in/">eleven more</a> — the plugins ewe ships but does not install until you ask. Nothing is pre-checked; Komble has every one of them later.</p></div></li>
-			<li><span class="n">9</span><div><h3>Apps</h3><p>Optional. Popular apps for day one. The ones from Arch's repositories install with the system; the rest wait in Komble after you sign in, so nothing is built from the AUR without you looking.</p></div></li>
+			<li><span class="n">8</span><div><h3>Plugins</h3><p>The dock, ewe Safe, Shaun, music, mail and <a href="/docs/plugins/built-in/">twelve more</a> — the plugins ewe ships but does not install until you ask. Nothing is pre-checked; Komble has every one of them later.</p></div></li>
+			<li><span class="n">9</span><div><h3>Apps</h3><p>Optional. Popular apps for day one, and ewe Mobile, unchecked. The ones from Arch's repositories install with the system; the rest wait in Komble after you sign in, so nothing is built from the AUR without you looking.</p></div></li>
 			<li><span class="n">10</span><div><h3>Summary</h3><p>Everything you chose, plugins and apps included, everything ewe decided, and the only Install button in the flow.</p></div></li>
 			<li><span class="n">11</span><div><h3>Install</h3><p>Streamed progress — the system, the desktop, an update, your language, plugins and apps — then reboot. Pull the stick when the screen goes dark.</p></div></li>
 		</ol>

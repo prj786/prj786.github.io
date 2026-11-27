@@ -17,7 +17,7 @@
 	<title>Features — ewe</title>
 	<meta
 		name="description"
-		content="Everything ewe OS does, in short: the installer, the desktop, ewe Browser, ewe Safe, Shaun, Komble, ewe Settings, ewe Sync, sixteen plugins you choose, theming, your Nextcloud account and the quiet system parts."
+		content="Everything ewe OS does, in short: the installer, the desktop, ewe Browser, ewe Safe, Shaun, Komble, ewe Settings, ewe Sync, seventeen plugins you choose, theming, your Nextcloud account and the quiet system parts."
 	/>
 </svelte:head>
 
@@ -101,6 +101,10 @@
 				<dd>Your own password manager: logins, cards, passkeys and SSH keys, encrypted, synced through your Nextcloud. <a href="/docs/apps/safe/">More →</a></dd>
 			</div>
 			<div class="row">
+				<dt><Icon name="smartphone" size={16} />ewe Mobile</dt>
+				<dd>Your phone in one window: messages, notifications, files, its screen and its apps, over KDE Connect. <a href="/docs/apps/mobile/">More →</a></dd>
+			</div>
+			<div class="row">
 				<dt><Icon name="message-circle" size={16} />Shaun</dt>
 				<dd>A companion in a notch under the bar: your AI agents at a glance, quick switches, and a chat. <a href="/docs/apps/shaun/">More →</a></dd>
 			</div>
@@ -121,7 +125,7 @@
 
 	<section id="plugins">
 		<p class="eyebrow">Plugins</p>
-		<h2>Sixteen built in. Yours by choice.</h2>
+		<h2>Seventeen built in. Yours by choice.</h2>
 		<p>
 			They ship with ewe and install only when you ask — in the installer, at first login, or one
 			click in Komble. <a href="/docs/plugins/built-in/">Each one →</a>

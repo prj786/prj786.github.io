@@ -1,4 +1,4 @@
-// The sixteen built-in plugins — one source for /docs/plugins/built-in/, the
+// The seventeen built-in plugins — one source for /docs/plugins/built-in/, the
 // features page and the repositories page. Facts come from ewe's
 // plugins/bundle.json and each plugin's manifest.json (names, descriptions,
 // settings, keybinds, requires); the repo is prj786/ewe-plugin-<name>.
@@ -21,9 +21,20 @@ export const ADDONS = [
 		repo: 'ewe-plugin-dock',
 		icon: 'dock',
 		group: 'desk',
-		blurb: 'A dock along the bottom of the screen: your apps, your workspaces, minimized windows and downloads.',
-		use: 'Click an app to open it. A minimized window (Super+Z) waits here as a small picture — click it to bring it back. The ring at the end shows ewe Browser downloads.',
+		blurb: 'A dock along the bottom of the screen: your apps, your workspaces, minimized windows and downloads. With the Phone plugin, a Phone button too.',
+		use: 'Click an app to open it. A minimized window (Super+Z) waits here as a small picture — click it to bring it back. The ring at the end shows ewe Browser downloads. The Phone button, once a phone is paired, opens the phone’s apps and folders.',
 		settings: 'Auto-hide, icon size, and which screens show it: the main one (the default), all of them — the others get a small dock with just their own workspaces and minimized windows — or none.'
+	},
+	{
+		id: 'ewe.switcher',
+		name: 'Window switcher',
+		repo: 'ewe-plugin-switcher',
+		icon: 'app-window',
+		group: 'desk',
+		blurb: 'Alt+Tab: the open windows as icons while Alt is held, most recent first.',
+		use: 'Hold Alt and tap Tab to move along the windows; Alt+Shift+Tab goes back. Let go to switch.',
+		settings: 'Which windows to show: this workspace, every workspace of this display, or every window everywhere.',
+		keys: 'Alt+Tab'
 	},
 	{
 		id: 'ewe.companion',
@@ -128,8 +139,8 @@ export const ADDONS = [
 		repo: 'ewe-plugin-phone',
 		icon: 'smartphone',
 		group: 'talk',
-		blurb: 'Your phone on your desktop: its battery, its notifications and your text messages.',
-		use: 'Pair your phone with the KDE Connect app, then open its page from the shortcut row in Quick settings.',
+		blurb: 'Your phone on your desktop: its battery, its notifications as desktop cards, your text messages, and a Phone button in the dock.',
+		use: 'Pair your phone with the KDE Connect app, then open its page from the shortcut row in Quick settings, or press the Phone button in the dock for the phone’s apps and folders. For everything else it opens ewe Mobile.',
 		needs: 'kdeconnect'
 	},
 	{
