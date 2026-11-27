@@ -78,7 +78,7 @@
 	<p>
 		Every <a href="/docs/plugins/built-in/">plugin that ships with ewe</a> is developed and released in its
 		own repository and copied into the ewe package at release time, so a fix lands in the plugin's
-		repo first and reaches you with the next ewe. The sixteen:
+		repo first and reaches you with the next ewe. The seventeen:
 	</p>
 	<dl class="rows addons">
 		{#each ADDONS as a}

@@ -10,7 +10,7 @@
 	<title>Built-in plugins — ewe docs</title>
 	<meta
 		name="description"
-		content="The sixteen plugins that ship with ewe — the dock, Shaun, ewe Safe, music, Places, clipboard, screenshots, passwords, mail, Slack, phone, Cast to TV, VPN, SSH, Insomnia and the system monitor: what each does, how to use it, and how to get it."
+		content="The seventeen plugins that ship with ewe — the dock, Shaun, ewe Safe, music, Places, clipboard, screenshots, passwords, mail, Slack, phone, Cast to TV, VPN, SSH, Insomnia and the system monitor: what each does, how to use it, and how to get it."
 	/>
 </svelte:head>
 
@@ -96,7 +96,7 @@ ewe-plugin set ewe.dock autohide true`}
 	</p>
 	<p>
 		Want to build your own? <a href="/docs/plugins/writing/">Writing a plugin</a> starts from the
-		same API these sixteen use — their repositories are the worked examples.
+		same API these seventeen use — their repositories are the worked examples.
 	</p>
 </section>
 

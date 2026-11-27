@@ -44,7 +44,7 @@ export const SECTIONS = [
 		title: 'Plugins',
 		items: [
 			{ href: '/docs/plugins/', label: 'Plugins', blurb: 'What a plugin is, where it shows up, and how to add, set up or remove one.' },
-			{ href: '/docs/plugins/built-in/', label: 'Built-in plugins', blurb: 'The sixteen that ship with ewe — the dock, Shaun, ewe Safe, mail, Cast to TV and more.' },
+			{ href: '/docs/plugins/built-in/', label: 'Built-in plugins', blurb: 'The seventeen that ship with ewe — the dock, Shaun, ewe Safe, mail, Cast to TV and more.' },
 			{ href: '/docs/plugins/writing/', label: 'Writing a plugin', blurb: 'create, the API 3 manifest, one QML file per kind, settings, dev.' },
 			{ href: '/docs/plugins/api/', label: 'What a plugin may use', blurb: 'The Shell singleton, the public components, Theme roles, IPC — API 3.' }
 		]

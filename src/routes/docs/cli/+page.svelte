@@ -83,7 +83,7 @@ ewe-conf sync-status`}
 		<div class="row"><dt>Get at my files</dt><dd><a href="/docs/cli/ewe-files/">ewe-files</a> to mount the account, or folder pairs in <a href="/docs/cli/ewe-sync/">ewe Sync</a>.</dd></div>
 		<div class="row"><dt>Fix the desktop after an update</dt><dd><a href="/docs/cli/ewe-setup/">ewe-setup</a>, then log out and in.</dd></div>
 		<div class="row"><dt>Install on another machine</dt><dd><a href="/docs/cli/ewe-install/">ewe-install</a>.</dd></div>
-		<div class="row"><dt>Get the dock, music, mail, Cast — a plugin from ewe</dt><dd><a href="/docs/cli/ewe-plugin/">ewe-plugin</a> <code>install &lt;id&gt;</code>, or Komble → Plugins; <a href="/docs/plugins/built-in/">the sixteen</a>.</dd></div>
+		<div class="row"><dt>Get the dock, music, mail, Cast — a plugin from ewe</dt><dd><a href="/docs/cli/ewe-plugin/">ewe-plugin</a> <code>install &lt;id&gt;</code>, or Komble → Plugins; <a href="/docs/plugins/built-in/">the seventeen</a>.</dd></div>
 		<div class="row"><dt>Cast to a television</dt><dd>The Cast to TV plugin in Quick settings — <a href="/docs/cli/ewe-castd/">ewe-castd</a>, ewe Cast’s daemon, is what it drives.</dd></div>
 		<div class="row"><dt>Add a tile, a bar widget, a desktop widget, a panel</dt><dd><a href="/docs/cli/ewe-plugin/">ewe-plugin</a> — a git URL in, or <code>create</code> your own; <a href="/docs/plugins/">the guide</a>.</dd></div>
 		<div class="row"><dt>Change the colors — a scheme, the wallpaper's</dt><dd><a href="/docs/cli/ewe-theme/">ewe-theme</a> <code>scheme import | from-wallpaper | apply</code>, or ewe Settings → Appearance → Colors.</dd></div>

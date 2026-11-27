@@ -107,7 +107,7 @@
 		<h2>It asks six things.</h2>
 		<p>
 			Everything technical is decided by ewe, and shown to you on one summary screen before anything
-			is written. The last questions are which of the sixteen built-in plugins and which apps you
+			is written. The last questions are which of the seventeen built-in plugins and which apps you
 			want — none is ticked for you.
 		</p>
 	</div>
@@ -216,12 +216,12 @@
 		</div>
 		<a class="card act tile wide" href="/docs/plugins/built-in/">
 			<span class="ico"><Icon name="puzzle" size={18} /></span>
-			<h3>Sixteen plugins, your pick</h3>
+			<h3>Seventeen plugins, your pick</h3>
 			<p>
 				The dock, ewe Safe, Shaun, music, Places, clipboard, screenshots, mail, Slack, your phone, Cast to
 				TV, VPN, SSH and more ship with ewe — and install only when you ask.
 			</p>
-			<span class="go">See all sixteen <Icon name="arrow-right" size={14} /></span>
+			<span class="go">See all seventeen <Icon name="arrow-right" size={14} /></span>
 		</a>
 		<a class="card act tile" href="/docs/plugins/">
 			<span class="ico"><Icon name="git-branch" size={18} /></span>

@@ -207,7 +207,7 @@ ewe-plugin restore --yes`}
 <section>
 	<h2>See also</h2>
 	<ul>
-		<li><a href="/docs/plugins/built-in/">Built-in plugins</a> — the sixteen ewe ships, their options, and what an upgrade keeps.</li>
+		<li><a href="/docs/plugins/built-in/">Built-in plugins</a> — the seventeen ewe ships, their options, and what an upgrade keeps.</li>
 		<li><a href="/docs/plugins/">Plugins</a> — what they are, trust, safe mode.</li>
 		<li><a href="/docs/plugins/writing/">Writing a plugin</a> — the manifest and the entry points.</li>
 		<li><a href="/docs/one-file/schema/">Schema reference</a> — the <code>[plugins]</code> table.</li>

@@ -17,7 +17,7 @@
 	<title>Features — ewe</title>
 	<meta
 		name="description"
-		content="Everything ewe OS does, in short: the installer, the desktop, ewe Browser, ewe Safe, Shaun, Komble, ewe Settings, ewe Sync, sixteen plugins you choose, theming, your Nextcloud account and the quiet system parts."
+		content="Everything ewe OS does, in short: the installer, the desktop, ewe Browser, ewe Safe, Shaun, Komble, ewe Settings, ewe Sync, seventeen plugins you choose, theming, your Nextcloud account and the quiet system parts."
 	/>
 </svelte:head>
 
@@ -125,7 +125,7 @@
 
 	<section id="plugins">
 		<p class="eyebrow">Plugins</p>
-		<h2>Sixteen built in. Yours by choice.</h2>
+		<h2>Seventeen built in. Yours by choice.</h2>
 		<p>
 			They ship with ewe and install only when you ask — in the installer, at first login, or one
 			click in Komble. <a href="/docs/plugins/built-in/">Each one →</a>
